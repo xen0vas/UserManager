@@ -33,7 +33,7 @@ everyone who need to manage Linux users and groups with a user friendly tool
 
 
 
->> you can find the executable under the folder Debug\usermanager.app\Content\MacOS\usermanager
+>>>> you can find the executable under the folder Debug\usermanager.app\Content\MacOS\usermanager
 
 enjoy!
 
