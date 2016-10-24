@@ -25,6 +25,8 @@ everyone who need to manage Linux users and groups with a user friendly tool
 ![user_properties](https://cloud.githubusercontent.com/assets/12726776/19657721/0139518c-9a2e-11e6-922f-27656a68bed4.PNG)
 
 
+you can find the executable under the folder Debug\usermanager.app\Content\MacOS\usermanager 
 
+enjoy!
 
 
