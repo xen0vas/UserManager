@@ -11,7 +11,7 @@ UserManager is a Linux tool that performs the following
 - set working shell
 
 
-![usermanager_dash](https://cloud.githubusercontent.com/assets/12726776/19657546/5650ff86-9a2d-11e6-81c6-efdacc3e0d2f.PNG)
+![usermanager_dash](https://cloud.githubusercontent.com/assets/12726776/19657636/b21ed7de-9a2d-11e6-95db-92baa468b2dc.PNG)
 
 
 ### Who need this
