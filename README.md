@@ -10,11 +10,11 @@ UserManager is a Linux tool that performs the following
 - search for users and groups 
 - set working shells
 
-![reg](https://cloud.githubusercontent.com/assets/12726776/10712132/7ff04d56-7a99-11e5-8d5b-4effd8ace466.PNG)
+
 
 ### Who need this
 
-
+everyone who need to manage Linux users and groups with a user friendly tool 
 
 
 
