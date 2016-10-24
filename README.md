@@ -1,6 +1,4 @@
 # UserManager
--------------
-
 
 UserManager is a Linux tool that helps Linux users to perform the following
 
