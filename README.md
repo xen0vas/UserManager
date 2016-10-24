@@ -32,8 +32,16 @@ everyone who need to manage Linux users and groups with a user friendly tool
 ![user_properties_tester](https://cloud.githubusercontent.com/assets/12726776/19658012/fadac356-9a2e-11e6-9890-7e41002a0db0.PNG)
 
 
-[you can find the executable under the folder Debug\usermanager.app\Content\MacOS\usermanager]
+- you can find the executable under the folder #Debug/usermanager.app/Content/MacOS/usermanager
+- download the executable and put it in /opt/usermanager
+- use the following command to create a symbolic link 
 
-enjoy!
+`ln -s /opt/usermanarer /usr/bin/usermanager`
+
+- open a terminal and run 
+
+`usermanager &` 
+
+enjoy ;-)
 
 
