@@ -2,7 +2,7 @@
 
 UserManager is a Linux tool that performs the following
 
-- add users and groups accounts 
+- add users accounts and groups 
 - set user passwords, expiration dates
 - enable, disable accounts
 - see how much space left for the user
