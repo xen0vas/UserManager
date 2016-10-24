@@ -1,0 +1,1215 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>925</width>
+    <height>750</height>
+   </rect>
+  </property>
+  <property name="palette" >
+   <palette>
+    <active>
+     <colorrole role="Button" >
+      <brush brushstyle="SolidPattern" >
+       <color alpha="255" >
+        <red>229</red>
+        <green>229</green>
+        <blue>229</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Button" >
+      <brush brushstyle="SolidPattern" >
+       <color alpha="255" >
+        <red>229</red>
+        <green>229</green>
+        <blue>229</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Button" >
+      <brush brushstyle="SolidPattern" >
+       <color alpha="255" >
+        <red>229</red>
+        <green>229</green>
+        <blue>229</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
+  <property name="acceptDrops" >
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle" >
+   <string>User Manager</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../resources/images.qrc" >
+    <normaloff>:/new/prefix1/images/UserManager.gif</normaloff>:/new/prefix1/images/UserManager.gif</iconset>
+  </property>
+  <property name="layoutDirection" >
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <property name="autoFillBackground" >
+   <bool>true</bool>
+  </property>
+  <property name="toolButtonStyle" >
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
+  <property name="dockNestingEnabled" >
+   <bool>true</bool>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac" >
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QGridLayout" name="gridLayout" >
+    <item row="0" column="0" >
+     <spacer name="verticalSpacer" >
+      <property name="orientation" >
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType" >
+       <enum>QSizePolicy::Preferred</enum>
+      </property>
+      <property name="sizeHint" stdset="0" >
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="1" colspan="3" >
+     <widget class="QGroupBox" name="groupBox" >
+      <property name="title" >
+       <string/>
+      </property>
+      <widget class="QToolButton" name="reloadBtn" >
+       <property name="geometry" >
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>51</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="toolTip" >
+        <string/>
+       </property>
+       <property name="statusTip" >
+        <string>Reload Lists</string>
+       </property>
+       <property name="whatsThis" >
+        <string/>
+       </property>
+       <property name="text" >
+        <string/>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resources/images.qrc" >
+         <normaloff>:/new/prefix1/images/reload.png</normaloff>:/new/prefix1/images/reload.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="autoRaise" >
+        <bool>false</bool>
+       </property>
+       <property name="arrowType" >
+        <enum>Qt::NoArrow</enum>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="addUserBtn" >
+       <property name="geometry" >
+        <rect>
+         <x>50</x>
+         <y>0</y>
+         <width>51</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="statusTip" >
+        <string>Add New User</string>
+       </property>
+       <property name="autoFillBackground" >
+        <bool>false</bool>
+       </property>
+       <property name="text" >
+        <string/>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resources/images.qrc" >
+         <normaloff>:/new/prefix1/images/user_add.png</normaloff>:/new/prefix1/images/user_add.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="delUserBtn" >
+       <property name="geometry" >
+        <rect>
+         <x>100</x>
+         <y>0</y>
+         <width>51</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="statusTip" >
+        <string>Delete User</string>
+       </property>
+       <property name="autoFillBackground" >
+        <bool>false</bool>
+       </property>
+       <property name="text" >
+        <string/>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resources/images.qrc" >
+         <normaloff>:/new/prefix1/images/user_remove.png</normaloff>:/new/prefix1/images/user_remove.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="searchUserBtn" >
+       <property name="geometry" >
+        <rect>
+         <x>150</x>
+         <y>0</y>
+         <width>51</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="statusTip" >
+        <string>Search User</string>
+       </property>
+       <property name="autoFillBackground" >
+        <bool>false</bool>
+       </property>
+       <property name="text" >
+        <string/>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resources/images.qrc" >
+         <normaloff>:/new/prefix1/images/search.png</normaloff>:/new/prefix1/images/search.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="searchGroupBtn" >
+       <property name="geometry" >
+        <rect>
+         <x>380</x>
+         <y>0</y>
+         <width>51</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="statusTip" >
+        <string>Search Group</string>
+       </property>
+       <property name="autoFillBackground" >
+        <bool>false</bool>
+       </property>
+       <property name="text" >
+        <string/>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resources/images.qrc" >
+         <normaloff>:/new/prefix1/images/search.png</normaloff>:/new/prefix1/images/search.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="editBtn" >
+       <property name="geometry" >
+        <rect>
+         <x>200</x>
+         <y>0</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="statusTip" >
+        <string>Edit User</string>
+       </property>
+       <property name="text" >
+        <string>...</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resources/images.qrc" >
+         <normaloff>:/new/prefix1/images/editUser.png</normaloff>:/new/prefix1/images/editUser.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="delGroupBtn" >
+       <property name="geometry" >
+        <rect>
+         <x>330</x>
+         <y>0</y>
+         <width>51</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="statusTip" >
+        <string>Delete Group</string>
+       </property>
+       <property name="text" >
+        <string>...</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resources/images.qrc" >
+         <normaloff>:/new/prefix1/images/group_remove.png</normaloff>:/new/prefix1/images/group_remove.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="addGroupBtn" >
+       <property name="geometry" >
+        <rect>
+         <x>280</x>
+         <y>0</y>
+         <width>51</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="statusTip" >
+        <string>Add New Group</string>
+       </property>
+       <property name="text" >
+        <string>...</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resources/images.qrc" >
+         <normaloff>:/new/prefix1/images/group_add.png</normaloff>:/new/prefix1/images/group_add.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="editGroupBtn" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+       <property name="geometry" >
+        <rect>
+         <x>240</x>
+         <y>0</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="statusTip" >
+        <string>Edit Group</string>
+       </property>
+       <property name="text" >
+        <string>...</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resources/images.qrc" >
+         <normaloff>:/new/prefix1/images/editGroup.png</normaloff>:/new/prefix1/images/editGroup.png</iconset>
+       </property>
+       <property name="iconSize" >
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="4" >
+     <spacer name="verticalSpacer_2" >
+      <property name="orientation" >
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType" >
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0" >
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="1" colspan="3" >
+     <widget class="QTabWidget" name="tabWidget" >
+      <property name="focusPolicy" >
+       <enum>Qt::TabFocus</enum>
+      </property>
+      <property name="acceptDrops" >
+       <bool>true</bool>
+      </property>
+      <property name="statusTip" >
+       <string/>
+      </property>
+      <property name="autoFillBackground" >
+       <bool>false</bool>
+      </property>
+      <property name="tabPosition" >
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape" >
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex" >
+       <number>0</number>
+      </property>
+      <property name="iconSize" >
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+      <widget class="QWidget" name="usersTab" >
+       <attribute name="title" >
+        <string>Users</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2" >
+        <item row="0" column="0" colspan="2" >
+         <widget class="QTreeView" name="userTreeView" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="cursor" stdset="0" >
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="contextMenuPolicy" >
+           <enum>Qt::DefaultContextMenu</enum>
+          </property>
+          <property name="acceptDrops" >
+           <bool>true</bool>
+          </property>
+          <property name="autoFillBackground" >
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet" >
+           <string notr="true" />
+          </property>
+          <property name="lineWidth" >
+           <number>0</number>
+          </property>
+          <property name="editTriggers" >
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="tabKeyNavigation" >
+           <bool>true</bool>
+          </property>
+          <property name="alternatingRowColors" >
+           <bool>true</bool>
+          </property>
+          <property name="iconSize" >
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="rootIsDecorated" >
+           <bool>false</bool>
+          </property>
+          <property name="sortingEnabled" >
+           <bool>true</bool>
+          </property>
+          <property name="animated" >
+           <bool>true</bool>
+          </property>
+          <property name="allColumnsShowFocus" >
+           <bool>true</bool>
+          </property>
+          <property name="wordWrap" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <spacer name="horizontalSpacer_3" >
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>697</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1" >
+         <widget class="QCheckBox" name="folderSizeCheckBox" >
+          <property name="autoFillBackground" >
+           <bool>false</bool>
+          </property>
+          <property name="text" >
+           <string>Show Usage</string>
+          </property>
+          <property name="icon" >
+           <iconset resource="../resources/images.qrc" >
+            <normaloff>:/new/prefix1/images/storage.png</normaloff>:/new/prefix1/images/storage.png</iconset>
+          </property>
+          <property name="iconSize" >
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="tristate" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="2" >
+         <widget class="QGroupBox" name="userDetails" >
+          <property name="enabled" >
+           <bool>true</bool>
+          </property>
+          <property name="autoFillBackground" >
+           <bool>false</bool>
+          </property>
+          <property name="title" >
+           <string>Details:</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="flat" >
+           <bool>false</bool>
+          </property>
+          <property name="checkable" >
+           <bool>false</bool>
+          </property>
+          <property name="checked" >
+           <bool>false</bool>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_10" >
+           <item row="0" column="0" >
+            <widget class="QLabel" name="loginNameLabel_2" >
+             <property name="frameShape" >
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow" >
+              <enum>QFrame::Raised</enum>
+             </property>
+             <property name="text" >
+              <string>Login Name:</string>
+             </property>
+             <property name="textFormat" >
+              <enum>Qt::AutoText</enum>
+             </property>
+             <property name="scaledContents" >
+              <bool>false</bool>
+             </property>
+             <property name="wordWrap" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" >
+            <widget class="QLineEdit" name="loginNameEdit" >
+             <property name="enabled" >
+              <bool>true</bool>
+             </property>
+             <property name="cursor" >
+              <cursorShape>ArrowCursor</cursorShape>
+             </property>
+             <property name="readOnly" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3" >
+            <widget class="QLineEdit" name="realNameEdit" >
+             <property name="enabled" >
+              <bool>true</bool>
+             </property>
+             <property name="baseSize" >
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="cursor" >
+              <cursorShape>ArrowCursor</cursorShape>
+             </property>
+             <property name="readOnly" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2" >
+            <widget class="QLabel" name="realNameLabel" >
+             <property name="frameShape" >
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow" >
+              <enum>QFrame::Raised</enum>
+             </property>
+             <property name="text" >
+              <string>Real Name:</string>
+             </property>
+             <property name="textFormat" >
+              <enum>Qt::AutoText</enum>
+             </property>
+             <property name="scaledContents" >
+              <bool>false</bool>
+             </property>
+             <property name="wordWrap" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" >
+            <widget class="QLabel" name="UIDLabel" >
+             <property name="frameShape" >
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow" >
+              <enum>QFrame::Raised</enum>
+             </property>
+             <property name="text" >
+              <string>UID:</string>
+             </property>
+             <property name="textFormat" >
+              <enum>Qt::AutoText</enum>
+             </property>
+             <property name="scaledContents" >
+              <bool>false</bool>
+             </property>
+             <property name="wordWrap" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" >
+            <widget class="QLineEdit" name="UIDEdit" >
+             <property name="enabled" >
+              <bool>true</bool>
+             </property>
+             <property name="cursor" >
+              <cursorShape>ArrowCursor</cursorShape>
+             </property>
+             <property name="autoFillBackground" >
+              <bool>false</bool>
+             </property>
+             <property name="frame" >
+              <bool>true</bool>
+             </property>
+             <property name="readOnly" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" >
+            <widget class="QLineEdit" name="priGroupEdit" >
+             <property name="enabled" >
+              <bool>true</bool>
+             </property>
+             <property name="cursor" >
+              <cursorShape>ArrowCursor</cursorShape>
+             </property>
+             <property name="readOnly" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" >
+            <widget class="QLabel" name="statusLabel" >
+             <property name="frameShape" >
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow" >
+              <enum>QFrame::Raised</enum>
+             </property>
+             <property name="text" >
+              <string>Status:</string>
+             </property>
+             <property name="textFormat" >
+              <enum>Qt::AutoText</enum>
+             </property>
+             <property name="scaledContents" >
+              <bool>false</bool>
+             </property>
+             <property name="wordWrap" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3" >
+            <widget class="QLineEdit" name="statusEdit" >
+             <property name="enabled" >
+              <bool>true</bool>
+             </property>
+             <property name="cursor" >
+              <cursorShape>ArrowCursor</cursorShape>
+             </property>
+             <property name="readOnly" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" >
+            <widget class="QLabel" name="priGrouplabel" >
+             <property name="frameShape" >
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow" >
+              <enum>QFrame::Raised</enum>
+             </property>
+             <property name="text" >
+              <string>Primary Group:</string>
+             </property>
+             <property name="textFormat" >
+              <enum>Qt::AutoText</enum>
+             </property>
+             <property name="scaledContents" >
+              <bool>false</bool>
+             </property>
+             <property name="wordWrap" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" >
+            <widget class="QLabel" name="secGroupLabel" >
+             <property name="frameShape" >
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow" >
+              <enum>QFrame::Raised</enum>
+             </property>
+             <property name="text" >
+              <string>Secondary Group(s):</string>
+             </property>
+             <property name="textFormat" >
+              <enum>Qt::AutoText</enum>
+             </property>
+             <property name="scaledContents" >
+              <bool>false</bool>
+             </property>
+             <property name="wordWrap" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" >
+            <widget class="QLineEdit" name="secGroupEdit" >
+             <property name="enabled" >
+              <bool>true</bool>
+             </property>
+             <property name="cursor" >
+              <cursorShape>ArrowCursor</cursorShape>
+             </property>
+             <property name="readOnly" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="groupsTab" >
+       <attribute name="title" >
+        <string>Groups</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_11" >
+        <item row="0" column="0" >
+         <widget class="QTreeView" name="groupTreeView" >
+          <property name="cursor" stdset="0" >
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="mouseTracking" >
+           <bool>false</bool>
+          </property>
+          <property name="acceptDrops" >
+           <bool>true</bool>
+          </property>
+          <property name="autoFillBackground" >
+           <bool>true</bool>
+          </property>
+          <property name="lineWidth" >
+           <number>0</number>
+          </property>
+          <property name="editTriggers" >
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="tabKeyNavigation" >
+           <bool>true</bool>
+          </property>
+          <property name="alternatingRowColors" >
+           <bool>true</bool>
+          </property>
+          <property name="rootIsDecorated" >
+           <bool>false</bool>
+          </property>
+          <property name="sortingEnabled" >
+           <bool>true</bool>
+          </property>
+          <property name="animated" >
+           <bool>true</bool>
+          </property>
+          <property name="allColumnsShowFocus" >
+           <bool>true</bool>
+          </property>
+          <property name="wordWrap" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="membersLabel" >
+          <property name="text" >
+           <string>Group Members</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" >
+         <widget class="QTreeView" name="membersTree" >
+          <property name="enabled" >
+           <bool>true</bool>
+          </property>
+          <property name="autoFillBackground" >
+           <bool>true</bool>
+          </property>
+          <property name="frameShadow" >
+           <enum>QFrame::Sunken</enum>
+          </property>
+          <property name="editTriggers" >
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="alternatingRowColors" >
+           <bool>true</bool>
+          </property>
+          <property name="rootIsDecorated" >
+           <bool>false</bool>
+          </property>
+          <property name="sortingEnabled" >
+           <bool>true</bool>
+          </property>
+          <property name="animated" >
+           <bool>true</bool>
+          </property>
+          <property name="wordWrap" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="2" column="1" >
+     <spacer name="horizontalSpacer" >
+      <property name="orientation" >
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0" >
+       <size>
+        <width>381</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="2" >
+     <widget class="QPushButton" name="close_app" >
+      <property name="enabled" >
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy" >
+       <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text" >
+       <string>Close</string>
+      </property>
+      <property name="icon" >
+       <iconset resource="../resources/images.qrc" >
+        <normaloff>:/new/prefix1/images/cancel.png</normaloff>:/new/prefix1/images/cancel.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3" >
+     <spacer name="horizontalSpacer_2" >
+      <property name="orientation" >
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0" >
+       <size>
+        <width>381</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>925</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFIile" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="menuReload" />
+    <addaction name="separator" />
+    <addaction name="menuQuit" />
+   </widget>
+   <widget class="QMenu" name="menuUser" >
+    <property name="title" >
+     <string>&amp;User</string>
+    </property>
+    <addaction name="menuAddUser" />
+    <addaction name="menuDeleteUser" />
+    <addaction name="menuEditUser" />
+    <addaction name="separator" />
+    <addaction name="menuSetPassword" />
+    <addaction name="menuDiskUsage" />
+   </widget>
+   <widget class="QMenu" name="menuGroup" >
+    <property name="title" >
+     <string>&amp;Group</string>
+    </property>
+    <addaction name="menuAddGroup" />
+    <addaction name="menuDeleteGroup" />
+    <addaction name="menuEditGroup" />
+   </widget>
+   <widget class="QMenu" name="menuSettings" >
+    <property name="title" >
+     <string>&amp;Settings</string>
+    </property>
+    <addaction name="menuConfiguration" />
+    <addaction name="menuBackup" />
+   </widget>
+   <widget class="QMenu" name="menu_Help" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="menuAbout_Qt" />
+    <addaction name="menuAboutUserManager" />
+   </widget>
+   <addaction name="menuFIile" />
+   <addaction name="menuUser" />
+   <addaction name="menuGroup" />
+   <addaction name="menuSettings" />
+   <addaction name="menu_Help" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <action name="menuReload" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/reload.png</normaloff>:/new/prefix1/images/reload.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Reload</string>
+   </property>
+   <property name="statusTip" >
+    <string>Exit Program</string>
+   </property>
+  </action>
+  <action name="menuConfiguration" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/settings.png</normaloff>:/new/prefix1/images/settings.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Configuration...</string>
+   </property>
+   <property name="statusTip" >
+    <string>UserManager Settings</string>
+   </property>
+  </action>
+  <action name="menuLanguage" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/language.png</normaloff>:/new/prefix1/images/language.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Language</string>
+   </property>
+   <property name="statusTip" >
+    <string>Change Language</string>
+   </property>
+  </action>
+  <action name="menuBackup" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/backup.png</normaloff>:/new/prefix1/images/backup.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Create Backup</string>
+   </property>
+   <property name="statusTip" >
+    <string>Backup system files</string>
+   </property>
+  </action>
+  <action name="menuAddUser" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/user_add.png</normaloff>:/new/prefix1/images/user_add.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Add...</string>
+   </property>
+  </action>
+  <action name="menuDeleteUser" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/user_remove.png</normaloff>:/new/prefix1/images/user_remove.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Delete...</string>
+   </property>
+  </action>
+  <action name="menuEditUser" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/editUser.png</normaloff>:/new/prefix1/images/editUser.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Edit...</string>
+   </property>
+  </action>
+  <action name="menuSetPassword" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/keys.png</normaloff>:/new/prefix1/images/keys.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Set Pass&amp;word...</string>
+   </property>
+  </action>
+  <action name="menuAddGroup" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/group_add.png</normaloff>:/new/prefix1/images/group_add.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Add...</string>
+   </property>
+  </action>
+  <action name="menuDeleteGroup" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/group_remove.png</normaloff>:/new/prefix1/images/group_remove.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Delete...</string>
+   </property>
+  </action>
+  <action name="menuQuit" >
+   <property name="icon" >
+    <iconset>
+     <normaloff>../resources/images/quit.png</normaloff>../resources/images/quit.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Quit</string>
+   </property>
+  </action>
+  <action name="menuAboutUserManager" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/UserManager.gif</normaloff>:/new/prefix1/images/UserManager.gif</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;About User&amp;Manager</string>
+   </property>
+  </action>
+  <action name="menuAbout_Qt" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/qt.png</normaloff>:/new/prefix1/images/qt.png</iconset>
+   </property>
+   <property name="text" >
+    <string>About Qt</string>
+   </property>
+  </action>
+  <action name="menuEditGroup" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/editGroup.png</normaloff>:/new/prefix1/images/editGroup.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Edit</string>
+   </property>
+  </action>
+  <action name="menuDiskUsage" >
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/storage.png</normaloff>:/new/prefix1/images/storage.png</iconset>
+   </property>
+   <property name="text" >
+    <string>DIsk Usage</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../resources/images.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>tabWidget</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>loginNameEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>122</x>
+     <y>168</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>365</x>
+     <y>464</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tabWidget</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>UIDEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>129</x>
+     <y>157</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>408</x>
+     <y>509</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tabWidget</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>priGroupEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>135</x>
+     <y>161</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>400</x>
+     <y>559</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tabWidget</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>realNameEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>131</x>
+     <y>156</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>849</x>
+     <y>464</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tabWidget</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>statusEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>51</x>
+     <y>157</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>849</x>
+     <y>509</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tabWidget</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>secGroupEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>160</x>
+     <y>156</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>849</x>
+     <y>559</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>close_app</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>472</x>
+     <y>641</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>434</x>
+     <y>897</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

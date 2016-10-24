@@ -1,0 +1,174 @@
+<ui version="4.0" >
+ <class>Settings</class>
+ <widget class="QDialog" name="Settings" >
+  <property name="windowModality" >
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>541</width>
+    <height>338</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>UserManager-Settings</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../resources/images.qrc" >
+    <normaloff>:/new/prefix1/images/settings.png</normaloff>:/new/prefix1/images/settings.png</iconset>
+  </property>
+  <widget class="QCheckBox" name="warnCheckBox" >
+   <property name="geometry" >
+    <rect>
+     <x>429</x>
+     <y>60</y>
+     <width>31</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="warnLabel" >
+   <property name="geometry" >
+    <rect>
+     <x>190</x>
+     <y>51</y>
+     <width>241</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>E-mail users before account expires</string>
+   </property>
+   <property name="textFormat" >
+    <enum>Qt::RichText</enum>
+   </property>
+   <property name="scaledContents" >
+    <bool>true</bool>
+   </property>
+   <property name="wordWrap" >
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="okSetBtn" >
+   <property name="geometry" >
+    <rect>
+     <x>230</x>
+     <y>280</y>
+     <width>91</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>OK</string>
+   </property>
+   <property name="icon" >
+    <iconset resource="../resources/images.qrc" >
+     <normaloff>:/new/prefix1/images/ok.png</normaloff>:/new/prefix1/images/ok.png</iconset>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="minGidEdit" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="geometry" >
+    <rect>
+     <x>430</x>
+     <y>145</y>
+     <width>101</width>
+     <height>29</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="minUidEdit" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="geometry" >
+    <rect>
+     <x>430</x>
+     <y>101</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label" >
+   <property name="geometry" >
+    <rect>
+     <x>190</x>
+     <y>100</y>
+     <width>241</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>First Normal UID:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2" >
+   <property name="geometry" >
+    <rect>
+     <x>189</x>
+     <y>150</y>
+     <width>171</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>First Normal GID:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3" >
+   <property name="geometry" >
+    <rect>
+     <x>190</x>
+     <y>200</y>
+     <width>221</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Select Language:</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="languageCombo" >
+   <property name="geometry" >
+    <rect>
+     <x>430</x>
+     <y>200</y>
+     <width>101</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="duplicatesEnabled" >
+    <bool>true</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../resources/images.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>okSetBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>Settings</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>274</x>
+     <y>292</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>372</x>
+     <y>290</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
