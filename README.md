@@ -62,11 +62,11 @@
 
 - use the following command to create a symbolic link
 
-`ln -s /opt/usermanarer /usr/bin/usermanager`
+> `ln -s /opt/usermanarer /usr/bin/usermanager`
 
 - open a terminal and run
 
-`usermanager &`
+> `usermanager &`
 
 - if you have problems running the app do the following additional steps 
 
@@ -78,9 +78,7 @@
 
 - find the Makefile and delete it (more safer locate it under `/usermanager/Debug/` folder)
 
-`find . -name Makefile -exec rm '{}' \;` 
-
-> then 
+> `find . -name Makefile -exec rm '{}' \;` 
 
 > `cd /opt/usermanager`
 
