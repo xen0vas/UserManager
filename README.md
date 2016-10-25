@@ -72,6 +72,8 @@
 
 - install qt-sdk on your system. On debian do the following
 
+> `sudo apt-get update`
+
 > `sudo apt-get install qt-sdk`
 
 - find the Makefile and delete it (more safer locate it under `/usermanager/Debug/` folder)
