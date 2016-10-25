@@ -70,9 +70,7 @@
 
 - if you have problems running the app do the following additional steps 
 
-- install qt-sdk on your system 
-
-- On debian do the following
+- install qt-sdk on your system. On debian do the following
 
 > `sudo apt-get install qt-sdk`
 
