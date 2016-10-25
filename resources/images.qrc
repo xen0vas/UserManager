@@ -1,6 +1,5 @@
 <RCC>
   <qresource prefix="/new/prefix1" >
-    <file>images/Logo_teiser.png</file>
     <file>images/p.jpeg</file>
     <file>images/qt.png</file>
     <file>images/keys.png</file>
@@ -36,7 +35,6 @@
     <file>images/user_lock.png</file>
     <file>images/user_remove.png</file>
     <file>images/user_unlock.png</file>
-    <file>images/deleteuser2.jpeg</file>
     <file>images/edit.png</file>
     <file>images/group.jpeg</file>
     <file>images/lock.png</file>
