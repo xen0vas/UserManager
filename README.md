@@ -81,11 +81,15 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 - Build and compile the program 
 
-> `cd /opt/usermanager`
+> `cd /opt/usermanager/Debug/`
 
 > `qmake`
 
-> `cd /opt/usermanager/Debug/usermanager.app/Contents/MacOS/`
+- After creating the Makefile add `-lcrypt` at the end of the following line 
+
+> `LIBS          = $(SUBLIBS)  -L/usr/lib/i386-linux-gnu -lQtGui -lQtCore -lpthread -lcrypt`
+
+- run make
 
 > `make`
 
