@@ -56,7 +56,7 @@
 ---------------
 
 
-- you can find the executable under the folder /Debug/usermanager.app/Content/MacOS/
+- you can find the executable under the folder /Debug/usermanager.app/Contents/MacOS/
 
 - download the executable and put it in /opt/usermanager
 
