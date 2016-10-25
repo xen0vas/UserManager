@@ -24,3 +24,17 @@
 
 ###User properties
 
+
+- you can find the executable under the folder /Debug/usermanager.app/Content/M\$
+
+- download the executable and put it in /opt/usermanager
+
+- use the following command to create a symbolic link
+
+`ln -s /opt/usermanarer /usr/bin/usermanager\`
+
+- open a terminal and run
+
+`usermanager &`
+
+enjoy ;-)
