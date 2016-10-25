@@ -81,7 +81,7 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 - Build and compile the program 
 
-> `cd /opt/usermanager/Debug/`
+> `cd /opt/usermanager/`
 
 > `qmake`
 
