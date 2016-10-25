@@ -1,5 +1,5 @@
 
-##UserManager
+#UserManager
 
 > UserManager is a Linux tool which helps Linux users to manage user accounts and groups. The tools has a friendly good looking
 > dashboard and does the following 
