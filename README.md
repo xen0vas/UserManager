@@ -28,6 +28,16 @@
 
 ![user_properties](https://cloud.githubusercontent.com/assets/12726776/19657721/0139518c-9a2e-11e6-922f-27656a68bed4.PNG)
 
+###Group Properties
+
+
+
+###User Passwords 
+
+
+![passwords](https://cloud.githubusercontent.com/assets/12726776/19658010/f81755c6-9a2e-11e6-97bd-60a91c1285b3.PNG)
+
+
 
 - you can find the executable under the folder /Debug/usermanager.app/Content/M\$
 
