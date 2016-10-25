@@ -56,17 +56,43 @@
 ---------------
 
 
-- you can find the executable under the folder /Debug/usermanager.app/Contents/MacOS/
+- you can find the executable under the folder `/Debug/usermanager.app/Contents/MacOS/`
 
 - download the executable and put it in /opt/usermanager
 
 - use the following command to create a symbolic link
 
-`ln -s /opt/usermanarer /usr/bin/usermanager\`
+`ln -s /opt/usermanarer /usr/bin/usermanager`
 
 - open a terminal and run
 
 `usermanager &`
 
-enjoy ;-)
+- if you have problems running the app do the following additional steps 
+
+- install qt-sdk on your system 
+
+- On debian do the following
+
+> `sudo apt-get install qt-sdk`
+
+- find the Makefile and delete it (more safer locate it under `/usermanager/Debug/` folder)
+
+`find . -name Makefile -exec rm '{}' \;` 
+
+> then 
+
+> `cd /opt/usermanager`
+
+> `qmake`
+
+> `cd /opt/usermanager/Debug/usermanager.app/Contents/MacOS/`
+
+> `make`
+
+
+------------------------
+
+
+
 
