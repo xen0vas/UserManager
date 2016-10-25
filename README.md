@@ -36,13 +36,13 @@
 
 
 ###Groups
-
+---------
 
 ![groups](https://cloud.githubusercontent.com/assets/12726776/19677661/ff30ea24-9aa2-11e6-8e16-1f9f001186d7.PNG)
 
 
 ###Add Groups
-
+-------------
 
 ![add_groups](https://cloud.githubusercontent.com/assets/12726776/19677652/f4d972e4-9aa2-11e6-9fe5-09f6cd91864a.PNG)
 
@@ -52,6 +52,8 @@
 
 ![passwords](https://cloud.githubusercontent.com/assets/12726776/19658010/f81755c6-9a2e-11e6-97bd-60a91c1285b3.PNG)
 
+
+---------------
 
 
 - you can find the executable under the folder /Debug/usermanager.app/Content/M\$
