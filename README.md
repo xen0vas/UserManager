@@ -75,7 +75,7 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 > `sudo apt-get install qt-sdk`
 
-- find the Makefile and delete it (more safer locate it under `/usermanager/Debug/` folder)
+- find the Makefile and delete it (locate it under `/usermanager/Debug/` folder)
 
 > `find . -name Makefile -exec rm '{}' \;` 
 
