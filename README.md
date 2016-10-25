@@ -14,7 +14,7 @@
 - passwords aging
 - set account expiration
 - enable or disable user accounts
-- view how much storage space users have allocate (disk quotas)
+- show disk usage
 - set working shells
 
 ###UserManager dashboard
