@@ -7,7 +7,7 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 - add users to groups
 - search users
 - remove users from groups 
-- set UID's and GID's
+- set UIDs and GIDs
 - set users passwords 
 - set working directories
 - passwords aging
