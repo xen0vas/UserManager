@@ -52,6 +52,19 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 ------------------
 
+###How to Install
+-----------------
+
+- download the contents in git repo ( e.g. put them in /opt directory)
+
+> `cd /opt/usermanager`
+
+- run qmake
+
+> `qmake`
+
+- Makefile will be created 
+
 - in order for the program to be succesfully compiled at newer Linux distributions add `-std=c++0x` directive when compile with `g++`. Thats because newer Linux dists use the new C++ standard. Just change the following Line in Makefile 
 
 > `CXXFLAGS      = -std=c++0x -pipe -O2 -Wall -W -D_REENTRANT $(DEFINES)`
