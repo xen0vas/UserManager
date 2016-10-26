@@ -109,6 +109,23 @@ and run usermanager from any path on your system using the following command
 
 >  `usermanager`
 
+- in order to use `make install` command to install the app in your `bin` folder add the following lines in `usermanager.pro` file which was produced from `qmake` earlier
+
+````````````````````````````````````
+# installation
+installfiles.files += usermanager
+installfiles.path += /usr/bin/
+INSTALLS += installfiles 
+````````````````````````````````````
+
+then use the following command 
+
+> `make install`
+ 
+and run usermanager from any path on your system using the following command
+
+>  `usermanager`
+
 ------------------------
 
 
