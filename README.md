@@ -79,7 +79,7 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 		
 		> `sudo apt-get install qt-sdk`
 
-- If there is a makefile find it in the current directory and delete it
+- If there is a `makefile` find it in the current directory and delete it
 
 > `find . -name Makefile -exec rm '{}' \;` 
 
@@ -89,11 +89,11 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 > `qmake`
 
-- After creating the Makefile add `-lcrypt` at the end of the following line as shown below 
+- After creating the `Makefile` add `-lcrypt` at the end of the following line as shown below 
 
 > `LIBS          = $(SUBLIBS)  -L/usr/lib/i386-linux-gnu -lQtGui -lQtCore -lpthread -lcrypt`
 
-- run make
+- compile with c++ compiler
 
 > `make`
 
@@ -105,7 +105,7 @@ or you can create a symbolic link
 
 > `ln -s /opt/usermanager/usermanager /usr/bin/usermanager`
 
-and run usermanager from any path on your system 
+and run #usermanager from any path on your system 
 
 >  `usermanager`
 
