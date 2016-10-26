@@ -61,7 +61,7 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 > `cd /opt/usermanager`
 
-- compile with qt compiler
+- Build with `qmake` utility
 
 > `qmake`
 
@@ -83,7 +83,7 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 > `find . -name Makefile -exec rm '{}' \;` 
 
-- compile the program again
+- Build the program again with `qmake` utility
 
 > `cd /opt/usermanager/`
 
@@ -93,7 +93,7 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 > `LIBS          = $(SUBLIBS)  -L/usr/lib/i386-linux-gnu -lQtGui -lQtCore -lpthread -lcrypt`
 
-- compile with c++ compiler
+- Build with `make` utility and compile
 
 > `make`
 
