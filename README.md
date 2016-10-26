@@ -22,7 +22,7 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 ![usermanager_dash](https://cloud.githubusercontent.com/assets/12726776/19657636/b21ed7de-9a2d-11e6-95db-92baa468b2dc.PNG)
 
 
-###User properties
+###User Properties
 ------------------
 
 ![user_properties](https://cloud.githubusercontent.com/assets/12726776/19657721/0139518c-9a2e-11e6-922f-27656a68bed4.PNG)
