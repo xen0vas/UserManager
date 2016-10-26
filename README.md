@@ -75,11 +75,11 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 	1. install qt-sdk on your system. On debian do the following
 
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		sudo apt-get update
 		
 		sudo apt-get install qt-sdk
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - If there is a makefile find it in the current directory and delete it
 
