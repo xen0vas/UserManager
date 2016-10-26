@@ -57,6 +57,8 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 - download the contents in git repo ( e.g. put them in /opt directory)
 
+- go to the folder you downloaded the app (e.g. /opt/usermanager)
+
 > `cd /opt/usermanager`
 
 - run qmake
