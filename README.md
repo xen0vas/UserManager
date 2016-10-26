@@ -105,7 +105,7 @@ or you can create a symbolic link
 
 > `ln -s /opt/usermanager/usermanager /usr/bin/usermanager`
 
-and run usermanager from any path on your system 
+and run usermanager from any path on your system using the following command
 
 >  `usermanager`
 
