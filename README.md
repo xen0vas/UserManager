@@ -35,7 +35,7 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 
 ###User Groups
----------
+--------------
 
 ![groups](https://cloud.githubusercontent.com/assets/12726776/19677661/ff30ea24-9aa2-11e6-8e16-1f9f001186d7.PNG)
 
@@ -45,7 +45,12 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 ![add_groups](https://cloud.githubusercontent.com/assets/12726776/19677652/f4d972e4-9aa2-11e6-9fe5-09f6cd91864a.PNG)
 
+###Password Manager
+-------------------
 
+![password_manager](https://cloud.githubusercontent.com/assets/12726776/19719422/7be2f682-9b72-11e6-86fe-5dfa13fcba3e.PNG)
+
+------------------
 
 - in order for the program to be succesfully compiled at newer Linux distributions add `-std=c++0x` directive when compile with `g++`. Thats because newer Linux dists use the new C++ standard. Just change the following Line in Makefile 
 
