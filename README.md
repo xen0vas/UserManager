@@ -109,7 +109,7 @@ and run usermanager from any path on your system using the following command
 
 >  `usermanager`
 
-- in order to avoid creating a symbolic link or simply copying the file into `/bin` folder, use `make install` command to install the application in your `/bin` folder 
+- in order to avoid creating a symbolic link or simply copying the file into `/bin` folder, use `make install` instead 
 
 - add the following lines in `usermanager.pro` file which produced from `qmake`
 
