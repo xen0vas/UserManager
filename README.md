@@ -86,6 +86,14 @@ then do the following to run the program
 
 > ` ./usermanager`
 
+or you can create a symbolic link 
+
+> `ln -s /opt/usermanager/usermanager /usr/bin/usermanager`
+
+and run usermanager from any path on your system 
+
+>  `usermanager`
+
 enjoy ;-)
 
 ------------------------
