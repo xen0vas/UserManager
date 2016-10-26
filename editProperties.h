@@ -2,6 +2,7 @@
 #define EDITPROPERTIES_H
 #include "ui_EditProperties.h"
 #include <string.h>
+#include <stdlib.h>
 #include <stdint.h>
 #include <pwd.h>
 #include <errno.h>

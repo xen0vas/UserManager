@@ -1,6 +1,8 @@
 #ifndef GROUPPROPERTIES_H
 #define GRPOUPROPERTIES_H
 #include "ui_GroupProperties.h"
+#include <stdlib.h>
+#include <stdint.h>
 #include "grp.h"
 
 /**
