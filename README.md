@@ -46,28 +46,12 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 ![add_groups](https://cloud.githubusercontent.com/assets/12726776/19677652/f4d972e4-9aa2-11e6-9fe5-09f6cd91864a.PNG)
 
 
-###User Passwords 
------------------
 
-![passwords](https://cloud.githubusercontent.com/assets/12726776/19658010/f81755c6-9a2e-11e6-97bd-60a91c1285b3.PNG)
+- in order for the program to be succesfully compiled at newer Linux distributions add `-std=c++0x` directive when compile with `g++`. Thats because newer Linux dists use the new C++ standard. Just change the following Line in Makefile 
 
+> `CXXFLAGS      = -std=c++0x -pipe -O2 -Wall -W -D_REENTRANT $(DEFINES)`
 
----------------
-
-
-- you can find the executable under the folder `/Debug/usermanager.app/Contents/MacOS/`
-
-- download the executable and put it in /opt/usermanager
-
-- use the following command to create a symbolic link
-
-> `ln -s /opt/usermanarer /usr/bin/usermanager`
-
-- open a terminal and run
-
-> `usermanager &`
-
-- if you have problems running the app do the following additional steps 
+- if you have problems using qmake do the following additional steps 
 
 - install qt-sdk on your system. On debian do the following
 
@@ -79,13 +63,13 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 > `find . -name Makefile -exec rm '{}' \;` 
 
-- Build and compile the program 
+- Build and compile the program again
 
 > `cd /opt/usermanager/`
 
 > `qmake`
 
-- After creating the Makefile add `-lcrypt` at the end of the following line 
+- After creating the Makefile add `-lcrypt` at the end of the following line as shown below 
 
 > `LIBS          = $(SUBLIBS)  -L/usr/lib/i386-linux-gnu -lQtGui -lQtCore -lpthread -lcrypt`
 
@@ -93,9 +77,12 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 > `make`
 
+then do the following to run the program 
+
+> ` ./usermanager`
+
+enjoy ;-)
 
 ------------------------
-
-
 
 
