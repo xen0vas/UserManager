@@ -81,7 +81,7 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 > `find . -name Makefile -exec rm '{}' \;` 
 
-- Build and compile the program again
+- compile the program again
 
 > `cd /opt/usermanager/`
 
