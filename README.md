@@ -109,8 +109,6 @@ and run usermanager from any path on your system using the following command
 
 >  `usermanager`
 
-enjoy ;-)
-
 ------------------------
 
 
