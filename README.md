@@ -73,13 +73,13 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 - if you have problems using qmake do the following additional step 
 
-    1. install qt-sdk on your system. On debian do the following
+	1. install qt-sdk on your system. On debian do the following
 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	sudo apt-get update
-
-	sudo apt-get install qt-sdk
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		sudo apt-get update
+		
+		sudo apt-get install qt-sdk
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - If there is a makefile find it in the current directory and delete it
 
