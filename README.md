@@ -109,9 +109,7 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 >  `usermanager`
 
-- Instead of creating a symbolic link or simply copy the file into `/bin` folder, use `make install`
-
-- add the following lines in `usermanager.pro` which produced from `qmake`
+- Instead of creating a symbolic link , use `make install`. Add the following lines in `usermanager.pro` which produced from `qmake`
 
 ````````````````````````````````````
 # installation
