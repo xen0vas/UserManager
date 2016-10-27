@@ -97,7 +97,7 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 > `make`
 
-then do the following to run the program 
+then run the program 
 
 > ` ./usermanager`
 
