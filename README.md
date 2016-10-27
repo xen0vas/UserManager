@@ -97,15 +97,15 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 
 > `make`
 
-then run the program 
+- run the program 
 
 > ` ./usermanager`
 
-or you can create a symbolic link 
+- alternatively you can create a symbolic link 
 
 > `ln -s /opt/usermanager/usermanager /usr/bin/usermanager`
 
-and run usermanager from any path on your system using the following command
+- run usermanager from any path on your system using the following command
 
 >  `usermanager`
 
