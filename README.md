@@ -118,11 +118,11 @@ installfiles.path += /usr/bin/
 INSTALLS += installfiles 
 ````````````````````````````````````
 
-then use the following command 
+- use the following command 
 
 > `make install`
  
-and run usermanager from any path on your system using the following command
+- run usermanager from any path on your system using the following command
 
 >  `usermanager`
 
