@@ -16,6 +16,11 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 - show disk usage
 - set working shells
 
+##Authors: 
+
+- Xenofon Vassilakopoulos
+- Fotis Tsifountidis
+
 ###UserManager dashboard
 ------------------------
 
