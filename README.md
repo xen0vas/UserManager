@@ -19,7 +19,8 @@ UserManager is a Linux tool which helps Linux users to manage user accounts and 
 ------------------
 
 
-![usermanager_dash](https://github.com/xvass/UserManager/tree/master/images/Untitled2.gif)
+![usermanager](https://github.com/xvass/UserManager/tree/master/images/Untitled2.gif)
+
 
 ###Authors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
