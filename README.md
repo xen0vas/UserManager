@@ -74,6 +74,8 @@ UserManager is a Linux tool which helps Linux administrators to manage user acco
 
 - Prepare the build using `qmake` utility
 
+> `qmake -project UserManager`
+
 > `qmake`
 
 - `Makefile` will be created 
@@ -97,6 +99,8 @@ UserManager is a Linux tool which helps Linux administrators to manage user acco
 - prepare the build using `qmake` utility
 
 > `cd /opt/usermanager/`
+
+> `qmake -project UserManager`
 
 > `qmake`
 
