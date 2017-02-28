@@ -19,7 +19,7 @@ UserManager is a Linux tool which helps Linux administrators to manage user acco
 ------------------
 
 
-###Authors
+###Devs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   - Xenofon Vassilakopoulos (kseno)
   - Fotis Tsifountidis (fts)
