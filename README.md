@@ -1,5 +1,5 @@
 
-#UserManager
+# UserManager
 
 UserManager is a Linux tool developed with c++ and Qt framework which helps Linux administrators to manage user accounts and groups. The tools has a friendly good looking dashboard and does the following 
 
@@ -19,7 +19,7 @@ UserManager is a Linux tool developed with c++ and Qt framework which helps Linu
 ------------------
 
 
-###Devs
+### Devs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   - Xenofon Vassilakopoulos (kseno)
   - Fotis Tsifountidis (fts)
@@ -27,19 +27,19 @@ UserManager is a Linux tool developed with c++ and Qt framework which helps Linu
 
 ------------------
 
-###UserManager main view
+### UserManager main view
 ------------------------
 
 ![usermanager_dash](https://cloud.githubusercontent.com/assets/12726776/19657636/b21ed7de-9a2d-11e6-95db-92baa468b2dc.PNG)
 
 
-###User Properties
+### User Properties
 ------------------
 
 ![user_properties](https://cloud.githubusercontent.com/assets/12726776/19657721/0139518c-9a2e-11e6-922f-27656a68bed4.PNG)
 
 
-###Group Properties
+### Group Properties
 -------------------
 
 ![group_properties](https://cloud.githubusercontent.com/assets/12726776/19677653/f6e47b88-9aa2-11e6-8cbf-0271dfee6291.PNG)
@@ -51,19 +51,19 @@ UserManager is a Linux tool developed with c++ and Qt framework which helps Linu
 ![groups](https://cloud.githubusercontent.com/assets/12726776/19677661/ff30ea24-9aa2-11e6-8e16-1f9f001186d7.PNG)
 
 
-###Add Groups
+### Add Groups
 -------------
 
 ![add_groups](https://cloud.githubusercontent.com/assets/12726776/19677652/f4d972e4-9aa2-11e6-9fe5-09f6cd91864a.PNG)
 
-###Password Manager
+### Password Manager
 -------------------
 
 ![password_manager](https://cloud.githubusercontent.com/assets/12726776/19719422/7be2f682-9b72-11e6-86fe-5dfa13fcba3e.PNG)
 
 ------------------
 
-###How to Install
+### How to Install
 -----------------
 
 - download the contents from git repo ( e.g. put them in `/opt` directory)
