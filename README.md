@@ -45,7 +45,7 @@ UserManager is a Linux tool developed with c++ and Qt framework which helps Linu
 ![group_properties](https://cloud.githubusercontent.com/assets/12726776/19677653/f6e47b88-9aa2-11e6-8cbf-0271dfee6291.PNG)
 
 
-###User Groups
+### User Groups
 --------------
 
 ![groups](https://cloud.githubusercontent.com/assets/12726776/19677661/ff30ea24-9aa2-11e6-8e16-1f9f001186d7.PNG)
