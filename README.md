@@ -96,7 +96,7 @@ UserManager is a Linux tool developed with c++ and Qt framework which helps Linu
 
 		> `find . -name Makefile -exec rm '{}' \;` 
 
-		> then again prepare the build using `qmake` utility
+		- then again prepare the build using `qmake` utility
 
 		> `cd /opt/usermanager/`
 
@@ -104,7 +104,7 @@ UserManager is a Linux tool developed with c++ and Qt framework which helps Linu
 
 		> `qmake`
 		
-		> `Makefile` will be created 
+		- `Makefile` will be created 
 
 - Also add `-lcrypt` inside the Makefile at the end of the following line as shown below 
 
