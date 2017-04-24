@@ -84,7 +84,7 @@ UserManager is a Linux tool developed with c++ and Qt framework which helps Linu
 
 > `CXXFLAGS      = -std=c++0x -pipe -O2 -Wall -W -D_REENTRANT $(DEFINES)`
 
-- if you have problems using qmake do the following additional step 
+- if you have problems using qmake utility do the following
 
 	1. install `qt-sdk` on your system. On debian do the following
 
@@ -92,19 +92,21 @@ UserManager is a Linux tool developed with c++ and Qt framework which helps Linu
 		
 		> `sudo apt-get install qt-sdk`
 
-- If there is a `makefile` find it in the current directory and delete it
+	2. If there is an older `makefile` find it in the current directory and delete it
 
-> `find . -name Makefile -exec rm '{}' \;` 
+		> `find . -name Makefile -exec rm '{}' \;` 
 
-- prepare the build using `qmake` utility
+		> then again prepare the build using `qmake` utility
 
-> `cd /opt/usermanager/`
+		> `cd /opt/usermanager/`
 
-> `qmake -project UserManager`
+		> `qmake -project UserManager`
 
-> `qmake`
+		> `qmake`
+		
+		> `Makefile` will be created 
 
-- After creating the `Makefile` add `-lcrypt` at the end of the following line as shown below 
+- Also add `-lcrypt` inside the Makefile at the end of the following line as shown below 
 
 > `LIBS          = $(SUBLIBS)  -L/usr/lib/i386-linux-gnu -lQtGui -lQtCore -lpthread -lcrypt`
 
