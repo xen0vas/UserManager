@@ -2,9 +2,11 @@
 #define MYLIBB_H
 
 #include <QtGui/QtGui>
-#include "pwd.h"
-#include "shadow.h"
-#include "grp.h"
+#include <pwd.h>
+#include <shadow.h>
+#include <grp.h>
+#include <sys/types.h>
+
 /**
 Δομή στην οποία αποθηκεύονται βασικές πληροφορίες ενός λογαριασμού.Χρησιμοποιείται στην επεξεργασία στοιχείων των χρηστών, 
 */

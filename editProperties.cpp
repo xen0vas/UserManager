@@ -20,6 +20,7 @@ EditProperties::EditProperties ( QWidget * parent ) : QDialog ( parent )
 	min->setEnabled(false);
 
 
+
 	shellConnect->setAutoCompletion ( true );
 	shellConnect->setEditable ( true );
 	min->setSpecialValueText ( "never" );
@@ -63,20 +64,32 @@ QString EditProperties::getOldUsername()
 void EditProperties::comboShell()
 {
 
-ifstream inShells ( "/etc/shells", ios::in );
-	if ( !inShells )
-	{
-		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Open file <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-	}
-	char header[30];
-	inShells.seekg ( 35 );
-	while ( inShells >> header )
-	{
-		shellConnect->addItems ( QStringList ( QObject::tr ( header ) ) );
-	}
+	ifstream inShells ( "/etc/shells", ios::in );
+	try {
+		inShells.exceptions(inShells.failbit);
+		/*if ( !inShells )
+			{
+				QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Open file <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+			}
+			char header[30];
+			inShells.seekg ( 35 );
+			while ( inShells >> header )
+			{
+				shellConnect->addItems ( QStringList ( QObject::tr ( header ) ) );
+			}
 
 
-	shellConnect->setDuplicatesEnabled ( false );
+			shellConnect->setDuplicatesEnabled ( false );*/
+	} catch  (const std::ios_base::failure& e)
+	{
+
+		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Open file <i> %1 </i> </qt> " ).arg ( e.what() ) );
+		/*std::cout << "Caught an ios base::failure.\n"
+				  << "Explanatory string: " << e.what() << '\n'
+				  << "Error Code: " << e.code() << '\n';
+				  */
+	}
+
 
 }
 
@@ -172,7 +185,7 @@ if(checkBoxEdit->isChecked())
 	if ( res < 0 )
 		newf.home_phone = emptystr.toAscii().data();
 
-	user.passwd_parse( getpwuid( userID ), &oldf );
+	user.passwd_parse(getpwuid(userID), &oldf);
 
 	if ( !oldf.username ) {
 		QMessageBox::information( 0, tr( "User Manager" ), tr( "User does not exist." ) );

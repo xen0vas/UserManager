@@ -10,6 +10,7 @@ using namespace std;
 /**
 *Constructor κλάσης με αρχικοποιήσεις σε components της φόρμας
 */
+
 UserProperties::UserProperties ( QWidget * parent ) : QDialog ( parent )
 {
 	setupUi ( this );
@@ -467,7 +468,7 @@ void UserProperties::addUserBase()
 				waitpid(pid2,&status2,0);
 			}
 			//dimiourgei back up arxeio gia to passwd
-			unlink ( PASSWD_FILE".bak" );
+			unlink(PASSWD_FILE".bak");
 
 			link ( PASSWD_FILE, PASSWD_FILE".bak" );
 			//dimiourgei back up arxeio gia to group

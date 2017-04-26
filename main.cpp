@@ -5,7 +5,6 @@
 #include <unistd.h>
 
 
-
 void signalHandler(int);
 
 using namespace std;
@@ -29,6 +28,8 @@ int main(int argc, char ** argv)
 //an den isxyei h 1h tote 8ewreitai oti to programma den einai anoixto kai paei sthn 2h if h opoia vazei mesa sto usermanager.lock to pid ths diergasias tou usermanager pou molis dhmiourgh8hke kalwntas thn getpid();
 
 	QApplication app( argc, argv);
+
+
 
 	QFile lockFile( QDir::tempPath() + "/usermanager.lock" );
 	if ( lockFile.open( QIODevice::ReadOnly ) )

@@ -1,4 +1,5 @@
 #include "myLibb.h"
+#include <stdio.h>
 #include "pathfile.h"
 #include <errno.h>
 #include <unistd.h>

@@ -17,6 +17,8 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f ): QMainWindow( parent, f
 	{
 	QTranslator *translator = new QTranslator();
 
+
+
 	if ( QFile::exists( "/usr/share/apps/UserManager/translations/el.qm" ) )
 	{
 	translator->load("/usr/share/apps/UserManager/translations/el.qm");
