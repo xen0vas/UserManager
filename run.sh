@@ -3,7 +3,7 @@
 
 DIRECTORY=`pwd | cut -d/ -f4`
 
-if ["$DIRECTORY" -nq "UserManager" ]; then 
+if [ "$DIRECTORY" != "UserManager" ]; then 
 	echo " this isnt the UserManager Directory " 
 	exit 0
 fi
