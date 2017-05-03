@@ -2,6 +2,7 @@
 #include "userproperties.h"
 #include "users.h"
 #include "MainWindow.h"
+
 using namespace std;
 
 
@@ -66,8 +67,8 @@ void EditProperties::comboShell()
 
 	ifstream inShells ( "/etc/shells", ios::in );
 	try {
-		inShells.exceptions(inShells.failbit);
-		/*if ( !inShells )
+		//inShells.exceptions(inShells.failbit);
+		if ( !inShells )
 			{
 				QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Open file <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 			}
@@ -79,15 +80,13 @@ void EditProperties::comboShell()
 			}
 
 
-			shellConnect->setDuplicatesEnabled ( false );*/
+
+	shellConnect->setDuplicatesEnabled ( false );
 	} catch  (const std::ios_base::failure& e)
 	{
 
 		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Open file <i> %1 </i> </qt> " ).arg ( e.what() ) );
-		/*std::cout << "Caught an ios base::failure.\n"
-				  << "Explanatory string: " << e.what() << '\n'
-				  << "Error Code: " << e.code() << '\n';
-				  */
+
 	}
 
 

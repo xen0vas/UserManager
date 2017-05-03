@@ -551,8 +551,11 @@ char *UserProperties::md5_passwd ( QString passwd )
   	//τρείς χαρακτήρες $1$ ακολουθώντας 8 χαρακτήρες και τελειώνοντας με $ τότε αντί να χρησιμοποιείσει τον αλγόριθμο κρυπτογράφησης DES χρησιμοποιεί τον
 	//αλγόριθμο κρυπτογράφησης MD5.Το αποτέλεσμα είναι να επιστραφεί ο κρυπτογραφημένος κωδικός $1$<string>$ 34 bytes ακολουθώντας ένα 22 bytes string με //χαρακτήρες επιλεγμένους απο το set  [a-zA-Z0-9./]  
 	passs = crypt ( buf,seed );
+
 	if ( passs == NULL )
 		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "%1" ).arg ( ENOSYS ) );
+
+	free(buf);
 	return strdup ( passs );
 }
 /**

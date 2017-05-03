@@ -98,6 +98,7 @@ int MyLibb::setpwnam_r (struct passwd *pwd,char *name)
     if (!found) {
         errno = EIDRM; 
 	QMessageBox::critical( 0,tr( "User Manager" ),tr( " %1  ").arg(strerror(errno)));
+	free(linebuf);
 	return -1;
     }	
      
@@ -109,7 +110,7 @@ int MyLibb::setpwnam_r (struct passwd *pwd,char *name)
      
     if (linebuf != NULL) free(linebuf);
     unlink(PTMP_FILE);
-  
+    free(linebuf);
     return 0;
 }
 
@@ -338,6 +339,7 @@ if (!found)
 {
         errno = EIDRM; 
 	QMessageBox::critical( 0,tr( "User Manager" ),tr( "%1").arg(strerror(errno)));
+	free(linebuf);
 	return -1;
 }
 	
@@ -348,7 +350,7 @@ link(GR_FILE, GR_FILE".bak");
 rename(GTMP_FILE, GR_FILE) ;
 
 if (linebuf != NULL) free(linebuf);
-
+free(linebuf);
 unlink(GTMP_FILE);
 
 return 0;
@@ -417,6 +419,7 @@ int MyLibb::setpwnam (struct passwd *pwd)
     if (!found) {
         errno = EIDRM; 
 	QMessageBox::critical( 0,tr( "User Manager" ),tr( " %1  ").arg(strerror(errno)));
+	free(linebuf);
 	return -1;
     }	
      
@@ -428,7 +431,7 @@ int MyLibb::setpwnam (struct passwd *pwd)
 
     if (linebuf != NULL) free(linebuf);
     unlink(PTMP_FILE);
-
+    free(linebuf);
     return 0;
 }
 
