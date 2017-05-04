@@ -45,12 +45,12 @@ int MyLibb::setpwnam_r (struct passwd *pwd,char *name)
    int x, ret;
    int fd;
    bool found;
-   int *linebuf ;
+   //int *linebuf ;
    int namelen;
-   int buflen;
-   //int buflen = 256;
-   //char *linebuf = (char*)malloc(buflen);
-   linebuf = (int*)calloc(buflen, sizeof(buflen));
+
+   int buflen = 256;
+   char *linebuf = (char*)malloc(buflen);
+   //linebuf = (int*)calloc(buflen, sizeof(buflen));
    if (!linebuf) return -1;
 
 //σε περίπτωση που το προσωρινό αρχείο υπάρχει και δεν έχει διαγραφεί για λόγους όπως να έχει διακοπεί η διεργασία πριν διαγραφεί το αρχείο ,τοτε η παρακάτω επανάληψη χρησιμοποιειται για να διαγράψει προσωρινα αρχεία και να δημιουργήσει καινούρια 
