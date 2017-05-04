@@ -61,9 +61,9 @@ UserProperties::UserProperties ( QWidget * parent ) : QDialog ( parent )
 	warn->stepBy(-1);
 	connect ( add, SIGNAL ( clicked() ), this, SLOT ( addUserBase() ) );
 	connect ( passBtn ,SIGNAL ( clicked() ),this,SLOT ( setPassword() ) );
-	connect( userGroups, SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( changeMembers(const QModelIndex&  ) ) );
+	connect( userGroups, SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( changeMembers(const QModelIndex& )));
 	connect( easyCheckbox, SIGNAL( clicked() ), this, SLOT( easyCheckboxClicked() ) );
-	connect( easyList, SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( easyAddGroups(const QModelIndex&  ) ) );
+	connect( easyList, SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( easyAddGroups(const QModelIndex& )));
 	connect ( requires_Pass, SIGNAL ( clicked() ),this, SLOT ( disCheck()));
 	connect ( enforce_Pass, SIGNAL ( clicked() ),this, SLOT  ( disCheck()));
 	connect ( alway, SIGNAL ( clicked() ),this, SLOT ( disCheck()));
@@ -132,8 +132,6 @@ void UserProperties::combotext()
 	
 	shellConnect->setItemText (0, "/bin/bash" );
 	shellConnect->setDuplicatesEnabled ( false );
-
-
 
 }
 /**
