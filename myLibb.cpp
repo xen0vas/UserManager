@@ -45,9 +45,12 @@ int MyLibb::setpwnam_r (struct passwd *pwd,char *name)
    int x, ret;
    int fd;
    bool found;
+   int *linebuf ;
    int namelen;
-   int buflen = 256;
-   char *linebuf = (char*)malloc(buflen);
+   int buflen;
+   //int buflen = 256;
+   //char *linebuf = (char*)malloc(buflen);
+   linebuf = (int*)calloc(buflen, sizeof(buflen));
    if (!linebuf) return -1;
 
 //σε περίπτωση που το προσωρινό αρχείο υπάρχει και δεν έχει διαγραφεί για λόγους όπως να έχει διακοπεί η διεργασία πριν διαγραφεί το αρχείο ,τοτε η παρακάτω επανάληψη χρησιμοποιειται για να διαγράψει προσωρινα αρχεία και να δημιουργήσει καινούρια 
@@ -419,7 +422,7 @@ int MyLibb::setpwnam (struct passwd *pwd)
     if (!found) {
         errno = EIDRM; 
 	QMessageBox::critical( 0,tr( "User Manager" ),tr( " %1  ").arg(strerror(errno)));
-	free(linebuf);
+	//free(linebuf);
 	return -1;
     }	
      
@@ -429,7 +432,7 @@ int MyLibb::setpwnam (struct passwd *pwd)
     
     rename(PTMP_FILE, PASSWD_FILE) ;
 
-    if (linebuf != NULL) free(linebuf);
+    //if (linebuf != NULL) free(linebuf);
     unlink(PTMP_FILE);
     free(linebuf);
     return 0;

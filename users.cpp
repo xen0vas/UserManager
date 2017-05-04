@@ -302,10 +302,12 @@ QString emptystr = "";
     MyLibb set;
     if(set.setpwnam (pinfo->pw) < 0)
         {
-      	free(gecos);
+      	//free(gecos);
         return(-1);
         }
-	free( gecos );
+    else {
+		free( gecos );
+    }
 	return 0;
 }
 /**
