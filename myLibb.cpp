@@ -48,7 +48,7 @@ int MyLibb::setpwnam_r (struct passwd *pwd,char *name)
    //int *linebuf ;
    int namelen;
 
-   int buflen = 256;
+   int buflen = 512;
    char *linebuf = (char*)malloc(buflen);
    //linebuf = (int*)calloc(buflen, sizeof(buflen));
    if (!linebuf) return -1;
@@ -113,7 +113,6 @@ int MyLibb::setpwnam_r (struct passwd *pwd,char *name)
      
     if (linebuf != NULL) free(linebuf);
     unlink(PTMP_FILE);
-    free(linebuf);
     return 0;
 }
 
@@ -342,7 +341,7 @@ if (!found)
 {
         errno = EIDRM; 
 	QMessageBox::critical( 0,tr( "User Manager" ),tr( "%1").arg(strerror(errno)));
-	free(linebuf);
+	if (linebuf!=NULL) free(linebuf);
 	return -1;
 }
 	
