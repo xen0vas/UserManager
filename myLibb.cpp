@@ -110,9 +110,11 @@ int MyLibb::setpwnam_r (struct passwd *pwd,char *name)
     link(PASSWD_FILE, PASSWD_FILE".bak");
     
     rename(PTMP_FILE, PASSWD_FILE) ;
-     
-    if (linebuf != NULL) free(linebuf);
+    
     unlink(PTMP_FILE);
+    
+    if (linebuf != NULL) free(linebuf);
+    
     return 0;
 }
 
@@ -128,7 +130,7 @@ int x, ret;
 int fd;
 bool found;
 int namelen;
-int buflen = 256;
+int buflen = 1024;
 char *linebuf = (char*)malloc(buflen);
 if (!linebuf) return -1;
 

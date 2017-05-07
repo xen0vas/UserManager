@@ -3,6 +3,7 @@
 /**
  * Constructor κλάσης/φόρμας
  */
+
 GroupProperties::GroupProperties ( QWidget * parent ) : QDialog ( parent )
 {
 	setupUi ( this );
@@ -265,7 +266,7 @@ if ( GIDEdit->text() =="" )
 
 int GroupProperties::addNewGroup()
 {
-	MyLibb *fchk;
+	MyLibb *fchk = NULL;
 	QByteArray pass = "x";
 
 
@@ -287,7 +288,7 @@ else
 	FILE *groupbase;
 
 	const char *filename = "/etc/group";
-	int result;
+	int result = 0 ;
 
 	groupbase = fchk->fopen_wrapper ( filename, "a+" );
 	if ( groupbase!=NULL )

@@ -168,8 +168,8 @@ return uid;
 */
 int UserProperties::insert_passwd ( QString nam,QString uid,QString gid,QString directory,QString gec, QString shellcon )
 {
-	MyLibb *fchk;
-	int done;
+	MyLibb *fchk = NULL;
+	int done = 0 ;
 	QString pass = "x";
 	QByteArray name ( nam.toAscii().data() );
 	QByteArray gecos ( gec.toAscii().data() );
@@ -189,7 +189,7 @@ int UserProperties::insert_passwd ( QString nam,QString uid,QString gid,QString 
 	const char *filename  = PASSWD_FILE;
 	
 	FILE *fp;
-	fp = fchk->fopen_wrapper ( filename, "a+" );
+	fp = fopen ( filename, "a+" );
 	if ( fp != NULL )
 	{
 		done = putpwent ( &us , fp );
@@ -541,7 +541,7 @@ char *UserProperties::md5_passwd ( QString passwd )
 	int saltLength = 8;
 	char *seed;
 	seed = make_md5_salt ( saltLength );
-	buf = ( char * ) malloc ( 30 );
+	buf = ( char * ) malloc ( 128 );
 	char *p = passwd.toAscii().data();
 	strcpy ( buf,p );
 	char *passs;
@@ -553,7 +553,7 @@ char *UserProperties::md5_passwd ( QString passwd )
 	if ( passs == NULL )
 		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "%1" ).arg ( ENOSYS ) );
 
-	free(buf);
+	if (buf!=NULL)free(buf);
 	return strdup ( passs );
 }
 /**

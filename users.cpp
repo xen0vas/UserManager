@@ -306,7 +306,7 @@ QString emptystr = "";
         return(-1);
         }
     else {
-		free( gecos );
+		if(gecos!=NULL) free( gecos );
     }
 	return 0;
 }
