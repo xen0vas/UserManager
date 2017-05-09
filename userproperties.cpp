@@ -217,7 +217,7 @@ int UserProperties::insert_group ( QString nam,QString gid )
 	FILE *groupbase;
 
 	const char *filename1 = GROUP_FILE;
-	int res;
+	int res = 0;
 	groupbase = fchk->fopen_wrapper ( filename1, "a+" );
 	if ( groupbase!=NULL )
 	{
