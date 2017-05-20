@@ -336,13 +336,16 @@ void MainWindow::deleteUser()
 	passs = getpwnam(username.toAscii().data());
 	
 		
-	if (passBase==NULL)
-	goto end;
+	if (passBase!=NULL)
+	{
 	if(username=="" || !index.isValid())
 	{
 	QMessageBox::information ( 0, tr ( " UserManager " ),tr ( " Please Select a User to Delete !!" ) );
-	goto end;
+	delete fchk ;
+	fchk = nullptr;
 	}
+	else
+	{
 	grr = getgrgid(passs->pw_gid);
 	int ok;
 	ok = QMessageBox::warning ( 0, tr ( "User Manager" ), tr ( "User ' <i><b>%1</b></i> ' is about to be deleted from User Database.Are You sure you want to delete it? " ).arg ( username ) ,QMessageBox::Ok | QMessageBox::Cancel );
@@ -439,10 +442,11 @@ void MainWindow::deleteUser()
 						}						
 					
 					}
-			}				
-end:
-	{}
-
+			}
+		}
+	}
+			if (fchk != nullptr)
+				fchk->~MyLibb();
 }
 /**
  *Διαγραφή μιας ομάδας από το σύστημα όταν πατηθεί το κουμπί της διαγραφής ομάδων από την κύρια φόρμα.
