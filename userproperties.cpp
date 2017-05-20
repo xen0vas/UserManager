@@ -949,7 +949,7 @@ void UserProperties::easyAddGroups ( const QModelIndex &index )
 	Groups group;
 	MyLibb set;
 	char *cmd;
-	struct group *grs;
+	struct group *grs = {};
 	int done=-1;
 	QVariant state = index.data(Qt::CheckStateRole);//state=2 an einai hdh checked(ara vgainei apo member o user),0 an einai unchecked (ara mpainei san member) to checkbox tou group pou path8hke
 	if (state == 2)
