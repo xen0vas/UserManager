@@ -371,12 +371,12 @@ void UserProperties::addUserBase()
 {
 	GroupProperties grp;
 	
-	int pass_done;
+	int pass_done = 0;
 	int pid;
 	int pid1;
 	int pid2;
-	int group_done;
-	int shadow_done;
+	int group_done = 0 ;
+	int shadow_done = 0 ;
 	QString nam = NameLabel->text();
 	QString uid = uidEdit->text();
 	struct passwd *u;
