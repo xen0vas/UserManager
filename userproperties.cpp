@@ -1045,7 +1045,7 @@ if (done==0)
 void UserProperties::setPrimaryGroup()
 {
 	struct group *grp;
-	struct passwd *user;
+	//struct passwd *user;
 	Users *usr { new Users };
 	Models model;
 	QString gname="";
@@ -1057,7 +1057,7 @@ void UserProperties::setPrimaryGroup()
 		groupname=index.data().toString().toAscii().data();
 		grp=getgrnam ( groupname );
 		gname.append ( grp->gr_name );
-		user=getpwnam ( NameLabel->text().toAscii().data() );
+		//user=getpwnam ( NameLabel->text().toAscii().data() );
 		QString command="usermod -g " + gname  + " " + NameLabel->text() ;
 		cmd=command.toAscii().data();
 		system ( cmd );
