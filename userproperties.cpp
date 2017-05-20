@@ -208,7 +208,7 @@ int UserProperties::insert_group ( QString nam,QString gid )
 	MyLibb *fchk = new MyLibb();
 	int def;
 	QString pass = "x";
-	Groups *groupie;
+	Groups *groupie {new Groups()};
 	QByteArray name ( nam.toAscii().data() );
 	gid_t groupID = gid.toInt();
 	struct group grp;
@@ -231,6 +231,8 @@ int UserProperties::insert_group ( QString nam,QString gid )
 
 	delete fchk;
 	fchk = nullptr ;
+	delete groupie;
+	groupie = nullptr;
 	return res;
 }
 /**
@@ -244,7 +246,7 @@ sp.sp_namp = name;
 sp.sp_pwdp = password_hash;
 sp.sp_lstchg = current_days;
 
-EditProperties *edit;
+EditProperties *edit {new EditProperties()};
 			
 			if( !requires_Pass->isChecked())//προκαθορισμένες τιμές σε περίπτωση που δεν υπάρχει password
 			{	
@@ -275,7 +277,8 @@ EditProperties *edit;
 				expire->setValue(0);
 			}
 				sp.sp_flag = -1;
-	
+delete edit ;
+edit = nullptr;
 return sp;
 
 }
@@ -502,8 +505,8 @@ void UserProperties::addUserBase()
 
 if ( ok && !userExists)
 {
-	Users *usr;
-	Models *model;
+	Users *usr{ new Users()};
+	Models *model{ new Models()};
 	add->setVisible(false);
 	closeBtn->setVisible(false);
 	tabWidget->setTabEnabled(2,true);
@@ -511,6 +514,10 @@ if ( ok && !userExists)
 	userGroups->setModel(model->createUserInGroupsModel(nam));
 	userGroups->setColumnWidth ( 0, 30);
 	fillEasyList();
+	delete usr ;
+	usr  = nullptr;
+	delete model ;
+	model = nullptr;
 
 }
 
@@ -1037,9 +1044,9 @@ if (done==0)
  */
 void UserProperties::setPrimaryGroup()
 {
-	struct group *grp=NULL;
-	struct passwd *user=NULL;
-	Users *usr;
+	struct group *grp;
+	struct passwd *user;
+	Users *usr { new Users };
 	Models model;
 	QString gname="";
 	const char *groupname="";
@@ -1059,6 +1066,8 @@ void UserProperties::setPrimaryGroup()
 		primGroupLabel->setText ( usr->getPrimaryGroup ( NameLabel->text() ) );
 	
 	}
+	delete usr;
+	usr = nullptr ;
 	}
 
 
