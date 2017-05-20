@@ -284,7 +284,7 @@ void MainWindow::getEditDetails(const QModelIndex &index)
 	struct spwd *sp;
 	sp = getspnam(log.toAscii().data());
 	if (sp != NULL)
-	UserDetails();
+		UserDetails();
 	else
 	QMessageBox::critical ( 0, tr ( " UserManager " ),tr ( "User '<i><b>%1</b></i>' does not exist in /etc/shadow!" ).arg(log.toAscii().data()) );
 }
@@ -300,7 +300,10 @@ void MainWindow::EditUser()
 	if (username == "")
 	QMessageBox::information ( 0, tr ( " UserManager " ),tr ( " Please Select a User for Edit!!" ) ); 
 	else
-	UserDetails();
+	{
+		this->getEditDetails(index);
+	}
+
 	
 }
 /**
