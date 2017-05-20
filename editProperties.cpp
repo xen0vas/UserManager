@@ -123,7 +123,7 @@ if(checkBoxEdit->isChecked())
 	struct finfo  newf;
 
 	Users user;
-	char *cp;
+	char *cp{new char{42}};
 
 	QString nam = LoginName->text();
 	QString ui = uiEdit->text();
@@ -220,6 +220,7 @@ if(checkBoxEdit->isChecked())
 		}
 	if(status != 1)
 	this->deleteLater();
+	delete cp;
 }
 /**
  * Η συνάρτηση ενεργοποιεί και απενεργοποιεί συγκεκριμένα συστατικά της φόρμας
@@ -290,7 +291,7 @@ datetime->setText ( buff );
 int EditProperties::set_password(QString name)
 {
 	struct spwd spd;
-	UserProperties *usr;
+	UserProperties *usr = new UserProperties();
 	QString passhash;
 	bool okBtn;
 	QString verify;
@@ -309,6 +310,7 @@ int EditProperties::set_password(QString name)
 		MyLibb *fchk;
 		fchk->setspnam(&spd);
 		main.reloadUsersAndGroups();
+		delete usr;
 		return 0;
 	}
 	else 
@@ -362,7 +364,7 @@ void EditProperties::acct_shadow ( struct spwd spw )
 
 int  EditProperties::set_shad_expire(QString months,int days_value,int years_value)
 {
-	int the_time;	
+	int the_time = 0;
 	struct tm newtime;
 	time_t rawtime;
 	time(&rawtime);	

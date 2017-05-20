@@ -76,19 +76,20 @@ struct group *Groups::remove_member(struct group *in,char *uname)
 		{
 			if (!strcmp(in->gr_mem[i], uname))
 			{
-			in->gr_mem[i] = memo.toAscii().data();
-			
+				in->gr_mem[i] = memo.toAscii().data();
 			}
 		}
 	system("sed -i 's/,,/,/g;s/,$//g' /etc/group");//['s/,,/,/g]->antika8ista ta dyo kommata me ena. [s/,$//g']->antika8ista to koma sto telos ths ka8e grammhs me keno
 	return in;
 }
+
 /**
  *Διαγραφή ενός χρήστη από όλες τις ομάδες που πιθανόν να ήταν μέλος.Χρησιμοποιείται αφού διαγραφεί κάποιος χρήστης από το σύστημα.
  */
+
 int Groups::rm_grMember(QString log)
 {
-        struct group *grs;
+    struct group *grs;
 	FILE * f;
 	MyLibb *set;
 	f = fopen(GR_FILE,"r");
@@ -96,11 +97,11 @@ int Groups::rm_grMember(QString log)
 	setgrent();
 	while((grs = fgetgrent(f)))
 	{		
-	remove_member(grs , login);
-	if(set->setgrnam(grs)<0)
-	{
-	return -1;
-	}
+		remove_member(grs , login);
+		if(set->setgrnam(grs)<0)
+		{
+			return -1;
+		}
 	}
 	endgrent();
 	fclose(f);
@@ -114,8 +115,12 @@ int Groups::deleteGroup(QString gname)
 	MyLibb set;
 	struct group *gr = NULL;
 	char * groupname = gname.toAscii().data();
-	if(set.setgrnam_r(gr,groupname)<0)return -1;
-	
+	if(set.setgrnam_r(gr,groupname)<0)
+		{
+			delete groupname;
+			return -1;
+		}
+	delete groupname;
 	return 0;
 }
 /**
@@ -130,10 +135,10 @@ struct passwd *users;
 setpwent();
 while (( users = getpwent() ) )
 {
-if (users->pw_gid==gidt)
-{
-found=true;
-}
+	if (users->pw_gid==gidt)
+	{
+			found=true;
+	}
 }
 endpwent();
 return found;
@@ -150,11 +155,11 @@ struct passwd *users;
 setpwent();
 while (( users = getpwent() ) )
 {
-if (users->pw_gid==gidt)
-{
-primOfUsers.append(users->pw_name);
-primOfUsers.append(",");
-}
+	if (users->pw_gid==gidt)
+	{
+		primOfUsers.append(users->pw_name);
+		primOfUsers.append(",");
+	}
 }
 endpwent();
 primOfUsers.chop(1);//kovei 1 xarakthra ap to telos(to teleytaio komma)

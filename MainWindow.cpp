@@ -135,7 +135,8 @@ void MainWindow::addUserBtnClicked()
 	FILE *passBase;
 	FILE *groupBase;
 	FILE *shadowBase;	
-	MyLibb *fchk;
+	UserProperties *userProp = new UserProperties;
+	MyLibb *fchk { new MyLibb()};
 	shadowBase = fchk->fopen_wrapper(SHADOW_FILE, "r+");
 	groupBase  = fchk->fopen_wrapper(GROUP_FILE , "r+");
 	passBase   = fchk->fopen_wrapper(PASSWD_FILE, "r+");
@@ -147,8 +148,6 @@ void MainWindow::addUserBtnClicked()
 	else
 	{
 	bool okBtn;
-
-	UserProperties *userProp = new UserProperties;
 	QString userString = QInputDialog::getText( 0, QObject::tr( "Add User" ), QObject::tr( "Please Enter User Name:" ), QLineEdit::Normal, QString( "" ), &okBtn );
 	if ( userString == "" && okBtn )
 	{
@@ -171,8 +170,22 @@ void MainWindow::addUserBtnClicked()
 			userProp->show();
 			if ( userProp->exec() ){}
 			delete userProp;
+			userProp = nullptr;
+			delete fchk;
+			fchk = nullptr;
+
 		}
 	}
+	if (userProp != nullptr )
+	{
+		delete userProp;
+		userProp = nullptr;
+	}
+	if (fchk != nullptr)
+		{
+		delete fchk;
+		fchk = nullptr;
+		}
 
 
 	}
@@ -184,7 +197,7 @@ reloadUsersAndGroups();
  */
 void MainWindow::searchUserBtnClicked()
 {	
-	Models *model;
+	Models *model = new Models();
 	Users *user = new Users;
 	struct passwd *foundedUserStruct = user->searchUser();
 
@@ -197,6 +210,7 @@ void MainWindow::searchUserBtnClicked()
 
 	}
 	user->~Users();
+	model->~Models();
 }
 /**
  *Αναζήτηση μιας ομάδας στο σύστημα.Καλεί την searchGroup από την κλάση Groups και με την επιστρεφόμενη δομή της ομάδας(αν βρέθηκε) δημιουργεί το μοντέλο ώστε να εμφανιστούν οι πληροφορίες της ομάδας που  αναζητήθηκε στην φόρμα.Εκκινεί με το πάτημα του κουμπιού αναζήτησης ομάδων από την κύρια φόρμα.
@@ -204,8 +218,8 @@ void MainWindow::searchUserBtnClicked()
 void MainWindow::searchGroupBtnClicked()
 {
 
-	Models *model;
-	Groups *group = new Groups;
+	Models *model { new Models };
+	Groups *group { new Groups };
 	struct group *foundedGroupStruct = group->searchGroup();
 
 	if ( foundedGroupStruct != NULL )
@@ -215,19 +229,24 @@ void MainWindow::searchGroupBtnClicked()
 		beautyTree( groupTreeView, 1 );
 	}
 	group->~Groups();
+	delete model ;
+	model = nullptr;
+
 }
 /**
  *Φόρτωση των λιστών ομάδων και χρήστων που βρίσκονται στην κύρια φόρμα.
  */
 void  MainWindow::loadUsersAndGroups( )
 {
-	Models *model;
+		Models *model {new Models()};
         userModel = model->createUsersModel( );
         groupModel = model->createGroupsModel( );
         userTreeView->setModel( userModel );
         beautyTree( userTreeView, 6 );
         groupTreeView->setModel( groupModel );
         beautyTree( groupTreeView, 1 );
+        delete model;
+        model = nullptr;
 
 }
 /**
@@ -238,7 +257,7 @@ void MainWindow::reloadUsersAndGroups()
 
 	if (folderSizeCheckBox->isChecked())
 		folderSizeCheckBox->setChecked(false);
-	Models *model;
+	Models *model {new Models()};
 	userModel = model->createUsersModel( );
 	groupModel = model->createGroupsModel( );
 	userTreeView->setModel( userModel );
@@ -248,6 +267,8 @@ void MainWindow::reloadUsersAndGroups()
 	clearEditBoxes();
 	if (tabWidget->currentIndex()==0)
 	folderSizeCheckBox->setVisible(true);
+	delete model ;
+	model = nullptr;
 }
 /**
  *Αποθήκευση των στοιχείων του χρήστη που πατήθηκε από την λίστα σε ανάλογες μεταβλητές της κλάσης για επεξεργασία.
@@ -300,7 +321,7 @@ void MainWindow::editGroup()
  */
 void MainWindow::deleteUser()
 {
-	MyLibb *fchk;
+	MyLibb *fchk = new MyLibb();
 	Groups gr;
 	int okk;
 	int result2;
@@ -421,13 +442,14 @@ void MainWindow::deleteUser()
 			}				
 end:
 	{}
+
 }
 /**
  *Διαγραφή μιας ομάδας από το σύστημα όταν πατηθεί το κουμπί της διαγραφής ομάδων από την κύρια φόρμα.
  */
 int  MainWindow::deleteGroup()
 {
-	MyLibb *fchk;
+	MyLibb *fchk {new MyLibb()};
 	FILE  *groupBase;
 	Groups gr;
 	int result;
@@ -460,9 +482,16 @@ int  MainWindow::deleteGroup()
 					{
 						QMessageBox::information ( 0, tr ( " User Manager " ), tr ( " Group '%1' deleted from Database " ).arg ( groupname ) );
 						reloadUsersAndGroups();
+						delete fchk;
+						fchk = nullptr;
 						return 0;
 					}
 				}	
+	}
+	if (fchk != nullptr)
+	{
+		delete fchk;
+		fchk = nullptr;
 	}
 return 1;
 }
@@ -496,13 +525,15 @@ void MainWindow::getSelectedUserInfo( const QModelIndex &index )
  */
 void MainWindow::getSelectedGroupInfo( const QModelIndex &index )
 {
-	Models *model;
+	Models *model {new Models()};
 	int row = index.row();
 	QString  groupnameString = index.sibling( row, 1 ).data( Qt::DisplayRole ).toString();
 	QByteArray groupnameArray = groupnameString.toLatin1();
 	const char *groupName = groupnameArray.data();
 	membersTree->setModel( model->createMembersModel( groupName ) );
 	beautyTree( membersTree, 2 );
+	delete 	model;
+	model = nullptr;
 
 }
 /**
@@ -639,14 +670,15 @@ void MainWindow::tabChanged( int tab )
 
 void MainWindow::UserDetails()
 {
-	Users *use;
+	Users *use{ new Users } ;
 	struct finfo inf;
 	struct spwd *sp;
-	Models *model;
+	Models *model = new Models();
 	struct passwd p;
 	sp = getspnam ( log.toAscii().data() );
-	EditProperties *props = new EditProperties;
-	props->acct_shadow ( *sp );
+	EditProperties *props { new EditProperties() };
+	if (sp != nullptr)
+		props->acct_shadow ( *sp );
 	props->uiEdit->setText ( ui );
 	props->LoginName->setText ( log );
 	props->setOldUsername ( log );
@@ -683,18 +715,18 @@ void MainWindow::UserDetails()
 				}		
 			}
 		}
-	struct spwd *spw, sp;
+	struct spwd *spw;
 	struct  tm *ltime;
 	time_t time;
 	time_t exp_time;
 	char buff[256], day_buffer[256],month_buffer[256],year_buffer[256];
 	char *login = log.toAscii().data();
 	spw = getspnam ( login );
-	sp = *spw;
+	*sp = *spw;
 	props->userGroups->setModel(model->createUserInGroupsModel(props->getOldUsername()));
 	props->userGroups->setColumnWidth ( 0, 30);
 	setlocale (LC_ALL, "C");
-	if ( sp.sp_expire != -1 )
+	if ( sp->sp_expire != -1 )
 	{
 	exp_time = spw->sp_expire*3600*24;
 	ltime = localtime(&exp_time);
@@ -771,6 +803,12 @@ void MainWindow::UserDetails()
 		reloadUsersAndGroups();
 
 	}
+	delete model;
+	model = nullptr;
+	delete use;
+	use = nullptr;
+	delete props;
+	props = nullptr;
 }
 /**
  *Εκκίνηση μέτρησης του χώρου που καταλαμβάνουν οι χρήστες στο σύστημα ή επαναφόρτωση των λιστών χρηστών/ομάδων(αν είχε ήδη πατηθεί το checkbox)
