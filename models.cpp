@@ -73,8 +73,8 @@ QStandardItemModel *Models::createUsersModelWithSizes( QStringList sizeList )
 	model->setHeaderData( 3, Qt::Horizontal, QObject::tr( "Home Directory" ) );
 	model->setHeaderData( 4, Qt::Horizontal, QObject::tr( "Default Shell" ) );
 	model->setHeaderData( 5, Qt::Horizontal, QObject::tr( "Disk Usage" ) );
-		int i=0;
-	Users *us ;
+	int i=0;
+	Users *us { new Users()} ;
 
 	while (( users = getpwent() ) )
 	{
@@ -102,6 +102,8 @@ QStandardItemModel *Models::createUsersModelWithSizes( QStringList sizeList )
 		i++;
 	}
 	endpwent();
+	delete us;
+	us=nullptr;
 	return model;
 }
 
