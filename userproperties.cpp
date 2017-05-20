@@ -334,7 +334,7 @@ int UserProperties::insert_shadow ( QString logname,QString encrypted_pass )
 	FILE *shadowbase;
 	const char *sh_file = SHADOW_FILE;
 	
-	MyLibb *fchk;
+	MyLibb *fchk { new MyLibb};
 	shadowbase = fchk->fopen_wrapper ( sh_file, "a+" );
 	if ( shadowbase!=NULL )
 	{
@@ -347,7 +347,10 @@ int UserProperties::insert_shadow ( QString logname,QString encrypted_pass )
 	//struct group *grp;					
 	//grp = getgrnam("shadow");					
 	//chown (SHADOW_FILE , (uid_t)0 ,(gid_t)grp->gr_gid);
-	//endspent();	
+	//endspent();
+
+	delete fchk ;
+	fchk = nullptr;
 	return ret;	
 }
 
