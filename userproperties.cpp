@@ -168,7 +168,7 @@ return uid;
 */
 int UserProperties::insert_passwd ( QString nam,QString uid,QString gid,QString directory,QString gec, QString shellcon )
 {
-	MyLibb *fchk = NULL;
+	MyLibb *fchk = new MyLibb();
 	int done = 0 ;
 	QString pass = "x";
 	QByteArray name ( nam.toAscii().data() );
@@ -195,6 +195,8 @@ int UserProperties::insert_passwd ( QString nam,QString uid,QString gid,QString 
 		done = putpwent ( &us , fp );
 		fclose ( fp );
 	}
+	delete fchk;
+	fchk = nullptr;
 	return done;
 
 }
@@ -203,7 +205,7 @@ int UserProperties::insert_passwd ( QString nam,QString uid,QString gid,QString 
 */
 int UserProperties::insert_group ( QString nam,QString gid )
 {
-	MyLibb *fchk;
+	MyLibb *fchk = new MyLibb();
 	int def;
 	QString pass = "x";
 	Groups *groupie;
@@ -227,7 +229,8 @@ int UserProperties::insert_group ( QString nam,QString gid )
 	def = groupie->default_groups ( nam );
 	if ( def== -1 ) res = -1;
 
-
+	delete fchk;
+	fchk = nullptr ;
 	return res;
 }
 /**
