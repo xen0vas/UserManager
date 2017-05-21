@@ -324,9 +324,9 @@ void MainWindow::deleteUser()
 {
 	MyLibb *fchk = new MyLibb();
 	Groups gr;
-	int okk;
-	int result2;
-	int result;
+	int okk = 0;
+	int result2 = 0;
+	int result = 0;
 	FILE *passBase, *groupBase;
 	passBase = fchk->fopen_wrapper ( PASSWD_FILE, "r+" );
 	QModelIndex index=userTreeView->selectionModel()->currentIndex();
@@ -341,23 +341,23 @@ void MainWindow::deleteUser()
 	{
 	if(username=="" || !index.isValid())
 	{
-	QMessageBox::information ( 0, tr ( " UserManager " ),tr ( " Please Select a User to Delete !!" ) );
-	delete fchk ;
-	fchk = nullptr;
+		QMessageBox::information ( 0, tr ( " UserManager " ),tr ( " Please Select a User to Delete !!" ) );
+		delete fchk ;
+		fchk = nullptr;
 	}
 	else
 	{
 	grr = getgrgid(passs->pw_gid);
 	int ok;
 	ok = QMessageBox::warning ( 0, tr ( "User Manager" ), tr ( "User ' <i><b>%1</b></i> ' is about to be deleted from User Database.Are You sure you want to delete it? " ).arg ( username ) ,QMessageBox::Ok | QMessageBox::Cancel );
-				if ( ok == 1024 )
-				{	
-					Users usr;
-					result = usr.rm_pwUser ( username );
-					struct spwd *spp;
-					spp = getspnam(username.toAscii().data());
-					if (spp != NULL)
-					{					
+	if ( ok == 1024 )
+	{
+		Users usr;
+		result = usr.rm_pwUser ( username );
+		struct spwd *spp;
+		spp = getspnam(username.toAscii().data());
+				if (spp != NULL)
+				{
 					QString delshadow = "sed 's/" + username + ".*$//' /etc/shadow  > /tmp/.shad";//remove to user apo to shadow file
 					QString delemptylines = "sed '/^$/D' /tmp/.shad > /tmp/.sh ";//afairei tin keni grammi pou dimiourgeitai 
 					char *cmd = delshadow.toAscii().data();
@@ -385,9 +385,10 @@ void MainWindow::deleteUser()
 					string  pathways = "/home/" + logdata + "";
 					const char * paths = path.c_str();
 					QString pathway = path.data();
+					//home directory tou xristi pou epilegetai.
 					QString pathdir = pathways.data();
-					//diagrafi tou home directory tou xristi pou epilegetai.
-					const char *pat = pathways.c_str(); 
+
+					//char *pat = pathways.c_str();
 					chmod(paths,0700);
 					chown ( paths, (uid_t)0 ,(gid_t)0 );
 					
@@ -402,21 +403,10 @@ void MainWindow::deleteUser()
 					
 					else
 					{
-					// se diaforetiki periptosi pou tha vrethei to home directory tou xristi tha treksei diergasia pou tha kalesei tin rm
-					// entoli kelifous i opoia meta apo ektelesi me tin parametro -r tha diagrapsei teleios to home dir tou xristi 
-					// kai ola ta periexomena tou 
-					pid_t pid;
-					pid = fork();
-					if(pid != 0)
-						
-						execlp("/bin/rm","rm ","-r",pat,NULL);
-
-					else if (pid == -1)//periptosi pou apotuxei i fork().Diladi periptosi pou apotuxei i diergasia
-					{
-						errno  = ENOENT;
-						QMessageBox::information( 0,tr("User Manager " ), tr ("failed to fork for cleanup: '%1'").arg(strerror(errno)));
-					}
-		
+					//diagrafi tou home directory tou xristi pou epilegetai.
+					QString deldir = "rm -rf " + pathdir;
+					char *rmdir = deldir.toAscii().data();
+					system(rmdir);
 					}
 					if ( result == -1 )
 						QMessageBox::information ( 0, tr ( " User Manager " ), tr ( " User '%1' cannot be deleted from User 'Database' " ).arg ( username ) );
@@ -447,7 +437,12 @@ void MainWindow::deleteUser()
 		}
 	}
 			if (fchk != nullptr)
-				fchk->~MyLibb();
+			{
+				delete fchk;
+				fchk = nullptr;
+			}
+
+
 }
 /**
  *Διαγραφή μιας ομάδας από το σύστημα όταν πατηθεί το κουμπί της διαγραφής ομάδων από την κύρια φόρμα.

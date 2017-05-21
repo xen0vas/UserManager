@@ -291,6 +291,7 @@ datetime->setText ( buff );
 int EditProperties::set_password(QString name)
 {
 	struct spwd spd;
+	MyLibb *fchk {new MyLibb};
 	UserProperties *usr = new UserProperties();
 	QString passhash;
 	bool okBtn;
@@ -307,10 +308,11 @@ int EditProperties::set_password(QString name)
 		spd = *getspnam(name.toAscii().data());
 		spd.sp_lstchg = curdays; 
 		spd.sp_pwdp = passhash.toAscii().data();
-		MyLibb *fchk;
+
 		fchk->setspnam(&spd);
 		main.reloadUsersAndGroups();
-		delete usr;
+		if (fchk != nullptr) { delete fchk; fchk = nullptr;}
+		if (usr != nullptr) { delete usr; usr = nullptr; }
 		return 0;
 	}
 	else 

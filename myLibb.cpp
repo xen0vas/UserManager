@@ -420,9 +420,9 @@ int MyLibb::setpwnam (struct passwd *pwd)
 
     if (!found) {
         errno = EIDRM; 
-	QMessageBox::critical( 0,tr( "User Manager" ),tr( " %1  ").arg(strerror(errno)));
-	//free(linebuf);
-	return -1;
+        QMessageBox::critical( 0,tr( "User Manager" ),tr( " %1  ").arg(strerror(errno)));
+		if (linebuf != NULL) free(linebuf);
+		return -1;
     }	
      
     unlink(PASSWD_FILE".bak");
@@ -431,9 +431,8 @@ int MyLibb::setpwnam (struct passwd *pwd)
     
     rename(PTMP_FILE, PASSWD_FILE) ;
 
-    //if (linebuf != NULL) free(linebuf);
+    if (linebuf != NULL) free(linebuf);
     unlink(PTMP_FILE);
-    free(linebuf);
     return 0;
 }
 

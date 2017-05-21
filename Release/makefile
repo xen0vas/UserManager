@@ -43,7 +43,7 @@ all: UserManager
 UserManager: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++  -o "UserManager" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -p -o "UserManager" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

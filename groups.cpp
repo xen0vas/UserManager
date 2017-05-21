@@ -117,10 +117,10 @@ int Groups::deleteGroup(QString gname)
 	char * groupname = gname.toAscii().data();
 	if(set.setgrnam_r(gr,groupname)<0)
 		{
-			delete groupname;
+
 			return -1;
 		}
-	delete groupname;
+
 	return 0;
 }
 /**
