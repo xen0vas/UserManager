@@ -554,7 +554,7 @@ char *UserProperties::md5_passwd ( QString passwd )
 	int saltLength = 8;
 	char *seed;
 	seed = make_md5_salt ( saltLength );
-	buf = ( char * ) malloc ( 128 );
+	buf = ( char * ) calloc ( 128, sizeof(char) );
 	char *p = passwd.toAscii().data();
 	strcpy ( buf,p );
 	char *passs;

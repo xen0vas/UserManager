@@ -248,7 +248,7 @@ return 0;
 int Users::save_new_info (struct finfo *pinfo,uid_t uid,char *shellnew)
 {	
 char *gecos;
-int len;
+int len = 64;
 QString gec;
 QString emptystr = "";
     if (!pinfo->full_name) pinfo->full_name = emptystr.toAscii().data();
@@ -257,7 +257,7 @@ QString emptystr = "";
     if (!pinfo->home_phone) pinfo->home_phone =  emptystr.toAscii().data();
     /* create the new gecos string */
     len   =(strlen (pinfo->full_name) + strlen (pinfo->office) + strlen (pinfo->office_phone) + strlen (pinfo->home_phone) + 4);
-    gecos =(char*)malloc(len + 1);
+    gecos =(char*)calloc(len, sizeof(char));
 	
 	if (pinfo->full_name == emptystr.toAscii().data() && pinfo->office == emptystr.toAscii().data() && pinfo->office_phone == emptystr.toAscii().data() && pinfo->home_phone == emptystr.toAscii().data())
 	gecos = emptystr.toAscii().data();

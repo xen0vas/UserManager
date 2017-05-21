@@ -48,7 +48,7 @@ int MyLibb::setpwnam_r (struct passwd *pwd,char *name)
    int namelen;
 
    int buflen = 512;
-   char *linebuf = (char*)malloc(buflen);
+   char *linebuf = (char*)calloc(buflen,sizeof(char));
    if (!linebuf) return -1;
 
 //σε περίπτωση που το προσωρινό αρχείο υπάρχει και δεν έχει διαγραφεί για λόγους όπως να έχει διακοπεί η διεργασία πριν διαγραφεί το αρχείο ,τοτε η παρακάτω επανάληψη χρησιμοποιειται για να διαγράψει προσωρινα αρχεία και να δημιουργήσει καινούρια 
@@ -129,7 +129,7 @@ int fd;
 bool found;
 int namelen;
 int buflen = 1024;
-char *linebuf = (char*)malloc(buflen);
+char *linebuf = (char*)calloc(buflen, sizeof(char));
 if (!linebuf) return -1;
 
 //σε περίπτωση που το προσωρινό αρχείο υπάρχει και δεν έχει διαγραφεί για λόγους όπως να έχει διακοπεί η διεργασία πριν διαγραφεί το αρχείο ,τοτε η παρακάτω επανάληψη χρησιμοποιειται για να διαγράψει προσωρινα αρχεία και να δημιουργήσει καινούρια 
@@ -212,7 +212,7 @@ int fd;
 bool found;
 int namelen;
 int buflen = 256;
-char *linebuf = (char*)malloc(buflen);
+char *linebuf = (char*)calloc(buflen, sizeof(char));
 
 if (!linebuf) return -1;
 
@@ -371,7 +371,7 @@ int MyLibb::setpwnam (struct passwd *pwd)
    bool found;
    int namelen;
    int buflen = 256;
-   char *linebuf = (char*)malloc(buflen);
+   char *linebuf = (char*)calloc(buflen, sizeof(char));
    if (!linebuf) return -1;
 
    //σε περίπτωση που το προσωρινό αρχείο υπάρχει και δεν έχει διαγραφεί για λόγους όπως να έχει διακοπεί η διεργασία πριν διαγραφεί το αρχείο ,τοτε η παρακάτω επανάληψη χρησιμοποιειται για να διαγράψει προσωρινα αρχεία και να δημιουργήσει καινούρια 
