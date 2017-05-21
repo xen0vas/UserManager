@@ -247,7 +247,6 @@ return 0;
  */
 int Users::save_new_info (struct finfo *pinfo,uid_t uid,char *shellnew)
 {	
-char *gecos;
 int len = 64;
 QString gec;
 QString emptystr = "";
@@ -257,7 +256,7 @@ QString emptystr = "";
     if (!pinfo->home_phone) pinfo->home_phone =  emptystr.toAscii().data();
     /* create the new gecos string */
     len   =(strlen (pinfo->full_name) + strlen (pinfo->office) + strlen (pinfo->office_phone) + strlen (pinfo->home_phone) + 4);
-    gecos =(char*)calloc(len, sizeof(char));
+    char *gecos =(char*)calloc(len, sizeof(char));
 	
 	if (pinfo->full_name == emptystr.toAscii().data() && pinfo->office == emptystr.toAscii().data() && pinfo->office_phone == emptystr.toAscii().data() && pinfo->home_phone == emptystr.toAscii().data())
 	gecos = emptystr.toAscii().data();
@@ -302,7 +301,7 @@ QString emptystr = "";
     MyLibb set;
     if(set.setpwnam (pinfo->pw) < 0)
         {
-      	//free(gecos);
+      	if(gecos!=NULL) free( gecos );
         return(-1);
         }
     else {
