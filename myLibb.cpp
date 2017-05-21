@@ -353,7 +353,6 @@ link(GR_FILE, GR_FILE".bak");
 rename(GTMP_FILE, GR_FILE) ;
 
 if (linebuf != NULL) free(linebuf);
-free(linebuf);
 unlink(GTMP_FILE);
 
 return 0;
