@@ -18,7 +18,8 @@ echo "# installation" >> UserManager.pro
 echo "installfiles.files += usermanager" >> UserManager.pro
 echo "installfiles.path += /usr/bin/" >> UserManager.pro  
 echo "INSTALLS += installfiles" >> UserManager.pro
-make 
+make
+make install
 #UserManager 
 
 
