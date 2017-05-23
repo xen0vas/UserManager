@@ -1,0 +1,3 @@
+break MainWindow::UserDetails()
+break /root/workspace/UserManager/MainWindow.cpp:992
+

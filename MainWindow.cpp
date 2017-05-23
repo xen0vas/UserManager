@@ -5,6 +5,7 @@
 using namespace std;
 
 
+
 /**
  *Constructor της κλάσης/φόρμας.
  */
@@ -673,7 +674,7 @@ void MainWindow::UserDetails()
 	Users *use{ new Users } ;
 	struct finfo inf;
 	struct spwd *sp;
-	Models *model = new Models();
+	Models *model {new Models()};
 	struct passwd p;
 	sp = getspnam ( log.toAscii().data() );
 	EditProperties *props { new EditProperties() };
@@ -803,13 +804,18 @@ void MainWindow::UserDetails()
 		reloadUsersAndGroups();
 
 	}
-	delete model;
-	model = nullptr;
-	delete use;
-	use = nullptr;
-	delete props;
-	props = nullptr;
+
+	if (model != NULL || model != nullptr)
+	{delete model; model = nullptr;}
+
+	if (use != NULL || use != nullptr)
+	{delete use; use = nullptr;}
+
+	///if (props != NULL || props != nullptr)
+///	{ delete props;	props = nullptr;}
+
 }
+
 /**
  *Εκκίνηση μέτρησης του χώρου που καταλαμβάνουν οι χρήστες στο σύστημα ή επαναφόρτωση των λιστών χρηστών/ομάδων(αν είχε ήδη πατηθεί το checkbox)
  */

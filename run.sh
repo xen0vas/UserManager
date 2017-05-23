@@ -13,6 +13,7 @@ rm -rf Makefile > /dev/null 2>&1
 qmake -project
 qmake -o Makefile UserManager.pro 
 echo "QMAKE_CXXFLAGS += -std=c++11" >> UserManager.pro
+echo "CONFIG += qt debug" >> UserManager.pro
 echo "QMAKE_LIBS += -lcrypt" >> UserManager.pro
 echo "# installation" >> UserManager.pro
 echo "installfiles.files += usermanager" >> UserManager.pro

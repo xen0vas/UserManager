@@ -553,10 +553,11 @@ char *UserProperties::md5_passwd ( QString passwd )
 	int saltLength = 8;
 	char *seed;
 	seed = make_md5_salt ( saltLength );
-	buf = ( char * ) calloc ( 128, sizeof(char) );
+	buf = ( char * ) calloc ( 128, sizeof(buf) );
 	char *password = passwd.toAscii().data();
 	strncpy ( buf,password,(int)sizeof(password) );
 	char *pass;
+
 	//Η συνάρτηση crypt() σύμφωνα με τη βιβλιοθήκη glibc2 έχει το εξής χαρακτηριστικό.Εάν το seed είναι ένα string το οποίο ξεκινάει απο 
   	//τρείς χαρακτήρες $1$ ακολουθώντας 8 χαρακτήρες και τελειώνοντας με $ τότε αντί να χρησιμοποιείσει τον αλγόριθμο κρυπτογράφησης DES χρησιμοποιεί τον
 	//αλγόριθμο κρυπτογράφησης MD5.Το αποτέλεσμα είναι να επιστραφεί ο κρυπτογραφημένος κωδικός $1$<string>$ 34 bytes ακολουθώντας ένα 22 bytes string με //χαρακτήρες επιλεγμένους απο το set  [a-zA-Z0-9./]  
@@ -566,7 +567,10 @@ char *UserProperties::md5_passwd ( QString passwd )
 		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "%1" ).arg ( ENOSYS ) );
 
 	if (buf!=NULL)free(buf);
-	return strdup ( pass );
+
+	return strdup ( pass );;
+
+
 }
 /**
 * Η παρακάτω συνάρτηση δημιουργεί την κωδικοποίηση ενός password για τον αλγόριθμο MD5
