@@ -1015,7 +1015,7 @@ void UserProperties::easyAddGroups ( const QModelIndex &index )
 	grs=getgrnam("plugdev");
 	if ( index.data().toString() =="Administer the system" )
 	grs=getgrnam("adm");
-	if ( index.data().toString() =="Connect to the internet using a modem" )
+	if ( index.data().toString() =="Connect to the internet" )
 	grs=getgrnam("dialout");
 	if ( index.data().toString() =="Monitor system logs" )
 	grs=getgrnam("syslog");

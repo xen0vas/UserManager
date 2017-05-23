@@ -247,7 +247,7 @@ return 0;
  */
 int Users::save_new_info (struct finfo *pinfo,uid_t uid,char *shellnew)
 {	
-int len = 64;
+int len = 128;
 QString gec;
 QString emptystr = "";
     if (!pinfo->full_name) pinfo->full_name = emptystr.toAscii().data();
@@ -257,36 +257,42 @@ QString emptystr = "";
     /* create the new gecos string */
     len   =(strlen (pinfo->full_name) + strlen (pinfo->office) + strlen (pinfo->office_phone) + strlen (pinfo->home_phone) + 4);
     char *gecos =(char*)calloc(len, sizeof(char));
-	
+    int fname = sizeof(pinfo->full_name);
+
 	if (pinfo->full_name == emptystr.toAscii().data() && pinfo->office == emptystr.toAscii().data() && pinfo->office_phone == emptystr.toAscii().data() && pinfo->home_phone == emptystr.toAscii().data())
 	gecos = emptystr.toAscii().data();
+
 	else
 	{
-	if(strcmp(pinfo->full_name,emptystr.toAscii().data()) != 0)
+
+	if(strncmp(pinfo->full_name,emptystr.toAscii().data(),fname) != 0)
 	{
 	gec = pinfo->full_name;
 	}
-	
-	if(strcmp(pinfo->office ,emptystr.toAscii().data()) != 0)
+	int officesize = sizeof(pinfo->office);
+	if(strncmp(pinfo->office ,emptystr.toAscii().data(), officesize) != 0)
 	{
 	gec ="" + gec + ",";	
 	gec = "" + gec + "" + pinfo->office + "";
 	}
-	
-	if(strcmp(pinfo->office_phone,emptystr.toAscii().data()) != 0)
+	int pinfo_size = sizeof(pinfo->office_phone);
+	if(strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) != 0)
 	{	
-	if (strcmp(pinfo->office,emptystr.toAscii().data()) == 0 )gec ="" + gec + ",";	
+	int pinfo_office = sizeof(pinfo->office);
+	if (strncmp(pinfo->office,emptystr.toAscii().data(), pinfo_office) == 0 )
+		gec ="" + gec + ",";
 	gec ="" + gec + ",";
 	gec = "" + gec + "" + pinfo->office_phone +  "";
 	}
 	
-	if(strcmp(pinfo->home_phone,emptystr.toAscii().data()) != 0)
+	int ophone = sizeof(pinfo->office_phone);
+	if(strncmp(pinfo->home_phone,emptystr.toAscii().data(), ophone) != 0)
 	{	
-	if (strcmp(pinfo->office_phone,emptystr.toAscii().data()) == 0 && strcmp(pinfo->office,emptystr.toAscii().data()) != 0 )gec ="" + gec + ",,";
-	if (strcmp(pinfo->office_phone,emptystr.toAscii().data()) != 0 && strcmp(pinfo->office,emptystr.toAscii().data()) == 0  )gec ="" + gec + ",";
-	if (strcmp(pinfo->full_name,emptystr.toAscii().data()) == 0 && strcmp(pinfo->office,emptystr.toAscii().data()) == 0 && strcmp(pinfo->office_phone,emptystr.toAscii().data()) == 0){gec ="" + gec + ",,,";}
-	if (strcmp(pinfo->full_name,emptystr.toAscii().data()) != 0 && strcmp(pinfo->office,emptystr.toAscii().data()) == 0 && strcmp(pinfo->office_phone,emptystr.toAscii().data()) == 0){gec ="" + gec + ",,,";} 
-	if (strcmp(pinfo->full_name,emptystr.toAscii().data()) != 0 && strcmp(pinfo->office,emptystr.toAscii().data()) != 0 && strcmp(pinfo->office_phone,emptystr.toAscii().data()) != 0){gec ="" + gec + ",";} 
+	if (strncmp(pinfo->office_phone,emptystr.toAscii().data(),ophone) == 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size)!= 0 )gec ="" + gec + ",,";
+	if (strncmp(pinfo->office_phone,emptystr.toAscii().data(), ophone) != 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) == 0  )gec ="" + gec + ",";
+	if (strncmp(pinfo->full_name,emptystr.toAscii().data(), fname) == 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) == 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) == 0){gec ="" + gec + ",,,";}
+	if (strncmp(pinfo->full_name,emptystr.toAscii().data(), fname) != 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size)== 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) == 0){gec ="" + gec + ",,,";}
+	if (strncmp(pinfo->full_name,emptystr.toAscii().data(), fname) != 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) != 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) != 0){gec ="" + gec + ",";}
 	gec = "" + gec + "" +  pinfo->home_phone +  "";
 	}
 	
@@ -294,18 +300,17 @@ QString emptystr = "";
 	}
     sprintf(gecos, "%s",gec.toAscii().data());
 
-
     pinfo->pw->pw_gecos = gecos;
     pinfo->pw->pw_uid   = uid;
     pinfo->pw->pw_shell = shellnew; 
     MyLibb set;
     if(set.setpwnam (pinfo->pw) < 0)
-        {
-      	if(gecos!=NULL) free( gecos );
-        return(-1);
-        }
+    {
+     if(gecos!=NULL) free( gecos );
+       return(-1);
+    }
     else {
-		if(gecos!=NULL) free( gecos );
+	if(gecos!=NULL) free( gecos );
     }
 	return 0;
 }

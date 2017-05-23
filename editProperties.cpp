@@ -123,7 +123,7 @@ if(checkBoxEdit->isChecked())
 	struct finfo  newf;
 
 	Users user;
-	char *cp{new char{42}};
+	char *cp = (char *)calloc(64, sizeof(char));
 
 	QString nam = LoginName->text();
 	QString ui = uiEdit->text();
@@ -220,7 +220,7 @@ if(checkBoxEdit->isChecked())
 		}
 	if(status != 1)
 	this->deleteLater();
-	delete cp;
+	if ( cp != nullptr) { delete cp; cp = nullptr;}
 }
 /**
  * Η συνάρτηση ενεργοποιεί και απενεργοποιεί συγκεκριμένα συστατικά της φόρμας
