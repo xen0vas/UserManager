@@ -524,9 +524,9 @@ if ( ok && !userExists)
 	
 }
 
-/****************************************************************************/
-/*               	 MD5 CRYPTOGRAPHY				    */
-/****************************************************************************/
+/*********************************************************/
+/*               	 MD5 CRYPTOGRAPHY					 */
+/*********************************************************/
 
 
 /**
@@ -535,8 +535,7 @@ if ( ok && !userExists)
 void UserProperties::into64 ( char *s, long int v, int n )
 {
 
-	static unsigned char itoa64[] =         // 0 ... 63 => ascii - 64
-	    "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	static unsigned char itoa64[] =  "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; // 0 ... 63 => ascii - 64
 
 	while ( --n >= 0 )
 	{

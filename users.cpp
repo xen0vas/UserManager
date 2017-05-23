@@ -71,11 +71,14 @@ QString Users::getUsersPrimaryGroup( int UID )
 	return groupName;
 }
 
-/**
- *Ψάχνει να βρει τις ομάδες στις οποίες είναι μέλος ο χρήστης που παίρνει σαν όρισμα.Σαρώνει όλες τις ομάδες του συστήμστος με τα μέλη τους.Αν βρεθεί μέλος που έχει ίδιο όνομα με το όνομα του ορίσματος, το
-προσθέτει σε ένα string.Η τελική μορφή αυτού του string θα είναι κάπως έτσι ανάλογα με τις ομάδες στις οποίες είναι μέλος :
-audio,cdrom,fax,plugdev κ.ο.κ.
+/*
+ *
+ * Ψάχνει να βρει τις ομάδες στις οποίες είναι μέλος ο χρήστης που παίρνει σαν όρισμα.Σαρώνει όλες τις ομάδες του συστήμστος με τα μέλη τους.Αν βρεθεί μέλος που έχει ίδιο όνομα με το όνομα του ορίσματος, το
+ * προσθέτει σε ένα string.Η τελική μορφή αυτού του string θα είναι κάπως έτσι ανάλογα με τις ομάδες στις οποίες είναι μέλος :
+ * audio,cdrom,fax,plugdev κ.ο.κ.
+ *
  */
+
 QString Users::getUsersSecondaryGroups( QString name )
 {
 	struct group *group;
@@ -91,11 +94,11 @@ QString Users::getUsersSecondaryGroups( QString name )
 			if ( strcmp( *members, userChar ) == 0 )
 			{
 				listGroup.append( group->gr_name );
-				listGroup.append( " , " );
+				listGroup.append( "," );
 			}
 	}
 	listGroup.chop(2);//kovei tous 2 teleytaious xarakthres apo to string pou apo thn append panw einai ena keno kai ena komma
-endgrent();
+	endgrent();
 	return listGroup;
 }
 /**
