@@ -84,6 +84,7 @@ QString Users::getUsersSecondaryGroups( QString name )
 	QByteArray nameArray = name.toLatin1();
 	const char *userChar = nameArray.data();
 	char **members;
+	memset(&members, 0, sizeof(members));
 	while (( group = getgrent() ) != NULL )
 	{
 		for ( members = group->gr_mem; *members; members++ )
@@ -104,6 +105,7 @@ bool Users::isLocked( QString user )
 {
 	
 	struct spwd   *sp;
+	int sp_size = sizeof(sp->sp_pwdp);
 	bool lock = false;
 	QByteArray userArray = user.toLatin1();
 	const char *userChar = userArray.data();
@@ -112,7 +114,7 @@ bool Users::isLocked( QString user )
 	sp = getspnam( userChar );
 	if(sp != NULL)
 	{
-	if ( strncmp( sp->sp_pwdp, "!",1 ) == 0 || strcmp( sp->sp_pwdp, "*" ) == 0 )  
+	if ( strncmp( sp->sp_pwdp, "!",1 ) == 0 || strncmp( sp->sp_pwdp, "*" , sp_size) == 0 )
 		lock = true;
 	}
 	else lock = false;
@@ -321,8 +323,10 @@ uint64_t Users::getSize( char *dirname )
 {
   DIR *dir;
   struct dirent *ent;
+  int ent_size = 0 ;
   struct stat st;
   char path[PATH_MAX];
+  memset(&path, 0 ,sizeof(path));
   uint64_t totalsize = 0;
 
   if(!(dir = opendir(dirname)))
@@ -332,7 +336,8 @@ uint64_t Users::getSize( char *dirname )
 
   while((ent = readdir(dir)))
   {
-    if(!strcmp(ent->d_name, ".") || !strcmp(ent->d_name, ".."))
+	ent_size = sizeof(ent->d_name);
+    if(!strncmp(ent->d_name, ".", ent_size ) || !strncmp(ent->d_name, ".", ent_size ))
        continue;
 
     sprintf(path, "%s%s", dirname, ent->d_name);//pros8hkh onomatos tou katalogou + to ka8e arxeio to opoio eksetazetai ka8e fora
