@@ -811,7 +811,6 @@ void MainWindow::UserDetails()
 	if (use != nullptr)
 	{delete use; use = nullptr;}
 
-	props->~EditProperties();
 }
 
 /**
