@@ -805,15 +805,13 @@ void MainWindow::UserDetails()
 
 	}
 
-	if (model != NULL || model != nullptr)
+	if (model != nullptr)
 	{delete model; model = nullptr;}
 
-	if (use != NULL || use != nullptr)
+	if (use != nullptr)
 	{delete use; use = nullptr;}
 
-	///if (props != NULL || props != nullptr)
-///	{ delete props;	props = nullptr;}
-
+	props->~EditProperties();
 }
 
 /**
@@ -841,14 +839,14 @@ void MainWindow::calculateFolderSize()
 	setCursor(Qt::WaitCursor);
      	progressBar.setWindowModality(Qt::WindowModal);	
 	qApp->processEvents();
-	Users *usr;
-	struct passwd *user;
+	Users *usr {new Users()};
+	struct passwd *user = new passwd();
 	int i = 0;
  	float cnt=1,totalUsers=0,progress=0;// parolo pou einai int kanonika an ta dhlwsw san int den leitourgei h progressbar swsta
 	QString sizeString;
 	QStringList sizeList;
 	uint64_t totalSize = 0;//unsigned long int
-	Models *model;
+	Models *model {new Models()};
 	totalUsers=usr->countUsers();
 	setpwent();
    	while (( user = getpwent() ) )
@@ -910,13 +908,15 @@ menuDiskUsage->setEnabled(false);
 canceled:
 {}
 delete user;
+delete usr;
+delete model;
 }
 /**
  *Εμφάνιση νέου παραθύρου στο οποίο μπορούμε να επεξεργαστούμε τα δεδομένα των ομάδων του συστήματος.
  */
 void MainWindow::GroupDetails( const QModelIndex &index )
 {
-	Models *model;
+	Models *model {new Models};
 	int row = index.row();
 	QString  groupnameString = index.sibling( row, 1 ).data( Qt::DisplayRole ).toString();
 	QByteArray groupnameArray = groupnameString.toLatin1();
@@ -935,6 +935,7 @@ void MainWindow::GroupDetails( const QModelIndex &index )
 if ( grProps->exec() ){}
 			reloadUsersAndGroups();
 			delete grProps;
+			delete model;
 
 }
 
