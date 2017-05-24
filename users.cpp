@@ -325,11 +325,11 @@ QString emptystr = "";
 uint64_t Users::getSize( char *dirname )
 {
   DIR *dir;
-  struct dirent *ent;
+  struct dirent *ent = new dirent();
   int ent_size = 0 ;
-  struct stat st;
+  struct stat st ;
   char path[PATH_MAX];
-  memset(&path, 0 ,sizeof(path));
+  memset(&path, 0 ,sizeof(char));
   uint64_t totalsize = 0;
 
   if(!(dir = opendir(dirname)))
@@ -365,6 +365,7 @@ uint64_t Users::getSize( char *dirname )
   }
 
   closedir(dir);
+  delete ent;
   return totalsize;
 }
 /**
