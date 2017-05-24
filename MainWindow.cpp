@@ -716,7 +716,7 @@ void MainWindow::UserDetails()
 				}		
 			}
 		}
-	struct spwd *spw;
+	struct spwd *spw ;
 	struct  tm *ltime;
 	time_t time;
 	time_t exp_time;
