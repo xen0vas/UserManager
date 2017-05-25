@@ -1,3 +1,21 @@
-break MainWindow::UserDetails()
-break /root/workspace/UserManager/MainWindow.cpp:992
+break /root/workspace/UserManager/users.cpp:327
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

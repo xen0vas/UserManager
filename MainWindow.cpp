@@ -118,7 +118,7 @@ connect(menuAboutUserManager, SIGNAL( triggered() ), this, SLOT( aboutUserManage
 void MainWindow::set_Pass_Menu()
 {
 
-EditProperties *edit_for_menu;
+EditProperties *edit_for_menu = new EditProperties();
 QModelIndex index=userTreeView->selectionModel()->currentIndex();
 int row=index.row();
 QString username=index.sibling ( row, 1 ).data( ).toString();
@@ -126,6 +126,7 @@ if (username == "")
 QMessageBox::information ( 0, tr ( " UserManager " ),tr ( " Please Select a User to Change Password!!" ) ); 
 else
 edit_for_menu->set_password(username);
+if (edit_for_menu != nullptr) { delete edit_for_menu; edit_for_menu = nullptr; }
 }
 /**
  *Προετοιμασία εισαγωγής νέου χρήστη.Έλεγχος αν υπάρχουν όλα τα αρχεία συστήματος (group,passwd,shadow).Εκκινεί με το πάτημα του κουμπιού εισαγωγής νέου χρήστη από την κύρια φόρμα.
@@ -136,7 +137,7 @@ void MainWindow::addUserBtnClicked()
 	FILE *passBase;
 	FILE *groupBase;
 	FILE *shadowBase;	
-	UserProperties *userProp = new UserProperties;
+	UserProperties *userProp = new UserProperties();
 	MyLibb *fchk { new MyLibb()};
 	shadowBase = fchk->fopen_wrapper(SHADOW_FILE, "r+");
 	groupBase  = fchk->fopen_wrapper(GROUP_FILE , "r+");
@@ -246,8 +247,7 @@ void  MainWindow::loadUsersAndGroups( )
         beautyTree( userTreeView, 6 );
         groupTreeView->setModel( groupModel );
         beautyTree( groupTreeView, 1 );
-        delete model;
-        model = nullptr;
+        if (model != nullptr ) {  delete model; model = nullptr; }
 
 }
 /**
@@ -268,8 +268,7 @@ void MainWindow::reloadUsersAndGroups()
 	clearEditBoxes();
 	if (tabWidget->currentIndex()==0)
 	folderSizeCheckBox->setVisible(true);
-	delete model ;
-	model = nullptr;
+	if (model != nullptr) {delete model ;model = nullptr;}
 }
 /**
  *Αποθήκευση των στοιχείων του χρήστη που πατήθηκε από την λίστα σε ανάλογες μεταβλητές της κλάσης για επεξεργασία.
@@ -533,8 +532,7 @@ void MainWindow::getSelectedGroupInfo( const QModelIndex &index )
 	const char *groupName = groupnameArray.data();
 	membersTree->setModel( model->createMembersModel( groupName ) );
 	beautyTree( membersTree, 2 );
-	delete 	model;
-	model = nullptr;
+	if (model != nullptr) {delete 	model;	model = nullptr;}
 
 }
 /**
@@ -838,14 +836,14 @@ void MainWindow::calculateFolderSize()
 	setCursor(Qt::WaitCursor);
      	progressBar.setWindowModality(Qt::WindowModal);	
 	qApp->processEvents();
-	Users *usr {new Users()};
-	struct passwd *user = new passwd();
+	Users *usr = new Users() ;
+	struct passwd *user = new passwd() ;
 	int i = 0;
  	float cnt=1,totalUsers=0,progress=0;// parolo pou einai int kanonika an ta dhlwsw san int den leitourgei h progressbar swsta
 	QString sizeString;
 	QStringList sizeList;
 	uint64_t totalSize = 0;//unsigned long int
-	Models *model {new Models()};
+	Models *model = new Models;
 	totalUsers=usr->countUsers();
 	setpwent();
    	while (( user = getpwent() ) )
@@ -906,9 +904,16 @@ folderSizeCheckBox->setChecked(true);
 menuDiskUsage->setEnabled(false);
 canceled:
 {}
-delete user;
-delete usr;
-delete model;
+if ( usr != nullptr )
+{
+	delete usr;
+	usr = nullptr;
+}
+if ( model != nullptr) {
+	delete model;
+	model = nullptr;
+}
+if (user != NULL ) delete user;
 }
 /**
  *Εμφάνιση νέου παραθύρου στο οποίο μπορούμε να επεξεργαστούμε τα δεδομένα των ομάδων του συστήματος.

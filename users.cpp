@@ -33,7 +33,6 @@ struct passwd *Users::searchUser()
 		{
 			QMessageBox::information( 0, QObject::tr( "User Manager" ), QObject::tr( "User %1 not found" ).arg( userString ) );
 		}
-
 	}
 	return result;
 }
@@ -66,8 +65,8 @@ QString Users::getUsersPrimaryGroup( int UID )
         group = getgrgid( user->pw_gid ); //pernw thn domh group gia to primary group tou UID (user->pw_gid=default group id tou user)
         if (group!=NULL)
         groupName = QString::fromLocal8Bit( group->gr_name );
-	//else
-	//QMessageBox::critical( 0, QObject::tr( "User Manager" ), QObject::tr( "No group entry for user %1 in /etc/group" ).arg(user->pw_name) );
+        else
+        	QMessageBox::critical( 0, QObject::tr( "User Manager" ), QObject::tr( "No group entry for user %1 in /etc/group" ).arg(user->pw_name) );
 	return groupName;
 }
 
@@ -324,12 +323,14 @@ QString emptystr = "";
  */
 uint64_t Users::getSize( char *dirname )
 {
+
   DIR *dir;
-  struct dirent *ent = new dirent();
-  int ent_size = 0 ;
-  struct stat st ;
+  struct dirent *ent;
+  struct stat st;
   char path[PATH_MAX];
-  memset(&path, 0 ,sizeof(char));
+  memset(&path, 0x0 ,sizeof(char));
+
+
   uint64_t totalsize = 0;
 
   if(!(dir = opendir(dirname)))
@@ -339,8 +340,7 @@ uint64_t Users::getSize( char *dirname )
 
   while((ent = readdir(dir)))
   {
-	ent_size = sizeof(ent->d_name);
-    if(!strncmp(ent->d_name, ".", ent_size ) || !strncmp(ent->d_name, ".", ent_size ))
+    if(!strncmp(ent->d_name, ".", (int)sizeof(ent->d_name)) || !strncmp(ent->d_name, ".",(int)sizeof(ent->d_name) ))
        continue;
 
     sprintf(path, "%s%s", dirname, ent->d_name);//pros8hkh onomatos tou katalogou + to ka8e arxeio to opoio eksetazetai ka8e fora
@@ -354,7 +354,7 @@ uint64_t Users::getSize( char *dirname )
     if(S_ISDIR(st.st_mode) && !S_ISLNK(st.st_mode))
     {
       uint64_t dirsize;
-      strcat(path, "/");
+      strncat(path, "/", strlen(path)+1);
       dirsize = getSize(path);
       totalsize += dirsize;
     }
@@ -364,8 +364,8 @@ uint64_t Users::getSize( char *dirname )
     }
   }
 
-  closedir(dir);
-  delete ent;
+  if ( closedir(dir) < 0 ){ printf("Error closing file \n") ; }
+
   return totalsize;
 }
 /**

@@ -31,7 +31,6 @@ public slots:
 	QString getPrimaryGroup(QString username);
 	
 private:
-
 	int  rm_shUser(QString name);
 	QString passhash;
 };
