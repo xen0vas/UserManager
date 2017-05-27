@@ -352,7 +352,6 @@ uint64_t Users::getSize( char *dirname )
     }
 
     if(S_ISDIR(st.st_mode) && !S_ISLNK(st.st_mode))
-    //if (st.st_mode && S_IFDIR)
     {
       uint64_t dirsize;
       strncat(path, "/", strlen(path));
