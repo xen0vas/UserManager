@@ -319,18 +319,15 @@ QString emptystr = "";
 	return 0;
 }
 /**
+ *
  * Η συνάρτηση ψάχνει να βρεί το μέγεθος των αρχείων ενός φακέλου.Για κάθε ένα κανονικό αρχείου του δωσμενου καταλόγου μετρά το μέγεθός του και το προσθέτεί στην μεταβλητή totalSize η οποία στο τέλος θα έχει το συνολικό μέγεθος όλου του φακέλου.Αν μέσα σε έναν φάκελο υπάρχει και άλλος φάκελος η getSize λειτουργεί αναδρομικά.Καλεί τον εαυτό της και προσθέτει το τελικό μέγεθος στην totalSize πάλι.Αυτή η διαδικασία γίνεται μέχρι να τελειώσουν όλα τα αρχεία και οι φάκελοι μέσα στον φάκελο που παίρνει σαν όρισμα.
  */
 uint64_t Users::getSize( char *dirname )
 {
-
   DIR *dir;
   struct dirent *ent;
   struct stat st;
-  char path[PATH_MAX];
-  memset(&path, 0x0 ,sizeof(char));
-
-
+  char * path = (char*)malloc(PATH_MAX);
   uint64_t totalsize = 0;
 
   if(!(dir = opendir(dirname)))
@@ -340,7 +337,7 @@ uint64_t Users::getSize( char *dirname )
 
   while((ent = readdir(dir)))
   {
-    if(!strncmp(ent->d_name, ".", (int)sizeof(ent->d_name)) || !strncmp(ent->d_name, ".",(int)sizeof(ent->d_name) ))
+    if(!strncmp(ent->d_name, "..", (int)sizeof(ent->d_name)) == 0 || !strncmp(ent->d_name, ".",(int)sizeof(ent->d_name) == 0 ))
        continue;
 
     sprintf(path, "%s%s", dirname, ent->d_name);//pros8hkh onomatos tou katalogou + to ka8e arxeio to opoio eksetazetai ka8e fora
@@ -355,6 +352,7 @@ uint64_t Users::getSize( char *dirname )
     {
       uint64_t dirsize;
       strncat(path, "/", strlen(path)+1);
+      if (path != nullptr) { free(path); path =nullptr; }
       dirsize = getSize(path);
       totalsize += dirsize;
     }
@@ -365,7 +363,7 @@ uint64_t Users::getSize( char *dirname )
   }
 
   if ( closedir(dir) < 0 ){ printf("Error closing file \n") ; }
-
+  if (path != nullptr) { free(path); path =nullptr; }
   return totalsize;
 }
 /**
@@ -381,6 +379,7 @@ int Users::countUsers( )
 		total++;
 	}
 	endpwent();
+
 return total;
 }
 /**

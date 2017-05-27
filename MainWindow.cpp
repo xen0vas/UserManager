@@ -837,28 +837,29 @@ void MainWindow::calculateFolderSize()
      	progressBar.setWindowModality(Qt::WindowModal);	
 	qApp->processEvents();
 	Users *usr = new Users() ;
-	struct passwd *user = new passwd() ;
+	struct passwd *user;
 	int i = 0;
  	float cnt=1,totalUsers=0,progress=0;// parolo pou einai int kanonika an ta dhlwsw san int den leitourgei h progressbar swsta
 	QString sizeString;
 	QStringList sizeList;
 	uint64_t totalSize = 0;//unsigned long int
-	Models *model = new Models;
+	Models *model = new Models();
 	totalUsers=usr->countUsers();
 	setpwent();
+
+
    	while (( user = getpwent() ) )
 	{
-
-		
+   		char path[PATH_MAX] = { 0 };
 		char *dir = user->pw_dir;
 		string dirString = dir;
-		char path[PATH_MAX] = "\0"; //PATH_MAX == 4096 xarakthres megisth diadromh.arxikopoihsh me \0 giati alliws exei skpoupidia kai mperdeyetai h getSize
-		for ( i = 0; i < (int)dirString.length(); i++ )//string se char[]
+
+		for ( i = 0; i < (int)dirString.length(); i++ )  //string se char[]
 		{
 			path[i] = dirString[i];
 		}
 		if ( path[strlen( path )-1] != '/' )
-			strcat( path, "/" );
+			strncat( path, "/", strlen(path)+1);
 		totalSize = 0;//mhdenismos giati merikoi home fakeloi den yparxoun,kai an den mhdenistei krataei to mege8os tou teleytaiou fakelou poy yphrxe kai metrh8hke
 		totalSize += usr->getSize( path );
 		if ( totalSize < 1000 && totalSize>0) //if < 1kb
@@ -893,6 +894,7 @@ void MainWindow::calculateFolderSize()
 		folderSizeCheckBox->setChecked(false);
              	goto canceled;
 		}
+
 	}
 endpwent();
 	progressBar.deleteLater();
@@ -913,7 +915,8 @@ if ( model != nullptr) {
 	delete model;
 	model = nullptr;
 }
-if (user != NULL ) delete user;
+//if (user != NULL ) delete user;
+
 }
 /**
  *Εμφάνιση νέου παραθύρου στο οποίο μπορούμε να επεξεργαστούμε τα δεδομένα των ομάδων του συστήματος.
@@ -949,7 +952,7 @@ if ( grProps->exec() ){}
 
 void MainWindow::addGroupBtnClicked()
 {
-GroupProperties *newGroup = new GroupProperties;
+GroupProperties *newGroup = new GroupProperties();
 QString gid;
 newGroup->GIDEdit->setText(gid.setNum(newGroup->groupStudy(0))); //epomeno eley8ero GID
 newGroup->setWindowTitle("Add Group");
