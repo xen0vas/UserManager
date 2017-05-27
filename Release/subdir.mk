@@ -100,7 +100,7 @@ CPP_DEPS += \
 %.o: ../%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -DQT_CC_GNU=1 -DQT_CORE_LIB=1 -DQT_GUI_LIB=1 -DQT_SHARED=1 -DQT_SQL_LIB=1 -DQT_TESTLIB_LIB=1 -DQT_NO_DEBUG=1 -DQT_WEBKIT=1 -I/usr/include/qt4 -I/usr/include/qt4/Qt -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -O2 -g -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	g++ -DQT_CC_GNU=1 -DQT_CORE_LIB=1 -DQT_GUI_LIB=1 -DQT_SHARED=1 -DQT_SQL_LIB=1 -DQT_TESTLIB_LIB=1 -DQT_NO_DEBUG=1 -DQT_WEBKIT=1 -I/usr/include/qt4 -I/usr/include/qt4/Qt -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtGui -O1 -g -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

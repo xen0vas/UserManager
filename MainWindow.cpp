@@ -846,11 +846,12 @@ void MainWindow::calculateFolderSize()
 	Models *model = new Models();
 	totalUsers=usr->countUsers();
 	setpwent();
-
+	//char path[PATH_MAX] ; //= { 0 };
 
    	while (( user = getpwent() ) )
 	{
-   		char path[PATH_MAX] = { 0 };
+   		char path[PATH_MAX] = { 0 } ;
+   		//memset(&path, '\0', sizeof(path[PATH_MAX]));
 		char *dir = user->pw_dir;
 		string dirString = dir;
 
@@ -859,7 +860,7 @@ void MainWindow::calculateFolderSize()
 			path[i] = dirString[i];
 		}
 		if ( path[strlen( path )-1] != '/' )
-			strncat( path, "/", strlen(path)+1);
+			strncat( path, "/", strlen(path));
 		totalSize = 0;//mhdenismos giati merikoi home fakeloi den yparxoun,kai an den mhdenistei krataei to mege8os tou teleytaiou fakelou poy yphrxe kai metrh8hke
 		totalSize += usr->getSize( path );
 		if ( totalSize < 1000 && totalSize>0) //if < 1kb

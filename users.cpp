@@ -325,20 +325,23 @@ QString emptystr = "";
 uint64_t Users::getSize( char *dirname )
 {
   DIR *dir;
-  struct dirent *ent;
+  struct dirent *ent = NULL;
   struct stat st;
-  char * path = (char*)malloc(PATH_MAX);
+  char *path = (char*)malloc(PATH_MAX);
   uint64_t totalsize = 0;
 
   if(!(dir = opendir(dirname)))
   {
+	  if (path != nullptr) { free(path); path =nullptr; }
    return totalsize;
   }
 
   while((ent = readdir(dir)))
   {
-    if(!strncmp(ent->d_name, "..", (int)sizeof(ent->d_name)) == 0 || !strncmp(ent->d_name, ".",(int)sizeof(ent->d_name) == 0 ))
-       continue;
+    if(!strncmp(ent->d_name, "..", (int)sizeof(ent->d_name)) || !strncmp(ent->d_name, ".",(int)sizeof(ent->d_name)))
+    {
+    	continue;
+    }
 
     sprintf(path, "%s%s", dirname, ent->d_name);//pros8hkh onomatos tou katalogou + to ka8e arxeio to opoio eksetazetai ka8e fora
 
@@ -348,11 +351,11 @@ uint64_t Users::getSize( char *dirname )
        continue;
     }
 
-    if(S_ISDIR(st.st_mode) && !S_ISLNK(st.st_mode))
+    //if(S_ISDIR(st.st_mode) && !S_ISLNK(st.st_mode))
+    if (st.st_mode && S_IFDIR)
     {
       uint64_t dirsize;
-      strncat(path, "/", strlen(path)+1);
-      if (path != nullptr) { free(path); path =nullptr; }
+      strncat(path, "/", strlen(path));
       dirsize = getSize(path);
       totalsize += dirsize;
     }
