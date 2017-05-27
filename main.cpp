@@ -35,6 +35,7 @@ int main(int argc, char ** argv)
 	QFile lockFile( QDir::tempPath() + "/usermanager.lock" );
 	if ( lockFile.open( QIODevice::ReadOnly ) )
 	{
+	    // if the user is not root the application will not start
 		char *user = (char *)calloc(32, sizeof(char));
 		pw = getpwuid(getuid());
 		user = pw->pw_name;
