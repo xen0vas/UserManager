@@ -846,12 +846,10 @@ void MainWindow::calculateFolderSize()
 	Models *model = new Models();
 	totalUsers=usr->countUsers();
 	setpwent();
-	//char path[PATH_MAX] ; //= { 0 };
 
    	while (( user = getpwent() ) )
 	{
    		char path[PATH_MAX] = { 0 } ;
-   		//memset(&path, '\0', sizeof(path[PATH_MAX]));
 		char *dir = user->pw_dir;
 		string dirString = dir;
 
