@@ -90,7 +90,7 @@ QString Users::getUsersSecondaryGroups( QString name )
 	while (( group = getgrent() ) != NULL )
 	{
 		for ( members = group->gr_mem; *members; members++ )
-			if ( strcmp( *members, userChar ) == 0 )
+			if ( strncmp( *members, userChar, strlen(*members) ) == 0 )
 			{
 				listGroup.append( group->gr_name );
 				listGroup.append( "," );

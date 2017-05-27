@@ -157,7 +157,7 @@ QStandardItemModel *Models::createFoundedGroupModel( struct group *grp )
  */
 QStandardItemModel *Models::createFoundedUserModel( struct passwd *usr )
 {
-	Users *user;
+	Users *user = new Users();
 	QString sizeString;
 	QStandardItemModel *model = new QStandardItemModel( 0, 6 );
 	model->setHeaderData( 0, Qt::Horizontal, QObject::tr( "UID" ) );
@@ -187,7 +187,7 @@ QStandardItemModel *Models::createFoundedUserModel( struct passwd *usr )
 			path[i] = dirString[i];
 		}
 		if ( path[strlen( path )-1] != '/' )
-			strcat( path, "/" );
+			strncat( path, "/" , strlen(path) );
 		//totalSize = 0;//mhdenismos giati merikoi home fakeloi den yparxoun,kai an den mhdenistei krataei to mege8os tou teleytaiou fakelou poy yphrxe kai metrh8hke
 		uint64_t size = user->getSize( path );
 		if ( size < 1000 && size > 0 ) //if < 1kb
@@ -213,6 +213,7 @@ QStandardItemModel *Models::createFoundedUserModel( struct passwd *usr )
 					sizeString = "-"; //an totalsize=0 h den yparxei o fakelos
 		model->setData( diskUsage, sizeString );
 	}
+	if (user != nullptr) { delete user; user = nullptr; }
 	return model;
 }
 

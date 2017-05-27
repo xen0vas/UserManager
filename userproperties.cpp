@@ -606,7 +606,7 @@ void UserProperties::setPassword()
 	QString passwd = QInputDialog::getText ( 0, QObject::tr ( "Enter Password" ), QObject::tr ( "Please Enter password for '%1'" ).arg ( name ), QLineEdit::Password, QString ( "" ), &okBtn );
 	if(passwd != "" )
 	verify = QInputDialog::getText ( 0, QObject::tr ( " Verify Password " ), QObject::tr ( "Please Verify password for '%1'" ).arg ( name ), QLineEdit::Password, QString ( "" ), &okBtn );
-	if ( okBtn && passwd != "" && strcmp(passwd.toAscii().data(),verify.toAscii().data()) == 0)
+	if ( okBtn && passwd != "" && strncmp(passwd.toAscii().data(),verify.toAscii().data(), strlen(passwd.toAscii().data())) == 0)
 	{
 		checkBox->setCheckState ( Qt::Unchecked );
 		/*  MD5 Algorthm */
@@ -709,7 +709,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,NameLabel->text().toAscii().data() ) ==0 ) //LoginName->text() to onoma tou xrhsth
+		if ( strncmp ( *members, NameLabel->text().toAscii().data(), strlen(*members) ) ==0 ) //LoginName->text() to onoma tou xrhsth
 		{
 			easyList->addItem ( admin );
 			admin->setCheckState ( Qt::Checked );
@@ -730,7 +730,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,NameLabel->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members, NameLabel->text().toAscii().data(), strlen(*members)) ==0 )
 		{
 			easyList->addItem ( storage );
 			storage->setCheckState ( Qt::Checked );
@@ -751,7 +751,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,NameLabel->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members,NameLabel->text().toAscii().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( internet );
 			internet->setCheckState ( Qt::Checked );
@@ -772,7 +772,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,NameLabel->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members,NameLabel->text().toAscii().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( logs );
 			logs->setCheckState ( Qt::Checked );
@@ -793,7 +793,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,NameLabel->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members,NameLabel->text().toAscii().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( fax );
 			fax->setCheckState ( Qt::Checked );
@@ -814,7 +814,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,NameLabel->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members,NameLabel->text().toAscii().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( cdrom );
 			cdrom->setCheckState ( Qt::Checked );
@@ -835,7 +835,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,NameLabel->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members,NameLabel->text().toAscii().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( floppy );
 			floppy->setCheckState ( Qt::Checked );
@@ -856,7 +856,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,NameLabel->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members,NameLabel->text().toAscii().data(),strlen(*members)) ==0 )
 		{
 			easyList->addItem ( scanner );
 			scanner->setCheckState ( Qt::Checked );

@@ -480,7 +480,7 @@ else if (strncmp(reverse,"!$",2) == 0)
 static_cast< char * >( memmove(reverse,&reverse[1],36));
 else if (strncmp(reverse,"!!$",3) == 0)
 static_cast< char * >( memmove(reverse,&reverse[2],36));
-else if(strcmp(reverse,"!") == 0)
+else if(strncmp(reverse,"!", strlen(reverse)) == 0)
 reverse = (char *)"";
 
 //διαγράφει τα τελευταία 2 byte (!!)
@@ -573,7 +573,7 @@ void EditProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,LoginName->text().toAscii().data() ) ==0 ) //LoginName->text() to onoma tou xrhsth
+		if ( strncmp ( *members,LoginName->text().toAscii().data(), strlen(*members)) ==0 ) //LoginName->text() to onoma tou xrhsth
 		{
 			easyList->addItem ( admin );
 			admin->setCheckState ( Qt::Checked );
