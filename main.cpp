@@ -28,19 +28,32 @@ int main(int argc, char ** argv)
 //an den isxyei h 1h tote 8ewreitai oti to programma den einai anoixto kai paei sthn 2h if h opoia vazei mesa sto usermanager.lock to pid ths diergasias tou usermanager pou molis dhmiourgh8hke kalwntas thn getpid();
 
 	QApplication app( argc, argv);
-
+	struct spwd *sp = NULL;
+	struct passwd *pw = NULL;
 
 
 	QFile lockFile( QDir::tempPath() + "/usermanager.lock" );
 	if ( lockFile.open( QIODevice::ReadOnly ) )
 	{
+		char *user = (char *)calloc(32, sizeof(char));
+		pw = getpwuid(getuid());
+		user = pw->pw_name;
+		if (strncmp(user , "root", strlen(user)) != 0)
+		{
+			QMessageBox::information( 0, QObject::tr( "User Manager" ), QObject::tr( "UserManager cannot run by non root users" ));
+			if (user !=  nullptr) { free(user); user = nullptr;   }
+			exit (0);
+		}
 		QTextStream lockStream( &lockFile );
 		if ( QDir( "/proc/" + lockStream.readLine() ).exists() )
 		{
 			QMessageBox::information( 0, QObject::tr( "User Manager" ), QObject::tr( "UserManager is already running" ));
+			if (user !=  nullptr) { free(user);   }
 			exit(0);
 		}
+		if (user !=  nullptr) { free(user);   }
 		lockFile.close();
+
 	}
 	if ( lockFile.open( QIODevice::WriteOnly | QIODevice::Truncate ) )
 	{
@@ -51,9 +64,8 @@ int main(int argc, char ** argv)
 
 	}
 
-	struct spwd *sp = NULL;
-	struct passwd *pw = NULL;
 	
+
 	setspent();
 	MyLibb set;	
 	while ( ( sp = getspent() ) )
