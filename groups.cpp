@@ -20,7 +20,7 @@ setgrent();
 QString allmem = "";
 while((grs = getgrent()))
 {
-if (strcmp(grs->gr_name,"video")==0 || strcmp(grs->gr_name ,"cdrom")==0 || strcmp(grs->gr_name,"floppy")==0 || strcmp(grs->gr_name ,"audio")==0 ||  strcmp(grs->gr_name, "plugdev")==0 )
+if (strncmp(grs->gr_name,"video", strlen(grs->gr_name))==0 || strncmp(grs->gr_name ,"cdrom", strlen(grs->gr_name))==0 || strncmp(grs->gr_name,"floppy", strlen(grs->gr_name))==0 || strncmp(grs->gr_name ,"audio", strlen(grs->gr_name))==0 ||  strncmp(grs->gr_name, "plugdev", strlen(grs->gr_name))==0 )
 {
 QString member =  *grs->gr_mem;
 if(*grs->gr_mem == NULL)
@@ -74,7 +74,7 @@ struct group *Groups::remove_member(struct group *in,char *uname)
 	
 	for (i = 0; in->gr_mem[i]; i++)
 		{
-			if (!strcmp(in->gr_mem[i], uname))
+			if (!strncmp(in->gr_mem[i], uname, strlen(in->gr_mem[i])))
 			{
 				in->gr_mem[i] = memo.toAscii().data();
 			}

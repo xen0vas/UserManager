@@ -299,7 +299,7 @@ int EditProperties::set_password(QString name)
 	QString passwd = QInputDialog::getText ( 0, QObject::tr ( "Enter Password" ), QObject::tr ( "Please Enter password for '%1'" ).arg ( name ), QLineEdit::Password, QString ( "" ), &okBtn );
 	if(passwd != "" )
 	verify = QInputDialog::getText ( 0, QObject::tr ( " Verify Password " ), QObject::tr ( "Please Verify password for '%1'" ).arg ( name ), QLineEdit::Password, QString ( "" ), &okBtn );
-	if ( okBtn && passwd != "" && strcmp(passwd.toAscii().data(),verify.toAscii().data()) == 0)
+	if ( okBtn && passwd != "" && strncmp(passwd.toAscii().data(),verify.toAscii().data(), strlen(passwd.toAscii().data())) == 0)
 	{
 		MainWindow main;
 		/* choose MD5 Algorthm */
@@ -594,7 +594,7 @@ void EditProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,LoginName->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members,LoginName->text().toAscii().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( storage );
 			storage->setCheckState ( Qt::Checked );
@@ -615,7 +615,7 @@ void EditProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,LoginName->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members,LoginName->text().toAscii().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( internet );
 			internet->setCheckState ( Qt::Checked );
@@ -636,7 +636,7 @@ void EditProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,LoginName->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members,LoginName->text().toAscii().data(), strlen(*members)) ==0 )
 		{
 			easyList->addItem ( logs );
 			logs->setCheckState ( Qt::Checked );
@@ -657,7 +657,7 @@ void EditProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,LoginName->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members,LoginName->text().toAscii().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( fax );
 			fax->setCheckState ( Qt::Checked );
@@ -678,7 +678,7 @@ void EditProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,LoginName->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members,LoginName->text().toAscii().data(), strlen(*members)) ==0 )
 		{
 			easyList->addItem ( cdrom );
 			cdrom->setCheckState ( Qt::Checked );
@@ -699,7 +699,7 @@ void EditProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,LoginName->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members,LoginName->text().toAscii().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( floppy );
 			floppy->setCheckState ( Qt::Checked );
@@ -720,7 +720,7 @@ void EditProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strcmp ( *members,LoginName->text().toAscii().data() ) ==0 )
+		if ( strncmp ( *members,LoginName->text().toAscii().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( scanner );
 			scanner->setCheckState ( Qt::Checked );
