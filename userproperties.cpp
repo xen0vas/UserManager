@@ -524,13 +524,12 @@ if ( ok && !userExists)
 	
 }
 
-/*********************************************************/
-/*               	 MD5 CRYPTOGRAPHY					 */
-/*********************************************************/
 
+/* Encryption and hashing */  
 
 /**
-*συνάρτηση δημιουργεί έναν τυχαίο 64bit κρυπτογραφημένο κωδικό 
+*
+* The function below creates a random 64bit encoded code  
 */
 void UserProperties::into64 ( char *s, long int v, int n )
 {
@@ -538,29 +537,32 @@ void UserProperties::into64 ( char *s, long int v, int n )
 	static unsigned char itoa64[] =  "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; // 0 ... 63 => ascii - 64
 
 	while ( --n >= 0 )
-	{
-		//μετατροπή ενός ακεραίου 64 bit σε string 
+	{ 
+		//64 bit integer into string conversion 
 		*s++ = itoa64[v&0x3f];
-		v >>= 6;  // μετακίνηση 6 bit 
+		v >>= 6;  // right shifting 6 bit 
 	}
 }
 /**
-* Η συνάρτηση δημιουργεί τον κρυπτογραφημένο md5 κωδικό χρησιμοποιώντας την crypt(3) και την make_md5_salt 
+* The following function creates the SHA-512 hashed code by using Η συνάρτηση δημιουργεί τον κρυπτογραφημένο sha-512 κωδικό
+* χρησιμοποιώντας την crypt(3) και την makeSalt
 */
-char *UserProperties::md5_passwd ( QString passwd )
+char *UserProperties::encryptPasswd ( QString passwd )
 {
 	char *buf;
 	int saltLength = 8;
 	char *seed;
-	seed = make_md5_salt ( saltLength );
+	seed = makeSalt ( saltLength );
 	buf = ( char * ) calloc ( 128, sizeof(buf) );
 	char *password = passwd.toAscii().data();
 	strncpy ( buf,password,(int)sizeof(password) );
 	char *pass;
 
 	//Η συνάρτηση crypt() σύμφωνα με τη βιβλιοθήκη glibc2 έχει το εξής χαρακτηριστικό.Εάν το seed είναι ένα string το οποίο ξεκινάει απο 
-  	//τρείς χαρακτήρες $1$ ακολουθώντας 8 χαρακτήρες και τελειώνοντας με $ τότε αντί να χρησιμοποιείσει τον αλγόριθμο κρυπτογράφησης DES χρησιμοποιεί τον
-	//αλγόριθμο κρυπτογράφησης MD5.Το αποτέλεσμα είναι να επιστραφεί ο κρυπτογραφημένος κωδικός $1$<string>$ 34 bytes ακολουθώντας ένα 22 bytes string με //χαρακτήρες επιλεγμένους απο το set  [a-zA-Z0-9./]  
+  	//τρείς χαρακτήρες $6$ ακολουθώντας 8 χαρακτήρες και τελειώνοντας με $ τότε αντί να χρησιμοποισει
+	//τον αλγόριθμο κρυπτογράφησης DES χρησιμοποιεί τον
+	//αλγόριθμο SHA-512.Το αποτέλεσμα είναι να επιστραφεί ο κρυπτογραφημένος κωδικός $6$<string>$
+	//64 bytes ακολουθώντας ένα 86 characters string με //χαρακτήρες επιλεγμένους απο το set  [a-zA-Z0-9./]
 	pass = crypt ( buf,seed );
 
 	if ( pass == NULL )
@@ -569,26 +571,25 @@ char *UserProperties::md5_passwd ( QString passwd )
 	if (buf!=NULL)free(buf);
 
 	return strdup ( pass );;
-
-
 }
 /**
-* Η παρακάτω συνάρτηση δημιουργεί την κωδικοποίηση ενός password για τον αλγόριθμο MD5
-* Ουσιαστικά δημιουργεί το seed $1$......$ ,δηλαδή έναν τυχαίο string απο χαρακτήρες ξεκινώντας απο
-* το $1$ μέτρώντας 8 χαρακτήρες και τελειώνοντας με $.Το μέγεθος του string είναι 34  bytes
+* Η παρακάτω συνάρτηση δημιουργεί την κωδικοποίηση ενός password για τον αλγόριθμο SHA-512
+* Ουσιαστικά δημιουργεί το seed $6$......$ ,δηλαδή έναν τυχαίο string απο χαρακτήρες ξεκινώντας απο
+* το $6$ μέτρώντας 8 χαρακτήρες και τελειώνοντας με $.Το μέγεθος του string είναι 64  bytes
 *χρησιμοποιεί τη συνάρτηση into64()
 */
-char *UserProperties::make_md5_salt ( int length )
+char *UserProperties::makeSalt ( int length )
 {
-	//το salt είναι το αναγνωριστικό του αλγόριθμου md5($1$)
+	//το salt είναι το αναγνωριστικό του αλγόριθμου SHA-512($6$)
 	static char salt[12];
 	salt[0] = '$';
-	salt[1] = '1';
+	salt[1] = '6';
 	salt[2] = '$';
 	//παράγει διαφορετικά σετ απο ψευδοτυχαίους αριθμούς κάθε φορά που το πρόγραμμα τρέχει
 	//Στη συνέχεια η random επιστρέφει τυχαίους αριθμούς ανάλογα με το σετ που έχει δημιουργηθεί απο τη srandom
 	srandom ( ( int ) time ( ( time_t * ) NULL ) );
-	//χησιμοποιούμε την παρακάτω συνάρτηση δύο φορές για τη δημιουργία 128 bit hash value όπως ορίζεται απο τον md5 αλγόριθμο για το πρώτο salt πρίν δοθεί στην crypt για την παραγωγή του MD5 κωδικού. 
+	//χησιμοποιούμε την παρακάτω συνάρτηση δύο φορές για τη δημιουργία 128 bit hash value
+	// όπως ορίζεται απο τον SHA-512 αλγόριθμο για το πρώτο salt πρίν δοθεί στην crypt για την παραγωγή του SHA-512 κωδικού.
 	into64 ( &salt[3], random(),length );
 	into64 ( &salt[length],random(),3 );
 	salt[length+3] = '$';
@@ -596,7 +597,7 @@ char *UserProperties::make_md5_salt ( int length )
 
 }
 /**
-*Η σνάρτηση χρησιμοποιεί το γραφικό περιβάλλον της φόρμας για να δεχτει τον κωδικό απο τον χρήστη και να κάνει την πιστοποίηση verify.Επίσης χρησιμοποιεί τη συναρτήση  md5_passwd .o κρυπτογραφημένος κωδικός αποθηκεύεται στην passhash για περεταίρω επεξεργασία
+*Η σνάρτηση χρησιμοποιεί το γραφικό περιβάλλον της φόρμας για να δεχτει τον κωδικό απο τον χρήστη και να κάνει την πιστοποίηση verify.Επίσης χρησιμοποιεί τη συναρτήση  encryptPasswd .o κρυπτογραφημένος κωδικός αποθηκεύεται στην passhash για περεταίρω επεξεργασία
 */
 void UserProperties::setPassword()
 {
@@ -609,8 +610,8 @@ void UserProperties::setPassword()
 	if ( okBtn && passwd != "" && strncmp(passwd.toAscii().data(),verify.toAscii().data(), strlen(passwd.toAscii().data())) == 0)
 	{
 		checkBox->setCheckState ( Qt::Unchecked );
-		/*  MD5 Algorthm */
-		passhash = md5_passwd ( passwd );
+		/*  SHA-512 Algorthm */
+		passhash = encryptPasswd ( passwd );
 		struct  tm *ltime;
 		time_t times;
 		char buff[256];

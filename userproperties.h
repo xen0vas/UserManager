@@ -19,13 +19,13 @@ Q_OBJECT
 public:
 	UserProperties( QWidget *parent = 0 );
 	~UserProperties();
-	char *md5_passwd(QString passwd);
+	char *encryptPasswd(QString passwd);
 	void combotext();
 	int passwd_study();
 	int insert_passwd(QString nam,QString uid,QString gid,QString directory,QString gec, QString shellcon );
 	int insert_group(QString nam,QString gid);
 	struct spwd set_possix(int max, int warn,int inact, int min,string inact_user,char *name,char *password_hash,int current_days);
-	char *make_md5_salt(int length);
+	char *makeSalt(int length);
 	void into64(char *s, long int v, int n);
 	void set_shad_acc(struct spwd spw);
 	int insert_shadow(QString logname,QString encrypted_pass);

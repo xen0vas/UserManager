@@ -286,7 +286,7 @@ datetime->setText ( buff );
 }
 }
 /**
- * Η συνάρτηση επαναθέτει κωδικό για τον χρήστη.Χρησιμοποιεί τη φόρμα για εισαγωγή νέου κωδικού ,καλει συναρτήσεις για τη μετατροπή του κωδικού όπως η md5_passwd της κλάσης UserProperties.Η τελική μορφή του κρυπτογραφημένου κωδικού αποθκεύεται σε μια καθολική μεταβλητη passhash για περεταίρω επεξεργασία.
+ * Η συνάρτηση επαναθέτει κωδικό για τον χρήστη.Χρησιμοποιεί τη φόρμα για εισαγωγή νέου κωδικού ,καλει συναρτήσεις για τη μετατροπή του κωδικού όπως η encryptPasswd της κλάσης UserProperties.Η τελική μορφή του κρυπτογραφημένου κωδικού αποθκεύεται σε μια καθολική μεταβλητη passhash για περεταίρω επεξεργασία.
  */
 int EditProperties::set_password(QString name)
 {
@@ -302,8 +302,8 @@ int EditProperties::set_password(QString name)
 	if ( okBtn && passwd != "" && strncmp(passwd.toAscii().data(),verify.toAscii().data(), strlen(passwd.toAscii().data())) == 0)
 	{
 		MainWindow main;
-		/* choose MD5 Algorthm */
-		passhash = usr->md5_passwd ( passwd );
+		/*SHA-512 Algorthm */
+		passhash = usr->encryptPasswd ( passwd );
 		int curdays = time ( NULL ) / ( 60 * 60 * 24 );
 		spd = *getspnam(name.toAscii().data());
 		spd.sp_lstchg = curdays; 
