@@ -593,8 +593,6 @@ char *UserProperties::makeSalt ( int length )
 	srandom ( ( int ) time ( ( time_t * ) NULL ) );
 	into64 ( &salt[3], random(),length );
 	into64 ( &salt[length],random(),3 );
-	into64 ( &salt[3], random(),length );
-	into64 ( &salt[length],random(),3 );
 	salt[length+3] = '$';
 	return salt;
 
