@@ -552,13 +552,11 @@ char *UserProperties::encryptPasswd ( QString passwd )
 	char *buf;
 	int saltLength = 8;
 	char *seed;
-	memset (&seed, 0x0, sizeof(char));
 	seed = makeSalt ( saltLength );
 	buf = ( char * )calloc ( 512, sizeof(buf) );
 	char *password = passwd.toAscii().data();
 	strncpy ( buf,password,(int)sizeof(password) );
 	char *pass;
-	memset(&pass, 0x0, sizeof(char));
 
 	//Η συνάρτηση crypt() σύμφωνα με τη βιβλιοθήκη glibc2 έχει το εξής χαρακτηριστικό.Εάν το seed είναι ένα string το οποίο ξεκινάει απο 
   	//τρείς χαρακτήρες $6$ ακολουθώντας 8 χαρακτήρες και τελειώνοντας με $ τότε αντί να χρησιμοποισει
