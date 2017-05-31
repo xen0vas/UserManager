@@ -591,8 +591,10 @@ char *UserProperties::makeSalt ( int length )
 	//παράγει διαφορετικά σετ απο ψευδοτυχαίους αριθμούς κάθε φορά που το πρόγραμμα τρέχει
 	//Στη συνέχεια η random επιστρέφει τυχαίους αριθμούς ανάλογα με το σετ που έχει δημιουργηθεί απο τη srandom
 	srandom ( ( int ) time ( ( time_t * ) NULL ) );
-	//χησιμοποιούμε την παρακάτω συνάρτηση δύο φορές για τη δημιουργία 128 bit hash value
+	//χησιμοποιούμε την παρακάτω συνάρτηση 4 φορές για τη δημιουργία 512 bit hash value
 	// όπως ορίζεται απο τον SHA-512 αλγόριθμο για το πρώτο salt πρίν δοθεί στην crypt για την παραγωγή του SHA-512 κωδικού.
+	into64 ( &salt[3], random(),length );
+	into64 ( &salt[length],random(),3 );
 	into64 ( &salt[3], random(),length );
 	into64 ( &salt[length],random(),3 );
 	salt[length+3] = '$';
