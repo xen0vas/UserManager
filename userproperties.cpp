@@ -551,7 +551,8 @@ char *UserProperties::encryptPasswd ( QString passwd )
 {
 	char *buf;
 	int saltLength = 8;
-	char *seed;
+	char *seed ;
+	seed = new char[strlen(seed)+1];
 	seed = makeSalt ( saltLength );
 	buf = ( char * )calloc ( 512, sizeof(buf) );
 	char *password = passwd.toAscii().data();
@@ -570,6 +571,7 @@ char *UserProperties::encryptPasswd ( QString passwd )
 
 
 	if (buf!=NULL)free(buf);
+	delete [] seed;
 
 	return strdup ( pass );;
 }
@@ -639,7 +641,8 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 	if(col==0 && test!="")
 	{
 	Models model;
-	char *cmd;
+	char *cmd ;
+	cmd = new char[strlen(cmd)+1];
 	int done=1;
 	int row=index.row();
 	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole );//state=2 an eiani checked,0 an einai unchecked to checkbox tou xrhsth pou path8hke
@@ -667,6 +670,7 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 
 	easyList->clear();
 	fillEasyList();
+	delete [] cmd;
 }
 }
 /**
