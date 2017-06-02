@@ -552,7 +552,6 @@ char *UserProperties::encryptPasswd ( QString passwd )
 	char *buf;
 	int saltLength = 8;
 	char *seed ;
-	seed = new char[strlen(seed)+1];
 	seed = makeSalt ( saltLength );
 	buf = ( char * )calloc ( 512, sizeof(buf) );
 	char *password = passwd.toAscii().data();
@@ -571,7 +570,6 @@ char *UserProperties::encryptPasswd ( QString passwd )
 
 
 	if (buf!=NULL)free(buf);
-	delete [] seed;
 
 	return strdup ( pass );;
 }
