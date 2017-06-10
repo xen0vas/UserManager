@@ -557,12 +557,54 @@ char *UserProperties::encryptPasswd ( QString passwd )
 	strncpy ( buf,password,strlen(password));
 	char *pass;
 
-	//Η συνάρτηση crypt() σύμφωνα με τη βιβλιοθήκη glibc2 έχει το εξής χαρακτηριστικό.Εάν το seed είναι ένα string το οποίο ξεκινάει απο 
-  	//τρείς χαρακτήρες $6$ ακολουθώντας 8 χαρακτήρες και τελειώνοντας με $ τότε αντί να χρησιμοποισει
-	//τον αλγόριθμο κρυπτογράφησης DES χρησιμοποιεί τον
-	//αλγόριθμο SHA-512.Το αποτέλεσμα είναι να επιστραφεί ο κρυπτογραφημένος κωδικός $6$<string>$
-	//64 bytes ακολουθώντας ένα 86 characters string με
-	//χαρακτήρες επιλεγμένους απο το set  [a-zA-Z0-9./]
+	/*
+	 * The glibc2 version of crypt(3) function supports additional encryption
+       algorithms.
+
+	   If salt or seed in this case is a character string starting with the characters "$id$"
+       followed by a string terminated by "$":
+
+              $id$salt$encrypted
+
+       then instead of using the DES machine, id identifies the encryption
+       method used and this then determines how the rest of the password
+       string is interpreted.
+
+       The following values of id are supported:
+
+              ID  | Method
+              ─────────────────────────────────────────────────────────
+              1   | MD5
+              2a  | Blowfish (not in mainline glibc; added in some
+                  | Linux distributions)
+              5   | SHA-256 (since glibc 2.7)
+              6   | SHA-512 (since glibc 2.7)
+
+       $6$salt$encrypted is an SHA-512 encoded one.
+
+       The characters in "salt" (seed) and "encrypted" are drawn from the set
+       [a-zA-Z0-9./].  In the MD5 and SHA implementations the entire key is
+       significant.
+
+       salt or seed in this case  is a two-character string chosen from the set [a-zA-Z0-9./].
+       This string is used to perturb the algorithm in one of 4096 different
+       ways.
+
+	Security Concerns
+	------------------
+
+	   Warning: the key space consists of 2**56 equal 7.2e16 possible
+       values.  Exhaustive searches of this key space are possible using
+       massively parallel computers.
+
+	   Software, such as crack(1), is  available which will search the portion of this key space that is
+       generally used by humans for passwords.  Hence, password selection should, at minimum, avoid common words and names.  The use of a
+       passwd(1) program that checks for crackable passwords during the selection process is recommended.
+
+       MD5 algorithm should not be choosed because is vulnerable to colission attacks
+
+	 */
+
 	pass = crypt ( buf,seed );
 
 	if ( pass == NULL )
@@ -577,7 +619,8 @@ char *UserProperties::encryptPasswd ( QString passwd )
 * Η παρακάτω συνάρτηση δημιουργεί την κωδικοποίηση ενός password για τον αλγόριθμο SHA-512
 * Ουσιαστικά δημιουργεί το seed $6$......$ ,δηλαδή έναν τυχαίο string απο χαρακτήρες ξεκινώντας απο
 * το $6$ μέτρώντας 8 χαρακτήρες και τελειώνοντας με $.Το μέγεθος του string είναι 64  bytes
-*χρησιμοποιεί τη συνάρτηση into64()
+* χρησιμοποιεί τη συνάρτηση into64()
+*
 */
 char *UserProperties::makeSalt ( int length )
 {
