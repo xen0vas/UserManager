@@ -544,8 +544,7 @@ void UserProperties::into64 ( char *s, long int v, int n )
 	}
 }
 /**
-* The following function creates the SHA-512 hashed code by using Η συνάρτηση δημιουργεί τον κρυπτογραφημένο sha-512 κωδικό
-* χρησιμοποιώντας την crypt(3) και την makeSalt
+* The following function creates the SHA-512 hashed code by using the functions crypt(3) and makeSalt
 */
 char *UserProperties::encryptPasswd ( QString passwd )
 {
