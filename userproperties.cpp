@@ -555,14 +555,15 @@ char *UserProperties::encryptPasswd ( QString passwd )
 	seed = makeSalt ( saltLength );
 	buf = ( char * )calloc ( 512, sizeof(buf) );
 	char *password = passwd.toAscii().data();
-	strncpy ( buf,password,(int)sizeof(password) );
+	strncpy ( buf,password,strlen(password));
 	char *pass;
 
 	//Η συνάρτηση crypt() σύμφωνα με τη βιβλιοθήκη glibc2 έχει το εξής χαρακτηριστικό.Εάν το seed είναι ένα string το οποίο ξεκινάει απο 
   	//τρείς χαρακτήρες $6$ ακολουθώντας 8 χαρακτήρες και τελειώνοντας με $ τότε αντί να χρησιμοποισει
 	//τον αλγόριθμο κρυπτογράφησης DES χρησιμοποιεί τον
 	//αλγόριθμο SHA-512.Το αποτέλεσμα είναι να επιστραφεί ο κρυπτογραφημένος κωδικός $6$<string>$
-	//64 bytes ακολουθώντας ένα 86 characters string με //χαρακτήρες επιλεγμένους απο το set  [a-zA-Z0-9./]
+	//64 bytes ακολουθώντας ένα 86 characters string με
+	//χαρακτήρες επιλεγμένους απο το set  [a-zA-Z0-9./]
 	pass = crypt ( buf,seed );
 
 	if ( pass == NULL )
@@ -643,7 +644,7 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 	cmd = new char[strlen(cmd)+1];
 	int done=1;
 	int row=index.row();
-	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole );//state=2 an eiani checked,0 an einai unchecked to checkbox tou xrhsth pou path8hke
+	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole );//state=2 an einai checked, state=0 an einai unchecked to checkbox tou xrhsth pou path8hke
 	if ( state == 0 )
 	{
 		QString command="usermod -a -G "  +  index.sibling(row,1).data().toString() + " " + NameLabel->text() + "";//index.data().toString() periexei ton neo member kai groupNameEdit->text() to group pou 8a mpei
