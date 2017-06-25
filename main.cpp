@@ -35,24 +35,15 @@ int main(int argc, char ** argv)
 	QFile lockFile( QDir::tempPath() + "/usermanager.lock" );
 	if ( lockFile.open( QIODevice::ReadOnly ) )
 	{
-	    // if the user is not root the application will not start
-		char *user = (char *)calloc(32, sizeof(char));
-		pw = getpwuid(getuid());
-		user = pw->pw_name;
-		if (strncmp(user , "root", strlen(user)) != 0)
-		{
-			QMessageBox::information( 0, QObject::tr( "User Manager" ), QObject::tr( "UserManager cannot run by non root users" ));
-			if (user !=  nullptr) { free(user); user = nullptr;   }
-			exit (0);
-		}
+
 		QTextStream lockStream( &lockFile );
 		if ( QDir( "/proc/" + lockStream.readLine() ).exists() )
 		{
 			QMessageBox::information( 0, QObject::tr( "User Manager" ), QObject::tr( "UserManager is already running" ));
-			if (user !=  nullptr) { free(user);   }
+
 			exit(0);
 		}
-		if (user !=  nullptr) { free(user);   }
+
 		lockFile.close();
 
 	}
@@ -65,8 +56,6 @@ int main(int argc, char ** argv)
 
 	}
 
-	
-
 	setspent();
 	MyLibb set;	
 	while ( ( sp = getspent() ) )
@@ -77,20 +66,42 @@ int main(int argc, char ** argv)
 			QMessageBox::critical ( 0,QObject::tr ( "User Manager" ),QObject::tr ( " Entry of user ' <i><b>%1</b></i> ' in /etc/shadow does not exist in /etc/passwd  " ).arg ( sp->sp_namp ) );
 			
 }
-	endspent();
-	setpwent();
-	while ( ( pw = getpwent() ) )
-	{
-		sp=getspnam ( pw->pw_name );
-		if ( sp==NULL )
 
-			QMessageBox::critical ( 0,QObject::tr ( "User Manager" ),QObject::tr ( " Entry of user ' <i><b>%1</b></i> ' in /etc/passwd does not exist in /etc/shadow " ).arg ( pw->pw_name ) );
-			
-	}
-	endpwent();
-	MainWindow win;
-	win.show(); 
-	
+		bool userid = false ;
+    // if the user is not root the application will not start
+		char *user = (char *)calloc(32, sizeof(char));
+		pw = getpwuid(getuid());
+		user = pw->pw_name;
+		if (strncmp(user , "root", strlen(user)) != 0)
+		{
+
+			QMessageBox::information( 0, QObject::tr( "User Manager" ), QObject::tr( "UserManager cannot run by non root users" ));
+			if (user !=  nullptr) { free(user); user = nullptr;   }
+			exit (0);
+		}
+		//else
+		//{
+			/*endspent();
+			setpwent();
+			while ( ( pw = getpwent() ) )
+			{
+				sp=getspnam ( pw->pw_name );
+				if ( sp==NULL )
+
+					QMessageBox::critical ( 0,QObject::tr ( "User Manager" ),QObject::tr ( " Entry of user ' <i><b>%1</b></i> ' in /etc/passwd does not exist in /etc/shadow " ).arg ( pw->pw_name ) );
+
+			}
+			endpwent();*/
+
+
+		//}
+	//if ( userid != false )
+	//{
+		MainWindow win;
+		win.show();
+	//}
+
+	if (user !=  nullptr) { free(user);   }
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	return app.exec();
 }
