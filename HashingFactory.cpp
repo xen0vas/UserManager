@@ -4,6 +4,8 @@
 HashingFactory::HashingFactory()
 {
 	Register("sha256", &sha256::Create);
+	//Register("sha512", &sha512::Create);
+	//Register("md5", &md5::Create);
 }
 
 void HashingFactory::Register(const std::string &HashingFactory, CreateHash pfnCreate)
