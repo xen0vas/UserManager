@@ -11,9 +11,9 @@ void HashingFactory::Register(const std::string &HashingFactory, CreateHash pfnC
  m_FactoryMap[HashingFactory] = pfnCreate;
 }
 
-hashingalgorithm *HashingFactory::CreateAlgorithm(const string &hashNAme)
+hashingalgorithm *HashingFactory::CreateAlgorithm(const string &hashName)
 {
-	FactoryMap::iterator it = m_FactoryMap.find(hashNAme);
+	FactoryMap::iterator it = m_FactoryMap.find(hashName);
 	if ( it != m_FactoryMap.end())
 			return it->second();
 	return NULL;
