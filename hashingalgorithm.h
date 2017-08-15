@@ -1,8 +1,6 @@
 #ifndef HASHINGALGORITHM_H_
 #define HASHINGALGORITHM_H_
-//
 
-#include <string>
 #include <QString>
 
 using namespace std;
