@@ -319,15 +319,18 @@ QString emptystr = "";
 	return 0;
 }
 /**
- *
- * Η συνάρτηση ψάχνει να βρεί το μέγεθος των αρχείων ενός φακέλου.Για κάθε ένα κανονικό αρχείου του δωσμενου καταλόγου μετρά το μέγεθός του και το προσθέτεί στην μεταβλητή totalSize η οποία στο τέλος θα έχει το συνολικό μέγεθος όλου του φακέλου.Αν μέσα σε έναν φάκελο υπάρχει και άλλος φάκελος η getSize λειτουργεί αναδρομικά.Καλεί τον εαυτό της και προσθέτει το τελικό μέγεθος στην totalSize πάλι.Αυτή η διαδικασία γίνεται μέχρι να τελειώσουν όλα τα αρχεία και οι φάκελοι μέσα στον φάκελο που παίρνει σαν όρισμα.
+ * This function returns the size of a file.
+ * for every regular file it counts the size and then adds the value copy it at the variable totalSize.
+ * When the calculation ends the totalSize variable will end up having the total size of the current folder.
+ * if There is a folder inside the current folder then the function is used retrospectively.
+ * The retrospective behavior happens until there are no folders to calculate the size.
  */
 uint64_t Users::getSize( char *dirname )
 {
   DIR *dir;
   struct dirent *ent = NULL;
   struct stat st;
-  char *path = (char*)malloc(PATH_MAX);
+  char *path = (char*)calloc(PATH_MAX, sizeof(*path));
   uint64_t totalsize = 0;
 
   if(!(dir = opendir(dirname)))

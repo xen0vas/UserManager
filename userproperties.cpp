@@ -2,7 +2,8 @@
 #include "editProperties.h"
 #include <sys/stat.h>
 #include <sys/wait.h>
-
+#include "hashingalgorithm.h"
+#include "HashingFactory.h"
 
 using namespace std;
 
@@ -520,124 +521,8 @@ if ( ok && !userExists)
 	model = nullptr;
 
 }
-
-	
 }
 
-
-/* Encryption and hashing */  
-
-/**
-*
-* The function below creates a random 64bit encoded code  
-*/
-void UserProperties::into64 ( char *s, long int v, int n )
-{
-
-	static unsigned char itoa64[] =  "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; // 0 ... 63 => ascii - 64
-
-	while ( --n >= 0 )
-	{ 
-		//64 bit integer into string conversion 
-		*s++ = itoa64[v&0x3f];
-		v >>= 6;  // right shifting 6 bit
-	}
-}
-/**
-* The following function creates the SHA-512 hashed code by using the functions crypt(3) and makeSalt
-*/
-char *UserProperties::encryptPasswd ( QString passwd )
-{
-	char *buf;
-	int saltLength = 8;
-	char *seed ;
-	seed = makeSalt ( saltLength );
-	buf = ( char * )calloc ( 512, sizeof(buf) );
-	char *password = passwd.toAscii().data();
-	strncpy ( buf,password,strlen(password));
-	char *pass;
-
-	/*
-	 * The glibc2 version of crypt(3) function supports additional encryption
-       algorithms.
-
-	   If salt or seed in this case is a character string starting with the characters "$id$"
-       followed by a string terminated by "$":
-
-              $id$salt$encrypted
-
-       then instead of using the DES machine, id identifies the encryption
-       method used and this then determines how the rest of the password
-       string is interpreted.
-
-       The following values of id are supported:
-
-              ID  | Method
-              ─────────────────────────────────────────────────────────
-              1   | MD5
-              2a  | Blowfish (not in mainline glibc; added in some
-                  | Linux distributions)
-              5   | SHA-256 (since glibc 2.7)
-              6   | SHA-512 (since glibc 2.7)
-
-       $6$salt$encrypted is an SHA-512 encoded one.
-
-       The characters in "salt" (seed) and "encrypted" are drawn from the set
-       [a-zA-Z0-9./].  In the MD5 and SHA implementations the entire key is
-       significant.
-
-       salt or seed in this case  is a two-character string chosen from the set [a-zA-Z0-9./].
-       This string is used to perturb the algorithm in one of 4096 different
-       ways.
-
-	Security Concerns
-	------------------
-
-	   Warning: the key space consists of 2**56 equal 7.2e16 possible
-       values.  Exhaustive searches of this key space are possible using
-       massively parallel computers.
-
-	   Software, such as crack(1), is  available which will search the portion of this key space that is
-       generally used by humans for passwords.  Hence, password selection should, at minimum, avoid common words and names.  The use of a
-       passwd(1) program that checks for crackable passwords during the selection process is recommended.
-
-       MD5 algorithm should not be choosed because is vulnerable to colission attacks
-
-	 */
-
-	pass = crypt ( buf,seed );
-
-	if ( pass == NULL )
-		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "%1" ).arg ( ENOSYS ) );
-
-
-	if (buf!=NULL)free(buf);
-
-	return strdup ( pass );;
-}
-/**
-* Η παρακάτω συνάρτηση δημιουργεί την κωδικοποίηση ενός password για τον αλγόριθμο SHA-512
-* Ουσιαστικά δημιουργεί το seed $6$......$ ,δηλαδή έναν τυχαίο string απο χαρακτήρες ξεκινώντας απο
-* το $6$ μέτρώντας 8 χαρακτήρες και τελειώνοντας με $.Το μέγεθος του string είναι 64  bytes
-* χρησιμοποιεί τη συνάρτηση into64()
-*
-*/
-char *UserProperties::makeSalt ( int length )
-{
-	//το salt είναι το αναγνωριστικό του αλγόριθμου SHA-512($6$)
-	static char salt[12];
-	salt[0] = '$';
-	salt[1] = '6';
-	salt[2] = '$';
-	//παράγει διαφορετικά σετ απο ψευδοτυχαίους αριθμούς κάθε φορά που το πρόγραμμα τρέχει
-	//Στη συνέχεια η random επιστρέφει τυχαίους αριθμούς ανάλογα με το σετ που έχει δημιουργηθεί απο τη srandom
-	srandom ( ( int ) time ( ( time_t * ) NULL ) );
-	into64 ( &salt[3], random(),length );
-	into64 ( &salt[length],random(),3 );
-	salt[length+3] = '$';
-	return salt;
-
-}
 /**
 *Η σνάρτηση χρησιμοποιεί το γραφικό περιβάλλον της φόρμας για να δεχτει τον κωδικό απο τον χρήστη και να κάνει την πιστοποίηση verify.Επίσης χρησιμοποιεί τη συναρτήση  encryptPasswd .o κρυπτογραφημένος κωδικός αποθηκεύεται στην passhash για περεταίρω επεξεργασία
 */
@@ -651,9 +536,19 @@ void UserProperties::setPassword()
 	verify = QInputDialog::getText ( 0, QObject::tr ( " Verify Password " ), QObject::tr ( "Please Verify password for '%1'" ).arg ( name ), QLineEdit::Password, QString ( "" ), &okBtn );
 	if ( okBtn && passwd != "" && strncmp(passwd.toAscii().data(),verify.toAscii().data(), strlen(passwd.toAscii().data())) == 0)
 	{
+		// unlocks account
 		checkBox->setCheckState ( Qt::Unchecked );
-		/*  SHA-512 Algorthm */
-		passhash = encryptPasswd ( passwd );
+
+		/*Create SHA-256 hash */
+
+				hashingalgorithm *psha256 = HashingFactory::Get()->CreateAlgorithm("sha256");
+				if ( psha256 )
+					passhash = psha256->encryptpass ( passwd );
+
+				if ( psha256 )
+					psha256->Free();
+				psha256 = NULL;
+
 		struct  tm *ltime;
 		time_t times;
 		char buff[256];
@@ -671,7 +566,7 @@ void UserProperties::setPassword()
 		}
 }
 /**
- * Προσθήκη/αφαίρεση χρηστών σε/από ομάδες
+ * Adding/deleting users to/from groups
  */
 
 void UserProperties::changeMembers ( const QModelIndex &index )
@@ -682,16 +577,17 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 	if(col==0 && test!="")
 	{
 	Models model;
-	char *cmd ;
+	char *cmd  = new char;
 	cmd = new char[strlen(cmd)+1];
 	int done=1;
 	int row=index.row();
-	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole );//state=2 an einai checked, state=0 an einai unchecked to checkbox tou xrhsth pou path8hke
+	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole ); //state=2 if the user checkbox is checked or state=0 if the user checkbox is unchecked
 	if ( state == 0 )
 	{
 		QString command="usermod -a -G "  +  index.sibling(row,1).data().toString() + " " + NameLabel->text() + "";//index.data().toString() periexei ton neo member kai groupNameEdit->text() to group pou 8a mpei
 		cmd=command.toAscii().data();
 		done = ( system ( cmd ) );
+
 	}
 	else
 	{

@@ -25,15 +25,12 @@ public:
 	void acct_shadow(struct spwd spw);
 	int set_password(QString nam);
 	int set_shad_expire(QString months,int days_value,int years_value);
-
 	
 private:
-	
 	void set_account(bool set);
 	QString oldUsername_;
 
 private slots:
-
 	void set_Pass_info(); 
 	void ok_to_edit_Button();
 	void changeMembers(const QModelIndex &index );

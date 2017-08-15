@@ -68,13 +68,12 @@ int main(int argc, char ** argv)
 }
 
 		bool userid = false ;
-    // if the user is not root the application will not start
+    		// if the user is not root the application will not start
 		char *user = (char *)calloc(32, sizeof(char));
 		pw = getpwuid(getuid());
 		user = pw->pw_name;
 		if (strncmp(user , "root", strlen(user)) != 0)
 		{
-
 			QMessageBox::information( 0, QObject::tr( "User Manager" ), QObject::tr( "UserManager cannot run by non root users" ));
 			if (user !=  nullptr) { free(user); user = nullptr;   }
 			exit (0);
@@ -93,13 +92,9 @@ int main(int argc, char ** argv)
 			}
 			endpwent();*/
 
+	MainWindow win;
+	win.show();
 
-		//}
-	//if ( userid != false )
-	//{
-		MainWindow win;
-		win.show();
-	//}
 
 	if (user !=  nullptr) { free(user);   }
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );

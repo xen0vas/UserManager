@@ -75,8 +75,11 @@ menuAbout_Qt->setShortcut( QString( "Ctrl+Q" ) );
 menuAboutUserManager->setShortcut( QString( "Ctrl+A" ) );
 menuDiskUsage->setShortcut( QString( "Ctrl+D" ) );
 //***Key Events***
+
 userTreeView->installEventFilter (this);
+userTreeView->setSelectionMode(QAbstractItemView::MultiSelection);
 groupTreeView->installEventFilter (this);
+
 //***Connections***
 connect( searchUserBtn, SIGNAL( clicked() ), this, SLOT( clearEditBoxes() ) );
 connect( searchUserBtn, SIGNAL( clicked() ), this, SLOT( searchUserBtnClicked() ) );
@@ -244,6 +247,7 @@ void  MainWindow::loadUsersAndGroups( )
         userModel = model->createUsersModel( );
         groupModel = model->createGroupsModel( );
         userTreeView->setModel( userModel );
+
         beautyTree( userTreeView, 6 );
         groupTreeView->setModel( groupModel );
         beautyTree( groupTreeView, 1 );
@@ -838,7 +842,6 @@ void MainWindow::calculateFolderSize()
 	qApp->processEvents();
 	Users *usr = new Users() ;
 	struct passwd *user;
-	int i = 0;
  	float cnt=1,totalUsers=0,progress=0;// parolo pou einai int kanonika an ta dhlwsw san int den leitourgei h progressbar swsta
 	QString sizeString;
 	QStringList sizeList;
@@ -853,7 +856,7 @@ void MainWindow::calculateFolderSize()
 		char *dir = user->pw_dir;
 		string dirString = dir;
 
-		for ( i = 0; i < (int)dirString.length(); i++ )  //string se char[]
+		for (  int i{0}; i < (int)dirString.length(); i++ )  //string se char[]
 		{
 			path[i] = dirString[i];
 		}

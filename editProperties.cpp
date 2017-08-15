@@ -2,6 +2,8 @@
 #include "userproperties.h"
 #include "users.h"
 #include "MainWindow.h"
+#include "hashingalgorithm.h"
+#include "HashingFactory.h"
 
 using namespace std;
 
@@ -19,8 +21,6 @@ EditProperties::EditProperties ( QWidget * parent ) : QDialog ( parent )
 	expire->setEnabled(false);
 	warn->setEnabled(false);
 	min->setEnabled(false);
-
-
 
 	shellConnect->setAutoCompletion ( true );
 	shellConnect->setEditable ( true );
@@ -109,9 +109,7 @@ if(checkBoxEdit->isChecked())
 		}
 	if(!checkBoxEdit->isChecked())
 		{
-			
 			set_account(false);
-
 		}	
 
 	chmod(SH_FILE,0640);
@@ -302,8 +300,16 @@ int EditProperties::set_password(QString name)
 	if ( okBtn && passwd != "" && strncmp(passwd.toAscii().data(),verify.toAscii().data(), strlen(passwd.toAscii().data())) == 0)
 	{
 		MainWindow main;
-		/*SHA-512 Algorthm */
-		passhash = usr->encryptPasswd ( passwd );
+		/*SHA-256 Algorthm */
+		hashingalgorithm *psha256 = HashingFactory::Get()->CreateAlgorithm("sha256");
+		if (psha256)
+			passhash = psha256->encryptpass ( passwd );
+
+		if (psha256)
+			psha256->Free();
+		psha256 = NULL;
+
+
 		int curdays = time ( NULL ) / ( 60 * 60 * 24 );
 		spd = *getspnam(name.toAscii().data());
 		spd.sp_lstchg = curdays; 

@@ -17,6 +17,7 @@ class UserProperties : public QDialog , public Ui::UserProperties
 {
 Q_OBJECT
 public:
+
 	UserProperties( QWidget *parent = 0 );
 	~UserProperties();
 	char *encryptPasswd(QString passwd);

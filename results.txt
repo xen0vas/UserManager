@@ -1,0 +1,181 @@
+[About.h:12]: (style) Class 'About' has a constructor with 1 argument that is not explicit.
+[MainWindow.cpp:247] -> [MainWindow.cpp:254]: (warning, inconclusive) Either the condition 'model!=0' is redundant or there is possible null pointer dereference: model.
+[MainWindow.cpp:248] -> [MainWindow.cpp:254]: (warning, inconclusive) Either the condition 'model!=0' is redundant or there is possible null pointer dereference: model.
+[MainWindow.cpp:266] -> [MainWindow.cpp:275]: (warning, inconclusive) Either the condition 'model!=0' is redundant or there is possible null pointer dereference: model.
+[MainWindow.cpp:267] -> [MainWindow.cpp:275]: (warning, inconclusive) Either the condition 'model!=0' is redundant or there is possible null pointer dereference: model.
+[MainWindow.cpp:537] -> [MainWindow.cpp:539]: (warning, inconclusive) Either the condition 'model!=0' is redundant or there is possible null pointer dereference: model.
+[MainWindow.cpp:331]: (style) The scope of the variable 'okk' can be reduced.
+[MainWindow.cpp:332]: (style) The scope of the variable 'result2' can be reduced.
+[MainWindow.cpp:333]: (style) The scope of the variable 'result' can be reduced.
+[MainWindow.cpp:334]: (style) The scope of the variable 'groupBase' can be reduced.
+[MainWindow.cpp:340]: (style) The scope of the variable 'grr' can be reduced.
+[MainWindow.cpp:725]: (style) The scope of the variable 'buff' can be reduced.
+[MainWindow.cpp:725]: (style) The scope of the variable 'day_buffer' can be reduced.
+[MainWindow.cpp:725]: (style) The scope of the variable 'month_buffer' can be reduced.
+[MainWindow.cpp:725]: (style) The scope of the variable 'year_buffer' can be reduced.
+[MainWindow.cpp:289]: (portability) Non reentrant function 'getspnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getspnam_r'.
+[MainWindow.cpp:341]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[MainWindow.cpp:354]: (portability) Non reentrant function 'getgrgid' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrgid_r'.
+[MainWindow.cpp:362]: (portability) Non reentrant function 'getspnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getspnam_r'.
+[MainWindow.cpp:383]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[MainWindow.cpp:681]: (portability) Non reentrant function 'getspnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getspnam_r'.
+[MainWindow.cpp:693]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[MainWindow.cpp:699]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[MainWindow.cpp:701]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[MainWindow.cpp:709]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[MainWindow.cpp:711]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[MainWindow.cpp:713]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[MainWindow.cpp:727]: (portability) Non reentrant function 'getspnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getspnam_r'.
+[MainWindow.cpp:735]: (portability) Non reentrant function 'localtime' called. For threadsafe applications it is recommended to use the reentrant replacement function 'localtime_r'.
+[MainWindow.cpp:787]: (portability) Non reentrant function 'localtime' called. For threadsafe applications it is recommended to use the reentrant replacement function 'localtime_r'.
+[MainWindow.cpp:853]: (portability) Non reentrant function 'getpwent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwent_r'.
+[userproperties.h:21]: (style) Class 'UserProperties' has a constructor with 1 argument that is not explicit.
+[editProperties.h:22]: (style) Class 'EditProperties' has a constructor with 1 argument that is not explicit.
+[groupProperties.h:17]: (style) Class 'GroupProperties' has a constructor with 1 argument that is not explicit.
+[Settings.h:41]: (style) Class 'Settings' has a constructor with 1 argument that is not explicit.
+[MainWindow.cpp:440]: (error) Resource leak: pFile
+[Settings.cpp:146]: (style) The scope of the variable 'done' can be reduced.
+[Settings.cpp:147]: (style) The scope of the variable 'found' can be reduced.
+[editProperties.cpp:302] -> [editProperties.cpp:311]: (warning, inconclusive) Either the condition 'usr!=0' is redundant or there is possible null pointer dereference: usr.
+[editProperties.cpp:308] -> [editProperties.cpp:310]: (warning, inconclusive) Either the condition 'fchk!=0' is redundant or there is possible null pointer dereference: fchk.
+[editProperties.cpp:290]: (style) The scope of the variable 'fchk' can be reduced.
+[editProperties.cpp:451]: (style) The scope of the variable 'disable' can be reduced.
+[editProperties.cpp:502]: (style) The scope of the variable 'cmd' can be reduced.
+[editProperties.cpp:816]: (style) The scope of the variable 'cmd' can be reduced.
+[editProperties.cpp:817]: (style) The scope of the variable 'grs' can be reduced.
+[editProperties.cpp:183]: (portability) Non reentrant function 'getpwuid' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwuid_r'.
+[editProperties.cpp:192]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[editProperties.cpp:207]: (portability) Non reentrant function 'getpwuid' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwuid_r'.
+[editProperties.cpp:279]: (portability) Non reentrant function 'localtime' called. For threadsafe applications it is recommended to use the reentrant replacement function 'localtime_r'.
+[editProperties.cpp:304]: (portability) Non reentrant function 'getspnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getspnam_r'.
+[editProperties.cpp:369]: (portability) Non reentrant function 'localtime' called. For threadsafe applications it is recommended to use the reentrant replacement function 'localtime_r'.
+[editProperties.cpp:414]: (portability) Non reentrant function 'getspnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getspnam_r'.
+[editProperties.cpp:517]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:561]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:582]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:603]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:624]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:645]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:666]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:687]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:708]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:880]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:882]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:884]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:886]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:888]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:890]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:892]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:894]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:922]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[editProperties.cpp:196]: (error) Memory leak: cp
+[editProperties.cpp:219]: (error) Mismatching allocation and deallocation: cp
+[groupProperties.cpp:293]: (error, inconclusive) Null pointer dereference: fchk
+[groupProperties.cpp:156]: (style) Statements following return, break, continue, goto or throw will never be executed.
+[groupProperties.cpp:87]: (style) The scope of the variable 'cmd' can be reduced.
+[groupProperties.cpp:89]: (style) The scope of the variable 'member' can be reduced.
+[groupProperties.cpp:122]: (style) The scope of the variable 'username' can be reduced.
+[groupProperties.cpp:143]: (style) The scope of the variable 'cmd' can be reduced.
+[groupProperties.cpp:58]: (portability) Non reentrant function 'getgrent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrent_r'.
+[groupProperties.cpp:123]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[groupProperties.cpp:171]: (portability) Non reentrant function 'getgrent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrent_r'.
+[groupProperties.cpp:230]: (portability) Non reentrant function 'getgrent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrent_r'.
+[groups.cpp:48]: (style) The scope of the variable 'groupToSearch' can be reduced.
+[groups.cpp:21]: (portability) Non reentrant function 'getgrent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrent_r'.
+[groups.cpp:55]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[groups.cpp:98]: (portability) Non reentrant function 'fgetgrent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'fgetgrent_r'.
+[groups.cpp:136]: (portability) Non reentrant function 'getpwent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwent_r'.
+[groups.cpp:156]: (portability) Non reentrant function 'getpwent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwent_r'.
+[groups.cpp:103]: (error) Resource leak: f
+[groups.cpp:101]: (error) Uninitialized variable: set
+[hashingalgorithm.cpp:146]: (portability) Non reentrant function 'crypt' called. For threadsafe applications it is recommended to use the reentrant replacement function 'crypt_r'.
+[hashingalgorithm.cpp:54] -> [hashingalgorithm.h:33]: (performance, inconclusive) Technically the member function 'HashingAlgorithm::into64' can be static.
+[main.cpp:75] -> [main.cpp:78]: (warning) Either the condition 'user!=0' is redundant or there is possible null pointer dereference: user.
+[main.cpp:72] -> [main.cpp:74]: (style) Variable 'user' is reassigned a value before the old one has been used.
+[main.cpp:70]: (style) Variable 'userid' is assigned a value that is never used.
+[main.cpp:61]: (portability) Non reentrant function 'getspent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getspent_r'.
+[main.cpp:63]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[main.cpp:73]: (portability) Non reentrant function 'getpwuid' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwuid_r'.
+[main.cpp:74]: (error) Memory leak: user
+[models.cpp:291]: (style) The scope of the variable 'user' can be reduced.
+[models.cpp:32]: (portability) Non reentrant function 'getpwent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwent_r'.
+[models.cpp:34]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[models.cpp:79]: (portability) Non reentrant function 'getpwent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwent_r'.
+[models.cpp:81]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[models.cpp:120]: (portability) Non reentrant function 'getgrent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrent_r'.
+[models.cpp:230]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[models.cpp:244]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[models.cpp:255]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[models.cpp:263]: (portability) Non reentrant function 'getpwent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwent_r'.
+[models.cpp:274]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[models.cpp:296]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[models.cpp:305]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[models.cpp:341]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[models.cpp:347]: (portability) Non reentrant function 'getpwent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwent_r'.
+[models.cpp:381]: (portability) Non reentrant function 'getpwent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwent_r'.
+[models.cpp:407]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[models.cpp:412]: (portability) Non reentrant function 'getgrent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrent_r'.
+[models.cpp:44]: (error) Uninitialized variable: us
+[models.cpp:255]: (error) Uninitialized variable: us
+[myLibb.cpp:64]: (error) Memory leak: linebuf
+[myLibb.cpp:145]: (error) Memory leak: linebuf
+[myLibb.cpp:230]: (error) Memory leak: linebuf
+[myLibb.cpp:304]: (error) Memory leak: linebuf
+[myLibb.cpp:385]: (error) Memory leak: linebuf
+[userproperties.cpp:557] -> [userproperties.cpp:614]: (warning) Either the condition 'buf!=0' is redundant or there is possible null pointer dereference: buf.
+[userproperties.cpp:608] -> [userproperties.cpp:614]: (warning) Either the condition 'buf!=0' is redundant or there is possible null pointer dereference: buf.
+[userproperties.cpp:330] -> [userproperties.cpp:331]: (style, inconclusive) Variable 'account' is reassigned a value before the old one has been used if variable is no semaphore variable.
+[userproperties.cpp:377]: (style) The scope of the variable 'pass_done' can be reduced.
+[userproperties.cpp:378]: (style) The scope of the variable 'pid' can be reduced.
+[userproperties.cpp:379]: (style) The scope of the variable 'pid1' can be reduced.
+[userproperties.cpp:380]: (style) The scope of the variable 'pid2' can be reduced.
+[userproperties.cpp:382]: (style) The scope of the variable 'shadow_done' can be reduced.
+[userproperties.cpp:385]: (style) The scope of the variable 'u' can be reduced.
+[userproperties.cpp:999]: (style) The scope of the variable 'cmd' can be reduced.
+[userproperties.cpp:1095]: (style) The scope of the variable 'grp' can be reduced.
+[userproperties.cpp:1100]: (style) The scope of the variable 'groupname' can be reduced.
+[userproperties.cpp:1101]: (style) The scope of the variable 'cmd' can be reduced.
+[userproperties.cpp:555]: (warning) Size of pointer 'buf' used instead of size of its data.
+[userproperties.cpp:154]: (portability) Non reentrant function 'getpwuid' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwuid_r'.
+[userproperties.cpp:435]: (portability) Non reentrant function 'getpwuid' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwuid_r'.
+[userproperties.cpp:608]: (portability) Non reentrant function 'crypt' called. For threadsafe applications it is recommended to use the reentrant replacement function 'crypt_r'.
+[userproperties.cpp:662]: (portability) Non reentrant function 'localtime' called. For threadsafe applications it is recommended to use the reentrant replacement function 'localtime_r'.
+[userproperties.cpp:701]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:746]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:767]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:788]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:809]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:830]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:851]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:872]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:893]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:1063]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:1065]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:1067]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:1069]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:1071]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:1073]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:1075]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:1077]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:1106]: (portability) Non reentrant function 'getgrnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrnam_r'.
+[userproperties.cpp:162]: (error) Resource leak: fp
+[userproperties.cpp:693]: (error) Memory leak: cmd
+[userproperties.cpp:242]: (performance) Function parameter 'inact_user' should be passed by reference.
+[userproperties.cpp:686]: (error) Memory is allocated but not initialized: cmd
+[users.cpp:297] -> [users.cpp:297]: (style) Same expression on both sides of '&&'.
+[users.cpp:298] -> [users.cpp:298]: (style) Same expression on both sides of '&&'.
+[users.cpp:299] -> [users.cpp:299]: (style) Same expression on both sides of '&&'.
+[users.cpp:24]: (style) The scope of the variable 'userToSearch' can be reduced.
+[users.cpp:137]: (style) The scope of the variable 'c' can be reduced.
+[users.cpp:31]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[users.cpp:45]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[users.cpp:64]: (portability) Non reentrant function 'getpwuid' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwuid_r'.
+[users.cpp:65]: (portability) Non reentrant function 'getgrgid' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrgid_r'.
+[users.cpp:90]: (portability) Non reentrant function 'getgrent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrent_r'.
+[users.cpp:116]: (portability) Non reentrant function 'getspnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getspnam_r'.
+[users.cpp:342]: (portability) Non reentrant function 'readdir' called. For threadsafe applications it is recommended to use the reentrant replacement function 'readdir_r'.
+[users.cpp:382]: (portability) Non reentrant function 'getpwent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwent_r'.
+[users.cpp:400]: (portability) Non reentrant function 'getpwnam' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getpwnam_r'.
+[users.cpp:403]: (portability) Non reentrant function 'getgrent' called. For threadsafe applications it is recommended to use the reentrant replacement function 'getgrent_r'.
+[users.cpp:267]: (error) Memory leak: gecos
+(information) Cppcheck cannot find all the include files (use --check-config for details)
