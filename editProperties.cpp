@@ -2,15 +2,15 @@
 #include "userproperties.h"
 #include "users.h"
 #include "MainWindow.h"
-#include "hashingalgorithm.h"
 #include "HashingFactory.h"
+#include "IHashing.h"
 
 using namespace std;
-
 
 /**
  * Constructor κλάσης με συνδέσεις signals και slots
  */
+
 EditProperties::EditProperties ( QWidget * parent ) : QDialog ( parent )
 {
 	setupUi ( this );
@@ -43,11 +43,14 @@ EditProperties::EditProperties ( QWidget * parent ) : QDialog ( parent )
 /**
  * Destructor κλάσης
  */
+
 EditProperties::~EditProperties()
 {}
+
 /**
  * Η συνάρτηση αποθηκεύει σε μια private μεταβλητή της κλάσης ένα όνομα χρήστη.Έτσι ανα πάσα στιγμή μπορούμε να γνωρίζουμε για ποιον χρήστη εκτελείται η επεξεργασία που πραγματοποιείται στην φόρμα. 
  */
+
 void EditProperties::setOldUsername ( QString oldUsername )
 {
 	oldUsername_ = oldUsername;
@@ -67,7 +70,6 @@ void EditProperties::comboShell()
 
 	ifstream inShells ( "/etc/shells", ios::in );
 	try {
-		//inShells.exceptions(inShells.failbit);
 		if ( !inShells )
 			{
 				QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Open file <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
@@ -79,41 +81,32 @@ void EditProperties::comboShell()
 				shellConnect->addItems ( QStringList ( QObject::tr ( header ) ) );
 			}
 
-
-
 	shellConnect->setDuplicatesEnabled ( false );
 	} catch  (const std::ios_base::failure& e)
 	{
-
 		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Open file <i> %1 </i> </qt> " ).arg ( e.what() ) );
-
 	}
 
-
 }
-
-
 
 /**
  *Εκτελεί την αλλαγή των πληροφοριών του χρήστη,
  */
+
 void EditProperties::ok_to_edit_Button()
 {
-	
-	
+
 if(checkBoxEdit->isChecked())
 		{
-			
 			set_account(true);
-			
 		}
+
 	if(!checkBoxEdit->isChecked())
 		{
 			set_account(false);
 		}	
 
 	chmod(SH_FILE,0640);
-
 	int status;
 	int res;
 	struct passwd  pw;
@@ -300,14 +293,36 @@ int EditProperties::set_password(QString name)
 	if ( okBtn && passwd != "" && strncmp(passwd.toAscii().data(),verify.toAscii().data(), strlen(passwd.toAscii().data())) == 0)
 	{
 		MainWindow main;
-		/*SHA-256 Algorthm */
-		hashingalgorithm *psha256 = HashingFactory::Get()->CreateAlgorithm("sha256");
+		/*SHA-256 Algorithm */
+		IHashing *psha256 = HashingFactory::Get()->CreateAlgorithm("sha256");
 		if (psha256)
 			passhash = psha256->encryptpass ( passwd );
 
 		if (psha256)
 			psha256->Free();
 		psha256 = NULL;
+
+
+		/* SHA-512 Algorithm
+				IHashing *psha512 = HashingFactory::Get()->CreateAlgorithm("sha512");
+				if (psha512)
+					passhash = psha512->encryptpass ( passwd );
+
+				if (psha512)
+					psha512->Free();
+				psha512 = NULL;
+		*/
+
+
+		/* MD5 Algorithm
+						IHashing *pmd5 = HashingFactory::Get()->CreateAlgorithm("MD5");
+						if (pmd5)
+							passhash = pmd5->encryptpass ( passwd );
+
+						if (pmd5)
+							pmd5->Free();
+						pmd5 = NULL;
+				*/
 
 
 		int curdays = time ( NULL ) / ( 60 * 60 * 24 );

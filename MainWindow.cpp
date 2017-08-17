@@ -1,10 +1,7 @@
 #include "MainWindow.h"
-#define SIZE 256
-
+#define SIZE 512
 
 using namespace std;
-
-
 
 /**
  *Constructor της κλάσης/φόρμας.
@@ -27,10 +24,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f ): QMainWindow( parent, f
 	}
 	}
 	setupUi( this );
-	
-
 	initialize();
-
 }
 
 /**

@@ -1,7 +1,8 @@
 
 #include <string>
 #include <map>
-#include "hashingalgorithm.h"
+
+#include "IHashing.h"
 
 using namespace std ;
 
@@ -21,6 +22,6 @@ public:
 		return &instance;
 	}
 	void Register(const std::string &HashingFactory, CreateHash pfnCreate);
-	hashingalgorithm *CreateAlgorithm(const string &hashName);
+	IHashing *CreateAlgorithm(const string &hashName);
 };
 

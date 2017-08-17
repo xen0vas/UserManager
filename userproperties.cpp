@@ -2,8 +2,8 @@
 #include "editProperties.h"
 #include <sys/stat.h>
 #include <sys/wait.h>
-#include "hashingalgorithm.h"
 #include "HashingFactory.h"
+#include "IHashing.h"
 
 using namespace std;
 
@@ -541,7 +541,7 @@ void UserProperties::setPassword()
 
 		/*Create SHA-256 hash */
 
-				hashingalgorithm *psha256 = HashingFactory::Get()->CreateAlgorithm("sha256");
+				IHashing *psha256 = HashingFactory::Get()->CreateAlgorithm("sha256");
 				if ( psha256 )
 					passhash = psha256->encryptpass ( passwd );
 

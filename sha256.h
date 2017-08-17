@@ -1,14 +1,13 @@
 #include <string>
 #include <QString>
-#include "hashingalgorithm.h"
+#include "HashEncode.h"
+#include "IHashing.h"
 
-class sha256 : public hashingalgorithm
+class sha256 : public IHashing
 {
 public:
-	char* makeSalt(int length);
-	char* encryptpass(QString passwd);
-	void into64 ( char *s, long int v, int n );
-    static const int saltLength = 8;
-    void Free(){ delete this; }
-    static hashingalgorithm* Create();
+	static const int saltLength = 8;
+	char* encryptpass(QString passwd) const;
+    void Free();
+    static IHashing* Create();
 };
