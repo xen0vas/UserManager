@@ -23,7 +23,7 @@ HashingAlgorithm::~HashingAlgorithm()
  *
  * This function is used to create a user password.
  * A form is used in order to insert a new password.
- * It calls encryptpass function which is implemented in classes sha256, sha512 and MD5 depending in the selected hashing algorithm, using IHashing interface.
+ * Using IHashing interface, it calls encryptpass function which is implemented in classes sha256, sha512 and MD5 depending in the selected hashing algorithm.
  * The formated result is encrypted and saved inside the global variable passhash for further processing.
  *
  */
