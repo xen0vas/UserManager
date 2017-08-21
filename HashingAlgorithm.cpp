@@ -11,7 +11,7 @@ HashingAlgorithm::HashingAlgorithm ( QWidget * parent ) : QDialog ( parent )
 {
 	setupUi ( this );
 	setModal ( true );
-	MD5rdb->setChecked(true);
+	MD5rdb->setChecked( true );
 
 
 }
@@ -23,7 +23,7 @@ HashingAlgorithm::~HashingAlgorithm()
  *
  * This function is used to create a user password.
  * A form is used in order to insert a new password.
- * It calls encryptpass function which is implemented in classes sha256, sha512 and MD5 using IHashing interface depending in the selected hashing algorithm.
+ * It calls encryptpass function which is implemented in classes sha256, sha512 and MD5 depending in the selected hashing algorithm, using IHashing interface.
  * The formated result is encrypted and saved inside the global variable passhash for further processing.
  *
  */
