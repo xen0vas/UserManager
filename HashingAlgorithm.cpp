@@ -44,7 +44,7 @@ int HashingAlgorithm::setPassword(QString name)
 	{
 		MainWindow main;
 		/*SHA-256 Algorithm */
-		IHashing *psha256 = HashingFactory::Get()->CreateAlgorithm("sha256");
+		IHashing *psha256 = HashingFactory::Get()->CreateAlgorithm("SHA-256");
 		if (psha256)
 			passhash = psha256->encryptpass ( passwd );
 
@@ -54,7 +54,7 @@ int HashingAlgorithm::setPassword(QString name)
 
 
 		/* SHA-512 Algorithm
-		IHashing *psha512 = HashingFactory::Get()->CreateAlgorithm("sha512");
+		IHashing *psha512 = HashingFactory::Get()->CreateAlgorithm("SHA-512");
 		if (psha512)
 			passhash = psha512->encryptpass ( passwd );
 

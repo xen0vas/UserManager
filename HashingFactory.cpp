@@ -6,8 +6,8 @@
 
 HashingFactory::HashingFactory()
 {
-	Register("sha256", &sha256::Create);
-	Register("sha512", &sha512::Create);
+	Register("SHA-256", &sha256::Create);
+	Register("SHA-512", &sha512::Create);
 	Register("MD5", &Md5::Create);
 }
 
