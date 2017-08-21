@@ -1,6 +1,7 @@
 #ifndef EDITPROPERTIES_H
 #define EDITPROPERTIES_H
 #include "ui_EditProperties.h"
+#include "ui_HashingAlgorithm.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -39,5 +40,6 @@ private slots:
 	void setPrimaryGroup();
 	void disablechk();
 	void browse();
+	void openHashingAlgorithm();
 };
 #endif

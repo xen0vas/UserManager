@@ -1,5 +1,6 @@
 #include "editProperties.h"
 #include "userproperties.h"
+#include "HashingAlgorithm.h"
 #include "users.h"
 #include "MainWindow.h"
 #include "HashingFactory.h"
@@ -28,7 +29,7 @@ EditProperties::EditProperties ( QWidget * parent ) : QDialog ( parent )
 	max->setSpecialValueText ( "never" );
 	warn->setSpecialValueText ( "never" );
 	expire->setSpecialValueText ( "never" );
-	connect ( pass,SIGNAL ( clicked() ),this,SLOT ( set_Pass_info() ) );
+	connect ( pass,SIGNAL ( clicked() ),this,SLOT ( openHashingAlgorithm() ) );//set_Pass_info() ) );
 	connect ( edit, SIGNAL ( clicked() ), this, SLOT ( ok_to_edit_Button() ) );
 	connect ( userGroups, SIGNAL ( clicked ( const QModelIndex& ) ), this, SLOT ( changeMembers ( const QModelIndex& ) ) );
 	connect ( easyCheckbox, SIGNAL ( clicked() ), this, SLOT ( easyCheckboxClicked() ) );
@@ -41,14 +42,26 @@ EditProperties::EditProperties ( QWidget * parent ) : QDialog ( parent )
 	}
 
 /**
- * Destructor κλάσης
+ * Destructor
  */
 
 EditProperties::~EditProperties()
 {}
 
+
+
+void EditProperties::openHashingAlgorithm()
+{
+HashingAlgorithm *hash = new HashingAlgorithm;
+hash->setWindowFlags(hash->windowFlags()|Qt::WindowStaysOnTopHint);
+hash->show();
+if ( hash->exec() ){}
+delete hash;
+}
+
 /**
- * Η συνάρτηση αποθηκεύει σε μια private μεταβλητή της κλάσης ένα όνομα χρήστη.Έτσι ανα πάσα στιγμή μπορούμε να γνωρίζουμε για ποιον χρήστη εκτελείται η επεξεργασία που πραγματοποιείται στην φόρμα. 
+ * This function saves the username inside a private class variable.
+ * Thus, we know anytime for which user the form data are processed
  */
 
 void EditProperties::setOldUsername ( QString oldUsername )
@@ -260,8 +273,9 @@ void EditProperties::disablechk()
  */
 void EditProperties::set_Pass_info()
 {
+HashingAlgorithm hash;
 QString name = LoginName->text();
-int ret = set_password(name);
+int ret = hash.setPassword(name);
 
 if (ret == 0)
 {
@@ -276,14 +290,18 @@ strftime ( buff,256," %A  %d  %B  %Y  %H:%M ",ltime );
 datetime->setText ( buff );
 }
 }
+
+
 /**
- * Η συνάρτηση επαναθέτει κωδικό για τον χρήστη.Χρησιμοποιεί τη φόρμα για εισαγωγή νέου κωδικού ,καλει συναρτήσεις για τη μετατροπή του κωδικού όπως η encryptPasswd της κλάσης UserProperties.Η τελική μορφή του κρυπτογραφημένου κωδικού αποθκεύεται σε μια καθολική μεταβλητη passhash για περεταίρω επεξεργασία.
- */
+ * Η συνάρτηση επαναθέτει κωδικό για τον χρήστη.Χρησιμοποιεί τη φόρμα για εισαγωγή νέου κωδικού ,
+ * καλει συναρτήσεις για τη μετατροπή του κωδικού όπως η encryptPasswd της κλάσης UserProperties.
+ * Η τελική μορφή του κρυπτογραφημένου κωδικού αποθκεύεται σε μια καθολική μεταβλητη passhash για περεταίρω επεξεργασία.
+
 int EditProperties::set_password(QString name)
 {
 	struct spwd spd;
 	MyLibb *fchk {new MyLibb};
-	UserProperties *usr = new UserProperties();
+	//UserProperties *usr = new UserProperties();
 	QString passhash;
 	bool okBtn;
 	QString verify;
@@ -293,7 +311,7 @@ int EditProperties::set_password(QString name)
 	if ( okBtn && passwd != "" && strncmp(passwd.toAscii().data(),verify.toAscii().data(), strlen(passwd.toAscii().data())) == 0)
 	{
 		MainWindow main;
-		/*SHA-256 Algorithm */
+
 		IHashing *psha256 = HashingFactory::Get()->CreateAlgorithm("sha256");
 		if (psha256)
 			passhash = psha256->encryptpass ( passwd );
@@ -303,7 +321,7 @@ int EditProperties::set_password(QString name)
 		psha256 = NULL;
 
 
-		/* SHA-512 Algorithm
+	   SHA-512 Algorithm
 				IHashing *psha512 = HashingFactory::Get()->CreateAlgorithm("sha512");
 				if (psha512)
 					passhash = psha512->encryptpass ( passwd );
@@ -311,10 +329,10 @@ int EditProperties::set_password(QString name)
 				if (psha512)
 					psha512->Free();
 				psha512 = NULL;
-		*/
 
 
-		/* MD5 Algorithm
+
+		MD5 Algorithm
 						IHashing *pmd5 = HashingFactory::Get()->CreateAlgorithm("MD5");
 						if (pmd5)
 							passhash = pmd5->encryptpass ( passwd );
@@ -322,7 +340,7 @@ int EditProperties::set_password(QString name)
 						if (pmd5)
 							pmd5->Free();
 						pmd5 = NULL;
-				*/
+
 
 
 		int curdays = time ( NULL ) / ( 60 * 60 * 24 );
@@ -333,7 +351,7 @@ int EditProperties::set_password(QString name)
 		fchk->setspnam(&spd);
 		main.reloadUsersAndGroups();
 		if (fchk != nullptr) { delete fchk; fchk = nullptr;}
-		if (usr != nullptr) { delete usr; usr = nullptr; }
+		//if (usr != nullptr) { delete usr; usr = nullptr; }
 		return 0;
 	}
 	else 
@@ -346,7 +364,10 @@ int EditProperties::set_password(QString name)
 		}
 	}
 return 1;
+
 }
+*/
+
 /**
  *Εμφάνιση των πληροφοριών σχετικά με την λήξη των κωδικών των χρηστών στα components της φόρμας.
  */
@@ -370,7 +391,7 @@ void EditProperties::acct_shadow ( struct spwd spw )
 	}
 	else
 		min->setValue ( minim );
-		int expired = spw.sp_inact;/* Number of days the account may be  inactive.  */
+	int expired = spw.sp_inact;/* Number of days the account may be  inactive.  */
 	if ( expired == -1 )
 	{
 		expire->stepBy ( -1 );

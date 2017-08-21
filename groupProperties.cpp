@@ -19,7 +19,9 @@ GroupProperties::GroupProperties ( QWidget * parent ) : QDialog ( parent )
 	connect ( newGroupBtn, SIGNAL ( clicked() ), this, SLOT ( addNewGroup() ) );
 
 
+
 }
+
 //****************************************************************************************************
 /**
  *Destructor κλάσης/φόρμας

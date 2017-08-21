@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #define SIZE 512
+#include "HashingAlgorithm.h"
 
 using namespace std;
 
@@ -112,18 +113,19 @@ connect(menuAboutUserManager, SIGNAL( triggered() ), this, SLOT( aboutUserManage
  * Αλλαγή κωδικού χρήστη από το μενού της κύριας φόρμας (Users->Set Password)
  */
 
-void MainWindow::set_Pass_Menu()
+void MainWindow::setPassMenu()
 {
 
-EditProperties *edit_for_menu = new EditProperties();
+//HashingAlgorithm *hash= new HashingAlgorithm();
+HashingAlgorithm hash;
 QModelIndex index=userTreeView->selectionModel()->currentIndex();
 int row=index.row();
 QString username=index.sibling ( row, 1 ).data( ).toString();
 if (username == "")
 QMessageBox::information ( 0, tr ( " UserManager " ),tr ( " Please Select a User to Change Password!!" ) ); 
 else
-edit_for_menu->set_password(username);
-if (edit_for_menu != nullptr) { delete edit_for_menu; edit_for_menu = nullptr; }
+	hash.setPassword(username);
+//if (hash != nullptr) { delete hash; hash = nullptr; }
 }
 /**
  *Προετοιμασία εισαγωγής νέου χρήστη.Έλεγχος αν υπάρχουν όλα τα αρχεία συστήματος (group,passwd,shadow).Εκκινεί με το πάτημα του κουμπιού εισαγωγής νέου χρήστη από την κύρια φόρμα.

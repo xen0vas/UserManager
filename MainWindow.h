@@ -64,7 +64,7 @@ private slots:
 	void aboutUserManager();
 	void folderSizeCheckBoxClicked();
 	void addGroupBtnClicked();
-	void set_Pass_Menu();
+	void setPassMenu();
 	void searchUserBtnClicked();
 	void addUserBtnClicked();
 	void searchGroupBtnClicked();

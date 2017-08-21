@@ -6,117 +6,206 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>275</width>
-    <height>161</height>
+    <width>366</width>
+    <height>263</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Dialog</string>
+  <property name="font">
+   <font>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
-   <item alignment="Qt::AlignHCenter">
-    <widget class="QLabel" name="ChAlgo">
-     <property name="text">
-      <string> Choose Algorithm </string>
+  <property name="windowTitle">
+   <string>Setup Password</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Hashing Algorithm</string>
      </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QRadioButton" name="Sha512rdb">
+        <property name="text">
+         <string>SHA-512</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="MD5rdb">
+        <property name="text">
+         <string>MD5</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="Sha256rdb">
+        <property name="text">
+         <string>SHA-256</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+     <zorder>Sha256rdb</zorder>
+     <zorder>MD5rdb</zorder>
+     <zorder>Sha512rdb</zorder>
     </widget>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <spacer name="verticalSpacer_10">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Preferred</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>348</width>
+       <height>34</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QRadioButton" name="Sha256rdb">
+      <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>SHA-256</string>
+        <string>Password: </string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QFrame" name="frame">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
+      <widget class="QLineEdit" name="lineEdit"/>
      </item>
      <item>
-      <spacer name="verticalSpacer_5">
+      <spacer name="horizontalSpacer_2">
        <property name="orientation">
-        <enum>Qt::Vertical</enum>
+        <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>20</width>
-         <height>55</height>
+         <width>40</width>
+         <height>20</height>
         </size>
        </property>
       </spacer>
-     </item>
-     <item>
-      <widget class="QRadioButton" name="MD5rdb">
-       <property name="text">
-        <string>MD5</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="verticalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>55</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QRadioButton" name="Sha512rdb">
-       <property name="text">
-        <string>SHA-512</string>
-       </property>
-      </widget>
      </item>
     </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_12">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Preferred</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>348</width>
+       <height>34</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Verify:         </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_2"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_11">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Preferred</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>348</width>
+       <height>34</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="Save">
        <property name="text">
-        <string>Ok</string>
+        <string>Accept</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../resources/images.qrc">
+         <normaloff>:/new/prefix1/images/ok.png</normaloff>:/new/prefix1/images/ok.png</iconset>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="Close">
+      <widget class="QPushButton" name="okBtn">
        <property name="text">
         <string>Close</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../resources/images.qrc">
+         <normaloff>:/new/prefix1/images/cancel.png</normaloff>:/new/prefix1/images/cancel.png</iconset>
        </property>
       </widget>
      </item>
     </layout>
    </item>
   </layout>
+  <zorder>groupBox</zorder>
+  <zorder>verticalSpacer_10</zorder>
+  <zorder>verticalSpacer_11</zorder>
+  <zorder>verticalSpacer_12</zorder>
+  <zorder>horizontalSpacer</zorder>
+  <zorder>horizontalSpacer_2</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/images.qrc"/>
+ </resources>
  <connections>
   <connection>
-   <sender>Close</sender>
+   <sender>okBtn</sender>
    <signal>clicked()</signal>
-   <receiver>Close</receiver>
+   <receiver>HashingAlgorithm</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>309</x>
-     <y>234</y>
+     <x>272</x>
+     <y>252</y>
     </hint>
     <hint type="destinationlabel">
-     <x>309</x>
-     <y>234</y>
+     <x>115</x>
+     <y>91</y>
     </hint>
    </hints>
   </connection>

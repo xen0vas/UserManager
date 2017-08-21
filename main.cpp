@@ -69,7 +69,7 @@ int main(int argc, char ** argv)
 
 		bool userid = false ;
     		// if the user is not root the application will not start
-		char *user = (char *)calloc(32, sizeof(char));
+		char *user = (char *)calloc(64, sizeof(char));
 		pw = getpwuid(getuid());
 		user = pw->pw_name;
 		if (strncmp(user , "root", strlen(user)) != 0)
@@ -78,19 +78,6 @@ int main(int argc, char ** argv)
 			if (user !=  nullptr) { free(user); user = nullptr;   }
 			exit (0);
 		}
-		//else
-		//{
-			/*endspent();
-			setpwent();
-			while ( ( pw = getpwent() ) )
-			{
-				sp=getspnam ( pw->pw_name );
-				if ( sp==NULL )
-
-					QMessageBox::critical ( 0,QObject::tr ( "User Manager" ),QObject::tr ( " Entry of user ' <i><b>%1</b></i> ' in /etc/passwd does not exist in /etc/shadow " ).arg ( pw->pw_name ) );
-
-			}
-			endpwent();*/
 
 	MainWindow win;
 	win.show();

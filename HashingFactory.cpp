@@ -24,6 +24,7 @@ void HashingFactory::Register(const std::string &HashingFactory, CreateHash pfnC
  */
 IHashing *HashingFactory::CreateAlgorithm(const string &hashName)
 {
+
 	FactoryMap::iterator it = m_FactoryMap.find(hashName);
 	if ( it != m_FactoryMap.end())
 			return it->second();
