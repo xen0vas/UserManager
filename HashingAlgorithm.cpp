@@ -64,15 +64,13 @@ void HashingAlgorithm::setHashingAlgorithm()
 int HashingAlgorithm::setPassword(QString name)
 {
 
-	QString passhash;
-	QString verify = this->pass2->text();
-	QString passwd = this->pass->text();
+   QString passhash;
+   QString verify = this->pass2->text();
+   QString passwd = this->pass->text();
 
-	bool sha256Checked = this->getSha256IsChecked();
-	if ( this->Save && sha256Checked )
-	{
-
-
+   bool sha256Checked = this->getSha256IsChecked();
+   if ( this->Save && sha256Checked )
+   {
 		if (this->Save && (this->pass->text().toStdString() == "" || this->pass2->text().toStdString() == "" ))
 		{
 			QMessageBox::warning( 0,tr ( "User Manager" ),tr ( "Empty field. Please fill in with the new password" ) );
@@ -95,11 +93,11 @@ int HashingAlgorithm::setPassword(QString name)
 			psha256->Free();
 		psha256 = NULL;
 		}
-
 	}
 	else
 	{
 		QMessageBox::warning( 0,tr ( "User Manager" ),tr ( "sha256 not checked" ) );
+		return 1;
 	}
 		/* SHA-512 Algorithm
 		IHashing *psha512 = HashingFactory::Get()->CreateAlgorithm("SHA-512");

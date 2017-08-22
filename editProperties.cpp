@@ -62,7 +62,7 @@ delete hash;
 
 /**
  * This function saves the username inside a private class variable.
- * Thus, we know anytime for which user the form data are processed
+ * Thus, we know anytime for which user the data are processed
  */
 
 void EditProperties::setOldUsername ( QString oldUsername )
