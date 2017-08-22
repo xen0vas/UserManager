@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>366</width>
-    <height>263</height>
+    <height>321</height>
    </rect>
   </property>
   <property name="font">
@@ -79,7 +79,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="pass"/>
      </item>
      <item>
       <spacer name="horizontalSpacer_2">
@@ -122,7 +122,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_2"/>
+      <widget class="QLineEdit" name="pass2"/>
      </item>
      <item>
       <spacer name="horizontalSpacer">
@@ -156,6 +156,25 @@
     </spacer>
    </item>
    <item>
+    <widget class="QLineEdit" name="usrEdit"/>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_13">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Preferred</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>285</width>
+       <height>14</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="Save">
@@ -182,12 +201,12 @@
     </layout>
    </item>
   </layout>
-  <zorder>groupBox</zorder>
   <zorder>verticalSpacer_10</zorder>
-  <zorder>verticalSpacer_11</zorder>
   <zorder>verticalSpacer_12</zorder>
-  <zorder>horizontalSpacer</zorder>
-  <zorder>horizontalSpacer_2</zorder>
+  <zorder>usrEdit</zorder>
+  <zorder>verticalSpacer_13</zorder>
+  <zorder>groupBox</zorder>
+  <zorder>verticalSpacer_11</zorder>
  </widget>
  <resources>
   <include location="../resources/images.qrc"/>
@@ -200,8 +219,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>272</x>
-     <y>252</y>
+     <x>355</x>
+     <y>310</y>
     </hint>
     <hint type="destinationlabel">
      <x>115</x>

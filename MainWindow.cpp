@@ -102,7 +102,7 @@ connect(menuDeleteUser, SIGNAL(triggered()), this, SLOT(deleteUser()));
 connect(menuEditUser, SIGNAL(triggered()), this, SLOT(EditUser() ));
 connect(menuAddGroup, SIGNAL(triggered()), this, SLOT(addGroupBtnClicked() ));
 connect(menuDeleteGroup, SIGNAL(triggered()), this, SLOT(addUserBtnClicked() ));
-connect(menuSetPassword, SIGNAL(triggered()), this, SLOT(set_Pass_Menu() ));
+connect(menuSetPassword, SIGNAL(triggered()), this, SLOT(setPassMenu() ));
 connect(menuEditGroup, SIGNAL(triggered()), this, SLOT(editGroup()));
 connect(menuDiskUsage, SIGNAL(triggered()), this, SLOT(calculateFolderSize()));
 connect(menuAbout_Qt, SIGNAL( triggered() ), qApp, SLOT( aboutQt() ) );

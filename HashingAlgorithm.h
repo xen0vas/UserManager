@@ -13,7 +13,6 @@
 #include <sys/stat.h>
 #include "myLibb.h"
 
-
 using namespace std;
 
 class HashingAlgorithm : public QDialog , public Ui::HashingAlgorithm
@@ -25,6 +24,14 @@ public:
 	HashingAlgorithm( QWidget *parent = 0 );
 	~HashingAlgorithm();
 	int setPassword(QString name);
+
+private:
+	void setPassAging(QString name, QString passhash);
+
+private slots:
+	void setHashingAlgorithm();
+	bool getSha256IsChecked();
+
 
 };
 
