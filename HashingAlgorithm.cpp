@@ -17,7 +17,7 @@ HashingAlgorithm::HashingAlgorithm ( QWidget * parent ) : QDialog ( parent )
 	connect( Save, SIGNAL( clicked() ), this, SLOT( setHashingAlgorithm() ) );
 	connect( Sha256rdb, SIGNAL( clicked() ), this, SLOT( getSha256IsChecked() ) );
 	connect( Sha512rdb, SIGNAL( clicked() ), this, SLOT( getSha512IsChecked() ) );
-	connect( MD5rdb, SIGNAL( clicked() ), this, SLOT( getShaMd5IsChecked() ) );
+	connect( MD5rdb, SIGNAL( clicked() ), this, SLOT( getMd5IsChecked() ) );
 
 }
 
