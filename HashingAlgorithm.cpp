@@ -126,11 +126,14 @@ int HashingAlgorithm::setPassword(QString name)
 		/* Choose SHA-512 Algorithm */
 		IHashing *psha512 = HashingFactory::Get()->CreateAlgorithm("SHA-512");
 		if (psha512)
+		{
 			passhash = psha512->encryptpass ( passwd );
 			this->storePassShadow(name, passhash);
+
 		if (psha512)
 			psha512->Free();
 		psha512 = NULL;
+		}
 	}
 
    	if ( this->Save && md5Checked )
@@ -150,11 +153,13 @@ int HashingAlgorithm::setPassword(QString name)
 		/* Choose MD5 Algorithm */
 		IHashing *pmd5 = HashingFactory::Get()->CreateAlgorithm("MD5");
 		if (pmd5)
+		{
 			passhash = pmd5->encryptpass ( passwd );
 			this->storePassShadow(name, passhash);
 		if (pmd5)
 			pmd5->Free();
 		pmd5 = NULL;
+		}
 
    	}
 		return 0;
