@@ -14,6 +14,8 @@ HashingAlgorithm::HashingAlgorithm ( QWidget * parent ) : QDialog ( parent )
 	setModal ( true );
 	MD5rdb->setChecked( true );
 	usrEdit->setVisible( false );
+	pass->setEchoMode(QLineEdit::Password);
+	pass2->setEchoMode(QLineEdit::Password);
 	connect( Save, SIGNAL( clicked() ), this, SLOT( setHashingAlgorithm() ) );
 	connect( Sha256rdb, SIGNAL( clicked() ), this, SLOT( getSha256IsChecked() ) );
 	connect( Sha512rdb, SIGNAL( clicked() ), this, SLOT( getSha512IsChecked() ) );
