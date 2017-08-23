@@ -68,7 +68,8 @@ void HashingAlgorithm::setHashingAlgorithm()
  *
  * This function is used to create a user password.
  * A form is used in order to insert a new password.
- * Using IHashing interface, it calls encryptpass function which is implemented in classes sha256, sha512 and MD5 depending in the selected hashing algorithm.
+ * Using IHashing interface, it calls encryptpass function which is implemented in classes sha256, sha512
+ * and MD5 depending on the selected hashing algorithm.
  * The formated result is encrypted and saved inside the global variable passhash for further processing.
  *
 */
