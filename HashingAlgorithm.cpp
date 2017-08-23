@@ -103,9 +103,8 @@ int HashingAlgorithm::setPassword(QString name)
 		{
 			passhash = psha256->encryptpass ( passwd );
 			this->storePassShadow(name, passhash);
-		if (psha256)
 			psha256->Free();
-		psha256 = NULL;
+			psha256 = NULL;
 		}
 	}
 
@@ -129,10 +128,8 @@ int HashingAlgorithm::setPassword(QString name)
 		{
 			passhash = psha512->encryptpass ( passwd );
 			this->storePassShadow(name, passhash);
-
-		if (psha512)
 			psha512->Free();
-		psha512 = NULL;
+			psha512 = NULL;
 		}
 	}
 
@@ -156,9 +153,8 @@ int HashingAlgorithm::setPassword(QString name)
 		{
 			passhash = pmd5->encryptpass ( passwd );
 			this->storePassShadow(name, passhash);
-		if (pmd5)
 			pmd5->Free();
-		pmd5 = NULL;
+			pmd5 = NULL;
 		}
 
    	}
