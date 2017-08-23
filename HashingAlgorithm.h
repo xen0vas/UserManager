@@ -1,10 +1,3 @@
-/*
- * HashingAlgorithm.h
- *
- *  Created on: Aug 16, 2017
- *      Author: root
- */
-
 #include "ui_HashingAlgorithm.h"
 #include <string.h>
 #include <stdlib.h>

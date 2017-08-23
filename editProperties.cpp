@@ -48,8 +48,6 @@ EditProperties::EditProperties ( QWidget * parent ) : QDialog ( parent )
 EditProperties::~EditProperties()
 {}
 
-
-
 void EditProperties::openHashingAlgorithm()
 {
 HashingAlgorithm *hash = new HashingAlgorithm;
@@ -290,83 +288,6 @@ strftime ( buff,256," %A  %d  %B  %Y  %H:%M ",ltime );
 datetime->setText ( buff );
 }
 }
-
-
-/**
- * Η συνάρτηση επαναθέτει κωδικό για τον χρήστη.Χρησιμοποιεί τη φόρμα για εισαγωγή νέου κωδικού ,
- * καλει συναρτήσεις για τη μετατροπή του κωδικού όπως η encryptPasswd της κλάσης UserProperties.
- * Η τελική μορφή του κρυπτογραφημένου κωδικού αποθκεύεται σε μια καθολική μεταβλητη passhash για περεταίρω επεξεργασία.
-
-int EditProperties::set_password(QString name)
-{
-	struct spwd spd;
-	MyLibb *fchk {new MyLibb};
-	//UserProperties *usr = new UserProperties();
-	QString passhash;
-	bool okBtn;
-	QString verify;
-	QString passwd = QInputDialog::getText ( 0, QObject::tr ( "Enter Password" ), QObject::tr ( "Please Enter password for '%1'" ).arg ( name ), QLineEdit::Password, QString ( "" ), &okBtn );
-	if(passwd != "" )
-	verify = QInputDialog::getText ( 0, QObject::tr ( " Verify Password " ), QObject::tr ( "Please Verify password for '%1'" ).arg ( name ), QLineEdit::Password, QString ( "" ), &okBtn );
-	if ( okBtn && passwd != "" && strncmp(passwd.toAscii().data(),verify.toAscii().data(), strlen(passwd.toAscii().data())) == 0)
-	{
-		MainWindow main;
-
-		IHashing *psha256 = HashingFactory::Get()->CreateAlgorithm("sha256");
-		if (psha256)
-			passhash = psha256->encryptpass ( passwd );
-
-		if (psha256)
-			psha256->Free();
-		psha256 = NULL;
-
-
-	   SHA-512 Algorithm
-				IHashing *psha512 = HashingFactory::Get()->CreateAlgorithm("sha512");
-				if (psha512)
-					passhash = psha512->encryptpass ( passwd );
-
-				if (psha512)
-					psha512->Free();
-				psha512 = NULL;
-
-
-
-		MD5 Algorithm
-						IHashing *pmd5 = HashingFactory::Get()->CreateAlgorithm("MD5");
-						if (pmd5)
-							passhash = pmd5->encryptpass ( passwd );
-
-						if (pmd5)
-							pmd5->Free();
-						pmd5 = NULL;
-
-
-
-		int curdays = time ( NULL ) / ( 60 * 60 * 24 );
-		spd = *getspnam(name.toAscii().data());
-		spd.sp_lstchg = curdays; 
-		spd.sp_pwdp = passhash.toAscii().data();
-
-		fchk->setspnam(&spd);
-		main.reloadUsersAndGroups();
-		if (fchk != nullptr) { delete fchk; fchk = nullptr;}
-		//if (usr != nullptr) { delete usr; usr = nullptr; }
-		return 0;
-	}
-	else 
-	{
-		if ( passwd != "" )
-		{
-			QMessageBox::warning( 0,tr ( "User Manager" ),tr ( "Passwords are not identical \n. Please try again!" ) );
-			passhash = "";
-		return 1;
-		}
-	}
-return 1;
-
-}
-*/
 
 /**
  *Εμφάνιση των πληροφοριών σχετικά με την λήξη των κωδικών των χρηστών στα components της φόρμας.

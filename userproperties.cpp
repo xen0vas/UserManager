@@ -4,6 +4,7 @@
 #include <sys/wait.h>
 #include "HashingFactory.h"
 #include "IHashing.h"
+#include "HashingAlgorithm.h"
 
 using namespace std;
 
@@ -19,9 +20,6 @@ UserProperties::UserProperties ( QWidget * parent ) : QDialog ( parent )
 	QValidator *validator = new QIntValidator(1, 65535, this);
 	uidEdit->setValidator(validator);
 	easyList->setVisible(false);
-	
-	
-	// long int sp_lstchg;	/* Ονομα λογαριασμού του χρήστη */
 
 	min->setMaximum(99999);// long int sp_min;  /* Μικρότερος αριθμός ημερών στον οποίο γίνεται αλλαγή κωδικού */  
 	min->setMinimum(0);
@@ -53,7 +51,7 @@ UserProperties::UserProperties ( QWidget * parent ) : QDialog ( parent )
 	months->setEnabled(false);
 	years->setEnabled(false);
 	alway->setCheckState(Qt::Checked);
-	
+	passBtn->setEnabled(false);
 	shellConnect->setAutoCompletion ( true );
 	tabWidget->setTabEnabled(2,false);
 	expire->setSpecialValueText("never");
@@ -61,13 +59,13 @@ UserProperties::UserProperties ( QWidget * parent ) : QDialog ( parent )
 	warn->setSpecialValueText ( "never" );
 	warn->stepBy(-1);
 	connect ( add, SIGNAL ( clicked() ), this, SLOT ( addUserBase() ) );
-	connect ( passBtn ,SIGNAL ( clicked() ),this,SLOT ( setPassword() ) );
+	connect ( passBtn ,SIGNAL ( clicked() ),this,SLOT ( openHashingAlgorithm() ) );
 	connect( userGroups, SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( changeMembers(const QModelIndex& )));
 	connect( easyCheckbox, SIGNAL( clicked() ), this, SLOT( easyCheckboxClicked() ) );
 	connect( easyList, SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( easyAddGroups(const QModelIndex& )));
-	connect ( requires_Pass, SIGNAL ( clicked() ),this, SLOT ( disCheck()));
-	connect ( enforce_Pass, SIGNAL ( clicked() ),this, SLOT  ( disCheck()));
-	connect ( alway, SIGNAL ( clicked() ),this, SLOT ( disCheck()));
+	connect ( requires_Pass, SIGNAL ( clicked() ),this, SLOT ( setFormContents()));
+	connect ( enforce_Pass, SIGNAL ( clicked() ),this, SLOT  ( setFormContents()));
+	connect ( alway, SIGNAL ( clicked() ),this, SLOT ( setFormContents()));
 	connect ( makePrimBtn, SIGNAL ( clicked( ) ), this, SLOT ( setPrimaryGroup( ) ) );
 }	
 /**
@@ -75,10 +73,20 @@ UserProperties::UserProperties ( QWidget * parent ) : QDialog ( parent )
 */
 UserProperties::~UserProperties()
 {}
+
+void UserProperties::openHashingAlgorithm()
+{
+HashingAlgorithm *hash = new HashingAlgorithm;
+hash->usrEdit->setText(NameLabel->text());
+hash->show();
+if ( hash->exec() ){}
+delete hash;
+}
+
 /**
 *Συνάρτηση που θέτει σε εμφανή ή μη εμφανή τα συστατικά της φόρμας σε διαφορετικές περιπτώσεις
 */
-void UserProperties::disCheck()
+void UserProperties::setFormContents()
 {
 if(enforce_Pass->isChecked())
 	{
@@ -138,7 +146,7 @@ void UserProperties::combotext()
 /**
  * Συνάρτηση σάρωσης του αρχείου των χρηστών του συστήματος,για να βρεθεί από την εφαρμογή το αμέσως επόμενο ελεύθερο USER ID που είναι διαθέσιμο στο σύστημα.Χρησιμοποιείται ώστε να μπορεί ο διαχειριστής να διατηρεί οργανωμένη την σειρά με την οποία προσθέτει χρήστες,δίνοντας σε κάθε νέο χρήστη το αμέσως επόμενο USER ID,από τον τελευταίο χρήστη που έχει προστεθεί στο σύστημα.
  */
-int UserProperties::passwd_study()
+int UserProperties::setPasswdUID()
 {
 	
 	struct passwd   *pw;
@@ -167,7 +175,7 @@ return uid;
 *Ο νέος χρήστης  εισάγεται στο σύστημα με όλες τις πληροφορίες στα πεδία της δομής χωρισμένα με ανω κατω τελεια
 * 
 */
-int UserProperties::insert_passwd ( QString nam,QString uid,QString gid,QString directory,QString gec, QString shellcon )
+int UserProperties::insertIntoPasswdFile ( QString nam,QString uid,QString gid,QString directory,QString gec, QString shellcon )
 {
 	MyLibb *fchk = new MyLibb();
 	int done = 0 ;
@@ -204,7 +212,7 @@ int UserProperties::insert_passwd ( QString nam,QString uid,QString gid,QString 
 /**
 *Συνάρτηση που εισάγει group στο αρχείο /etc/group 
 */
-int UserProperties::insert_group ( QString nam,QString gid )
+int UserProperties::insertIntoGroupFile ( QString nam,QString gid )
 {
 	MyLibb *fchk = new MyLibb();
 	int def;
@@ -240,7 +248,7 @@ int UserProperties::insert_group ( QString nam,QString gid )
 *Η συνάρτηση δίνει τιμές στα πεδία του του shadow struct που αφορούν τις επισημάνσεις για το χρόνο λειτουργίας του *κρυπτογραφημένου password ,καθώς έπίσης εισάγει στη δομή και τον κρυπτογραφημένο κωδικό με το όνομα του χρήστη.Επιστρέφει έναν δείκτη σε δομή struct spwd.
 *
 */
-struct spwd  UserProperties::set_possix(int max, int warn,int inact, int min,string inact_user,char * name,char * password_hash,int current_days)
+struct spwd  UserProperties::setShadowStruct(int max, int warn,int inact, int min,string inact_user,char * name,char * password_hash,int current_days)
 {
 struct spwd sp;
 sp.sp_namp = name;
@@ -286,7 +294,7 @@ return sp;
 /**
 *Η συνάρτηση εισάγει στο αρχείο shadow τις τιμές όλων τών πεδίων του shadow struct.Το πεδίο του password συμπληρώνεται ανάλογα με το αν είναι ενεργός λογαριασμός ή όχι (έλεγχος απο τη φόρμα).Χρησιμποιει την συνάρτηση set_posix () για την εισαγωγή στα πεδία του shadow struct
 */
-int UserProperties::insert_shadow ( QString logname,QString encrypted_pass )
+int UserProperties::insertIntoShadowFile ( QString logname,QString encrypted_pass )
 {
 	int ret = 0;
 	struct spwd spw;
@@ -310,15 +318,15 @@ int UserProperties::insert_shadow ( QString logname,QString encrypted_pass )
 
 	if( !checkBox->isChecked() && encrypted_pass != "" )
 		{		
-		spw = set_possix(atoi ( maximum.c_str() ),atoi(warn_pass.c_str()),atoi ( inactuser.c_str() ),atoi ( minim.c_str() ),inactuser,name.data(),encrypted_pass.toAscii().data(),curdays );		
+		spw = setShadowStruct(atoi ( maximum.c_str() ),atoi(warn_pass.c_str()),atoi ( inactuser.c_str() ),atoi ( minim.c_str() ),inactuser,name.data(),encrypted_pass.toAscii().data(),curdays );
 		}			
 	else if ( checkBox->isChecked() && encrypted_pass == "" )
 		{
-		spw = set_possix(atoi ( maximum.c_str() ),atoi(warn_pass.c_str()),atoi ( inactuser.c_str() ),atoi ( minim.c_str() ),inactuser,name.data(),(char *)"!",0 );
+		spw = setShadowStruct(atoi ( maximum.c_str() ),atoi(warn_pass.c_str()),atoi ( inactuser.c_str() ),atoi ( minim.c_str() ),inactuser,name.data(),(char *)"!",0 );
 		}
 	else if ( !checkBox->isChecked() && encrypted_pass == "" )
 		{
-		spw = set_possix(atoi ( maximum.c_str() ),atoi(warn_pass.c_str()),atoi ( inactuser.c_str() ),atoi ( minim.c_str() ),inactuser,name.data(),(char *)"",0 );
+		spw = setShadowStruct(atoi ( maximum.c_str() ),atoi(warn_pass.c_str()),atoi ( inactuser.c_str() ),atoi ( minim.c_str() ),inactuser,name.data(),(char *)"",0 );
 		
 		}
 	else if(checkBox->isChecked() && encrypted_pass != "" )
@@ -331,7 +339,7 @@ int UserProperties::insert_shadow ( QString logname,QString encrypted_pass )
 		string account = "";
 		account  = dis_account +  encrypting;
 		QString acc = account.data();
-		spw = set_possix(atoi ( maximum.c_str() ),atoi(warn_pass.c_str()),atoi ( inactuser.c_str() ),atoi ( minim.c_str() ),inactuser,name.data(),acc.toAscii().data(),curdays);
+		spw = setShadowStruct(atoi ( maximum.c_str() ),atoi(warn_pass.c_str()),atoi ( inactuser.c_str() ),atoi ( minim.c_str() ),inactuser,name.data(),acc.toAscii().data(),curdays);
 		}
 
 	setspent();
@@ -342,16 +350,16 @@ int UserProperties::insert_shadow ( QString logname,QString encrypted_pass )
 	shadowbase = fchk->fopen_wrapper ( sh_file, "a+" );
 	if ( shadowbase!=NULL )
 	{
-		//εισαγωγή της δομής στο αρχείο shadow 
+		//insert shadow struct into shadow file
 		ret = putspent ( &spw, shadowbase );
 		fclose ( shadowbase );
 	}
-	//δικαιώματα αρχείου 6->
-	//chmod(SHADOW_FILE,0640);
-	//struct group *grp;					
-	//grp = getgrnam("shadow");					
-	//chown (SHADOW_FILE , (uid_t)0 ,(gid_t)grp->gr_gid);
-	//endspent();
+	//shadow file change privileges
+	chmod(SHADOW_FILE,0640);
+	struct group *grp;
+	grp = getgrnam("shadow");
+	chown (SHADOW_FILE , (uid_t)0 ,(gid_t)grp->gr_gid);
+	endspent();
 
 	delete fchk ;
 	fchk = nullptr;
@@ -436,9 +444,9 @@ void UserProperties::addUserBase()
 		u = getpwuid ( userID );
 		if ( u == NULL )
 		{
-			pass_done = insert_passwd ( nam,uid,gid,directory,gec,shellcon );
-			group_done = insert_group ( nam,gid );
-			shadow_done = insert_shadow ( nam,passhash );
+			pass_done = insertIntoPasswdFile ( nam,uid,gid,directory,gec,shellcon );
+			group_done = insertIntoGroupFile ( nam,gid );
+			shadow_done = insertIntoShadowFile ( nam,passhash );
 			
 		}
 		else
@@ -491,7 +499,7 @@ void UserProperties::addUserBase()
 			
 	
 			QMessageBox::information ( this,tr ( "User Manager" ),tr ( " User %1 Inserted succesfully!!" ).arg ( nam ) );
-			passBtn->setEnabled(false);
+			passBtn->setEnabled(true);
 			}
 		else
 		QMessageBox::information ( 0,tr ( "User Manager" ),tr ( " User %1 Not Inserted" ).arg ( nam ) );
@@ -523,49 +531,6 @@ if ( ok && !userExists)
 }
 }
 
-/**
-*Η σνάρτηση χρησιμοποιεί το γραφικό περιβάλλον της φόρμας για να δεχτει τον κωδικό απο τον χρήστη και να κάνει την πιστοποίηση verify.
-*Η Επίσης χρησιμοποιεί τη συναρτήση  encryptPasswd .o κρυπτογραφημένος κωδικός αποθηκεύεται στην passhash για περεταίρω επεξεργασία
-*/
-void UserProperties::setPassword()
-{
-	bool okBtn;
-	QString name = NameLabel->text();
-	QString verify;
-	QString passwd = QInputDialog::getText ( 0, QObject::tr ( "Enter Password" ), QObject::tr ( "Please Enter password for '%1'" ).arg ( name ), QLineEdit::Password, QString ( "" ), &okBtn );
-	if(passwd != "" )
-	verify = QInputDialog::getText ( 0, QObject::tr ( " Verify Password " ), QObject::tr ( "Please Verify password for '%1'" ).arg ( name ), QLineEdit::Password, QString ( "" ), &okBtn );
-	if ( okBtn && passwd != "" && strncmp(passwd.toAscii().data(),verify.toAscii().data(), strlen(passwd.toAscii().data())) == 0)
-	{
-		// unlocks account
-		checkBox->setCheckState ( Qt::Unchecked );
-
-		/*Create SHA-256 hash */
-
-				IHashing *psha256 = HashingFactory::Get()->CreateAlgorithm("sha256");
-				if ( psha256 )
-					passhash = psha256->encryptpass ( passwd );
-
-				if ( psha256 )
-					psha256->Free();
-				psha256 = NULL;
-
-		struct  tm *ltime;
-		time_t times;
-		char buff[256];
-		setlocale ( LC_ALL, "C" );
-		time ( &times );
-		ltime = localtime ( &times );
-		strftime ( buff,256," %A  %d  %B  %Y  %H:%M ",ltime );
-		timeDate->setText ( buff );
-	}
-	else 
-		{
-		if ( passwd != "" )
-		QMessageBox::warning ( 0,tr ( "User Manager" ),tr ( "Passwords are not identical \n. Please try again!" ) );
-		passhash = "";
-		}
-}
 /**
  * Adding/deleting users to/from groups
  */

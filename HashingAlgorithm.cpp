@@ -62,7 +62,7 @@ void HashingAlgorithm::setHashingAlgorithm()
 	int res = this->setPassword(name);
 	if ( res  == 0 )
 	{
-		QMessageBox::warning( 0,tr ( "User Manager" ),tr ( "Password inserted successfully" ) );
+		QMessageBox::information( 0,tr ( "User Manager" ),tr ( "Password inserted successfully" ) );
 	}
 }
 

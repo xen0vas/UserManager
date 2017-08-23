@@ -163,7 +163,7 @@ void MainWindow::addUserBtnClicked()
 			userProp->fillEasyList();
 			userProp->combotext();
 			QString uid;
-			uid = uid.setNum(userProp->passwd_study());
+			uid = uid.setNum(userProp->setPasswdUID());
 			userProp->uidEdit->setText( uid );
 			userProp->HomeDirEdit->setText( "" "/home/" + userString + "" );	
 			userProp->timeDate->setText("_");
