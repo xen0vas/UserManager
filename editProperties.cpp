@@ -54,7 +54,6 @@ void EditProperties::openHashingAlgorithm()
 {
 HashingAlgorithm *hash = new HashingAlgorithm;
 hash->usrEdit->setText(LoginName->text());
-hash->setWindowFlags(hash->windowFlags()|Qt::WindowStaysOnTopHint);
 hash->show();
 if ( hash->exec() ){}
 delete hash;

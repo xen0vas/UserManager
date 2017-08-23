@@ -25,12 +25,16 @@ public:
 	~HashingAlgorithm();
 	int setPassword(QString name);
 
+
 private:
 	void setPassAging(QString name, QString passhash);
 
 private slots:
 	void setHashingAlgorithm();
 	bool getSha256IsChecked();
+	bool getSha512IsChecked();
+	bool getMd5IsChecked();
+
 
 
 };
