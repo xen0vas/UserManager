@@ -27,7 +27,7 @@ public:
 
 
 private:
-	void setPassAging(QString name, QString passhash);
+	void storePassShadow(QString name, QString passhash);
 
 private slots:
 	void setHashingAlgorithm();
