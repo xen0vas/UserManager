@@ -54,7 +54,7 @@ HashingAlgorithm *hash = new HashingAlgorithm;
 hash->usrEdit->setText(LoginName->text());
 hash->show();
 if ( hash->exec() ){}
-delete hash;
+if (hash != nullptr) { delete hash; hash = nullptr; }
 }
 
 /**

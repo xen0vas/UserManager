@@ -115,17 +115,21 @@ connect(menuAboutUserManager, SIGNAL( triggered() ), this, SLOT( aboutUserManage
 
 void MainWindow::setPassMenu()
 {
-
-//HashingAlgorithm *hash= new HashingAlgorithm();
-HashingAlgorithm hash;
 QModelIndex index=userTreeView->selectionModel()->currentIndex();
 int row=index.row();
 QString username=index.sibling ( row, 1 ).data( ).toString();
 if (username == "")
 QMessageBox::information ( 0, tr ( " UserManager " ),tr ( " Please Select a User to Change Password!!" ) ); 
 else
-	hash.setPassword(username);
-//if (hash != nullptr) { delete hash; hash = nullptr; }
+{
+	HashingAlgorithm *hash= new HashingAlgorithm();
+	hash->usrEdit->setText(username);
+	hash->show();
+	if ( hash->exec() ){}
+	if (hash != nullptr) { delete hash; hash = nullptr; }
+}
+
+
 }
 /**
  *Προετοιμασία εισαγωγής νέου χρήστη.Έλεγχος αν υπάρχουν όλα τα αρχεία συστήματος (group,passwd,shadow).Εκκινεί με το πάτημα του κουμπιού εισαγωγής νέου χρήστη από την κύρια φόρμα.
