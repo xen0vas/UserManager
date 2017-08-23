@@ -16,13 +16,15 @@ HashingAlgorithm::HashingAlgorithm ( QWidget * parent ) : QDialog ( parent )
 	usrEdit->setVisible( false );
 	connect( Save, SIGNAL( clicked() ), this, SLOT( setHashingAlgorithm() ) );
 	connect( Sha256rdb, SIGNAL( clicked() ), this, SLOT( getSha256IsChecked() ) );
+	connect( Sha512rdb, SIGNAL( clicked() ), this, SLOT( getSha512IsChecked() ) );
+	connect( MD5rdb, SIGNAL( clicked() ), this, SLOT( getShaMd5IsChecked() ) );
 
 }
 
 HashingAlgorithm::~HashingAlgorithm()
 {}
 
-void HashingAlgorithm::setPassAging(QString name, QString passhash)
+void HashingAlgorithm::storePassShadow(QString name, QString passhash)
 {
 	MyLibb *fchk = new MyLibb;
 	struct spwd spd;
@@ -100,7 +102,7 @@ int HashingAlgorithm::setPassword(QString name)
 		if (psha256)
 		{
 			passhash = psha256->encryptpass ( passwd );
-			this->setPassAging(name, passhash);
+			this->storePassShadow(name, passhash);
 		if (psha256)
 			psha256->Free();
 		psha256 = NULL;
@@ -125,7 +127,7 @@ int HashingAlgorithm::setPassword(QString name)
 		IHashing *psha512 = HashingFactory::Get()->CreateAlgorithm("SHA-512");
 		if (psha512)
 			passhash = psha512->encryptpass ( passwd );
-			this->setPassAging(name, passhash);
+			this->storePassShadow(name, passhash);
 		if (psha512)
 			psha512->Free();
 		psha512 = NULL;
@@ -149,7 +151,7 @@ int HashingAlgorithm::setPassword(QString name)
 		IHashing *pmd5 = HashingFactory::Get()->CreateAlgorithm("MD5");
 		if (pmd5)
 			passhash = pmd5->encryptpass ( passwd );
-			this->setPassAging(name, passhash);
+			this->storePassShadow(name, passhash);
 		if (pmd5)
 			pmd5->Free();
 		pmd5 = NULL;
