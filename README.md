@@ -27,6 +27,18 @@ UserManager has been developed in c/c++ and Qt framework which helps Linux admin
 
 ------------------
 
+#### Important Info : 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If the application doesn't run, use the following fix     
+- export QT X11 NO MITSHM=1 or QT X11 NO MITSHM=1 UserManager.     
+QT X11 NO MITSHM stops Qt form using the MIT-SHM X11 extension.    
+This is a known bug in Qt applications   
+More info here: 
+https://en.wikipedia.org/wiki/MIT-SHM
+http://www.iwillfolo.com/quick-fix-one-kdes-common-xorg-errors-x-error-baddrawable/
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 ### UserManager main view
 ------------------------
 
