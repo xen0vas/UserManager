@@ -88,10 +88,10 @@ void GroupProperties::addMembers( )
 	QModelIndexList indexes = notMembersList->selectionModel()->selectedIndexes();
 	char *cmd;
 	int done=1;
-	char *member;
+	//char *member;
 	foreach ( QModelIndex index, indexes )
 	{
-		member=index.data().toByteArray().data();
+		//member=index.data().toByteArray().data();
 		QString command="addgroup " + index.data().toString() + " " + getOldGroupName() + "";//index.data().toString() periexei ton neo member kai groupNameEdit->text() to group pou 8a mpei
 		cmd=command.toAscii().data();
 		done = ( system ( cmd ) );

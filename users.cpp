@@ -21,7 +21,8 @@ Users::~Users()
 struct passwd *Users::searchUser()
 {
 	bool okBtn;
-	char *userToSearch;
+	char *userToSearch ;
+
 	struct passwd *result = NULL;
 	QString userString = QInputDialog::getText( 0, QObject::tr( "Search" ), QObject::tr( "Enter Login Name:(case sensitive)" ), QLineEdit::Normal, QString( "" ), &okBtn );
 
@@ -376,7 +377,7 @@ uint64_t Users::getSize( char *dirname )
  */
 int Users::countUsers( )
 {	
-	struct passwd *users;
+	struct passwd *users = NULL;
 	int total=0;
 	setpwent();
 	while (( users = getpwent() ) )

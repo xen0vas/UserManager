@@ -779,8 +779,9 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	Models model;
 	Groups group;
 	MyLibb set;
-	char *cmd;
-	struct group *grs;
+	char *cmd = (char*)malloc(sizeof(char*));
+	memset (&cmd, 0x0, sizeof(*cmd));
+	struct group *grs = NULL;
 	int done=-1;
 	QVariant state = index.data(Qt::CheckStateRole);//state=2 an einai hdh checked(ara vgainei apo member o user),0 an einai unchecked (ara mpainei san member) to checkbox tou group pou path8hke
 	if (state == 2)
@@ -869,6 +870,8 @@ if (done==0)
 	userGroups->setModel ( model.createUserInGroupsModel ( getOldUsername() ) );
 	userGroups->setColumnWidth ( 0, 30);
 }
+	free(cmd);
+	cmd = nullptr;
 }
 /**
  * Η συνάρτηση αλλάζει σε έναν λογαριασμό την κύρια ομάδα.

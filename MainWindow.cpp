@@ -331,7 +331,7 @@ void MainWindow::deleteUser()
 	int okk = 0;
 	int result2 = 0;
 	int result = 0;
-	FILE *passBase, *groupBase;
+	FILE *passBase; // ,*groupBase;
 	passBase = fchk->fopen_wrapper ( PASSWD_FILE, "r+" );
 	QModelIndex index=userTreeView->selectionModel()->currentIndex();
 	int row=index.row();
@@ -426,7 +426,7 @@ void MainWindow::deleteUser()
 						if (okk == 0 )
 						{			
 								
-							groupBase  = fchk->fopen_wrapper ( GROUP_FILE,  "r+" );
+							//groupBase  = fchk->fopen_wrapper ( GROUP_FILE,  "r+" );
 							result  = gr.deleteGroup ( username );
 							
 							if ( result == -1 && result2 == -1 )
