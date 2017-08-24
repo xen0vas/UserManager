@@ -19,7 +19,7 @@ QStandardItemModel *Models::createUsersModel( )
 {	
 	setpwent();	
 	
-	struct passwd *users; 
+	struct passwd *users = NULL;
  	struct finfo info;
 	QStandardItemModel *model = new QStandardItemModel( 0, 6 );
 	model->setHeaderData( 0, Qt::Horizontal, QObject::tr( "UID" ) );
@@ -28,7 +28,7 @@ QStandardItemModel *Models::createUsersModel( )
 	model->setHeaderData( 3, Qt::Horizontal, QObject::tr( "Home Directory" ) );
 	model->setHeaderData( 4, Qt::Horizontal, QObject::tr( "Default Shell" ) );
 	model->setHeaderData( 5, Qt::Horizontal, QObject::tr( "Disk Usage" ) );
-	Users *us ;	
+	Users *us = new Users();
 		while (( users = getpwent() ) )
 	{
 		us->passwd_parse(getpwnam(users->pw_name),&info);
@@ -54,6 +54,7 @@ QStandardItemModel *Models::createUsersModel( )
 		model->setData( diskUsage, QVariant( QString( " " ) ) );		
 	}
 	endpwent();
+	if (us != nullptr){ delete us; us = nullptr;}
 	return model;
 }
 /**
@@ -65,7 +66,7 @@ QStandardItemModel *Models::createUsersModelWithSizes( QStringList sizeList )
 
 	setpwent();
 	struct finfo info;
-	struct passwd *users;
+	struct passwd *users = NULL;
 	QStandardItemModel *model = new QStandardItemModel( 0, 6 );
 	model->setHeaderData( 0, Qt::Horizontal, QObject::tr( "UID" ) );
 	model->setHeaderData( 1, Qt::Horizontal, QObject::tr( "Login Name" ) );
@@ -229,7 +230,7 @@ QStandardItemModel *Models::createMembersModel ( const char *groupName )
 	struct finfo info;
 	struct group *grp = getgrnam ( groupName );
 	members = grp->gr_mem;
-	Users *us;
+	Users *us = new Users();
 
 	QStandardItemModel *model = new QStandardItemModel ( 0, 3 );
 	model->setHeaderData ( 0, Qt::Horizontal, QObject::tr ( "UID" ) );
@@ -277,6 +278,7 @@ QStandardItemModel *Models::createMembersModel ( const char *groupName )
 		}
 	}
 	endpwent();
+	if(us != nullptr){ delete us; us = nullptr; }
 	return model;
 }
 

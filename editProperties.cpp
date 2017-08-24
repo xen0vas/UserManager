@@ -329,7 +329,6 @@ void EditProperties::acct_shadow ( struct spwd spw )
 
 int  EditProperties::set_shad_expire(QString months,int days_value,int years_value)
 {
-	int the_time = 0;
 	struct tm newtime;
 	time_t rawtime;
 	time(&rawtime);	
@@ -364,7 +363,7 @@ int  EditProperties::set_shad_expire(QString months,int days_value,int years_val
 	time_t raw;
 	raw = mktime(&newtime);
 	int exptime = raw / (60 * 60 * 24 );
-	the_time = exptime;
+	//int the_time = exptime;
 	return exptime;
 }
 /**
@@ -877,7 +876,7 @@ if (done==0)
 void EditProperties::setPrimaryGroup()
 {
 	struct group *grp=NULL;
-	Users *usr;
+	Users *usr = new Users();
 	Models model;
 	QString gname="";
 	const char *groupname="";
@@ -885,17 +884,18 @@ void EditProperties::setPrimaryGroup()
 	QModelIndexList indexes = userGroups->selectionModel()->selectedIndexes();
 	foreach ( QModelIndex index, indexes )
 	{	if(index.data().toString()!="")
-{		groupname=index.data().toString().toAscii().data();
-		grp=getgrnam ( groupname );
-		gname.append ( grp->gr_name );
-		QString command="usermod -g " + gname  + " " + LoginName->text() ;
-		cmd=command.toAscii().data();
-		system(cmd);
-		userGroups->setModel ( model.createUserInGroupsModel (  LoginName->text() ) );
-		userGroups->setColumnWidth ( 0, 30);
-		primGroupLabel->setText(usr->getPrimaryGroup(LoginName->text()));
-}
+		{		groupname=index.data().toString().toAscii().data();
+				grp=getgrnam ( groupname );
+				gname.append ( grp->gr_name );
+				QString command="usermod -g " + gname  + " " + LoginName->text() ;
+				cmd=command.toAscii().data();
+				system(cmd);
+				userGroups->setModel ( model.createUserInGroupsModel (  LoginName->text() ) );
+				userGroups->setColumnWidth ( 0, 30);
+				primGroupLabel->setText(usr->getPrimaryGroup(LoginName->text()));
+		}
 	}
+	if (usr != nullptr){ delete usr; usr = nullptr;}
 }
 /**
  * Περιήγηση στον προσωπικό φάκελο του επιλεγμένου χρήστη. 

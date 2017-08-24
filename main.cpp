@@ -57,7 +57,6 @@ int main(int argc, char ** argv)
 	}
 
 	setspent();
-	MyLibb set;	
 	while ( ( sp = getspent() ) )
 	{
 		pw=getpwnam ( sp->sp_namp );
@@ -66,10 +65,8 @@ int main(int argc, char ** argv)
 			QMessageBox::critical ( 0,QObject::tr ( "User Manager" ),QObject::tr ( " Entry of user ' <i><b>%1</b></i> ' in /etc/shadow does not exist in /etc/passwd  " ).arg ( sp->sp_namp ) );
 			
 }
-
-		bool userid = false ;
-    		// if the user is not root the application will not start
-		char *user = (char *)calloc(64, sizeof(char));
+        // if the user is not root the application will not start
+		char *user = (char *)calloc(128, sizeof(char));
 		pw = getpwuid(getuid());
 		user = pw->pw_name;
 		if (strncmp(user , "root", strlen(user)) != 0)
@@ -78,6 +75,7 @@ int main(int argc, char ** argv)
 			if (user !=  nullptr) { free(user); user = nullptr;   }
 			exit (0);
 		}
+
 
 	MainWindow win;
 	win.show();

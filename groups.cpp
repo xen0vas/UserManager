@@ -89,9 +89,9 @@ struct group *Groups::remove_member(struct group *in,char *uname)
 
 int Groups::rm_grMember(QString log)
 {
-    struct group *grs;
+    struct group *grs = NULL;
 	FILE * f;
-	MyLibb *set;
+	MyLibb *set = new MyLibb();
 	f = fopen(GR_FILE,"r");
 	char *login = log.toAscii().data();
 	setgrent();
@@ -104,6 +104,7 @@ int Groups::rm_grMember(QString log)
 		}
 	}
 	endgrent();
+	if (set != nullptr){ delete set; set = nullptr;}
 	fclose(f);
 	return 0;
 }
