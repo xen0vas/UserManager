@@ -13,9 +13,7 @@
 
 
 HashEncode::HashEncode()
-{
-
-}
+{}
 
 HashEncode::~HashEncode()
 {}

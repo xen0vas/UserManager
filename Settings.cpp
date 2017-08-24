@@ -81,9 +81,6 @@ std::string Settings::getconf ( std::string setting )
 			break;
 		}
 
-	//if ( ( found != line.find ( setting,0 ) ) != string::npos )
-	//	{}
-
 	conf.close();
 	return line;
 

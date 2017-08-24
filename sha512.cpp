@@ -50,6 +50,7 @@
 #include "sha512.h"
 #include <QMessageBox>
 #include <unistd.h>
+#include <crypt.h>
 
 
 IHashing *sha512::Create()
@@ -87,7 +88,14 @@ char *sha512::encryptpass( QString passwd) const
 	char *password = passwd.toAscii().data();
 	strncpy ( buf,password,strlen(password));
 
-	char *pass = crypt ( buf,seed );
+	/*
+	* The crypt_r function does the same thing as crypt, but takes an extra parameter which includes space for its result (among other things), so it can be reentrant. data->initialized must be cleared to zero before the first time crypt_r is called
+	*/
+		struct crypt_data data;
+		data.initialized = 0;
+
+		char *pass = crypt_r ( buf,seed, &data);
+
 	if ( pass == NULL )
 		QMessageBox::critical ( 0,QObject::tr ( "User Manager" ),QObject::tr ( "%1" ).arg ( ENOSYS ) );
 	if (buf!=NULL)free(buf);
