@@ -14,12 +14,14 @@ HashingAlgorithm::HashingAlgorithm ( QWidget * parent ) : QDialog ( parent )
 	setModal ( true );
 	MD5rdb->setChecked( true );
 	usrEdit->setVisible( false );
+	Blowfishrdb->setVisible( false );
 	pass->setEchoMode(QLineEdit::Password);
 	pass2->setEchoMode(QLineEdit::Password);
 	connect( Save, SIGNAL( clicked() ), this, SLOT( setHashingAlgorithm() ) );
 	connect( Sha256rdb, SIGNAL( clicked() ), this, SLOT( getSha256IsChecked() ) );
 	connect( Sha512rdb, SIGNAL( clicked() ), this, SLOT( getSha512IsChecked() ) );
 	connect( MD5rdb, SIGNAL( clicked() ), this, SLOT( getMd5IsChecked() ) );
+	connect( Blowfishrdb, SIGNAL( clicked() ), this, SLOT( getBlowIsChecked() ) );
 
 }
 
@@ -39,6 +41,12 @@ void HashingAlgorithm::storePassShadow(QString name, QString passhash)
 	fchk->setspnam(&spd);
 	main.reloadUsersAndGroups();
 	if (fchk != nullptr) { delete fchk; fchk = nullptr;}
+}
+
+bool HashingAlgorithm::getBlowIsChecked()
+{
+	return this->Blowfishrdb->isChecked();
+
 }
 
 bool HashingAlgorithm::getSha256IsChecked()
@@ -70,7 +78,7 @@ void HashingAlgorithm::setHashingAlgorithm()
  *
  * This function is used to create a user password.
  * A form is used in order to insert a new password.
- * Using IHashing interface, it calls encryptpass function which is implemented in classes sha256, sha512
+ * Using IHashing interface, it calls encryptpass function which is implemented in classes sha256, sha512, blowfish
  * and MD5 depending on the selected hashing algorithm.
  * The formated result is encrypted and saved inside the global variable passhash for further processing.
  *
@@ -85,6 +93,7 @@ int HashingAlgorithm::setPassword(QString name)
    bool sha256Checked = this->getSha256IsChecked();
    bool sha512Checked = this->getSha512IsChecked();
    bool md5Checked = this->getMd5IsChecked();
+   bool blowfishChecked = this->getBlowIsChecked();
 
    if ( this->Save && sha256Checked )
    {
@@ -135,6 +144,31 @@ int HashingAlgorithm::setPassword(QString name)
 			psha512 = NULL;
 		}
 	}
+
+   	if ( this->Save && blowfishChecked )
+   	   	{
+   	   		if (this->Save && (this->pass->text().toStdString() == "" || this->pass2->text().toStdString() == "" ))
+   	   		{
+   	   			QMessageBox::warning( 0,tr ( "User Manager" ),tr ( "Empty field. Please fill in with the new password" ) );
+   	   			return 1;
+   	   		}
+
+   	   		if (this->Save && strncmp(passwd.toAscii().data(), verify.toAscii().data(), strlen(passwd.toAscii().data())) != 0)
+   	   		{
+   	   			QMessageBox::warning( 0,tr ( "User Manager" ),tr ( "Passwords do not match!" ) );
+   	   			return 1;
+   	   		}
+
+   			/* Choose blowfish Algorithm */
+   			IHashing *pblow = HashingFactory::Get()->CreateAlgorithm("blowfish");
+   			if (pblow)
+   			{
+   				passhash = pblow->encryptpass ( passwd );
+   				this->storePassShadow(name, passhash);
+   				pblow->Free();
+   				pblow = NULL;
+   			}
+   		}
 
    	if ( this->Save && md5Checked )
    	{

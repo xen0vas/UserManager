@@ -806,12 +806,9 @@ void MainWindow::UserDetails()
 		reloadUsersAndGroups();
 
 	}
-
-	if (model != nullptr)
-	{delete model; model = nullptr;}
-
-	if (use != nullptr)
-	{delete use; use = nullptr;}
+	if (props != nullptr){ delete props; props = nullptr;}
+	if (model != nullptr){delete model; model = nullptr;}
+	if (use != nullptr){delete use; use = nullptr;}
 
 }
 

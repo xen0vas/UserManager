@@ -47,10 +47,18 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QRadioButton" name="Blowfishrdb">
+        <property name="text">
+         <string>Blowfish</string>
+        </property>
+       </widget>
+      </item>
      </layout>
      <zorder>Sha256rdb</zorder>
      <zorder>MD5rdb</zorder>
      <zorder>Sha512rdb</zorder>
+     <zorder>Blowfishrdb</zorder>
     </widget>
    </item>
    <item>

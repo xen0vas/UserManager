@@ -27,8 +27,6 @@ private slots:
 	bool getSha256IsChecked();
 	bool getSha512IsChecked();
 	bool getMd5IsChecked();
-
-
-
+	bool getBlowIsChecked();
 };
 

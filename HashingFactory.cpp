@@ -2,6 +2,7 @@
 #include "sha256.h"
 #include "sha512.h"
 #include "Md5.h"
+#include "Blowfish.h"
 
 
 HashingFactory::HashingFactory()
@@ -9,6 +10,7 @@ HashingFactory::HashingFactory()
 	Register("SHA-256", &sha256::Create);
 	Register("SHA-512", &sha512::Create);
 	Register("MD5", &Md5::Create);
+	Register("blowfish", &Blowfish::Create);
 }
 
 /*
