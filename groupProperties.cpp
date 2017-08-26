@@ -47,7 +47,7 @@ QString GroupProperties::getOldGroupName()
  */
 int GroupProperties::groupStudy(gid_t uid_n)
 {
-	struct group *grp;
+	struct group *grp = NULL;
 	Settings settings;
 	gid_t  tmp_gid;
 	gid_t  max = 65535;
@@ -118,7 +118,7 @@ void GroupProperties::removeMembers( )
 {
 	Groups groups;
 	Models model;
-	struct group *grs;
+	struct group *grs = NULL;
 	MyLibb set;
 	char *gname=getOldGroupName().toAscii().data();
 	char *username;

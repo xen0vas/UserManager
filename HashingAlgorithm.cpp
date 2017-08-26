@@ -14,7 +14,7 @@ HashingAlgorithm::HashingAlgorithm ( QWidget * parent ) : QDialog ( parent )
 	setModal ( true );
 	MD5rdb->setChecked( true );
 	usrEdit->setVisible( false );
-	Blowfishrdb->setVisible( false );
+	Blowfishrdb->setEnabled( false );
 	pass->setEchoMode(QLineEdit::Password);
 	pass2->setEchoMode(QLineEdit::Password);
 	connect( Save, SIGNAL( clicked() ), this, SLOT( setHashingAlgorithm() ) );

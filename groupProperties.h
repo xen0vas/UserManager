@@ -22,8 +22,6 @@ class GroupProperties : public QDialog , public Ui::GroupProperties
 		
 	private :
 
-
-		struct grp *group;
 		QString oldGroupName_;
 
 	private slots:

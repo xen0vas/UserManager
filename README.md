@@ -27,6 +27,17 @@ UserManager has been developed in c/c++ and Qt framework which helps Linux admin
 
 ------------------
 
+#### hashing algorithms 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The application uses crypt() to encrypt the Linux password which supports the following algorithms: 
+- MD5 
+- SHA-512
+- SHA-256
+- Blowfish ( it has been implemented but is currently disabled by the Application because bcrypt it is not included in glibc. If you want to enable it you must import a patch to include crypt_blowfish in libc.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
 #### Important Info : 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If the application doesn't run, use the following fix     
