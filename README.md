@@ -41,7 +41,7 @@ The application uses crypt() to encrypt the Linux password which supports the fo
 #### Important Info : 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-the application is currently on a stable version. I have succesfully tested it in Linux ubuntu and Debian systems (wheezy,jessy,stretch).    
+the application is currently at a stable version. I have succesfully tested it in Linux ubuntu and Debian systems (wheezy,jessy,stretch).    
 if you find any bugs please give me a feedback.
 
 If the application doesn't run, use the following fix     
