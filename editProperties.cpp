@@ -22,7 +22,6 @@ EditProperties::EditProperties ( QWidget * parent ) : QDialog ( parent )
 	expire->setEnabled(false);
 	warn->setEnabled(false);
 	min->setEnabled(false);
-
 	shellConnect->setAutoCompletion ( true );
 	shellConnect->setEditable ( true );
 	min->setSpecialValueText ( "never" );
@@ -53,6 +52,7 @@ void EditProperties::openHashingAlgorithm()
 HashingAlgorithm *hash = new HashingAlgorithm;
 hash->UserNameLabel->setText(LoginName->text());
 hash->show();
+
 if ( hash->exec() ){}
 if (hash != nullptr) { delete hash; hash = nullptr; }
 }

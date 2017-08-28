@@ -37,6 +37,12 @@
      </item>
      <item>
       <widget class="QLabel" name="UserNameLabel">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="maximumSize">
         <size>
          <width>151</width>
@@ -267,7 +273,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>179</x>
-     <y>310</y>
+     <y>350</y>
     </hint>
     <hint type="destinationlabel">
      <x>115</x>
