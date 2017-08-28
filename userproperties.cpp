@@ -77,7 +77,7 @@ UserProperties::~UserProperties()
 void UserProperties::openHashingAlgorithm()
 {
 HashingAlgorithm *hash = new HashingAlgorithm;
-hash->usrEdit->setText(NameLabel->text());
+hash->UserNameLabel->setText(NameLabel->text());
 hash->show();
 if ( hash->exec() ){}
 delete hash;
