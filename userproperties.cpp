@@ -81,6 +81,7 @@ hash->UserNameLabel->setText(NameLabel->text());
 hash->show();
 if ( hash->exec() ){}
 delete hash;
+
 }
 
 /**

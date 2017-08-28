@@ -7,7 +7,7 @@ if [ "$DIRECTORY" != "UserManager" ]; then
 	echo " this isnt the UserManager Directory " 
 	exit 0
 fi
-
+while (( inotifywait -e modify *.cpp || inotifywait -e modify *.h )) ; do
 make clean 
 rm -rf Makefile > /dev/null 2>&1
 qmake -project
@@ -22,7 +22,7 @@ echo "INSTALLS += installfiles" >> UserManager.pro
 make
 make install
 #UserManager 
-
+done
 
 
 
