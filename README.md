@@ -40,6 +40,10 @@ The application uses crypt() to encrypt the Linux password which supports the fo
 
 #### Important Info : 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+the application is currently on a stable version. I have succesfully tested it in Linux ubuntu and Debian systems.   
+if you find any bug please give me a feedback.
+
 If the application doesn't run, use the following fix     
 - export QT X11 NO MITSHM=1 or QT X11 NO MITSHM=1 UserManager.     
 QT X11 NO MITSHM stops Qt form using the MIT-SHM X11 extension.    
