@@ -170,6 +170,9 @@ INSTALLS += installfiles
 
 >  `usermanager`
 
+> or run the scipt install.sh 
+
+> sh install.sh
 ------------------------
 
 
