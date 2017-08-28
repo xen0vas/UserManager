@@ -1,7 +1,7 @@
 
 # UserManager
 
-UserManager has been developed in c/c++ and Qt framework which helps Linux administrators to manage user accounts and groups. This tool has a friendly dashboard performing the following 
+UserManager has been developed in C/C++ and Qt framework which helps Linux administrators to manage user accounts and groups. This tool has a friendly dashboard performing the following 
 
 - add,edit,delete user accounts and groups
 - add users to groups
