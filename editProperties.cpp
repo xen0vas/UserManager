@@ -51,7 +51,7 @@ EditProperties::~EditProperties()
 void EditProperties::openHashingAlgorithm()
 {
 HashingAlgorithm *hash = new HashingAlgorithm;
-hash->usrEdit->setText(LoginName->text());
+hash->UserNameLabel->setText(LoginName->text());
 hash->show();
 if ( hash->exec() ){}
 if (hash != nullptr) { delete hash; hash = nullptr; }
