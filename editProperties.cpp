@@ -50,7 +50,8 @@ EditProperties::~EditProperties()
 void EditProperties::openHashingAlgorithm()
 {
 HashingAlgorithm *hash = new HashingAlgorithm;
-hash->UserNameLabel->setText(LoginName->text());
+string username = LoginName->text().toStdString();
+hash->UserNameLabel->setText(QString::fromLocal8Bit(username.c_str()));
 hash->show();
 
 if ( hash->exec() ){}
@@ -67,14 +68,15 @@ void EditProperties::setOldUsername ( QString oldUsername )
 	oldUsername_ = oldUsername;
 }
 /**
- * Η συνάρτηση επιστρέφει το όνομα που είναι αποθηκευμένο στην κλάση,την στιγμή που θα κληθεί.
+ * The following function returns the saved name when called
  */
 QString EditProperties::getOldUsername()
 {
 	return oldUsername_;
 }
 /**
- *Παίρνει τα περιεχόμενα του αρχείου /etc/shells τα οποία είναι τα διαθέσιμα κελύφη του συστήματος και τα εισάγει σε ένα combobox στην φόρμα για επιλογή κελύφους ενός χρήστη από τον διαχειριστή.
+ *This function takes the contents of the file /etc/shells which contains the available system shells
+ *and inserts them inside a combobox in order to provide the option of choosing a shell for a User
  */
 void EditProperties::comboShell()
 {

@@ -679,7 +679,7 @@ void MainWindow::UserDetails()
 	Models *model {new Models()};
 	struct passwd p;
 	sp = getspnam ( log.toAscii().data() );
-	EditProperties *props { new EditProperties() };
+	EditProperties * props { new EditProperties() };
 	if (sp != nullptr)
 		props->acct_shadow ( *sp );
 	props->uiEdit->setText ( ui );
@@ -687,7 +687,7 @@ void MainWindow::UserDetails()
 	props->setOldUsername ( log );
 	p.pw_name = log.toAscii().data();
 
-	if(props->uiEdit->text() != "" || props->LoginName->text() != "")
+	if(props->uiEdit->text() != "" ||  props->LoginName->text() != "")
 	{
 		p.pw_name = log.toAscii().data();
 		if(( use->passwd_parse( getpwnam( p.pw_name ), &inf ) ) != 2)
@@ -726,7 +726,7 @@ void MainWindow::UserDetails()
 	char *login = log.toAscii().data();
 	spw = getspnam ( login );
 	*sp = *spw;
-	props->userGroups->setModel(model->createUserInGroupsModel(props->getOldUsername()));
+	props->userGroups->setModel(model->createUserInGroupsModel( props->getOldUsername()));
 	props->userGroups->setColumnWidth ( 0, 30);
 	setlocale (LC_ALL, "C");
 	if ( sp->sp_expire != -1 )
@@ -798,15 +798,16 @@ void MainWindow::UserDetails()
 	props->shellConnect->addItems( shell );
 	if(statusEdit->text() == "Disabled")
 	props->checkBoxEdit->setCheckState(Qt::Checked);
-	props->primGroupLabel->setText(use->getPrimaryGroup(props->getOldUsername()));
+	props->primGroupLabel->setText(use->getPrimaryGroup(  props->getOldUsername()));
 	props->comboShell();
 	props->setModal(true);
-	props->setWindowTitle("User Properties - " +props->LoginName->text()+"");
+	props->setWindowTitle("User Properties - " +  props->LoginName->text()+"");
 	if ( props->exec() ){}
 		reloadUsersAndGroups();
+		if (props != nullptr){delete props; props = nullptr;}
+
 
 	}
-	//if (props != NULL){ delete props; props = nullptr;}
 	if (model != nullptr){delete model; model = nullptr;}
 	if (use != nullptr){delete use; use = nullptr;}
 
