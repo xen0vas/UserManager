@@ -13,7 +13,7 @@ HashingAlgorithm::HashingAlgorithm ( QWidget * parent ) : QDialog ( parent )
 	setupUi ( this );
 	setModal ( true );
 	MD5rdb->setChecked( true );
-	UserNameLabel->setVisible( false );
+	UserNameLabel->setVisible( true );
 	Blowfishrdb->setEnabled( false );
 	pass->setEchoMode(QLineEdit::Password);
 	pass2->setEchoMode(QLineEdit::Password);

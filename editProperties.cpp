@@ -50,12 +50,11 @@ EditProperties::~EditProperties()
 void EditProperties::openHashingAlgorithm()
 {
 HashingAlgorithm *hash = new HashingAlgorithm;
-string username = LoginName->text().toStdString();
-hash->UserNameLabel->setText(QString::fromLocal8Bit(username.c_str()));
+QString username = LoginName->text();
+hash->UserNameLabel->setText("<font color='Blue'>" + username + "</font>");
 hash->show();
-
 if ( hash->exec() ){}
-if (hash != nullptr) { delete hash; hash = nullptr; }
+
 }
 
 /**

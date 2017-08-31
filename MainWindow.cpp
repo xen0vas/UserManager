@@ -806,8 +806,8 @@ void MainWindow::UserDetails()
 		reloadUsersAndGroups();
 		if (props != nullptr){delete props; props = nullptr;}
 
-
 	}
+
 	if (model != nullptr){delete model; model = nullptr;}
 	if (use != nullptr){delete use; use = nullptr;}
 
