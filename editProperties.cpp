@@ -51,7 +51,7 @@ void EditProperties::openHashingAlgorithm()
 {
 HashingAlgorithm *hash = new HashingAlgorithm;
 QString username = LoginName->text();
-hash->UserNameLabel->setText("<font color='Blue'>" + username + "</font>");
+hash->UserNameLabel->setText("<font color='Red'>" + username + "</font>");
 hash->show();
 if ( hash->exec() ){}
 
