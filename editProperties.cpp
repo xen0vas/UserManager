@@ -54,7 +54,7 @@ QString username = LoginName->text();
 hash->UserNameLabel->setText("<font color='Red'>" + username + "</font>");
 hash->show();
 if ( hash->exec() ){}
-
+if (hash != nullptr){ delete hash; hash = nullptr;}
 }
 
 /**
