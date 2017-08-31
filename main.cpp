@@ -5,7 +5,7 @@
 #include <unistd.h>
 
 
-void signalHandler(int);
+//void signalHandler(int);
 
 using namespace std;
 /**
