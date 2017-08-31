@@ -14,6 +14,7 @@ HashingAlgorithm::HashingAlgorithm ( QWidget * parent ) : QDialog ( parent )
 	setModal ( true );
 	MD5rdb->setChecked( true );
 	UserNameLabel->setVisible( true );
+	NameLabelHidden->setVisible ( false );
 	Blowfishrdb->setEnabled( false );
 	pass->setEchoMode(QLineEdit::Password);
 	pass2->setEchoMode(QLineEdit::Password);
@@ -66,8 +67,10 @@ bool HashingAlgorithm::getMd5IsChecked()
 
 void HashingAlgorithm::setHashingAlgorithm()
 {
-	QString name = this->UserNameLabel->text();
-	int res = this->setPassword(name);
+
+
+	int res = this->setPassword( NameLabelHidden->text() );
+
 	if ( res  == 0 )
 	{
 		QMessageBox::information( 0,tr ( "User Manager" ),tr ( "Password inserted successfully" ) );

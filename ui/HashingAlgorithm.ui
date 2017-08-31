@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>366</width>
-    <height>361</height>
+    <width>363</width>
+    <height>364</height>
    </rect>
   </property>
   <property name="font">
@@ -66,6 +66,25 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="NameLabelHidden">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>151</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -286,6 +305,8 @@
   <zorder>groupBox</zorder>
   <zorder>verticalSpacer_11</zorder>
   <zorder>verticalSpacer_13</zorder>
+  <zorder>NameLabelHidden</zorder>
+  <zorder>pass2</zorder>
  </widget>
  <resources>
   <include location="../resources/images.qrc"/>

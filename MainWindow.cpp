@@ -804,7 +804,7 @@ void MainWindow::UserDetails()
 	props->setWindowTitle("User Properties - " +  props->LoginName->text()+"");
 	if ( props->exec() ){}
 		reloadUsersAndGroups();
-		if (props != nullptr){delete props; props = nullptr;}
+		//if (props != nullptr){delete props; props = nullptr;}
 
 	}
 
