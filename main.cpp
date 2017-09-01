@@ -5,8 +5,6 @@
 #include <unistd.h>
 
 
-//void signalHandler(int);
-
 using namespace std;
 /**
  *constructor της κλάσης/φόρμας.

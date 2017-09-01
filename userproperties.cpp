@@ -77,7 +77,9 @@ UserProperties::~UserProperties()
 void UserProperties::openHashingAlgorithm()
 {
 HashingAlgorithm *hash = new HashingAlgorithm;
-hash->UserNameLabel->setText(NameLabel->text());
+QString username = NameLabel->text();
+hash->NameLabelHidden->setText(username);
+hash->UserNameLabel->setText("<font color='Red'>" + username + "</font>");
 hash->show();
 if ( hash->exec() ){}
 delete hash;

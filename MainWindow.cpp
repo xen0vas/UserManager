@@ -123,7 +123,8 @@ QMessageBox::information ( 0, tr ( " UserManager " ),tr ( " Please Select a User
 else
 {
 	HashingAlgorithm *hash= new HashingAlgorithm();
-	hash->UserNameLabel->setText(username);
+	hash->NameLabelHidden->setText(username);
+	hash->UserNameLabel->setText("<font color='Red'>" + username + "</font>");
 	hash->show();
 	if ( hash->exec() ){}
 	if (hash != nullptr) { delete hash; hash = nullptr; }
