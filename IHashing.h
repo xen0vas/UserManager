@@ -13,7 +13,8 @@ public:
 	virtual void Free() = 0;
 };
 
-#endif /* IHASHING_H_ */
 
 //create function pointer
 typedef IHashing* (*CreateHash)(void);
+
+#endif /* IHASHING_H_ */

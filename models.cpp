@@ -113,7 +113,7 @@ QStandardItemModel *Models::createUsersModelWithSizes( QStringList sizeList )
  */
 QStandardItemModel *Models::createGroupsModel(  )
 {
-	struct group *groups;	
+	struct group *groups = NULL;	
 	setgrent();
 	QStandardItemModel *model = new QStandardItemModel( 0, 2 );
 	model->setHeaderData( 0, Qt::Horizontal, QObject::tr( "GID" ) );
@@ -333,7 +333,7 @@ QStandardItemModel *Models::UsersNotInGroupModel ( const char *groupName )
 	char **members=NULL;
 	struct passwd * user=NULL;
 	QStandardItemModel *model = new QStandardItemModel ( 0,1 );
-	struct group *grp;
+	struct group *grp = NULL;
 	model->setHeaderData ( 0, Qt::Horizontal, QObject::tr ( "*Users NOT In Group*" ) );
 //vhma vhma
 //perna ena ena ta member kai meta gia ka8e ena xrhsth tou systhmatos koitaei an einai den einai member me thn [strcmp ( *members, user->pw_name ) != 0]

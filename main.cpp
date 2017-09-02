@@ -3,7 +3,7 @@
 #include "MainWindow.h"
 #include <string>
 #include <unistd.h>
-
+#include <memory>
 
 using namespace std;
 /**
@@ -26,9 +26,10 @@ int main(int argc, char ** argv)
 //an den isxyei h 1h tote 8ewreitai oti to programma den einai anoixto kai paei sthn 2h if h opoia vazei mesa sto usermanager.lock to pid ths diergasias tou usermanager pou molis dhmiourgh8hke kalwntas thn getpid();
 
 	QApplication app( argc, argv);
-	struct spwd *sp = NULL;
-	struct passwd *pw = NULL;
-
+	
+	struct spwd *sp; 
+	struct passwd *pw; 
+	
 
 	QFile lockFile( QDir::tempPath() + "/usermanager.lock" );
 	if ( lockFile.open( QIODevice::ReadOnly ) )
@@ -51,7 +52,6 @@ int main(int argc, char ** argv)
 		int pid = getpid();
 		lockStream << pid << endl;
 		lockFile.close();
-
 	}
 
 	setspent();
@@ -77,9 +77,9 @@ int main(int argc, char ** argv)
 
 	MainWindow win;
 	win.show();
-
-
-	if (user !=  nullptr) { free(user);   }
+	
+	
+	free(user);
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	return app.exec();
 }

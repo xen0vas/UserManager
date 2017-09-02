@@ -286,7 +286,7 @@ void MainWindow::getEditDetails(const QModelIndex &index)
 	fnam  = index.sibling( row, 2 ).data( Qt::DisplayRole ).toString();
 	dir   = index.sibling( row, 3 ).data( Qt::DisplayRole ).toString();
 	shell = index.sibling( row, 4 ).data( Qt::DisplayRole ).toStringList();
-	struct spwd *sp;
+	struct spwd *sp = {};
 	sp = getspnam(log.toAscii().data());
 	if (sp != NULL)
 		UserDetails();
@@ -337,8 +337,8 @@ void MainWindow::deleteUser()
 	QModelIndex index=userTreeView->selectionModel()->currentIndex();
 	int row=index.row();
 	QString username=index.sibling ( row, 1 ).data( ).toString();
-	struct passwd *passs;
-	struct group *grr;
+	struct passwd *passs = {};
+	struct group *grr = {};
 	passs = getpwnam(username.toAscii().data());
 	
 		
@@ -719,14 +719,15 @@ void MainWindow::UserDetails()
 				}		
 			}
 		}
-	struct spwd *spw ;
-	struct  tm *ltime;
+	struct spwd *spw ={};
+	struct  tm *ltime = {};
 	time_t time;
 	time_t exp_time;
 	char buff[256], day_buffer[256],month_buffer[256],year_buffer[256];
 	char *login = log.toAscii().data();
 	spw = getspnam ( login );
 	*sp = *spw;
+	 
 	props->userGroups->setModel(model->createUserInGroupsModel( props->getOldUsername()));
 	props->userGroups->setColumnWidth ( 0, 30);
 	setlocale (LC_ALL, "C");
@@ -808,10 +809,8 @@ void MainWindow::UserDetails()
 		//if (props != nullptr){delete props; props = nullptr;}
 
 	}
-
-	if (model != nullptr){delete model; model = nullptr;}
+	if  (model != nullptr){delete model; model = nullptr;}
 	if (use != nullptr){delete use; use = nullptr;}
-
 }
 
 /**
