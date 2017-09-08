@@ -52,7 +52,7 @@ http://www.iwillfolo.com/quick-fix-one-kdes-common-xorg-errors-x-error-baddrawab
 
 - The application by design was developed to run only from root user. Dont run the application with non root users.  
 
-- in case of consistency and performance please consider changing the following kernel parametes
+- in case of consistency and performance please consider changing the following kernel parameters
 
 vm.swappiness = 10
 vm.swappiness=10
