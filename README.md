@@ -41,16 +41,29 @@ The application uses crypt() to encrypt the Linux password which supports the fo
 #### Important Info : 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-the application is currently at a stable version. I have succesfully tested it in Linux ubuntu and Debian systems (wheezy,jessy,stretch).    
-if you find any bugs please give me a feedback.
+- the application is currently at a stable version. I have succesfully tested it in Linux ubuntu and Debian systems (wheezy,jessy,stretch).    
+- if you find any bugs please give me a feedback.
 
-If the application doesn't run, use the following fix     
-- export QT X11 NO MITSHM=1 or QT X11 NO MITSHM=1 UserManager.     
-QT X11 NO MITSHM stops Qt form using the MIT-SHM X11 extension.    
-This is a known bug in Qt applications   
+- If the application doesn't run, use the following fix export QT X11 NO MITSHM=1 or QT X11 NO MITSHM=1 UserManager. QT X11 NO MITSHM stops Qt form using the MIT-SHM X11 extension. This is a known bug in Qt applications   
+
 More info here: 
 https://en.wikipedia.org/wiki/MIT-SHM
 http://www.iwillfolo.com/quick-fix-one-kdes-common-xorg-errors-x-error-baddrawable/
+
+- The application by design was developed to run only from root user. Dont run the application with non root users.  
+
+- in case of consistency and performance please consider changing the following kernel parametes
+
+vm.swappiness = 10
+vm.swappiness=10
+vm.dirty_ratio=60
+vm.dirty_background_ratio = 2
+vm.dirty_background_ratio=2
+vm.dirty_bytes = 0
+vm.dirty_writeback_centisecs = 500
+vm.dirty_expire_centisecs = 3000
+vm.dirty_background_bytes = 0
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
