@@ -12,7 +12,7 @@ HashingAlgorithm::HashingAlgorithm ( QWidget * parent ) : QDialog ( parent )
 {
 	setupUi ( this );
 	setModal ( true );
-	MD5rdb->setChecked( true );
+	Sha512rdb->setChecked( true );
 	UserNameLabel->setVisible( true );
 	NameLabelHidden->setVisible ( false );
 	Blowfishrdb->setEnabled( false );
@@ -74,7 +74,9 @@ void HashingAlgorithm::setHashingAlgorithm()
 	if ( res  == 0 )
 	{
 		QMessageBox::information( 0,tr ( "User Manager" ),tr ( "Password inserted successfully" ) );
+		QWidget::close();
 	}
+
 }
 
 /**
