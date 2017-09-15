@@ -164,7 +164,7 @@ int UserProperties::setPasswdUID()
 	uid = atoi(settings.getconf("MINIMUM_UID").c_str());//atoi to metatrepei se int kai c_str() metatrepei to epistrefomeno string se char*
 	if ( !fp ) { return 0; }
 	setpwent();
-	while ( ( pw = getpwuid ( uid ) ) && found==false && uid<max)
+	while ( ( pw = getpwuid ( uid ) ) && found==false && uid<max )
 	{
 		if(pw==NULL)
 		found=true;

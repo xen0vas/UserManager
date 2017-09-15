@@ -1,6 +1,11 @@
 #!/bin/bash
 # generate a run script which performing the build process of UserManager application
 
+mkdir -p /usr/share/apps/UserManager/
+if [ ! -f /usr/share/apps/UserManager/other/usermanager.conf ]; then
+	cp -r ./other/usermanager.conf /usr/share/apps/UserManager/
+fi
+
 DIRECTORY=`pwd | cut -d/ -f4`
 
 if [ "$DIRECTORY" != "UserManager" ]; then 
