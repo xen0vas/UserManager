@@ -58,6 +58,7 @@ UserProperties::UserProperties ( QWidget * parent ) : QDialog ( parent )
 	expire->stepBy(-1);
 	warn->setSpecialValueText ( "never" );
 	warn->stepBy(-1);
+	ok->setVisible(false);
 	connect ( add, SIGNAL ( clicked() ), this, SLOT ( addUserBase() ) );
 	connect ( passBtn ,SIGNAL ( clicked() ),this,SLOT ( openHashingAlgorithm() ) );
 	connect( userGroups, SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( changeMembers(const QModelIndex& )));
@@ -521,6 +522,7 @@ if ( ok && !userExists)
 	Models *model{ new Models()};
 	add->setVisible(false);
 	closeBtn->setVisible(false);
+	ok->setVisible(true);
 	tabWidget->setTabEnabled(2,true);
 	primGroupLabel->setText ( usr->getPrimaryGroup ( nam ) );
 	userGroups->setModel(model->createUserInGroupsModel(nam));
