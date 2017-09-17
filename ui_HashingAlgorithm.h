@@ -29,7 +29,7 @@ QT_BEGIN_NAMESPACE
 class Ui_HashingAlgorithm
 {
 public:
-    QVBoxLayout *verticalLayout;
+    QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_5;
     QLabel *UserLabel;
     QLabel *UserNameLabel;
@@ -43,15 +43,14 @@ public:
     QRadioButton *Sha256rdb;
     QRadioButton *Blowfishrdb;
     QSpacerItem *verticalSpacer_10;
-    QHBoxLayout *horizontalLayout_3;
+    QGroupBox *groupBox_2;
+    QVBoxLayout *verticalLayout;
     QLabel *label_2;
     QLineEdit *pass;
-    QSpacerItem *horizontalSpacer_2;
     QSpacerItem *verticalSpacer_12;
-    QHBoxLayout *horizontalLayout_2;
-    QLabel *label;
+    QLabel *label_3;
     QLineEdit *pass2;
-    QSpacerItem *horizontalSpacer;
+    QSpacerItem *verticalSpacer_14;
     QSpacerItem *verticalSpacer_11;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_5;
@@ -63,13 +62,13 @@ public:
     {
         if (HashingAlgorithm->objectName().isEmpty())
             HashingAlgorithm->setObjectName(QString::fromUtf8("HashingAlgorithm"));
-        HashingAlgorithm->resize(363, 364);
+        HashingAlgorithm->resize(366, 415);
         QFont font;
         font.setBold(true);
         font.setWeight(75);
         HashingAlgorithm->setFont(font);
-        verticalLayout = new QVBoxLayout(HashingAlgorithm);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout_2 = new QVBoxLayout(HashingAlgorithm);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
         UserLabel = new QLabel(HashingAlgorithm);
@@ -102,11 +101,11 @@ public:
         horizontalLayout_5->addWidget(NameLabelHidden);
 
 
-        verticalLayout->addLayout(horizontalLayout_5);
+        verticalLayout_2->addLayout(horizontalLayout_5);
 
         verticalSpacer_13 = new QSpacerItem(345, 28, QSizePolicy::Minimum, QSizePolicy::Preferred);
 
-        verticalLayout->addItem(verticalSpacer_13);
+        verticalLayout_2->addItem(verticalSpacer_13);
 
         groupBox = new QGroupBox(HashingAlgorithm);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
@@ -137,57 +136,50 @@ public:
         Sha512rdb->raise();
         Blowfishrdb->raise();
 
-        verticalLayout->addWidget(groupBox);
+        verticalLayout_2->addWidget(groupBox);
 
         verticalSpacer_10 = new QSpacerItem(348, 34, QSizePolicy::Minimum, QSizePolicy::Preferred);
 
-        verticalLayout->addItem(verticalSpacer_10);
+        verticalLayout_2->addItem(verticalSpacer_10);
 
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        label_2 = new QLabel(HashingAlgorithm);
+        groupBox_2 = new QGroupBox(HashingAlgorithm);
+        groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
+        verticalLayout = new QVBoxLayout(groupBox_2);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        label_2 = new QLabel(groupBox_2);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        horizontalLayout_3->addWidget(label_2);
+        verticalLayout->addWidget(label_2);
 
-        pass = new QLineEdit(HashingAlgorithm);
+        pass = new QLineEdit(groupBox_2);
         pass->setObjectName(QString::fromUtf8("pass"));
 
-        horizontalLayout_3->addWidget(pass);
+        verticalLayout->addWidget(pass);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_3->addItem(horizontalSpacer_2);
-
-
-        verticalLayout->addLayout(horizontalLayout_3);
-
-        verticalSpacer_12 = new QSpacerItem(348, 34, QSizePolicy::Minimum, QSizePolicy::Preferred);
+        verticalSpacer_12 = new QSpacerItem(321, 14, QSizePolicy::Minimum, QSizePolicy::Preferred);
 
         verticalLayout->addItem(verticalSpacer_12);
 
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        label = new QLabel(HashingAlgorithm);
-        label->setObjectName(QString::fromUtf8("label"));
+        label_3 = new QLabel(groupBox_2);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
 
-        horizontalLayout_2->addWidget(label);
+        verticalLayout->addWidget(label_3);
 
-        pass2 = new QLineEdit(HashingAlgorithm);
+        pass2 = new QLineEdit(groupBox_2);
         pass2->setObjectName(QString::fromUtf8("pass2"));
 
-        horizontalLayout_2->addWidget(pass2);
+        verticalLayout->addWidget(pass2);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        verticalSpacer_14 = new QSpacerItem(321, 15, QSizePolicy::Minimum, QSizePolicy::Preferred);
 
-        horizontalLayout_2->addItem(horizontalSpacer);
+        verticalLayout->addItem(verticalSpacer_14);
 
 
-        verticalLayout->addLayout(horizontalLayout_2);
+        verticalLayout_2->addWidget(groupBox_2);
 
         verticalSpacer_11 = new QSpacerItem(348, 34, QSizePolicy::Minimum, QSizePolicy::Preferred);
 
-        verticalLayout->addItem(verticalSpacer_11);
+        verticalLayout_2->addItem(verticalSpacer_11);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -216,11 +208,10 @@ public:
         horizontalLayout->addItem(horizontalSpacer_4);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        verticalLayout_2->addLayout(horizontalLayout);
 
         groupBox->raise();
-        NameLabelHidden->raise();
-        pass2->raise();
+        groupBox_2->raise();
 
         retranslateUi(HashingAlgorithm);
         QObject::connect(okBtn, SIGNAL(clicked()), HashingAlgorithm, SLOT(close()));
@@ -239,8 +230,9 @@ public:
         MD5rdb->setText(QApplication::translate("HashingAlgorithm", "MD5", 0, QApplication::UnicodeUTF8));
         Sha256rdb->setText(QApplication::translate("HashingAlgorithm", "SHA-256", 0, QApplication::UnicodeUTF8));
         Blowfishrdb->setText(QApplication::translate("HashingAlgorithm", "Blowfish", 0, QApplication::UnicodeUTF8));
+        groupBox_2->setTitle(QString());
         label_2->setText(QApplication::translate("HashingAlgorithm", "Password: ", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("HashingAlgorithm", "Verify:         ", 0, QApplication::UnicodeUTF8));
+        label_3->setText(QApplication::translate("HashingAlgorithm", "Confirm: ", 0, QApplication::UnicodeUTF8));
         okBtn->setText(QApplication::translate("HashingAlgorithm", "Close", 0, QApplication::UnicodeUTF8));
         Save->setText(QApplication::translate("HashingAlgorithm", "Accept", 0, QApplication::UnicodeUTF8));
     } // retranslateUi

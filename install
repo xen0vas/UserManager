@@ -1,6 +1,11 @@
 #!/bin/bash
 # generate a run script which performing the build process of UserManager application
 
+mkdir -p /usr/share/apps/UserManager/translations/
+if [ ! -f /usr/share/apps/UserManager/language ]; then 
+	cp ./language/el.qm /usr/share/apps/UserManager/translations/
+fi
+
 mkdir -p /usr/share/apps/UserManager/other/
 if [ ! -f /usr/share/apps/UserManager/other/usermanager.conf ]; then
 	cp -r ./other/usermanager.conf /usr/share/apps/UserManager/other/
