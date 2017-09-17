@@ -104,6 +104,24 @@ vm.dirty_background_bytes = 0
 
 ------------------
 
+### Groups
+-----------
+
+![groups](https://user-images.githubusercontent.com/12726776/30519031-68528cbc-9b95-11e7-93c6-32f382ec7783.PNG)
+
+### Set Password 
+----------------
+
+![setpassword](https://user-images.githubusercontent.com/12726776/30519036-8d2a8ce2-9b95-11e7-8fb8-890db6880149.PNG)
+
+### Group Privileges
+--------------------
+
+![privileges_and_groups](https://user-images.githubusercontent.com/12726776/30519051-b369e024-9b95-11e7-9778-32b6fb340b1a.PNG)
+
+
+
+
 ### How to Install
 -----------------
 
