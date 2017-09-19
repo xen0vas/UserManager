@@ -83,7 +83,7 @@ vm.dirty_background_bytes = 0
 ### Group Properties
 -------------------
 
-![group_properties](https://cloud.githubusercontent.com/assets/12726776/19677653/f6e47b88-9aa2-11e6-8cbf-0271dfee6291.PNG)
+![group_properties](https://user-images.githubusercontent.com/12726776/30582746-840576ba-9d2d-11e7-95cb-9c3cbeb957de.PNG)
 
 
 ### User Groups
