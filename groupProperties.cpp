@@ -17,9 +17,6 @@ GroupProperties::GroupProperties ( QWidget * parent ) : QDialog ( parent )
 	connect ( okBtn, SIGNAL ( clicked() ), this, SLOT ( renameGroup() ) );
 	connect ( okBtn, SIGNAL ( clicked() ), this, SLOT ( close() ) );
 	connect ( newGroupBtn, SIGNAL ( clicked() ), this, SLOT ( addNewGroup() ) );
-
-
-
 }
 
 //****************************************************************************************************

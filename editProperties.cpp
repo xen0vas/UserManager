@@ -793,53 +793,60 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	if ( index.data().toString() =="Access external storage devices automatically" )
 	{
 		QString command="addgroup " + getOldUsername() + " plugdev";
-		cmd=command.toAscii().data();
+		strcpy(cmd,command.toAscii().data());
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Administer the system" )
 	{
 		QString command="addgroup " + getOldUsername() + " adm";
-		cmd=command.toAscii().data();
+		//cmd=command.toAscii().data();
+		strcpy(cmd,command.toAscii().data());
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Connect to the internet using a modem" )
 	{
 		QString command="addgroup " + getOldUsername() + " dialout";
-		cmd=command.toAscii().data();
+		//cmd=command.toAscii().data();
+		strcpy(cmd,command.toAscii().data());
 		system ( cmd );
 	}
 
 	else if ( index.data().toString() =="Monitor system logs" )
 	{
 		QString command="addgroup " + getOldUsername() + " syslog";
-		cmd=command.toAscii().data();
+		//cmd=command.toAscii().data();
+		strcpy(cmd,command.toAscii().data());
 		system ( cmd );
 	}
 
 	else if ( index.data().toString() =="Send/Receive faxes" )
 	{
 		QString command="addgroup " + getOldUsername() + " fax";
-		cmd=command.toAscii().data();
+		strcpy(cmd,command.toAscii().data());
+		//cmd=command.toAscii().data();
 		system ( cmd );
 	}
 
 	else if ( index.data().toString() =="Use CD-ROM/DVD drives" )
 	{
 		QString command="addgroup " + getOldUsername() + " cdrom";
-		cmd=command.toAscii().data();
+		//cmd=command.toAscii().data();
+		strcpy(cmd,command.toAscii().data());
 		system ( cmd );
 	}
 
 	else if ( index.data().toString() =="Use floppy drives" )
 	{
 		QString command="addgroup " + getOldUsername() + " floppy";
-		cmd=command.toAscii().data();
+		strcpy(cmd,command.toAscii().data());
+		//cmd=command.toAscii().data();
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Use scanners" )
 	{
 		QString command="addgroup " + getOldUsername() + " scanner";
-		cmd=command.toAscii().data();
+		strcpy(cmd,command.toAscii().data());
+		//cmd=command.toAscii().data();
 		system ( cmd );
 	}
 }

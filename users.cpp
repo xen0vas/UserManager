@@ -265,7 +265,8 @@ QString emptystr = "";
     int fname = sizeof(pinfo->full_name);
 
 	if (pinfo->full_name == emptystr.toAscii().data() && pinfo->office == emptystr.toAscii().data() && pinfo->office_phone == emptystr.toAscii().data() && pinfo->home_phone == emptystr.toAscii().data())
-	gecos = emptystr.toAscii().data();
+	strncpy(gecos, emptystr.toAscii().data(), fname);
+		//gecos = emptystr.toAscii().data();
 
 	else
 	{
