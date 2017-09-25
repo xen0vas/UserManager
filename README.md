@@ -130,7 +130,7 @@ vm.dirty_background_bytes = 0
 
 
 
-### How to Install
+### Alternative installation (for developers)
 -----------------
 
 - download the contents from git repo ( e.g. put them in `/opt` directory)
@@ -210,9 +210,6 @@ INSTALLS += installfiles
 
 >  `usermanager`
 
-> or run the scipt install.sh 
-
-> sh install.sh
 ------------------------
 
 
