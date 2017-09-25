@@ -31,7 +31,9 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+git clone https://github.com/xvass/UserManager.git
 
+sh install.sh
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -39,7 +41,6 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The application uses crypt() to encrypt the Linux password which supports the following algorithms: 
-- MD5 
 - SHA-512
 - SHA-256
 - Blowfish ( it has been implemented but is currently disabled by the Application because bcrypt it is not included in glibc. If you want to enable it you must import a patch to include crypt_blowfish in libc.
@@ -49,7 +50,6 @@ The application uses crypt() to encrypt the Linux password which supports the fo
 #### Important Info : 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- the application is currently at a stable version. I have succesfully tested it in Linux ubuntu and Debian systems (wheezy,jessy,stretch).    
 - if you find any bugs please give me a feedback.
 
 - If the application doesn't run, use the following fix export QT X11 NO MITSHM=1 or QT X11 NO MITSHM=1 UserManager. QT X11 NO MITSHM stops Qt form using the MIT-SHM X11 extension. This is a known bug in Qt applications   
