@@ -2,8 +2,15 @@
 
 # generate a run script which performing the build process of UserManager application
 
+pathwd=$(pwd | cut -d" " -f2)
+	if [ "$pathwd" != "pwd" ]; then
+		cp -r ../UserManager/ /opt/ 
+		rm -rf ../UserManager/ 
+		cd /opt/UserManager/
+	fi
+
 os=$(uname -a | cut -d" " -f2) 
-directory=$(pwd | cut -d/ -f4)
+directory=$(pwd | cut -d/ -f3)
 usr=$(whoami)
 
 if [ "$os" = "debian" -o "$os" = "ubuntu" ]; then 
