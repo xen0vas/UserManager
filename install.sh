@@ -5,7 +5,7 @@
 pathwd=$(pwd | cut -d" " -f2)
 	if [ "$pathwd" != "pwd" ]; then
 		cp -r ../UserManager/ /opt/ 
-		rm -rf ../UserManager/ 
+		#rm -rf ../UserManager/ 
 		cd /opt/UserManager/
 	fi
 
@@ -19,7 +19,7 @@ if [ "$os" = "debian" -o "$os" = "ubuntu" ]; then
 			cp ./resources/images/UserManager.gif /$usr/Pictures/UserManager.gif
 		fi
 	 	touch /"$usr"/.local/share/applications/UserManager.desktop	
-		echo "Desktop Entry]" >> /"$usr"/.local/share/applications/UserManager.desktop
+		echo "[Desktop Entry]" >> /"$usr"/.local/share/applications/UserManager.desktop
 		echo "Type=Application" >> /"$usr"/.local/share/applications/UserManager.desktop 
 		echo "Encoding=UTF-8" >> /"$usr"/.local/share/applications/UserManager.desktop
 		echo "Name=UserManager" >> /"$usr"/.local/share/applications/UserManager.desktop

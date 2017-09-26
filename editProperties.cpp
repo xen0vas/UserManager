@@ -819,7 +819,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 
 	else if ( index.data().toString() =="Send/Receive faxes" )
 	{
-		QString command="addgroup " + getOldUsername() + " fax";
+		QString command="addgroup " + getOldUsername() + " fax" + " > /dev/null 2>&1";
 		cmd=command.toAscii().data();
 		system ( cmd );
 	}
