@@ -517,7 +517,7 @@ void EditProperties::fillEasyList()
 	QListWidgetItem* scanner = new QListWidgetItem ( tr ( "Use scanners" ) );
 	easyList->addItem ( header );
 
-	cdrom->setIcon(QIcon("/usr/share/apps/UserManager/pics/cd.png"));
+	cdrom->setIcon(QIcon("/usr/share/apps/UserManager/pics/CD.png"));
 	floppy->setIcon(QIcon("/usr/share/apps/UserManager/pics/floppy.png"));
 	logs->setIcon(QIcon("/usr/share/apps/UserManager/pics/log.png"));
 	fax->setIcon(QIcon("/usr/share/apps/UserManager/pics/fax.png"));

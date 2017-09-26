@@ -79,7 +79,7 @@ vm.dirty_background_bytes = 0
 ### UserManager main view
 ------------------------
 
-![usermanager_dash](https://cloud.githubusercontent.com/assets/12726776/19657636/b21ed7de-9a2d-11e6-95db-92baa468b2dc.PNG)
+![dash](https://user-images.githubusercontent.com/12726776/30847031-a7b04cc8-a2a2-11e7-9358-55dfe2f8e4c7.PNG)
 
 
 ### User Properties
