@@ -467,14 +467,15 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 	if(col==0 && test!="")
 	{
 	Models model;
-	char *cmd;
+	char *cmd=(char *)malloc(sizeof(cmd));
+	//memset (&cmd, 0x0, sizeof(*cmd));
 	int done=1;
 	int row=index.row();
 	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole );//state=2 an eiani checked,0 an einai unchecked to checkbox tou xrhsth pou path8hke
 	if ( state == 0 )
 	{
 		QString command="usermod -a -G "  +  index.sibling(row,1).data().toString() + " " + getOldUsername() + "";//index.data().toString() periexei ton neo member kai groupNameEdit->text() to group pou 8a mpei
-		cmd=command.toAscii().data();
+		strcpy(cmd,command.toAscii().data());
 		done = ( system ( cmd ) );
 	}
 	else
