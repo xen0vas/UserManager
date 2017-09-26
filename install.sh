@@ -5,7 +5,7 @@
 pathwd=$(pwd | cut -d" " -f2)
 	if [ "$pathwd" != "pwd" ]; then
 		cp -r ../UserManager/ /opt/ 
-		#rm -rf ../UserManager/ 
+		rm -rf ../UserManager/ 
 		cd /opt/UserManager/
 	fi
 
@@ -38,17 +38,7 @@ fi
 if [ ! -f /usr/share/apps/UserManager/pics ]; then 
 	mkdir -p /usr/share/apps/UserManager/pics/
 	iconpt=`pwd`
-	cp "$iconpt"/resources/images/CD.png /usr/share/apps/UserManager/pics/
-        cp "$iconpt"/resources/images/fax.png /usr/share/apps/UserManager/pics/ 
-        cp "$iconpt"/resources/images/scan.png /usr/share/apps/UserManager/pics/
-	cp "$iconpt"/resources/images/scanner.png /usr/share/apps/UserManager/pics/
-        cp "$iconpt"/resources/images/floppy.png /usr/share/apps/UserManager/pics/
-	cp "$iconpt"/resources/images/lock.png /usr/share/apps/UserManager/pics/
-	cp "$iconpt"/resources/images/enabled.jpeg /usr/share/apps/UserManager/pics/
-	cp "$iconpt"/resources/images/admin.png /usr/share/apps/UserManager/pics/
-	cp "$iconpt"/resources/images/dialout.png /usr/share/apps/UserManager/pics/
-	cp "$iconpt"/resources/images/storage.png /usr/share/apps/UserManager/pics/
-	cp "$iconpt"/resources/images/log.png /usr/share/apps/UserManager/pics/
+        yes | cp -rf "$iconpt"/resources/images/* /usr/share/apps/UserManager/pics/
 fi
 
 if [ ! -f /usr/share/apps/UserManager/language ]; then 
