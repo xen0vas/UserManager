@@ -1,6 +1,0 @@
-*.o
-moc_*
-install
-install2.sh
-*.txt
-*.swp
