@@ -468,7 +468,6 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 	{
 	Models model;
 	char *cmd=(char *)malloc(sizeof(cmd));
-	//memset (&cmd, 0x0, sizeof(*cmd));
 	int done=1;
 	int row=index.row();
 	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole );//state=2 an eiani checked,0 an einai unchecked to checkbox tou xrhsth pou path8hke
@@ -494,6 +493,8 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 		userGroups->setColumnWidth ( 0, 30);
 	}
 
+	free(cmd);
+	cmd=NULL; 
 	easyList->clear();
 	fillEasyList();
 }
@@ -515,7 +516,7 @@ void EditProperties::fillEasyList()
 	QListWidgetItem* floppy = new QListWidgetItem ( tr ( "Use floppy drives" ) );
 	QListWidgetItem* scanner = new QListWidgetItem ( tr ( "Use scanners" ) );
 	easyList->addItem ( header );
-	
+/*	
 	cdrom->setIcon(QIcon("/usr/share/apps/UserManager/pics/cd.png"));
 	floppy->setIcon(QIcon("/usr/share/apps/UserManager/pics/floppy.png"));
 	logs->setIcon(QIcon("/usr/share/apps/UserManager/pics/log.png"));
@@ -524,7 +525,7 @@ void EditProperties::fillEasyList()
 	admin->setIcon(QIcon("/usr/share/apps/UserManager/pics/admin.png"));
 	internet->setIcon(QIcon("/usr/share/apps/UserManager/pics/dialout.png"));
 	storage->setIcon(QIcon("/usr/share/apps/UserManager/pics/storage.png"));
-	
+*/	
 	struct group *grp;
 	char **members=NULL;
 	grp=getgrnam ( "adm" );
@@ -782,8 +783,8 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	Models model;
 	Groups group;
 	MyLibb set;
-	char *cmd = (char*)malloc(sizeof(char*));
-	memset (&cmd, 0x0, sizeof(*cmd));
+	char *cmd = (char*)malloc(sizeof(cmd));
+	//memset (&cmd, 0x0, sizeof(*cmd));
 	struct group *grs = NULL;
 	int done=-1;
 	QVariant state = index.data(Qt::CheckStateRole);//state=2 an einai hdh checked(ara vgainei apo member o user),0 an einai unchecked (ara mpainei san member) to checkbox tou group pou path8hke
