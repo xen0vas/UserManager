@@ -516,7 +516,7 @@ void EditProperties::fillEasyList()
 	QListWidgetItem* floppy = new QListWidgetItem ( tr ( "Use floppy drives" ) );
 	QListWidgetItem* scanner = new QListWidgetItem ( tr ( "Use scanners" ) );
 	easyList->addItem ( header );
-/*	
+
 	cdrom->setIcon(QIcon("/usr/share/apps/UserManager/pics/cd.png"));
 	floppy->setIcon(QIcon("/usr/share/apps/UserManager/pics/floppy.png"));
 	logs->setIcon(QIcon("/usr/share/apps/UserManager/pics/log.png"));
@@ -525,7 +525,7 @@ void EditProperties::fillEasyList()
 	admin->setIcon(QIcon("/usr/share/apps/UserManager/pics/admin.png"));
 	internet->setIcon(QIcon("/usr/share/apps/UserManager/pics/dialout.png"));
 	storage->setIcon(QIcon("/usr/share/apps/UserManager/pics/storage.png"));
-*/	
+
 	struct group *grp;
 	char **members=NULL;
 	grp=getgrnam ( "adm" );
@@ -784,8 +784,9 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	Groups group;
 	MyLibb set;
 	char *cmd = (char*)malloc(sizeof(cmd));
-	//memset (&cmd, 0x0, sizeof(*cmd));
-	struct group *grs = NULL;
+	memset(&cmd, '\0', sizeof(cmd));
+
+	struct group *grs=NULL;
 	int done=-1;
 	QVariant state = index.data(Qt::CheckStateRole);//state=2 an einai hdh checked(ara vgainei apo member o user),0 an einai unchecked (ara mpainei san member) to checkbox tou group pou path8hke
 	if (state == 2)
@@ -795,7 +796,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	if ( index.data().toString() =="Access external storage devices automatically" )
 	{
 		QString command="addgroup " + getOldUsername() + " plugdev";
-		strcpy(cmd,command.toAscii().data());
+		strcpy(cmd, command.toAscii().data());
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Administer the system" )
@@ -824,6 +825,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	else if ( index.data().toString() =="Send/Receive faxes" )
 	{
 		QString command="addgroup " + getOldUsername() + " fax";
+
 		strcpy(cmd,command.toAscii().data());
 		//cmd=command.toAscii().data();
 		system ( cmd );
@@ -833,7 +835,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	{
 		QString command="addgroup " + getOldUsername() + " cdrom";
 		//cmd=command.toAscii().data();
-		strcpy(cmd,command.toAscii().data());
+		strcpy(cmd, command.toAscii().data());
 		system ( cmd );
 	}
 

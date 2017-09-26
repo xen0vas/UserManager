@@ -31,8 +31,26 @@ if [ "$os" = "debian" -o "$os" = "ubuntu" ]; then
 	fi
 fi
 
+if [ ! -f  /usr/share/apps/UserManager/translations ]; then 
+	mkdir -p /usr/share/apps/UserManager/translations/
+fi
 
-mkdir -p /usr/share/apps/UserManager/translations/
+if [ ! -f /usr/share/apps/UserManager/pics ]; then 
+	mkdir -p /usr/share/apps/UserManager/pics/
+	iconpt=`pwd`
+	cp "$iconpt"/resources/images/CD.png /usr/share/apps/UserManager/pics/
+        cp "$iconpt"/resources/images/fax.png /usr/share/apps/UserManager/pics/ 
+        cp "$iconpt"/resources/images/scan.png /usr/share/apps/UserManager/pics/
+	cp "$iconpt"/resources/images/scanner.png /usr/share/apps/UserManager/pics/
+        cp "$iconpt"/resources/images/floppy.png /usr/share/apps/UserManager/pics/
+	cp "$iconpt"/resources/images/lock.png /usr/share/apps/UserManager/pics/
+	cp "$iconpt"/resources/images/enabled.jpeg /usr/share/apps/UserManager/pics/
+	cp "$iconpt"/resources/images/admin.png /usr/share/apps/UserManager/pics/
+	cp "$iconpt"/resources/images/dialout.png /usr/share/apps/UserManager/pics/
+	cp "$iconpt"/resources/images/storage.png /usr/share/apps/UserManager/pics/
+	cp "$iconpt"/resources/images/log.png /usr/share/apps/UserManager/pics/
+fi
+
 if [ ! -f /usr/share/apps/UserManager/language ]; then 
 	if [ "$directory" = "UserManager" ]; then
 		pat=`pwd`
@@ -49,6 +67,7 @@ if [ "$directory" != "UserManager" ]; then
 	echo " this isnt the UserManager Directory " 
 	exit 0
 fi
+
 
 make clean 
 rm -rf Makefile > /dev/null 2>&1
