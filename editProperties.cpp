@@ -467,15 +467,14 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 	if(col==0 && test!="")
 	{
 	Models model;
-	char *cmd=(char *)malloc(sizeof(cmd));
-	//memset(&cmd, 0x0, sizeof(cmd));
+	char *cmd;
 	int done=1;
 	int row=index.row();
 	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole );//state=2 an eiani checked,0 an einai unchecked to checkbox tou xrhsth pou path8hke
 	if ( state == 0 )
 	{
 		QString command="usermod -a -G "  +  index.sibling(row,1).data().toString() + " " + getOldUsername() + "";//index.data().toString() periexei ton neo member kai groupNameEdit->text() to group pou 8a mpei
-		strcpy(cmd,command.toAscii().data());
+		cmd=command.toAscii().data();
 		done = ( system ( cmd ) );
 	}
 	else
@@ -495,8 +494,6 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 		userGroups->setColumnWidth ( 0, 30);
 	}
 
-	free(cmd);
-	cmd=NULL; 
 	easyList->clear();
 	fillEasyList();
 }
@@ -785,8 +782,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	Models model;
 	Groups group;
 	MyLibb set;
-	char *cmd = (char*)malloc(sizeof(cmd));
-	//memset(&cmd, 0x0, sizeof(cmd));
+	char *cmd;
 
 	struct group *grs=NULL;
 	int done=-1;
@@ -798,61 +794,53 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	if ( index.data().toString() =="Access external storage devices automatically" )
 	{
 		QString command="addgroup " + getOldUsername() + " plugdev";
-		strcpy(cmd, command.toAscii().data());
+		cmd=command.toAscii().data();
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Administer the system" )
 	{
-		QString command="addgroup " + getOldUsername() + " adm";
+		QString command="addgroup " + getOldUsername() + " adm" + " > /dev/null 2>&1";
 		cmd=command.toAscii().data();
-		//strcpy(cmd,command.toAscii().data());
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Connect to the internet using a modem" )
 	{
-		QString command="addgroup " + getOldUsername() + " dialout";
-		//cmd=command.toAscii().data();
-		strcpy(cmd,command.toAscii().data());
+		QString command="addgroup " + getOldUsername() + " dialout" + " > /dev/null 2>&1";
+		cmd=command.toAscii().data();
 		system ( cmd );
 	}
 
 	else if ( index.data().toString() =="Monitor system logs" )
 	{
 		QString command="addgroup " + getOldUsername() + " syslog";
-		//cmd=command.toAscii().data();
-		strcpy(cmd,command.toAscii().data());
+		cmd=command.toAscii().data();
 		system ( cmd );
 	}
 
 	else if ( index.data().toString() =="Send/Receive faxes" )
 	{
 		QString command="addgroup " + getOldUsername() + " fax";
-
-		strcpy(cmd,command.toAscii().data());
-		//cmd=command.toAscii().data();
+		cmd=command.toAscii().data();
 		system ( cmd );
 	}
 
 	else if ( index.data().toString() =="Use CD-ROM/DVD drives" )
 	{
 		QString command="addgroup " + getOldUsername() + " cdrom";
-		//cmd=command.toAscii().data();
-		strcpy(cmd, command.toAscii().data());
+		cmd=command.toAscii().data();
 		system ( cmd );
 	}
 
 	else if ( index.data().toString() =="Use floppy drives" )
 	{
 		QString command="addgroup " + getOldUsername() + " floppy";
-		strcpy(cmd,command.toAscii().data());
-		//cmd=command.toAscii().data();
+		cmd=command.toAscii().data();
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Use scanners" )
 	{
 		QString command="addgroup " + getOldUsername() + " scanner";
-		strcpy(cmd,command.toAscii().data());
-		//cmd=command.toAscii().data();
+		cmd=command.toAscii().data();
 		system ( cmd );
 	}
 }
@@ -886,8 +874,6 @@ if (done==0)
 	userGroups->setModel ( model.createUserInGroupsModel ( getOldUsername() ) );
 	userGroups->setColumnWidth ( 0, 30);
 }
-	free(cmd);
-	cmd = nullptr;
 }
 /**
  * Η συνάρτηση αλλάζει σε έναν λογαριασμό την κύρια ομάδα.
