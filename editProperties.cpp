@@ -468,6 +468,7 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 	{
 	Models model;
 	char *cmd=(char *)malloc(sizeof(cmd));
+	//memset(&cmd, 0x0, sizeof(cmd));
 	int done=1;
 	int row=index.row();
 	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole );//state=2 an eiani checked,0 an einai unchecked to checkbox tou xrhsth pou path8hke
@@ -484,7 +485,8 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 		struct group *grs;
 		grs=getgrnam ( index.sibling(row,1).data().toString().toAscii().data() );
 		group.remove_member ( grs,getOldUsername().toAscii().data() );
-		done=set.setgrnam ( grs );
+		if ( grs != NULL)
+			done=set.setgrnam ( grs );
 	}
 	if ( done==0 )
 	{
@@ -784,7 +786,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	Groups group;
 	MyLibb set;
 	char *cmd = (char*)malloc(sizeof(cmd));
-	memset(&cmd, '\0', sizeof(cmd));
+	//memset(&cmd, 0x0, sizeof(cmd));
 
 	struct group *grs=NULL;
 	int done=-1;
@@ -802,8 +804,8 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	else if ( index.data().toString() =="Administer the system" )
 	{
 		QString command="addgroup " + getOldUsername() + " adm";
-		//cmd=command.toAscii().data();
-		strcpy(cmd,command.toAscii().data());
+		cmd=command.toAscii().data();
+		//strcpy(cmd,command.toAscii().data());
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Connect to the internet using a modem" )
@@ -873,6 +875,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	if ( index.data().toString() =="Use scanners" )
 	grs=getgrnam("scanner");
 	//h remove_member(grs,getOldUsername().toAscii().data()	epistrefei thn domh grs pou phre sto orisma ths vgazontas ap ta members ths grs ton xrhsth ton opoio pernoume apo thn  getOldUsername().toAscii().data().H epistefomenh domh mpainei san orisma sthn setgrnam gia na mpei h nea domh sto group fle.epistrefei 0 an egine h allagh
+	if ( grs != NULL)
 	done=set.setgrnam(group.remove_member(grs,getOldUsername().toAscii().data()));
 }
 if (done==0)

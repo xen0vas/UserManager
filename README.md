@@ -125,8 +125,7 @@ vm.dirty_background_bytes = 0
 ### Group Privileges
 --------------------
 
-![privileges_and_groups](https://user-images.githubusercontent.com/12726776/30519051-b369e024-9b95-11e7-9778-32b6fb340b1a.PNG)
-
+![groups](https://user-images.githubusercontent.com/12726776/30855524-f5ba60d2-a2bd-11e7-96ee-9a07814cdd11.PNG)
 
 
 
