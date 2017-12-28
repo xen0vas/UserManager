@@ -456,7 +456,7 @@ strncpy(sp.sp_pwdp,reverse,36);
 setshadow.setspnam( &sp );
 }
 /**
- * Προσθήκη/αφαίρεση χρηστών σε/από ομάδες
+ * Adding/deleting users to/from groups
  */
 
 void EditProperties::changeMembers ( const QModelIndex &index )
@@ -470,11 +470,15 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 	char *cmd;
 	int done=1;
 	int row=index.row();
+	InputValidation input = new InputValidation();
 	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole );//state=2 an eiani checked,0 an einai unchecked to checkbox tou xrhsth pou path8hke
 	if ( state == 0 )
 	{
-		QString command="usermod -a -G "  +  index.sibling(row,1).data().toString() + " " + getOldUsername() + "";//index.data().toString() periexei ton neo member kai groupNameEdit->text() to group pou 8a mpei
-		cmd=command.toAscii().data();
+		char command[] ="usermod -a -G "  +  index.sibling(row,1).data().toString() + " " + getOldUsername() + "";//index.data().toString() periexei ton neo member kai groupNameEdit->text() to group pou 8a mpei
+		cmd=command;
+
+
+
 		done = ( system ( cmd ) );
 	}
 	else
