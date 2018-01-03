@@ -4,9 +4,8 @@
 class InputValidation
 {
 
-public :
+private:
 	extern char **environ;
-
 	inputValidation();
 	~inputValidation();
 	char* SanitizeInput( char *s) const;
