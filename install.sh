@@ -13,9 +13,14 @@ os=$(uname -a | cut -d" " -f2)
 directory=$(pwd | cut -d/ -f3)
 usr=$(whoami)
 
-if [ "$os" = "debian" -o "$os" = "ubuntu" ]; then 
+if [ "$os" != "debian" ]; then 
+	echo "this script installs UserManager only at Debian OS"
+	exit 1; 
+fi
+
+if [ "$os" = "debian" ]; then 
 	if [ ! -f /"$usr"/.local/share/applications/UserManager.desktop ]; then
-		if [ "$directory" = "UserManager" ]; then
+		if [ "$directory" = "UserManager" -o "$directory" = "UserManager-master"  ]; then
 			cp ./resources/images/UserManager.gif /$usr/Pictures/UserManager.gif
 		fi
 	 	touch /"$usr"/.local/share/applications/UserManager.desktop	
@@ -53,7 +58,7 @@ if [ ! -f /usr/share/apps/UserManager/other/usermanager.conf ]; then
 	cp -r ./other/usermanager.conf /usr/share/apps/UserManager/other/
 fi
 
-if [ "$directory" != "UserManager" ]; then 
+if [ "$directory" != "UserManager" -o "$directory" != "UserManager-master" ]; then 
 	echo " this isnt the UserManager Directory " 
 	exit 0
 fi
