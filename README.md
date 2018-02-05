@@ -32,7 +32,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Make sure you have Qt4 installed on your Debian before using the following script 
-- The following script runs only on Debian for now. 
+- The script install.sh runs only on Debian for now. 
 
 git clone https://github.com/xvass/UserManager.git
 cd UserManager
