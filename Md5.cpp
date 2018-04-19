@@ -3,7 +3,6 @@
 #include <unistd.h>
 #include <crypt.h>
 
-
 IHashing *Md5::Create()
 {
 	return new Md5();
