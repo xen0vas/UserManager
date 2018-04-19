@@ -19,7 +19,9 @@ void sha256::Free()
 char *sha256::encryptpass( QString passwd) const
 {
 	HashEncode *hEnc = new HashEncode();
-	//το seed είναι το αναγνωριστικό του αλγόριθμου SHA-256($5$)
+	/* 
+	* seed is the SHA-256($5$) identifier 
+	*/
 	static char seed[12];
 	seed[0] = '$';
 	seed[1] = '5';
