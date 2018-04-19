@@ -26,8 +26,12 @@ char *sha256::encryptpass( QString passwd) const
 	seed[0] = '$';
 	seed[1] = '5';
 	seed[2] = '$';
-	//παράγει διαφορετικά σετ απο ψευδοτυχαίους αριθμούς κάθε φορά που το πρόγραμμα τρέχει
-	//Στη συνέχεια η random επιστρέφει τυχαίους αριθμούς ανάλογα με το σετ που έχει δημιουργηθεί απο τη srandom
+	
+	/* 
+	* creates different sets of pseudorandom numbers every time the program runs  
+	* The srandom() function sets its argument as the seed for a new sequence of pseudo-random integers to be returned by random()
+	*/ 
+	
 	srandom ( ( int ) time ( ( time_t * ) NULL ) );
 	hEnc->into64 ( &seed[3], random(),saltLength );
 	hEnc->into64 ( &seed[saltLength],random(),3 );
