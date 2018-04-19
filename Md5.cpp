@@ -19,13 +19,14 @@ void Md5::Free()
 char *Md5::encryptpass( QString passwd) const
 {
 	HashEncode *hEnc = new HashEncode();
-	//το seed είναι το αναγνωριστικό του αλγόριθμου MD5($1$)
 	static char seed[12];
 	seed[0] = '$';
 	seed[1] = '1';
 	seed[2] = '$';
-	//παράγει διαφορετικά σετ απο ψευδοτυχαίους αριθμούς κάθε φορά που το πρόγραμμα τρέχει
-	//Στη συνέχεια η random επιστρέφει τυχαίους αριθμούς ανάλογα με το σετ που έχει δημιουργηθεί απο τη srandom
+	/*
+	* it produces different sets with pseudorandom numbers everytime the programm runs 
+	* To continue, the srandom function returns random numbers in relation with the set of numbers being created from srandom
+  	*/
 	srandom ( ( int ) time ( ( time_t * ) NULL ) );
 	hEnc->into64 ( &seed[3], random(),saltLength );
 	hEnc->into64 ( &seed[saltLength],random(),3 );
@@ -40,7 +41,9 @@ char *Md5::encryptpass( QString passwd) const
 	strncpy ( buf,password,strlen(password));
 
 	/*
-	 * The crypt_r function does the same thing as crypt, but takes an extra parameter which includes space for its result (among other things), so it can be reentrant. data->initialized must be cleared to zero before the first time crypt_r is called
+	 * The crypt_r function does the same thing as crypt, 
+	 * but takes an extra parameter which includes space for its result (among other things),
+	 * so it can be reentrant. data->initialized must be cleared to zero before the first time crypt_r is called
 	 */
 	struct crypt_data data;
 	data.initialized = 0;
