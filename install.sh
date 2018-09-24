@@ -2,23 +2,32 @@
 
 # generate a run script which performing the build process of UserManager application
 
-pathwd=$(pwd | cut -d" " -f2)
-	if [ "$pathwd" != "pwd" ]; then
-		cp -r ../UserManager/ /opt/ 
-		rm -rf ../UserManager/ 
-		cd /opt/UserManager/
-	fi
+#pathwd=$(pwd | cut -d" " -f2)
+#	if [ "$pathwd" != "pwd" ]; then
+#		cp -r ../UserManager/ /opt/ 
+#		cd /opt/UserManager/
+#		rm -rf ../UserManager/ 
+#	fi
 
-os=$(uname -a | cut -d" " -f2) 
+os=$(uname -a) 
 directory=$(pwd | cut -d/ -f3)
 usr=$(whoami)
+found="false"
 
-if [ "$os" != "debian" ]; then 
+IFS=' ' # space is set as delimiter
+read -ra ADDR <<< "$os"
+for i in "${ADDR[@]}"; do # access each element of array
+    if [ "$i" = "Debian" -o "$i" = "debian" ];then
+	found="true"
+    fi
+done
+
+if [ "$found" = "false" ]; then 
 	echo "this script installs UserManager only at Debian OS"
 	exit 1; 
 fi
 
-if [ "$os" = "debian" ]; then 
+if [ "$found" = "true" ]; then 
 	if [ ! -f /"$usr"/.local/share/applications/UserManager.desktop ]; then
 		if [ "$directory" = "UserManager" -o "$directory" = "UserManager-master"  ]; then
 			cp ./resources/images/UserManager.gif /$usr/Pictures/UserManager.gif
@@ -58,11 +67,12 @@ if [ ! -f /usr/share/apps/UserManager/other/usermanager.conf ]; then
 	cp -r ./other/usermanager.conf /usr/share/apps/UserManager/other/
 fi
 
-if [ "$directory" != "UserManager" -o "$directory" != "UserManager-master" ]; then 
-	echo " this isnt the UserManager Directory " 
+echo $directory 
+
+if [ "$directory" != "UserManager" -a "$directory" != "UserManager-master" ]; then 
+	echo "[!] this isnt the UserManager Directory" 
 	exit 0
 fi
-
 
 make clean 
 rm -rf Makefile > /dev/null 2>&1

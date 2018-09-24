@@ -470,7 +470,7 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 	char *cmd;
 	int done=1;
 	int row=index.row();
-	InputValidation input = new InputValidation();
+	//InputValidation input = new InputValidation();
 	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole );//state=2 an eiani checked,0 an einai unchecked to checkbox tou xrhsth pou path8hke
 	if ( state == 0 )
 	{
