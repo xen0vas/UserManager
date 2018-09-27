@@ -2,13 +2,6 @@
 
 # generate a run script which performing the build process of UserManager application
 
-#pathwd=$(pwd | cut -d" " -f2)
-#	if [ "$pathwd" != "pwd" ]; then
-#		cp -r ../UserManager/ /opt/ 
-#		cd /opt/UserManager/
-#		rm -rf ../UserManager/ 
-#	fi
-
 os=$(uname -a) 
 directory=$(pwd | cut -d/ -f3)
 usr=$(whoami)
@@ -87,7 +80,12 @@ echo "installfiles.path += /usr/bin/" >> UserManager.pro
 echo "INSTALLS += installfiles" >> UserManager.pro
 make
 make install
-#UserManager 
+cd .. && mv UserManager/ /opt
+cd /opt/UserManager
+chown -R root:root UserManager
+chmod -R 700 /opt/UserManager
+chmod 700 /usr/bin/UserManager
+./UserManager 
 
 
 
