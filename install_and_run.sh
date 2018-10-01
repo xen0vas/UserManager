@@ -2,8 +2,7 @@
 
 #############################################################################
 #
-# This script builds UserManager application
-# This script developed to install UserManager only to Debian distributions
+# This script installs UserManager application only to Debian distributions
 #
 #############################################################################
 
