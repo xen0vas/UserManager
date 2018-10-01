@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# generate a run script which performing the build process of UserManager application
+#############################################################################
+#
+# This script builds UserManager application
+# This script developed to install UserManager only to Debian distributions
+#
+#############################################################################
 
 os=$(uname -a) 
 directory=$(pwd | cut -d/ -f3)
