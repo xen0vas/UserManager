@@ -36,8 +36,8 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 
 git clone https://github.com/xvass/UserManager.git
 cd UserManager
-chmod +x install.sh
-./install.sh
+chmod +x install_and_run.sh
+./install_and_run.sh
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -47,7 +47,7 @@ chmod +x install.sh
 The application uses crypt() to encrypt the Linux password which supports the following algorithms: 
 - SHA-512
 - SHA-256
-- Blowfish ( it has been implemented but is currently disabled by the Application because bcrypt it is not included in glibc. If you want to enable it you must import a patch to include crypt_blowfish in libc.
+- Blowfish ( bcrypt it is not included in glibc in general. If you want to enable it you must import a patch to include crypt_blowfish in libc.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
