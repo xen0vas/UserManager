@@ -469,21 +469,21 @@ void UserProperties::addUserBase()
 			pid  = fork();
 			if ( pid != 0 ) //parent process
 			{
-				execl ( "/bin/cp", "/bin/cp", "/etc/skel/.bash_logout",path, ( char* ) 0 );
+				execl ( "/bin/cp", "-i", "-p", "/etc/skel/.bash_logout",path, ( char* ) 0 );
 				int status;
 				waitpid(pid,&status,0);
 			}
 			pid1 = fork();
 			if ( pid1 == 0 ) //child process 1
 			{
-				execl ( "/bin/cp", "/bin/cp", "/etc/skel/.bashrc",path,NULL );
+				execl ( "/bin/cp", "-i", "-p", "/etc/skel/.bashrc",path,NULL );
 				int status1;
 				waitpid(pid1,&status1,0);
 			}
 			pid2 = fork();
 			if ( pid2 == 0 ) // child process 2
 			{
-				execl ( "/bin/cp", "/bin/cp", "/etc/skel/.profile",path,NULL );
+				execl ( "/bin/cp", "-i", "-p", "/etc/skel/.profile",path,NULL );
 				int status2;
 				waitpid(pid2,&status2,0);
 			}
