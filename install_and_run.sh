@@ -7,7 +7,9 @@
 #############################################################################
 
 os=$(uname -a) 
-directory=$(pwd | cut -d/ -f3)
+nu=$(pwd | tr '/' ' ' | wc -w)
+num=$(($nu + 1))
+directory=$(pwd | cut -d/ -f$num)
 usr=$(whoami)
 found="false"
 
