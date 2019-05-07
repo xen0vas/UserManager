@@ -18,7 +18,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 
 ------------------
 
-Info : This application has been tested at 64bit Debian distributions.
+Info : This application has been tested in 64bit Linux Debian distributions.
 
 
 ### Devs
