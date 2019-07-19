@@ -23,7 +23,7 @@ Info : This application has been tested in 64bit Linux Debian distributions.
 
 ### Devs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  - Xenofon Vassilakopoulos (xvass)
+  - Xenofon Vassilakopoulos (xvas)
   - Fotis Tsifountidis (fts)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
