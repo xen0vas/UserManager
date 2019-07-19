@@ -56,7 +56,7 @@ The application uses crypt() function to perform hashing to the Linux password s
 #### Important Info : 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- if you find any bugs please give me a feedback.
+- if you find any bugs please give a feedback. 
 
 - If the application doesn't run, use the following fix export QT X11 NO MITSHM=1 or QT X11 NO MITSHM=1 UserManager. QT X11 NO MITSHM stops Qt form using the MIT-SHM X11 extension. This is a known bug in Qt applications   
 
