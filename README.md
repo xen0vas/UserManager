@@ -46,7 +46,7 @@ chmod +x install_and_run.sh
 #### hashing algorithms 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The application uses crypt() to encrypt the Linux password which supports the following algorithms: 
+The application uses crypt() function to perform hashing to the Linux password supporting the following algorithms: 
 - SHA-512
 - SHA-256
 - Blowfish ( bcrypt it is not included in glibc in general. If you want to enable it you must import a patch to include crypt_blowfish in libc.
