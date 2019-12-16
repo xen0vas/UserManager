@@ -38,6 +38,9 @@ This application has been tested in 64bit Linux Debian distributions.
 
 It does not yet runs in 32bit Linux systems due to bugs. 
 
+Also it does not run in newest linux builds due to  Qt v4 
+
+no time to upgrade to Qt5 but i will....... :) 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
