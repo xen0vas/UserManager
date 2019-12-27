@@ -23,7 +23,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 
 - update to qt5 
 
-- fixing bugs to work in 32bit systems 
+- fixing bugs   
 
 - providing shell connections 
 
@@ -34,9 +34,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 ### Installation Info 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This application has been tested in 64bit Linux Debian distributions. 
-
-It does not yet runs in 32bit Linux systems due to bugs. 
+This application has been tested in 64bit Linux Debian distributions.  
 
 Also it does not run in newest linux builds due to  Qt v4 
 
