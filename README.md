@@ -27,7 +27,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 
 - providing shell connections 
 
-- Perform changes in remote systems
+- Perform configuration changes to remote systems
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
