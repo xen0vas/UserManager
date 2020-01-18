@@ -136,12 +136,14 @@ void UserProperties::combotext()
 	{
 		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Open file <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 	}
-	char header[30];
-	inShells.seekg ( 35 );
+	//char header[30];
+	std::string header;
+        inShells.seekg ( 35 );
 	while ( inShells >> header )
 	{
-		shellConnect->addItems ( QStringList ( QObject::tr ( header ) ) );
-	}
+		//shellConnect->addItems ( QStringList ( QObject::tr ( header ) ) );
+		shellConnect->addItems ( QStringList ( QString::fromStdString( header )  ) );
+        }
 	
 	shellConnect->setItemText (0, "/bin/bash" );
 	shellConnect->setDuplicatesEnabled ( false );
