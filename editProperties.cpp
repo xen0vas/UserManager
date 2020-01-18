@@ -5,6 +5,7 @@
 #include "MainWindow.h"
 #include "HashingFactory.h"
 #include "IHashing.h"
+#include <string.h>
 
 using namespace std;
 
@@ -92,7 +93,8 @@ void EditProperties::comboShell()
 		        inShells.seekg ( 35 );
 			while ( inShells >> header )
 			{
-				shellConnect->addItems ( QStringList ( QObject::tr ( header ) ) );
+				//shellConnect->addItems ( QStringList ( QObject::tr ( header ) ) );
+				shellConnect->addItems ( QStringList ( QString::fromStdString( header )  ) );
 			}
 
 	shellConnect->setDuplicatesEnabled ( false );
