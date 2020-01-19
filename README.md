@@ -23,11 +23,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 
 - update to qt5 
 
-- fixing bugs   
-
-- providing shell connections 
-
-- Perform configuration changes to remote systems
+- fixing some bugs   
 
 - implement a password generator 
 
