@@ -21,13 +21,13 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 ### TO-DO 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- uppgrade to qt5 
+- uppgrade to qt5 ( no time to upgrade to Qt5 but i will....... :) ) 
 
 - fixing some bugs   
 
 - implement a password generator 
 
-- implement a password security strength checks
+- implement password security strength checks
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -36,13 +36,17 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 
 This application has been tested in 64bit Linux Debian distributions.  
 
-Also it does not run in newest linux builds due to  Qt v4 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-no time to upgrade to Qt5 but i will....... :) 
+###Succesfully tested in the following architecture 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Linux kali 5.3.0-kali2-amd64 #1 SMP Debian 5.3.9-3kali1 (2019-11-20) x86_64 GNU/Linux
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-### Devs
+### Developers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   - Xenofon Vassilakopoulos (xvas)
   - Fotis Tsifountidis (fts)
