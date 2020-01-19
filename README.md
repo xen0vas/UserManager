@@ -52,7 +52,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 
 ------------------
 
-#### Installation 
+### Installation 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Make sure you have Qt4 installed on your Debian before using the following script 
@@ -65,7 +65,7 @@ chmod +x install_and_run.sh
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#### hashing algorithms 
+### hashing algorithms 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The application uses crypt() function to perform hashing to the Linux password supporting the following algorithms: 
@@ -75,7 +75,7 @@ The application uses crypt() function to perform hashing to the Linux password s
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-#### Important Info : 
+### Important Info : 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - if you find any bugs please give a feedback. 
@@ -157,7 +157,6 @@ vm.dirty_background_bytes = 0
 --------------------
 
 ![groups](https://user-images.githubusercontent.com/12726776/30855524-f5ba60d2-a2bd-11e7-96ee-9a07814cdd11.PNG)
-
 
 
 ### Alternative installation (for developers)
