@@ -29,6 +29,10 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 
 - Perform configuration changes to remote systems
 
+- implement a password generator 
+
+- implement a password security strength checks
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Installation Info 
