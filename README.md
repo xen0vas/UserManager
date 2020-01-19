@@ -21,7 +21,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 ### TO-DO 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- update to qt5 
+- uppgrade to qt5 
 
 - fixing some bugs   
 
