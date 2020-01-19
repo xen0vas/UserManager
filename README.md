@@ -21,13 +21,10 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 ### TO-DO 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-> uppgrade to qt5 ( no time to upgrade to Qt5 but i will....... :) ) 
-
-> fixing some bugs   
-
-* implement a password generator 
-
-* implement password security strength checks
+- uppgrade to qt5 ( no time to upgrade to Qt5 but i will....... :) ) 
+- fixing some bugs  
+- implement a password generator 
+- implement password security strength checks
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -40,7 +37,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 ### Succesfully tested in the following architecture 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Linux kali 5.3.0-kali2-amd64 #1 SMP Debian 5.3.9-3kali1 (2019-11-20) x86_64 GNU/Linux
+- Linux kali 5.3.0-kali2-amd64 #1 SMP Debian 5.3.9-3kali1 (2019-11-20) x86_64 GNU/Linux
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -48,8 +45,8 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 ### Developers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  * Xenofon Vassilakopoulos (xvas)
-  * Fotis Tsifountidis (fts)
+  - Xenofon Vassilakopoulos (xvas)
+  - Fotis Tsifountidis (fts)
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -58,8 +55,8 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 #### Installation 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Make sure you have Qt4 installed on your Debian before using the following script 
-* The script install.sh runs only on Debian for now. 
+- Make sure you have Qt4 installed on your Debian before using the following script 
+- The script install.sh runs only on Debian for now. 
 
 git clone https://github.com/xvass/UserManager.git
 cd UserManager
