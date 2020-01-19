@@ -3,63 +3,64 @@
 
 UserManager has been developed in C/C++ and Qt framework. The application has been designed to provide assistance to Linux administrators in order to manage users and groups accounts. This tool has a friendly dashboard while performing the following functionality
 
-- add,edit,delete user accounts and groups
-- add users to groups
-- search users
-- remove users from groups 
-- set UIDs and GIDs
-- set users passwords 
-- set working directories
-- passwords aging
-- set account expiration
-- enable or disable user accounts
-- show disk usage
-- set working shells
+* add,edit,delete user accounts and groups
+* add users to groups
+* search users
+* remove users from groups 
+* set UIDs and GIDs
+* set users passwords 
+* set working directories
+* passwords aging
+* set account expiration
+* enable or disable user accounts
+* show disk usage
+* set working shells
 
 ------------------
 
 ### TO-DO 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- uppgrade to qt5 ( no time to upgrade to Qt5 but i will....... :) ) 
+* uppgrade to qt5 ( no time to upgrade to Qt5 but i will....... :) ) 
 
-- fixing some bugs   
+* fixing some bugs   
 
-- implement a password generator 
+* implement a password generator 
 
-- implement password security strength checks
+* implement password security strength checks
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Installation Info 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- This application has been tested in 64bit Linux Debian distributions.  
+* This application has been tested in 64bit Linux Debian distributions.  
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Succesfully tested in the following architecture 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- Linux kali 5.3.0-kali2-amd64 #1 SMP Debian 5.3.9-3kali1 (2019-11-20) x86_64 GNU/Linux
+* Linux kali 5.3.0-kali2-amd64 #1 SMP Debian 5.3.9-3kali1 (2019-11-20) x86_64 GNU/Linux
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 ### Developers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  - Xenofon Vassilakopoulos (xvas)
-  - Fotis Tsifountidis (fts)
+
+  * Xenofon Vassilakopoulos (xvas)
+  * Fotis Tsifountidis (fts)
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ------------------
 
 #### Installation 
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- Make sure you have Qt4 installed on your Debian before using the following script 
-- The script install.sh runs only on Debian for now. 
+* Make sure you have Qt4 installed on your Debian before using the following script 
+* The script install.sh runs only on Debian for now. 
 
 git clone https://github.com/xvass/UserManager.git
 cd UserManager
