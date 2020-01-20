@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#############################################################################
+##################################################################################
 #
 # This script installs UserManager application to Debian and Ubuntu distributions
 #
-#############################################################################
+##################################################################################
 
 os=$(uname -a) 
 nu=$(pwd | tr '/' ' ' | wc -w)
@@ -12,6 +12,14 @@ num=$(($nu + 1))
 directory=$(pwd | cut -d/ -f$num)
 usr=$(whoami)
 found="false"
+
+qt=`dpkg --get-selections | grep qt4-default`
+default=`echo $qt | cut -d" " -f1`
+
+if [ $default="qt4-default" ]; then 
+        apt install qt4-default
+	sleep 3
+fi
 
 IFS=' ' # space set as delimiter
 read -ra ADDR <<< "$os"
