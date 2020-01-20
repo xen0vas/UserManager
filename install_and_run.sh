@@ -2,7 +2,7 @@
 
 #############################################################################
 #
-# This script installs UserManager application only to Debian distributions
+# This script installs UserManager application to Debian and Ubuntu distributions
 #
 #############################################################################
 
@@ -13,7 +13,7 @@ directory=$(pwd | cut -d/ -f$num)
 usr=$(whoami)
 found="false"
 
-IFS=' ' # space is set as delimiter
+IFS=' ' # space set as delimiter
 read -ra ADDR <<< "$os"
 for i in "${ADDR[@]}"; do # access each element of array
     if [ "$i" = "Debian" -o "$i" = "Ubuntu" -o "$i" = "debian" ];then
