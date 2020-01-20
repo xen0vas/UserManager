@@ -16,13 +16,13 @@ found="false"
 IFS=' ' # space is set as delimiter
 read -ra ADDR <<< "$os"
 for i in "${ADDR[@]}"; do # access each element of array
-    if [ "$i" = "Debian" -o "$i" = "debian" ];then
+    if [ "$i" = "Debian" -o "$i" = "Ubuntu" -o "$i" = "debian" ];then
 	found="true"
     fi
 done
 
 if [ "$found" = "false" ]; then 
-	echo "this script installs UserManager only at Debian OS"
+	echo "this script installs UserManager at Debian and Ubuntu"
 	exit 1; 
 fi
 
