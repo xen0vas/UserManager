@@ -73,20 +73,8 @@ chmod +x install_and_run.sh
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-### hashing algorithms 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The application uses crypt() function to perform hashing to the Linux password supporting the following algorithms: 
-- SHA-512
-- SHA-256
-- Blowfish ( bcrypt it is not included in glibc in general. If you want to enable it you must import a patch to include crypt_blowfish in libc.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
 ### Important Info : 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- if you find any bugs please give a feedback. 
 
 - If the application doesn't run, use the following fix export QT X11 NO MITSHM=1 or QT X11 NO MITSHM=1 UserManager. QT X11 NO MITSHM stops Qt form using the MIT-SHM X11 extension. This is a known bug in Qt applications   
 
