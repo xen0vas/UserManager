@@ -52,6 +52,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   - Xenofon Vassilakopoulos (xvas)
+
   - Fotis Tsifountidis (fts)
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
