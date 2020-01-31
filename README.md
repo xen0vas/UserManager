@@ -32,7 +32,7 @@ just do apt install qt5-default and it will only remove the qt4-default package.
 
 - implement a password generator
 
-- **implement password security strength checks**
+- implement password security strength checks
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
