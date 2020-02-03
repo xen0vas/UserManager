@@ -24,7 +24,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 - upgrade to qt5 ( no time to upgrade to Qt5 but i will....... :) ) 
 
 - Important info until upgrading to qt5 : you can just let the script install_and_run.sh 
-to install qt4-default. During the installion, it will first remove qt5-default, but dont 
+to install qt4-default. During the installion, the qt5-default will be removed, but dont 
 worry because after the UserManager installation finishes you will be able to install qt5-default 
 again and the UserManager application will not be affected. Also after installing qt4-default 
 and after the UserManager installation finishes, dont autoremove before installing the qt5-defaut, 
