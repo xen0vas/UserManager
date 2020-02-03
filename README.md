@@ -21,7 +21,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 ### TO-DO 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- upgrade to qt5 ( no time to upgrade to Qt5 but i will....... :) ) 
+1. upgrade to qt5 ( no time to upgrade to Qt5 but i will....... :) ) 
 
 - Important info until upgrading to qt5 : you can just let the script install_and_run.sh 
 to install qt4-default. During the installion, the qt5-default will be removed, but dont 
@@ -30,9 +30,9 @@ again and the UserManager application will not be affected. Also after installin
 and after the UserManager installation finishes, dont autoremove before installing the qt5-defaut, 
 just do apt install qt5-default and it will only remove the qt4-default package.
 
-- implement a password generator
+2. implement a password generator
 
-- implement password security strength checks
+3. implement password security strength checks
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
