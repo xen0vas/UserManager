@@ -160,7 +160,7 @@ vm.dirty_background_bytes = 0
 ![groups](https://user-images.githubusercontent.com/12726776/30855524-f5ba60d2-a2bd-11e7-96ee-9a07814cdd11.PNG)
 
 
-### Alternative installation (for developers)
+### Alternative installation (without the script)
 -----------------
 
 - download the contents from git repo ( e.g. put them in `/opt` directory)
