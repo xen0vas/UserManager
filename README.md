@@ -21,7 +21,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 ### TO-DO 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Upgrade to qt5 ( no time to upgrade to Qt5 but i will....... :) ) 
+1. Upgrade to qt5 
 
 2. Implement a password generator
 
