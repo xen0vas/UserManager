@@ -27,7 +27,7 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 
 3. Implement password security strength checks
 
-4. Notify about weak passwords and non password accounts
+4. Notify about weak passwords and empty password accounts
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
