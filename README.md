@@ -1,5 +1,5 @@
 
-# UserManager
+# UserManager [![Build Status](https://travis-ci.org/JPNaude/QtHelloWorld.svg?branch=master)](https://travis-ci.org/JPNaude/QtHelloWorld)
 
 UserManager has been developed in C/C++ and Qt framework. The application has been designed to provide assistance to Linux administrators in order to manage users and groups accounts. This tool has a friendly dashboard while performing the following functionality
 
