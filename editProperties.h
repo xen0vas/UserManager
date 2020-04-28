@@ -2,6 +2,8 @@
 #define EDITPROPERTIES_H
 #include "ui_EditProperties.h"
 #include "ui_HashingAlgorithm.h"
+#include <QMessageBox>
+#include <QFileDialog>
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>

@@ -1,5 +1,6 @@
 #include <QApplication>
-#include <QtGui/QtGui>
+//#include <QtGui/QtGui>
+#include <QtWidgets>
 #include "MainWindow.h"
 #include <string>
 #include <unistd.h>

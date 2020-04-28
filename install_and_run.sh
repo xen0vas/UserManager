@@ -16,11 +16,6 @@ found="false"
 qt=`dpkg --get-selections | grep qt4-default`
 default=`echo $qt | cut -d" " -f1`
 
-if [ $default="qt4-default" ]; then 
-        apt install qt4-default
-	sleep 3
-fi
-
 IFS=' ' # space set as delimiter
 read -ra ADDR <<< "$os"
 for i in "${ADDR[@]}"; do # access each element of array
@@ -88,18 +83,19 @@ qmake -o Makefile UserManager.pro
 echo "QMAKE_CXXFLAGS += -std=c++11" >> UserManager.pro
 echo "CONFIG += qt debug" >> UserManager.pro
 echo "QMAKE_LIBS += -lcrypt" >> UserManager.pro
+echo "QT += widgets" >> UserManager.pro
 echo "# installation" >> UserManager.pro
 echo "installfiles.files += usermanager" >> UserManager.pro
 echo "installfiles.path += /usr/bin/" >> UserManager.pro  
 echo "INSTALLS += installfiles" >> UserManager.pro
 make
 make install
-cd .. && mv UserManager/ /opt
-cd /opt/UserManager
+#cd .. && mv UserManager/ /opt
+#cd /opt/UserManager
 chown -R root:root UserManager
 chmod -R 700 /opt/UserManager
 chmod 700 /usr/bin/UserManager
-./UserManager 
+#./UserManager 
 
 
 

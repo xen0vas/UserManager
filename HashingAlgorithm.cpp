@@ -35,9 +35,9 @@ void HashingAlgorithm::storePassShadow(QString name, QString passhash)
 	struct spwd spd;
 	MainWindow main;
 	int curdays = time ( NULL ) / ( 60 * 60 * 24 );
-	spd = *getspnam(name.toAscii().data());
+	spd = *getspnam(name.toLatin1().data());
 	spd.sp_lstchg = curdays;
-	spd.sp_pwdp = passhash.toAscii().data();
+	spd.sp_pwdp = passhash.toLatin1().data();
 
 	fchk->setspnam(&spd);
 	main.reloadUsersAndGroups();
@@ -108,7 +108,7 @@ int HashingAlgorithm::setPassword(QString name)
 			return 1;
 		}
 
-		if (this->Save && strncmp(passwd.toAscii().data(), verify.toAscii().data(), strlen(passwd.toAscii().data())) != 0)
+		if (this->Save && strncmp(passwd.toLatin1().data(), verify.toLatin1().data(), strlen(passwd.toLatin1().data())) != 0)
 		{
 			QMessageBox::warning( 0,tr ( "User Manager" ),tr ( "Passwords do not match!" ) );
 			return 1;
@@ -133,7 +133,7 @@ int HashingAlgorithm::setPassword(QString name)
    			return 1;
    		}
 
-   		if (this->Save && strncmp(passwd.toAscii().data(), verify.toAscii().data(), strlen(passwd.toAscii().data())) != 0)
+   		if (this->Save && strncmp(passwd.toLatin1().data(), verify.toLatin1().data(), strlen(passwd.toLatin1().data())) != 0)
    		{
    			QMessageBox::warning( 0,tr ( "User Manager" ),tr ( "Passwords do not match!" ) );
    			return 1;
@@ -158,7 +158,7 @@ int HashingAlgorithm::setPassword(QString name)
    	   			return 1;
    	   		}
 
-   	   		if (this->Save && strncmp(passwd.toAscii().data(), verify.toAscii().data(), strlen(passwd.toAscii().data())) != 0)
+   	   		if (this->Save && strncmp(passwd.toLatin1().data(), verify.toLatin1().data(), strlen(passwd.toLatin1().data())) != 0)
    	   		{
    	   			QMessageBox::warning( 0,tr ( "User Manager" ),tr ( "Passwords do not match!" ) );
    	   			return 1;
@@ -183,7 +183,7 @@ int HashingAlgorithm::setPassword(QString name)
    		   	return 1;
    		}
 
-   		if (this->Save && strncmp(passwd.toAscii().data(), verify.toAscii().data(), strlen(passwd.toAscii().data())) != 0)
+   		if (this->Save && strncmp(passwd.toLatin1().data(), verify.toLatin1().data(), strlen(passwd.toLatin1().data())) != 0)
    		{
    		   	QMessageBox::warning( 0,tr ( "User Manager" ),tr ( "Passwords do not match!" ) );
    		   	return 1;

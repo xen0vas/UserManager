@@ -186,16 +186,16 @@ int UserProperties::insertIntoPasswdFile ( QString nam,QString uid,QString gid,Q
 	MyLibb *fchk = new MyLibb();
 	int done = 0 ;
 	QString pass = "x";
-	QByteArray name ( nam.toAscii().data() );
-	QByteArray gecos ( gec.toAscii().data() );
-	QByteArray dir ( directory.toAscii().data() );
-	QByteArray shell ( shellcon.toAscii().data() );
+	QByteArray name ( nam.toLatin1().data() );
+	QByteArray gecos ( gec.toLatin1().data() );
+	QByteArray dir ( directory.toLatin1().data() );
+	QByteArray shell ( shellcon.toLatin1().data() );
 	uid_t userID  = uid.toInt();
 	gid_t groupID = gid.toInt();
 	struct passwd  us;
 	
 	us.pw_name   =  name.data();
-	us.pw_passwd =  pass.toAscii().data();
+	us.pw_passwd =  pass.toLatin1().data();
 	us.pw_uid    =  userID;
 	us.pw_gid    =  groupID;
 	us.pw_gecos  =  gecos.data();
@@ -224,11 +224,11 @@ int UserProperties::insertIntoGroupFile ( QString nam,QString gid )
 	int def;
 	QString pass = "x";
 	Groups *groupie {new Groups()};
-	QByteArray name ( nam.toAscii().data() );
+	QByteArray name ( nam.toLatin1().data() );
 	gid_t groupID = gid.toInt();
 	struct group grp;
 	grp.gr_name = name.data() ;
-	grp.gr_passwd = pass.toAscii().data();
+	grp.gr_passwd = pass.toLatin1().data();
 	grp.gr_gid = groupID  ;
 	grp.gr_mem = NULL;
 	FILE *groupbase;
@@ -306,25 +306,25 @@ int UserProperties::insertIntoShadowFile ( QString logname,QString encrypted_pas
 	struct spwd spw;
 	int curdays = time ( NULL ) / ( 60 * 60 * 24 );
 	
-	QByteArray name ( logname.toAscii().data() );
+	QByteArray name ( logname.toLatin1().data() );
 		
 	QString mini = min->cleanText();
-	string minim = mini.toAscii().data();
+	string minim = mini.toLatin1().data();
 	
 	QString maxi = max->cleanText();
-	string maximum = maxi.toAscii().data();
+	string maximum = maxi.toLatin1().data();
 		
 	QString inaction = expire->cleanText();
-	string inactuser = inaction.toAscii().data();
+	string inactuser = inaction.toLatin1().data();
 	
 	QString warning = warn->cleanText();
-	string warn_pass = warning.toAscii().data();
+	string warn_pass = warning.toLatin1().data();
 	
-	char *encrypt = encrypted_pass.toAscii().data();
+	char *encrypt = encrypted_pass.toLatin1().data();
 
 	if( !checkBox->isChecked() && encrypted_pass != "" )
 		{		
-		spw = setShadowStruct(atoi ( maximum.c_str() ),atoi(warn_pass.c_str()),atoi ( inactuser.c_str() ),atoi ( minim.c_str() ),inactuser,name.data(),encrypted_pass.toAscii().data(),curdays );
+		spw = setShadowStruct(atoi ( maximum.c_str() ),atoi(warn_pass.c_str()),atoi ( inactuser.c_str() ),atoi ( minim.c_str() ),inactuser,name.data(),encrypted_pass.toLatin1().data(),curdays );
 		}			
 	else if ( checkBox->isChecked() && encrypted_pass == "" )
 		{
@@ -340,12 +340,12 @@ int UserProperties::insertIntoShadowFile ( QString logname,QString encrypted_pas
 		char *disable;
 		string encrypting(encrypt);	
 		QString dis = "!";
-		disable = dis.toAscii().data();
+		disable = dis.toLatin1().data();
 		string dis_account(disable);
 		string account = "";
 		account  = dis_account +  encrypting;
 		QString acc = account.data();
-		spw = setShadowStruct(atoi ( maximum.c_str() ),atoi(warn_pass.c_str()),atoi ( inactuser.c_str() ),atoi ( minim.c_str() ),inactuser,name.data(),acc.toAscii().data(),curdays);
+		spw = setShadowStruct(atoi ( maximum.c_str() ),atoi(warn_pass.c_str()),atoi ( inactuser.c_str() ),atoi ( minim.c_str() ),inactuser,name.data(),acc.toLatin1().data(),curdays);
 		}
 
 	setspent();
@@ -462,7 +462,7 @@ void UserProperties::addUserBase()
 		}
 		if ( ( pass_done == 0 ) && ( group_done == 0 ) && ( shadow_done == 0 ) )
 		{
-			QByteArray dir ( directory.toAscii().data() );
+			QByteArray dir ( directory.toLatin1().data() );
 			const char *path = dir.data();
 			mkdir ( path,X_OK );
 			chmod ( path,0700 );
@@ -558,7 +558,7 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 	if ( state == 0 )
 	{
 		QString command="usermod -a -G "  +  index.sibling(row,1).data().toString() + " " + NameLabel->text() + "";//index.data().toString() periexei ton neo member kai groupNameEdit->text() to group pou 8a mpei
-		cmd=command.toAscii().data();
+		cmd=command.toLatin1().data();
 		done = ( system ( cmd ) );
 
 	}
@@ -567,8 +567,8 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		Groups group;
 		MyLibb set;
 		struct group *grs;
-		grs=getgrnam ( index.sibling(row,1).data().toString().toAscii().data() );
-		group.remove_member ( grs,NameLabel->text().toAscii().data() );
+		grs=getgrnam ( index.sibling(row,1).data().toString().toLatin1().data() );
+		group.remove_member ( grs,NameLabel->text().toLatin1().data() );
 		done=set.setgrnam ( grs );
 	}
 	if ( done==0 )
@@ -623,7 +623,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strncmp ( *members, NameLabel->text().toAscii().data(), strlen(*members) ) ==0 ) //LoginName->text() to onoma tou xrhsth
+		if ( strncmp ( *members, NameLabel->text().toLatin1().data(), strlen(*members) ) ==0 ) //LoginName->text() to onoma tou xrhsth
 		{
 			easyList->addItem ( admin );
 			admin->setCheckState ( Qt::Checked );
@@ -644,7 +644,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strncmp ( *members, NameLabel->text().toAscii().data(), strlen(*members)) ==0 )
+		if ( strncmp ( *members, NameLabel->text().toLatin1().data(), strlen(*members)) ==0 )
 		{
 			easyList->addItem ( storage );
 			storage->setCheckState ( Qt::Checked );
@@ -665,7 +665,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strncmp ( *members,NameLabel->text().toAscii().data(), strlen(*members) ) ==0 )
+		if ( strncmp ( *members,NameLabel->text().toLatin1().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( internet );
 			internet->setCheckState ( Qt::Checked );
@@ -686,7 +686,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strncmp ( *members,NameLabel->text().toAscii().data(), strlen(*members) ) ==0 )
+		if ( strncmp ( *members,NameLabel->text().toLatin1().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( logs );
 			logs->setCheckState ( Qt::Checked );
@@ -707,7 +707,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strncmp ( *members,NameLabel->text().toAscii().data(), strlen(*members) ) ==0 )
+		if ( strncmp ( *members,NameLabel->text().toLatin1().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( fax );
 			fax->setCheckState ( Qt::Checked );
@@ -728,7 +728,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strncmp ( *members,NameLabel->text().toAscii().data(), strlen(*members) ) ==0 )
+		if ( strncmp ( *members,NameLabel->text().toLatin1().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( cdrom );
 			cdrom->setCheckState ( Qt::Checked );
@@ -749,7 +749,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strncmp ( *members,NameLabel->text().toAscii().data(), strlen(*members) ) ==0 )
+		if ( strncmp ( *members,NameLabel->text().toLatin1().data(), strlen(*members) ) ==0 )
 		{
 			easyList->addItem ( floppy );
 			floppy->setCheckState ( Qt::Checked );
@@ -770,7 +770,7 @@ void UserProperties::fillEasyList()
 	}
 	while ( *members )
 	{
-		if ( strncmp ( *members,NameLabel->text().toAscii().data(),strlen(*members)) ==0 )
+		if ( strncmp ( *members,NameLabel->text().toLatin1().data(),strlen(*members)) ==0 )
 		{
 			easyList->addItem ( scanner );
 			scanner->setCheckState ( Qt::Checked );
@@ -876,53 +876,53 @@ void UserProperties::easyAddGroups ( const QModelIndex &index )
 	if ( index.data().toString() =="Access external storage devices automatically" )
 	{
 		QString command="addgroup " + NameLabel->text() + " plugdev";
-		cmd=command.toAscii().data();
+		cmd=command.toLatin1().data();
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Administer the system" )
 	{
 		QString command="addgroup " + NameLabel->text() + " adm";
-		cmd=command.toAscii().data();
+		cmd=command.toLatin1().data();
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Connect to the internet using a modem" )
 	{
 		QString command="addgroup " + NameLabel->text() + " dialout";
-		cmd=command.toAscii().data();
+		cmd=command.toLatin1().data();
 		system ( cmd );
 	}
 
 	else if ( index.data().toString() =="Monitor system logs" )
 	{
 		QString command="addgroup " + NameLabel->text() + " syslog";
-		cmd=command.toAscii().data();
+		cmd=command.toLatin1().data();
 		system ( cmd );
 	}
 
 	else if ( index.data().toString() =="Send/Receive faxes" )
 	{
 		QString command="addgroup " + NameLabel->text() + " fax";
-		cmd=command.toAscii().data();
+		cmd=command.toLatin1().data();
 		system ( cmd );
 	}
 
 	else if ( index.data().toString() =="Use CD-ROM/DVD drives" )
 	{
 		QString command="addgroup " + NameLabel->text() + " cdrom";
-		cmd=command.toAscii().data();
+		cmd=command.toLatin1().data();
 		system ( cmd );
 	}
 
 	else if ( index.data().toString() =="Use floppy drives" )
 	{
 		QString command="addgroup " + NameLabel->text() + " floppy";
-		cmd=command.toAscii().data();
+		cmd=command.toLatin1().data();
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Use scanners" )
 	{
 		QString command="addgroup " + NameLabel->text() + " scanner";
-		cmd=command.toAscii().data();
+		cmd=command.toLatin1().data();
 		system ( cmd );
 	}
 }
@@ -944,8 +944,8 @@ void UserProperties::easyAddGroups ( const QModelIndex &index )
 	grs=getgrnam("floppy");
 	if ( index.data().toString() =="Use scanners" )
 	grs=getgrnam("scanner");
-	//h remove_member(grs,getOldUsername().toAscii().data()	epistrefei thn domh grs pou phre sto orisma ths vgazontas ap ta members ths ton xrhsth ton opoio pernoume apo thn  getOldUsername().toAscii().data().H epistefomenh domh mpainei san orisma sthn setgrnam gia na mpei h nea domh sto group fle.epistrefei 0 an egine h allagh
-	done=set.setgrnam(group.remove_member(grs,NameLabel->text().toAscii().data()));
+	//h remove_member(grs,getOldUsername().toLatin1().data()	epistrefei thn domh grs pou phre sto orisma ths vgazontas ap ta members ths ton xrhsth ton opoio pernoume apo thn  getOldUsername().toLatin1().data().H epistefomenh domh mpainei san orisma sthn setgrnam gia na mpei h nea domh sto group fle.epistrefei 0 an egine h allagh
+	done=set.setgrnam(group.remove_member(grs,NameLabel->text().toLatin1().data()));
 }
 if (done==0)
 {	
@@ -971,12 +971,12 @@ void UserProperties::setPrimaryGroup()
 	QModelIndex index=userGroups->selectionModel()->currentIndex();
 	if ( index.data().toString() !="" )
 	{
-		groupname=index.data().toString().toAscii().data();
+		groupname=index.data().toString().toLatin1().data();
 		grp=getgrnam ( groupname );
 		gname.append ( grp->gr_name );
-		//user=getpwnam ( NameLabel->text().toAscii().data() );
+		//user=getpwnam ( NameLabel->text().toLatin1().data() );
 		QString command="usermod -g " + gname  + " " + NameLabel->text() ;
-		cmd=command.toAscii().data();
+		cmd=command.toLatin1().data();
 		system ( cmd );
 		userGroups->setModel ( model.createUserInGroupsModel ( NameLabel->text() ) );
 		userGroups->setColumnWidth ( 0, 30 );

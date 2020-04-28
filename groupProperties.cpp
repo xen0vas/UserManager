@@ -90,14 +90,14 @@ void GroupProperties::addMembers( )
 	{
 		//member=index.data().toByteArray().data();
 		QString command="addgroup " + index.data().toString() + " " + getOldGroupName() + "";//index.data().toString() periexei ton neo member kai groupNameEdit->text() to group pou 8a mpei
-		cmd=command.toAscii().data();
+		cmd=command.toLatin1().data();
 		done = ( system ( cmd ) );
 	}
 
 	if ( done==0 )
 	{
-		notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toAscii().data() ) );
-		membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toAscii().data() ) );
+		notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toLatin1().data() ) );
+		membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toLatin1().data() ) );
 
 	}
 
@@ -117,7 +117,7 @@ void GroupProperties::removeMembers( )
 	Models model;
 	struct group *grs = NULL;
 	MyLibb set;
-	char *gname=getOldGroupName().toAscii().data();
+	char *gname=getOldGroupName().toLatin1().data();
 	char *username;
 	grs=getgrnam(gname);
 	QModelIndexList indexes = membersList->selectionModel()->selectedIndexes();
@@ -128,8 +128,8 @@ void GroupProperties::removeMembers( )
 	set.setgrnam(grs);
 	}
 	system("sed -i 's/,,/,/g;s/,$//g' /etc/group");//['s/,,/,/g]->antika8ista ta dyo kommata me ena. [s/,$//g']->antika8ista to koma sto telos ths ka8e grammhs me keno
-	notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toAscii().data() ) );
-	membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toAscii().data() ) );
+	notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toLatin1().data() ) );
+	membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toLatin1().data() ) );
 
 }
 /**
@@ -148,7 +148,7 @@ bool GroupProperties::renameGroup()
 	{
 		Models model;
 		QString command="groupmod -n " + groupNameEdit->text() + " " + getOldGroupName()  + "";
-		cmd=command.toAscii().data();
+		cmd=command.toLatin1().data();
 		( system ( cmd ) );
 	}
 return true;
@@ -280,7 +280,7 @@ else
 	
 	gid_t groupID = GIDEdit->text().toInt();
 	struct group grp;
-	grp.gr_name = groupNameEdit->text().toAscii().data() ;
+	grp.gr_name = groupNameEdit->text().toLatin1().data() ;
 	grp.gr_passwd = pass.data();
 	grp.gr_gid = groupID  ;
 	grp.gr_mem = NULL;
@@ -302,10 +302,10 @@ else
 		
 		QMessageBox::information ( 0,tr ( "User Manager" ),tr ( "Group %1 added" ).arg ( groupNameEdit->text() ) );
 		newGroupBtn->setVisible(false);
-		notMembersList->setModel ( model.UsersNotInGroupModel ( groupNameEdit->text().toAscii().data()) );
-		membersList->setModel ( model.UsersInGroupModel ( groupNameEdit->text().toAscii().data() ) );
+		notMembersList->setModel ( model.UsersNotInGroupModel ( groupNameEdit->text().toLatin1().data()) );
+		membersList->setModel ( model.UsersInGroupModel ( groupNameEdit->text().toLatin1().data() ) );
 
-		setOldGroupName ( groupNameEdit->text().toAscii().data() );//prepei na dhlw8ei oti to oldgroupname einai pleon to onoma tou kainourgiou group pou valame gia na mporesei na leitourghsei h addmembers() kai h removemembers() pou exoun san orisma to onoma tou group.an den dhlw8ei edw to oldgroupname 8a einai keno epeidh otan dhmiourgh8hke h forma to name sto groupNameEdit htan keno
+		setOldGroupName ( groupNameEdit->text().toLatin1().data() );//prepei na dhlw8ei oti to oldgroupname einai pleon to onoma tou kainourgiou group pou valame gia na mporesei na leitourghsei h addmembers() kai h removemembers() pou exoun san orisma to onoma tou group.an den dhlw8ei edw to oldgroupname 8a einai keno epeidh otan dhmiourgh8hke h forma to name sto groupNameEdit htan keno
 		newGroupBtn->setEnabled ( false );
 		addBtn->setEnabled ( true );
 		removeBtn->setEnabled ( true );

@@ -1,5 +1,6 @@
 #include "users.h"
-#include <QtGui/QtGui>
+//#include <QtGui/QtGui>
+#include <QtWidgets>
 #include "myLibb.h"
 #define MAX_FIELD_SIZE          256
 //
@@ -28,7 +29,7 @@ struct passwd *Users::searchUser()
 
 	if ( okBtn && userString != " " )
 	{
-		userToSearch = userString.toAscii().data();
+		userToSearch = userString.toLatin1().data();
 		result = getpwnam( userToSearch );
 		if ( result == NULL )
 		{
@@ -43,7 +44,7 @@ struct passwd *Users::searchUser()
 bool Users::userExists( QString name )
 {
 	struct passwd *user;
-	user = getpwnam( name.toAscii().data() );
+	user = getpwnam( name.toLatin1().data() );
 	if ( user != NULL )
 	{
 		QMessageBox::information( 0, QObject::tr( "User Manager" ), QObject::tr( "User Exists!! " ) );
@@ -240,7 +241,7 @@ int  Users::rm_pwUser(QString name)
 {
 MyLibb lib;
 struct passwd *pw = NULL;
-char *nam = name.toAscii().data();
+char *nam = name.toLatin1().data();
 if(lib.setpwnam_r(pw,nam)<0)
 return -1;
 else
@@ -255,56 +256,56 @@ int Users::save_new_info (struct finfo *pinfo,uid_t uid,char *shellnew)
 int len = 128;
 QString gec;
 QString emptystr = "";
-    if (!pinfo->full_name) pinfo->full_name = emptystr.toAscii().data();
-    if (!pinfo->office) pinfo->office = emptystr.toAscii().data();
-    if (!pinfo->office_phone) pinfo->office_phone =  emptystr.toAscii().data();
-    if (!pinfo->home_phone) pinfo->home_phone =  emptystr.toAscii().data();
+    if (!pinfo->full_name) pinfo->full_name = emptystr.toLatin1().data();
+    if (!pinfo->office) pinfo->office = emptystr.toLatin1().data();
+    if (!pinfo->office_phone) pinfo->office_phone =  emptystr.toLatin1().data();
+    if (!pinfo->home_phone) pinfo->home_phone =  emptystr.toLatin1().data();
     /* create the new gecos string */
     len   =(strlen (pinfo->full_name) + strlen (pinfo->office) + strlen (pinfo->office_phone) + strlen (pinfo->home_phone) + 4);
     char *gecos =(char*)calloc(len, sizeof(char));
     int fname = sizeof(pinfo->full_name);
 
-	if (pinfo->full_name == emptystr.toAscii().data() && pinfo->office == emptystr.toAscii().data() && pinfo->office_phone == emptystr.toAscii().data() && pinfo->home_phone == emptystr.toAscii().data())
-	strncpy(gecos, emptystr.toAscii().data(), fname);
-		//gecos = emptystr.toAscii().data();
+	if (pinfo->full_name == emptystr.toLatin1().data() && pinfo->office == emptystr.toLatin1().data() && pinfo->office_phone == emptystr.toLatin1().data() && pinfo->home_phone == emptystr.toLatin1().data())
+	strncpy(gecos, emptystr.toLatin1().data(), fname);
+		//gecos = emptystr.toLatin1().data();
 
 	else
 	{
 
-	if(strncmp(pinfo->full_name,emptystr.toAscii().data(),fname) != 0)
+	if(strncmp(pinfo->full_name,emptystr.toLatin1().data(),fname) != 0)
 	{
 	gec = pinfo->full_name;
 	}
 	int officesize = sizeof(pinfo->office);
-	if(strncmp(pinfo->office ,emptystr.toAscii().data(), officesize) != 0)
+	if(strncmp(pinfo->office ,emptystr.toLatin1().data(), officesize) != 0)
 	{
 	gec ="" + gec + ",";	
 	gec = "" + gec + "" + pinfo->office + "";
 	}
 	int pinfo_size = sizeof(pinfo->office_phone);
-	if(strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) != 0)
+	if(strncmp(pinfo->office_phone,emptystr.toLatin1().data(),pinfo_size) != 0)
 	{	
 	int pinfo_office = sizeof(pinfo->office);
-	if (strncmp(pinfo->office,emptystr.toAscii().data(), pinfo_office) == 0 )
+	if (strncmp(pinfo->office,emptystr.toLatin1().data(), pinfo_office) == 0 )
 		gec ="" + gec + ",";
 	gec ="" + gec + ",";
 	gec = "" + gec + "" + pinfo->office_phone +  "";
 	}
 	
 	int ophone = sizeof(pinfo->office_phone);
-	if(strncmp(pinfo->home_phone,emptystr.toAscii().data(), ophone) != 0)
+	if(strncmp(pinfo->home_phone,emptystr.toLatin1().data(), ophone) != 0)
 	{	
-	if (strncmp(pinfo->office_phone,emptystr.toAscii().data(),ophone) == 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size)!= 0 )gec ="" + gec + ",,";
-	if (strncmp(pinfo->office_phone,emptystr.toAscii().data(), ophone) != 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) == 0  )gec ="" + gec + ",";
-	if (strncmp(pinfo->full_name,emptystr.toAscii().data(), fname) == 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) == 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) == 0){gec ="" + gec + ",,,";}
-	if (strncmp(pinfo->full_name,emptystr.toAscii().data(), fname) != 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size)== 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) == 0){gec ="" + gec + ",,,";}
-	if (strncmp(pinfo->full_name,emptystr.toAscii().data(), fname) != 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) != 0 && strncmp(pinfo->office_phone,emptystr.toAscii().data(),pinfo_size) != 0){gec ="" + gec + ",";}
+	if (strncmp(pinfo->office_phone,emptystr.toLatin1().data(),ophone) == 0 && strncmp(pinfo->office_phone,emptystr.toLatin1().data(),pinfo_size)!= 0 )gec ="" + gec + ",,";
+	if (strncmp(pinfo->office_phone,emptystr.toLatin1().data(), ophone) != 0 && strncmp(pinfo->office_phone,emptystr.toLatin1().data(),pinfo_size) == 0  )gec ="" + gec + ",";
+	if (strncmp(pinfo->full_name,emptystr.toLatin1().data(), fname) == 0 && strncmp(pinfo->office_phone,emptystr.toLatin1().data(),pinfo_size) == 0 && strncmp(pinfo->office_phone,emptystr.toLatin1().data(),pinfo_size) == 0){gec ="" + gec + ",,,";}
+	if (strncmp(pinfo->full_name,emptystr.toLatin1().data(), fname) != 0 && strncmp(pinfo->office_phone,emptystr.toLatin1().data(),pinfo_size)== 0 && strncmp(pinfo->office_phone,emptystr.toLatin1().data(),pinfo_size) == 0){gec ="" + gec + ",,,";}
+	if (strncmp(pinfo->full_name,emptystr.toLatin1().data(), fname) != 0 && strncmp(pinfo->office_phone,emptystr.toLatin1().data(),pinfo_size) != 0 && strncmp(pinfo->office_phone,emptystr.toLatin1().data(),pinfo_size) != 0){gec ="" + gec + ",";}
 	gec = "" + gec + "" +  pinfo->home_phone +  "";
 	}
 	
 
 	}
-    sprintf(gecos, "%s",gec.toAscii().data());
+    sprintf(gecos, "%s",gec.toLatin1().data());
 
     pinfo->pw->pw_gecos = gecos;
     pinfo->pw->pw_uid   = uid;
@@ -399,7 +400,7 @@ struct group *group=NULL;
 struct passwd *user=NULL;
 QString primGroup;
 bool found=false;
-user=getpwnam(username.toAscii().data());
+user=getpwnam(username.toLatin1().data());
 
 setgrent();
 while (( group = getgrent() ))

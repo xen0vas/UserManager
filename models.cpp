@@ -39,7 +39,7 @@ QStandardItemModel *Models::createUsersModel( )
 		QModelIndex homeDir = model->index( 0, 3 );
 		QModelIndex defaultShell = model->index( 0, 4 );
 		QModelIndex diskUsage = model->index( 0, 5 );	
-		QString userName = QString::fromAscii( users->pw_name );
+		QString userName = QString::fromLatin1( users->pw_name );
 				
 				if (us->isLocked(userName))
 					model->setData(UID,QVariant(QImage("/usr/share/apps/UserManager/pics/lock.png")),Qt::DecorationRole);
@@ -87,7 +87,7 @@ QStandardItemModel *Models::createUsersModelWithSizes( QStringList sizeList )
 		QModelIndex homeDir = model->index( 0, 3 );
 		QModelIndex defaultShell = model->index( 0, 4 );
 		QModelIndex diskUsage = model->index( 0, 5 );	
-		QString userName = QString::fromAscii( users->pw_name );
+		QString userName = QString::fromLatin1( users->pw_name );
 				
 				if (us->isLocked(userName))
 				model->setData(UID,QVariant(QImage("/usr/share/apps/UserManager/pics/lock.png")),Qt::DecorationRole);
@@ -406,7 +406,7 @@ QStandardItemModel *Models::createUserInGroupsModel ( QString username )
 	struct group *grp=NULL;
 	struct passwd *user=NULL;
 	QStandardItemModel *model = new QStandardItemModel ( 0, 2 );
-	user=getpwnam ( username.toAscii().data() );
+	user=getpwnam ( username.toLatin1().data() );
 	char **members=NULL;
 	model->setHeaderData ( 1, Qt::Horizontal, QObject::tr ( "Groups" ) );
 	model->setHeaderData ( 0, Qt::Horizontal, QObject::tr ( "" ) );

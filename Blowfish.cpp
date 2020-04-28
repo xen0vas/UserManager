@@ -95,7 +95,7 @@ char *Blowfish::encryptpass( QString passwd) const
 		hEnc = nullptr;}
 
 	char *buf = ( char * )calloc ( 512, sizeof(*buf) );
-	char *password = passwd.toAscii().data();
+	char *password = passwd.toLatin1().data();
 	strncpy ( buf,password,strlen(password));
 
 	/*

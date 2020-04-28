@@ -2,7 +2,6 @@
 #define ABOUT_H
 
 #include "ui_About.h"
-
 class About : public QDialog, public Ui::About
 {
 

@@ -1,5 +1,8 @@
 #include "groups.h"
 #include "myLibb.h"
+#include <QMessageBox> 
+#include <QInputDialog> 
+
 /**
  Constructor κλάσης 
  */
@@ -24,11 +27,11 @@ if (strncmp(grs->gr_name,"video", strlen(grs->gr_name))==0 || strncmp(grs->gr_na
 {
 QString member =  *grs->gr_mem;
 if(*grs->gr_mem == NULL)
-*grs->gr_mem = newmem.toAscii().data();
+*grs->gr_mem = newmem.toLatin1().data();
 else
 {
 allmem = "" + member + ","  + newmem + "";
-*grs->gr_mem = allmem.toAscii().data();
+*grs->gr_mem = allmem.toLatin1().data();
 }
 MyLibb set;
 if(set.setgrnam(grs) < 0)return -1;
@@ -51,7 +54,7 @@ struct group *Groups::searchGroup()
 
 	if ( okBtn && groupString != " " )
 	{
-		groupToSearch = groupString.toAscii().data();
+		groupToSearch = groupString.toLatin1().data();
 		result = getgrnam( groupToSearch );
 		if ( result == NULL )
 		{
@@ -76,7 +79,7 @@ struct group *Groups::remove_member(struct group *in,char *uname)
 		{
 			if (!strncmp(in->gr_mem[i], uname, strlen(in->gr_mem[i])))
 			{
-				in->gr_mem[i] = memo.toAscii().data();
+				in->gr_mem[i] = memo.toLatin1().data();
 			}
 		}
 	system("sed -i 's/,,/,/g;s/,$//g' /etc/group");//['s/,,/,/g]->antika8ista ta dyo kommata me ena. [s/,$//g']->antika8ista to koma sto telos ths ka8e grammhs me keno
@@ -93,7 +96,7 @@ int Groups::rm_grMember(QString log)
 	FILE * f;
 	MyLibb *set = new MyLibb();
 	f = fopen(GR_FILE,"r");
-	char *login = log.toAscii().data();
+	char *login = log.toLatin1().data();
 	setgrent();
 	while((grs = fgetgrent(f)))
 	{		
@@ -115,7 +118,7 @@ int Groups::deleteGroup(QString gname)
 {
 	MyLibb set;
 	struct group *gr = NULL;
-	char * groupname = gname.toAscii().data();
+	char * groupname = gname.toLatin1().data();
 	if(set.setgrnam_r(gr,groupname)<0)
 		{
 

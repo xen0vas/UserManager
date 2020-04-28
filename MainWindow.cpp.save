@@ -1,4 +1,4 @@
-#include "MainWindow.h"
+c#include "MainWindow.h"
 #define SIZE 512
 #include "HashingAlgorithm.h"
 #include <QProgressDialog> 
@@ -56,7 +56,7 @@ searchGroupBtn->setEnabled(false);
 addGroupBtn->setEnabled(false);
 delGroupBtn->setEnabled(false);
 loadUsersAndGroups();
-//reloadUsersAndGroups();
+reloadUsersAndGroups();
 menuDeleteGroup->setEnabled(false);
 menuEditGroup->setEnabled(false);
 //***syntomeyseis***
@@ -85,7 +85,6 @@ connect( addUserBtn, SIGNAL( clicked() ), this, SLOT( addUserBtnClicked() ) );
 connect( reloadBtn, SIGNAL( clicked() ), this, SLOT( reloadUsersAndGroups() ) );
 connect( userTreeView, SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( getSelectedUserInfo( const QModelIndex& ) ) );
 connect( groupTreeView, SIGNAL( doubleClicked( const QModelIndex& ) ), this, SLOT( GroupDetails( const QModelIndex& ) ) );
-reloadUsersAndGroups();
 connect( groupTreeView, SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( getSelectedGroupInfo( const QModelIndex& ) ) );
 connect( tabWidget, SIGNAL( currentChanged( int ) ), this, SLOT( tabChanged( int ) ) );
 connect( folderSizeCheckBox, SIGNAL( clicked() ), this, SLOT( folderSizeCheckBoxClicked() ) );
@@ -510,7 +509,6 @@ return 1;
 
 void MainWindow::getSelectedUserInfo( const QModelIndex &index )
 {
-	//loadUsersAndGroups();
 	Users user;
 	int row = index.row();
 	UIDEdit->setText( index.sibling( row, 0 ).data( Qt::DisplayRole ).toString() );//0=UID column
@@ -518,15 +516,16 @@ void MainWindow::getSelectedUserInfo( const QModelIndex &index )
 	realNameEdit->setText( index.sibling( row, 2 ).data( Qt::DisplayRole ).toString() );//2=realname column
 	priGroupEdit->setText( user.getUsersPrimaryGroup( index.sibling( row, 0 ).data( Qt::DisplayRole ).toInt() ) );//getPrimaryGroup pernei UID apo 1h sthlh
 	secGroupEdit->setText( user.getUsersSecondaryGroups( index.sibling( row, 1 ).data( Qt::DisplayRole ).toString() ) );//secondary groups
-
+	
 	if(user.isLocked(index.sibling( row, 1 ).data( Qt::DisplayRole ).toString()))//Enable & Disable
-	{
+	{	
 		statusEdit->setText(tr("Disabled"));
-	}
-	else
+	}	
+	else 
 	{
-		statusEdit->setText(tr("Enabled"));
+		statusEdit->setText(tr("Enabled"));	
 	}
+
 }
 /**
  *Εμφάνιση των στοιχείων της ομάδας που επιλέχθηκε από την λίστα των ομάδων στην κύρια φόρμα.
