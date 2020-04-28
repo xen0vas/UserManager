@@ -21,10 +21,6 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 ### TO-DO 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- upgrade to qt5 ( no time to upgrade to Qt5 but i will....... :) ) 
-
-- fixing some bugs  
-
 - implement a password generator 
 
 - implement password security strength checks
@@ -48,15 +44,6 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-### Developers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-  - Xenofon Vassilakopoulos (xvas)
-
-  - Fotis Tsifountidis (fts)
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 ------------------
 
 ### Installation prerequisites ( optional )
@@ -72,33 +59,6 @@ chmod +x install_and_run.sh
 ./install_and_run.sh
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-### Important Info : 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- If the application doesn't run, use the following fix export QT X11 NO MITSHM=1 or QT X11 NO MITSHM=1 UserManager. QT X11 NO MITSHM stops Qt form using the MIT-SHM X11 extension. This is a known bug in Qt applications   
-
-More info here: 
-https://en.wikipedia.org/wiki/MIT-SHM
-http://www.iwillfolo.com/quick-fix-one-kdes-common-xorg-errors-x-error-baddrawable/
-
-- The application by design was developed to run only from root user. Dont run the application with non root users.  
-
-- in case of consistency and performance please consider changing the following kernel parameters
-
-vm.mmap_min_addr=65536
-vm.swappiness = 10
-vm.swappiness=10
-vm.dirty_ratio=60
-vm.dirty_background_ratio = 2
-vm.dirty_background_ratio=2
-vm.dirty_bytes = 0
-vm.dirty_writeback_centisecs = 500
-vm.dirty_expire_centisecs = 3000
-vm.dirty_background_bytes = 0
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 ### UserManager Main View
 ------------------------
@@ -153,88 +113,4 @@ vm.dirty_background_bytes = 0
 --------------------
 
 ![groups](https://user-images.githubusercontent.com/12726776/30855524-f5ba60d2-a2bd-11e7-96ee-9a07814cdd11.PNG)
-
-
-### Alternative installation (for developers)
------------------
-
-- download the contents from git repo ( e.g. put them in `/opt` directory)
-
-- go to the folder you downloaded the app (e.g. `/opt/usermanager`)
-
-> `cd /opt/usermanager`
-
-- Prepare the build using `qmake` utility
-
-> `qmake -project UserManager`
-
-> `qmake`
-
-- `Makefile` will be created 
-
-- in order for the program to be succesfully compiled at newer Linux distributions add `-std=c++0x` directive when compile with `g++`. Thats because newer Linux dists use the new C++ standard. Just change the following Line in `Makefile` 
-
-> `CXXFLAGS      = -std=c++0x -pipe -O2 -Wall -W -D_REENTRANT $(DEFINES)`
-
-- if you have problems using qmake utility do the following
-
-	1. install `qt-sdk` on your system. On debian do the following
-
-		> `sudo apt-get update`
-		
-		> `sudo apt-get install qt-sdk`
-
-	2. If there is an older `makefile` find it in the current directory and delete it
-
-		> `find . -name Makefile -exec rm '{}' \;` 
-
-		- then again prepare the build using `qmake` utility
-
-		> `cd /opt/usermanager/`
-
-		> `qmake -project UserManager`
-
-		> `qmake`
-		
-		- `Makefile` will be created 
-
-- Also add `-lcrypt` inside the Makefile at the end of the following line as shown below 
-
-> `LIBS          = $(SUBLIBS)  -L/usr/lib/i386-linux-gnu -lQtGui -lQtCore -lpthread -lcrypt`
-
-- Build with `make` utility and compile
-
-> `make`
-
-- run the program 
-
-> ` ./usermanager`
-
-- alternatively you can create a symbolic link 
-
-> `ln -s /opt/usermanager/usermanager /usr/bin/usermanager`
-
-- run usermanager from any path on your system using the following command
-
->  `usermanager`
-
-- Instead of creating a symbolic link , use `make install`. Add the following lines in `usermanager.pro` which produced from `qmake`
-
-````````````````````````````````````
-# installation
-installfiles.files += usermanager
-installfiles.path += /usr/bin/
-INSTALLS += installfiles 
-````````````````````````````````````
-
-- use the following command 
-
-> `make install`
- 
-- run usermanager from any path on your system using the following command
-
->  `usermanager`
-
-------------------------
-
 
