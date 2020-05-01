@@ -462,33 +462,51 @@ void UserProperties::addUserBase()
 		}
 		if ( ( pass_done == 0 ) && ( group_done == 0 ) && ( shadow_done == 0 ) )
 		{
-			QByteArray dir ( directory.toLatin1().data() );
+			QByteArray dir = directory.toLatin1();
 			const char *path = dir.data();
 			mkdir ( path,X_OK );
 			chmod ( path,0700 );
 			chown ( path, ( uid_t ) userID, ( gid_t ) groupID );
 
+	
 			pid  = fork();
-			if ( pid != 0 ) //parent process
+			if ( pid == 0 ) //parent process
 			{
-				execl ( "/bin/cp", "-i", "-p", "/etc/skel/.bash_logout",path, ( char* ) 0 );
+				if (execl("/bin/cp", "-i", "-p", "/etc/skel/.bash_logout",path, (char*)0) == -1)
+				{
+					QMessageBox::information ( this,tr ( "User Manager" ),tr ("copy %1 failed" ).arg ( path ) );
+				}
+					
 				int status;
 				waitpid(pid,&status,0);
 			}
+
 			pid1 = fork();
 			if ( pid1 == 0 ) //child process 1
 			{
-				execl ( "/bin/cp", "-i", "-p", "/etc/skel/.bashrc",path,NULL );
+				if (execl("/bin/cp", "-i", "-p", "/etc/skel/.bashrc",path,(char*)0) == -1) 
+				{
+
+					QMessageBox::information ( this,tr ( "User Manager" ),tr ("copy %1 failed" ).arg ( path ) );
+				}
+			
 				int status1;
 				waitpid(pid1,&status1,0);
 			}
+	
 			pid2 = fork();
 			if ( pid2 == 0 ) // child process 2
 			{
-				execl ( "/bin/cp", "-i", "-p", "/etc/skel/.profile",path,NULL );
+				if (execl("/bin/cp", "-i", "-p", "/etc/skel/.profile",path, (char*)0) == -1 )
+				{
+
+					QMessageBox::information ( this,tr ( "User Manager" ),tr ("copy %1 failed" ).arg ( path ) );
+				}
+				
 				int status2;
 				waitpid(pid2,&status2,0);
 			}
+			
 			//dimiourgei back up arxeio gia to passwd
 			unlink(PASSWD_FILE".bak");
 
