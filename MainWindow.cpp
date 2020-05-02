@@ -51,15 +51,17 @@ void MainWindow::beautyTree( QTreeView *tree, int columns )
  */
 void MainWindow::initialize()
 {
-//***buttons/tabs/mege8h ktl***
+
 searchGroupBtn->setEnabled(false);
 addGroupBtn->setEnabled(false);
 delGroupBtn->setEnabled(false);
 loadUsersAndGroups();
-//reloadUsersAndGroups();
+reloadUsersAndGroups();
 menuDeleteGroup->setEnabled(false);
 menuEditGroup->setEnabled(false);
-//***syntomeyseis***
+
+//shortcuts
+
 menuQuit->setShortcut( QString( "Ctrl+E" ) );
 menuReload->setShortcut( QString( "Ctrl+R" ) );
 menuAddUser->setShortcut( QString( "Ctrl+U" ) );
@@ -70,13 +72,15 @@ menuBackup->setShortcut( QString( "Ctrl+B" ) );
 menuAbout_Qt->setShortcut( QString( "Ctrl+Q" ) );
 menuAboutUserManager->setShortcut( QString( "Ctrl+A" ) );
 menuDiskUsage->setShortcut( QString( "Ctrl+D" ) );
-//***Key Events***
+
+//Key Events
 
 userTreeView->installEventFilter (this);
 userTreeView->setSelectionMode(QAbstractItemView::MultiSelection);
 groupTreeView->installEventFilter (this);
 
-//***Connections***
+//Connections
+
 connect( searchUserBtn, SIGNAL( clicked() ), this, SLOT( clearEditBoxes() ) );
 connect( searchUserBtn, SIGNAL( clicked() ), this, SLOT( searchUserBtnClicked() ) );
 connect( searchGroupBtn, SIGNAL( clicked() ), this, SLOT( searchGroupBtnClicked() ) );
@@ -85,7 +89,6 @@ connect( addUserBtn, SIGNAL( clicked() ), this, SLOT( addUserBtnClicked() ) );
 connect( reloadBtn, SIGNAL( clicked() ), this, SLOT( reloadUsersAndGroups() ) );
 connect( userTreeView, SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( getSelectedUserInfo( const QModelIndex& ) ) );
 connect( groupTreeView, SIGNAL( doubleClicked( const QModelIndex& ) ), this, SLOT( GroupDetails( const QModelIndex& ) ) );
-reloadUsersAndGroups();
 connect( groupTreeView, SIGNAL( clicked( const QModelIndex& ) ), this, SLOT( getSelectedGroupInfo( const QModelIndex& ) ) );
 connect( tabWidget, SIGNAL( currentChanged( int ) ), this, SLOT( tabChanged( int ) ) );
 connect( folderSizeCheckBox, SIGNAL( clicked() ), this, SLOT( folderSizeCheckBoxClicked() ) );
@@ -94,7 +97,9 @@ connect( editBtn, SIGNAL( clicked() ), this, SLOT( EditUser() ) );
 connect( editGroupBtn, SIGNAL( clicked() ), this, SLOT( editGroup() ) );
 connect( addGroupBtn, SIGNAL( clicked() ), this, SLOT( addGroupBtnClicked() ) );
 connect( delGroupBtn, SIGNAL( clicked() ), this, SLOT( deleteGroup() ) );
+
 //menu buttons
+
 connect(menuConfiguration, SIGNAL(triggered()), this, SLOT(openSettings()));
 connect(menuQuit, SIGNAL(triggered()), this, SLOT(close()));
 connect(menuBackup, SIGNAL(triggered()), this, SLOT(createBackup()));
