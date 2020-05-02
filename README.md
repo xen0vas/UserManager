@@ -2,7 +2,7 @@
 
 # ![UserManager](https://user-images.githubusercontent.com/12726776/80515471-b3028380-898a-11ea-9aac-f1d0e44628b5.gif)   UserManager 
 
-| Brunch |  Linux Build  |
+| Branch |  Linux Build  |
 |--------|:----------------:|
 | master | [![Build Status](https://travis-ci.com/xvass/UserManager.svg?branch=master)](https://travis-ci.com/xvass/UserManager) |
 
