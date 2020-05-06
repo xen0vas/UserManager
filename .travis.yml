@@ -5,8 +5,13 @@ compiler:
 
 os:
   - linux
-  
-#sudo: required
+
+addons:
+  apt:
+    packages:
+      - valgrind
+      - cppcheck
+      
 dist: trusty
 
 env:
@@ -27,7 +32,7 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev
   - sudo apt-get install qt5-default qttools5-dev-tools
-
+ 
 install:
   - if [ "$QT_BASE" = "51" ]; then sudo apt-get install -qq qt51base; source /opt/qt51/bin/qt51-env.sh; fi
   - if [ "$QT_BASE" = "52" ]; then sudo apt-get install -qq qt52base; source /opt/qt52/bin/qt52-env.sh; fi
@@ -44,6 +49,9 @@ script:
   # Now lets execute the app to see that it runs ok:
   # pwd
   # ./UserManager
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./demo ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cppcheck --error-exitcode=1 --enable=warning,performance,information,style *.cpp *.h ; fi
+
 
 branches:
   only:
@@ -51,3 +59,6 @@ branches:
   
 notifications:
   email: false
+  
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
