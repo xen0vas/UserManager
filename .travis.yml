@@ -55,7 +55,7 @@ script:
 
 branches:
   only:
-  - master
+  - Dev
   
 notifications:
   email: false
