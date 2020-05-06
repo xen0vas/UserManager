@@ -50,7 +50,7 @@ script:
   # pwd
   # ./UserManager
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./UserManager ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cppcheck --error-exitcode=1 --enable=all --suppress=missingIncludeSystem,unmatchedSuppression *.cpp *.h ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cppcheck --error-exitcode=1 --enable=all --suppress=unmatchedSuppression *.cpp *.h ; fi
 
 
 branches:
