@@ -49,7 +49,7 @@ script:
   # Now lets execute the app to see that it runs ok:
   # pwd
   # ./UserManager
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./demo ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./UserManager ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cppcheck --error-exitcode=1 --enable=warning,performance,information,style *.cpp *.h ; fi
 
 
