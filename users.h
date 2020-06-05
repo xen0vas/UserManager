@@ -19,7 +19,7 @@ public:
 	int passwd_parse(struct passwd *pw,struct finfo *pinfo);
 	int save_new_info(struct finfo *pinfo,uid_t uid,char *shellnew);
 	bool isLocked(QString user);
-	QString getUsersPrimaryGroup( int UID );
+	QString getUsersPrimaryGroup( QString UID );
 	QString getUsersSecondaryGroups( QString name );
 	bool userExists(QString name);
 	int  rm_pwUser(QString name);

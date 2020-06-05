@@ -55,10 +55,11 @@ void MainWindow::initialize()
 searchGroupBtn->setEnabled(false);
 addGroupBtn->setEnabled(false);
 delGroupBtn->setEnabled(false);
-loadUsersAndGroups();
-reloadUsersAndGroups();
 menuDeleteGroup->setEnabled(false);
 menuEditGroup->setEnabled(false);
+
+loadUsersAndGroups(); 
+
 
 //shortcuts
 
@@ -114,6 +115,10 @@ connect(menuEditGroup, SIGNAL(triggered()), this, SLOT(editGroup()));
 connect(menuDiskUsage, SIGNAL(triggered()), this, SLOT(calculateFolderSize()));
 connect(menuAbout_Qt, SIGNAL( triggered() ), qApp, SLOT( aboutQt() ) );
 connect(menuAboutUserManager, SIGNAL( triggered() ), this, SLOT( aboutUserManager() ) );
+
+
+reloadUsersAndGroups();
+
 }
 
 /**
@@ -515,16 +520,18 @@ return 1;
 
 void MainWindow::getSelectedUserInfo( const QModelIndex &index )
 {
-	//loadUsersAndGroups();
-	Users user;
+
+	Users *user = {new Users()};
+	Users u; 
 	int row = index.row();
+	QString uid = index.sibling( row, 0).data( Qt::DisplayRole).toString() ; 
 	UIDEdit->setText( index.sibling( row, 0 ).data( Qt::DisplayRole ).toString() );//0=UID column
 	loginNameEdit->setText( index.sibling( row, 1 ).data( Qt::DisplayRole ).toString() );//1=loginname column
 	realNameEdit->setText( index.sibling( row, 2 ).data( Qt::DisplayRole ).toString() );//2=realname column
-	priGroupEdit->setText( user.getUsersPrimaryGroup( index.sibling( row, 0 ).data( Qt::DisplayRole ).toInt() ) );//getPrimaryGroup pernei UID apo 1h sthlh
-	secGroupEdit->setText( user.getUsersSecondaryGroups( index.sibling( row, 1 ).data( Qt::DisplayRole ).toString() ) );//secondary groups
+	priGroupEdit->setText( u.getUsersPrimaryGroup( uid  ) );//getPrimaryGroup pernei UID apo 1h sthlh
+	secGroupEdit->setText( u.getUsersSecondaryGroups( index.sibling( row, 1 ).data( Qt::DisplayRole ).toString() ) );//secondary groups
 
-	if(user.isLocked(index.sibling( row, 1 ).data( Qt::DisplayRole ).toString()))//Enable & Disable
+	if(user->isLocked(index.sibling( row, 1 ).data( Qt::DisplayRole ).toString()))//Enable & Disable
 	{
 		statusEdit->setText(tr("Disabled"));
 	}
@@ -532,6 +539,12 @@ void MainWindow::getSelectedUserInfo( const QModelIndex &index )
 	{
 		statusEdit->setText(tr("Enabled"));
 	}
+	if (user != nullptr)
+	{
+		delete user;
+		user = nullptr;
+	}
+
 }
 /**
  *Εμφάνιση των στοιχείων της ομάδας που επιλέχθηκε από την λίστα των ομάδων στην κύρια φόρμα.

@@ -58,17 +58,48 @@ bool Users::userExists( QString name )
  * Ψάχνει να βρει την κύρια ομάδα ενός χρήστη.Παίρνει την δομή του χρήστη και βλέπει το πεδίο της δομής το 
   οποίο αναφέρει την κύρια ομάδα.Με το GID που υπάρχει στο πεδίο αυτό κάνει αναζήτηση στις ομάδες του συστήματος και η  ομάδα η οποία έχει ίδιο GID θεωρείται κύρια του χρήστη. 
  */
-QString Users::getUsersPrimaryGroup( int UID )
+QString Users::getUsersPrimaryGroup( QString UID )
 {
-	struct passwd *user;
+	struct passwd pwd;
+	
+	struct passwd *result; 
+
+	size_t pwdlinelen; 
+
+	pwdlinelen = sysconf(_SC_GETPW_R_SIZE_MAX);
+	if (pwdlinelen == (size_t)-1) 
+	    pwdlinelen = 16384; 
+
+	char *pwdBuffer = (char*)malloc(pwdlinelen);
+	
+	memset( pwdBuffer, 0, sizeof(char) ); 
+	
 	struct group *group;
+	
 	QString groupName="";
-        user = getpwuid( UID ); //pernw thn domh passwd aytounou pou exei uid==UID
-        group = getgrgid( user->pw_gid ); //pernw thn domh group gia to primary group tou UID (user->pw_gid=default group id tou user)
-        if (group!=NULL)
-        groupName = QString::fromLocal8Bit( group->gr_name );
+	
+	QByteArray pwuid = UID.toLatin1();
+	
+	char *pwuid_t = (char*)calloc(200, sizeof(char));
+	
+	strncpy(pwuid_t, pwuid.data(), sizeof(pwuid.data()));
+	
+	setgrent(); 
+	
+	if ((getpwuid_r(atoi(pwuid_t), &pwd, pwdBuffer, pwdlinelen, &result)) == 0 ) 
+	{
+		group = getgrgid( pwd.pw_gid );
+	}
+	if (group!=NULL)
+        	groupName = QString::fromUtf8( group->gr_name );
         else
-        	QMessageBox::critical( 0, QObject::tr( "User Manager" ), QObject::tr( "No group entry for user %1 in /etc/group" ).arg(user->pw_name) );
+        	QMessageBox::critical( 0, QObject::tr( "User Manager" ), QObject::tr( "No group entry for user %1 in /etc/group" ).arg(pwd.pw_name) );
+	endgrent();
+	
+	if ( pwuid_t != NULL ) { free(pwuid_t) ; pwuid_t = NULL; }   
+
+	if ( pwdBuffer != NULL ) { free(pwdBuffer); pwdBuffer = NULL; }
+
 	return groupName;
 }
 

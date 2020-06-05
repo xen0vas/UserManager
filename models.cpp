@@ -416,7 +416,7 @@ QStandardItemModel *Models::createUserInGroupsModel ( QString username )
 		bool found=false;
 		QModelIndex checkbox = model->index ( 0, 0 );
 		QModelIndex groupname = model->index ( 0, 1 );
-				QModelIndex pic = model->index ( 0, 2 );
+		//QModelIndex pic = model->index ( 0, 2 );
 		if ( ( grp->gr_gid==user->pw_gid ) )
 			goto resume;//an vrei to primary group tou na mhn to emfanisei sto montelo giati to emfanizei hdh sto label primary group apo katw
 

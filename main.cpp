@@ -81,6 +81,7 @@ int main(int argc, char ** argv)
 	
 	
 	free(user);
+	
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	return app.exec();
 }
