@@ -55,8 +55,10 @@ bool Users::userExists( QString name )
 }
 
 /**
- * Ψάχνει να βρει την κύρια ομάδα ενός χρήστη.Παίρνει την δομή του χρήστη και βλέπει το πεδίο της δομής το 
-  οποίο αναφέρει την κύρια ομάδα.Με το GID που υπάρχει στο πεδίο αυτό κάνει αναζήτηση στις ομάδες του συστήματος και η  ομάδα η οποία έχει ίδιο GID θεωρείται κύρια του χρήστη. 
+ *
+ * Searches for the main group of a certain user. It takes the UID as an argument and then searches the
+ * group structure to find the user's group using the group id
+ *
  */
 QString Users::getUsersPrimaryGroup( QString UID )
 {
@@ -126,7 +128,7 @@ QString Users::getUsersSecondaryGroups( QString name )
 				listGroup.append( "," );
 			}
 	}
-	listGroup.chop(2);//kovei tous 2 teleytaious xarakthres apo to string pou apo thn append panw einai ena keno kai ena komma
+    listGroup.chop(2);
 	endgrent();
 	return listGroup;
 }
