@@ -74,24 +74,23 @@ QString Users::getUsersPrimaryGroup( QString UID )
 	
 	memset( pwdBuffer, 0, sizeof(char) ); 
 	
-	struct group *group;
-	
+    struct group *group = {nullptr};
 	QString groupName="";
 	
 	QByteArray pwuid = UID.toLatin1();
 	
 	char *pwuid_t = (char*)calloc(200, sizeof(char));
-	
-	strncpy(pwuid_t, pwuid.data(), sizeof(pwuid.data()));
-	
-	setgrent(); 
-	
-	if ((getpwuid_r(atoi(pwuid_t), &pwd, pwdBuffer, pwdlinelen, &result)) == 0 ) 
-	{
-		group = getgrgid( pwd.pw_gid );
-	}
-	if (group!=NULL)
-        	groupName = QString::fromUtf8( group->gr_name );
+
+    strncpy(pwuid_t, pwuid.data(), strlen(pwuid.data()));
+
+    setgrent();
+
+    if ((getpwuid_r(atoi(pwuid_t), &pwd, pwdBuffer, pwdlinelen, &result)) == 0 )
+    {
+        group = getgrgid( pwd.pw_gid );
+    }
+    if (group!=NULL)
+            groupName = QString::fromUtf8( group->gr_name );
         else
         	QMessageBox::critical( 0, QObject::tr( "User Manager" ), QObject::tr( "No group entry for user %1 in /etc/group" ).arg(pwd.pw_name) );
 	endgrent();
@@ -105,9 +104,7 @@ QString Users::getUsersPrimaryGroup( QString UID )
 
 /*
  *
- * Ψάχνει να βρει τις ομάδες στις οποίες είναι μέλος ο χρήστης που παίρνει σαν όρισμα.Σαρώνει όλες τις ομάδες του συστήμστος με τα μέλη τους.Αν βρεθεί μέλος που έχει ίδιο όνομα με το όνομα του ορίσματος, το
- * προσθέτει σε ένα string.Η τελική μορφή αυτού του string θα είναι κάπως έτσι ανάλογα με τις ομάδες στις οποίες είναι μέλος :
- * audio,cdrom,fax,plugdev κ.ο.κ.
+ * The following function searches the groups that the user is member taking as a parameter the name of the user
  *
  */
 
