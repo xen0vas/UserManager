@@ -53,7 +53,7 @@ bool Users::userExists( QString name )
 }
 
 /**
- *
+ * @xvass
  * Searches for the main group of a certain user. It takes the UID as an argument and then searches the
  * group structure to find the user's group using the group id
  *
@@ -61,31 +61,24 @@ bool Users::userExists( QString name )
 QString Users::getUsersPrimaryGroup( QString UID )
 {
 	struct passwd pwd;
-	
 	struct passwd *result; 
-
-	size_t pwdlinelen; 
-
-	pwdlinelen = sysconf(_SC_GETPW_R_SIZE_MAX);
-	if (pwdlinelen == (size_t)-1) 
-	    pwdlinelen = 16384; 
-
-	char *pwdBuffer = (char*)malloc(pwdlinelen);
-	
-	memset( pwdBuffer, 0, sizeof(char) ); 
-	
     struct group *group = {};
-	QString groupName="";
-	
-	QByteArray pwuid = UID.toLatin1();
-	
-	char *pwuid_t = (char*)calloc(200, sizeof(char));
+    size_t pwdlen;
+    QString groupName="";
 
+    QByteArray pwuid = UID.toLatin1();
+    char *pwuid_t = (char*)calloc(200, sizeof(char));
     strncpy(pwuid_t, pwuid.data(), strlen(pwuid.data()));
 
-    setgrent();
+    pwdlen = sysconf(_SC_GETPW_R_SIZE_MAX);
+    if (pwdlen == (size_t)-1)
+        pwdlen = 16384;
 
-    if ((getpwuid_r(atoi(pwuid_t), &pwd, pwdBuffer, pwdlinelen, &result)) == 0 )
+    char *pwdBuffer = (char*)malloc(pwdlen);
+	memset( pwdBuffer, 0, sizeof(char) ); 
+
+    setgrent();
+    if ((getpwuid_r(atoi(pwuid_t), &pwd, pwdBuffer, pwdlen, &result)) == 0 )
     {
         group = getgrgid( pwd.pw_gid );
     }
@@ -93,10 +86,8 @@ QString Users::getUsersPrimaryGroup( QString UID )
             groupName = QString::fromUtf8( group->gr_name );
         else
         	QMessageBox::critical( 0, QObject::tr( "User Manager" ), QObject::tr( "No group entry for user %1 in /etc/group" ).arg(pwd.pw_name) );
-	endgrent();
-	
+    endgrent();
 	if ( pwuid_t != NULL ) { free(pwuid_t) ; pwuid_t = NULL; }   
-
 	if ( pwdBuffer != NULL ) { free(pwdBuffer); pwdBuffer = NULL; }
 
 	return groupName;
@@ -131,7 +122,9 @@ QString Users::getUsersSecondaryGroups( QString name )
 	return listGroup;
 }
 /**
- * Η συνάρτηση σαρώνει μια μια τις εγγραφές από το /etc/shadow και ψάχνει να βρει αν ένας λογαριασμός είναι κλειδωμένος.Για να θεωρηθεί κλειδωμένος ένας λογαριασμός πρέπει το δεύτερο πεδίο της εγγραφής το οποίο είναι ο κρυπτογραφημένος κωδικός  να έχι ένα ! ή * Επιστρέφει true αν ο λογαριασμός είναι κλειδωμένος και false αν δεν είναι.
+ * Η συνάρτηση σαρώνει μια μια τις εγγραφές από το /etc/shadow και ψάχνει να βρει αν ένας λογαριασμός είναι κλειδωμένος.
+ * Για να θεωρηθεί κλειδωμένος ένας λογαριασμός πρέπει το δεύτερο πεδίο της εγγραφής το οποίο είναι ο κρυπτογραφημένος κωδικός  να έχι ένα ! ή *
+ * Επιστρέφει true αν ο λογαριασμός είναι κλειδωμένος και false αν δεν είναι.
  */
 bool Users::isLocked( QString user )
 {
@@ -377,7 +370,7 @@ uint64_t Users::getSize( char *dirname )
     	continue;
     }
 
-    sprintf(path, "%s%s", dirname, ent->d_name);//pros8hkh onomatos tou katalogou + to ka8e arxeio to opoio eksetazetai ka8e fora
+    sprintf(path, "%s%s", dirname, ent->d_name);
 
     if(lstat(path, &st) == -1)
     {
@@ -403,7 +396,8 @@ uint64_t Users::getSize( char *dirname )
   return totalsize;
 }
 /**
- * Η συνάρτηση μετράει τον αριθμό των χρηστών του συστήματος.Χρησιμοποιείται για να είναι ακριβής το ποσοστό ολοκλήρωσης της  progress bar που χρησιμοποιείται στον υπολογισμό του χώρου που καταλαμβάνουν οι χρήστες. 
+ * Η συνάρτηση μετράει τον αριθμό των χρηστών του συστήματος.Χρησιμοποιείται για να είναι ακριβής το ποσοστό ολοκλήρωσης της
+ * progress bar που χρησιμοποιείται στον υπολογισμό του χώρου που καταλαμβάνουν οι χρήστες.
  */
 int Users::countUsers( )
 {	
