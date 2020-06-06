@@ -102,7 +102,7 @@ QString Users::getUsersPrimaryGroup( QString UID )
 	return groupName;
 }
 
-/*
+/**
  *
  * The following function searches the groups that the user is member taking as a parameter the name of the user
  *
