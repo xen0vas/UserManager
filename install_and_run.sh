@@ -6,7 +6,7 @@
 #
 ##################################################################################
 
-os=$(uname -a) 
+os=$(uname -a)
 nu=$(pwd | tr '/' ' ' | wc -w)
 num=$(($nu + 1))
 directory=$(pwd | cut -d/ -f$num)
@@ -69,18 +69,17 @@ if [ ! -f /usr/share/apps/UserManager/other/usermanager.conf ]; then
 	cp -r ./other/usermanager.conf /usr/share/apps/UserManager/other/
 fi
 
-echo $directory 
+echo -ne "\n$directory installation..\n\n" 
 
 if [ "$directory" != "UserManager" -a "$directory" != "UserManager-master" ]; then 
 	echo "[!] this isnt the UserManager Directory" 
 	exit 0
 fi
 
-make clean 2>/dev/null
-rm -rf Makefile 2>/dev/null 
-#2>&1
+make clean > make_clean.log
+rm -rf Makefile 2>/dev/null
 qmake -project 2>/dev/null
-qmake -o Makefile UserManager.pro  
+qmake -o Makefile UserManager.pro 
 echo "QMAKE_CXXFLAGS += -std=c++11" >> UserManager.pro
 echo "CONFIG += qt debug" >> UserManager.pro
 echo "QMAKE_LIBS += -lcrypt" >> UserManager.pro
@@ -89,37 +88,41 @@ echo "# installation" >> UserManager.pro
 echo "installfiles.files += usermanager" >> UserManager.pro
 echo "installfiles.path += /usr/bin/" >> UserManager.pro  
 echo "INSTALLS += installfiles" >> UserManager.pro
-errolog=$(mktemp)
-make 1>"$errorlog"
-if [[ -s "$errorlog" ]]; then
-	echo -ne "Ooops something went wrong. Give it another try!"
-	exit 1 
+
+make > make_.log 2>&1
+
+terminated=`cat make_.log | grep "compilation\ terminated"`
+if [ "$terminated" == "compilation terminated." ]; then 
+	echo -ne "\n\nOoops! Installetion failed.. PLease try again!\n\n"
+	exit 1
 fi
-echo -ne '#######			(25%)\r'
-sleep 2
-make install &>/dev/null
+
+make install > make_install.log 2>&1 &
+{
+        i="0"
+        while (true)
+        do
+            proc=$(ps aux | grep -v grep | grep -e "make")
+            if [[ "$proc" == "" ]]; then break; fi
+            # Sleep for a longer period if the database is really big 
+            # as dumping will take longer.
+            sleep 1
+            echo $i
+            i=$(expr $i + 1)
+        done
+        # If it is done then display 100%
+        echo 100
+        # Give it some time to display the progress to the user.
+        sleep 2
+} | whiptail --title "UserManager" --gauge "installation" 8 78 0
 
 #cd .. && mv UserManager/ /opt
 #cd /opt/UserManager
-echo -ne '##########			(32%)\r'
-sleep 2
+
 chown -R root:root UserManager
 chmod -R 700 /opt/UserManager
 chmod 700 /usr/bin/UserManager
-echo -ne '##############		(33%)\r'
-sleep 2
-echo -ne '##################		(57%)\r'
-sleep 2
-echo -ne '######################	(78%)\r'
-sleep 2
-echo -ne '##########################	(89%)\r'
-sleep 2
-echo -ne '#############################	(97%)\r'
-sleep 2
-echo -ne '##############################(100%)\r'
-sleep 2
-echo -ne '\n'
-echo -ne "\nUserManager Installed succesfully! enjoy :) \n\n" 
+echo -ne "\n\nUserManager Installed succesfully! enjoy :) \n\n" 
 #./UserManager 
 
 
