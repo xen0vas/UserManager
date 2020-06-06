@@ -74,7 +74,7 @@ QString Users::getUsersPrimaryGroup( QString UID )
 	
 	memset( pwdBuffer, 0, sizeof(char) ); 
 	
-    struct group *group = {nullptr};
+    struct group *group = {};
 	QString groupName="";
 	
 	QByteArray pwuid = UID.toLatin1();
