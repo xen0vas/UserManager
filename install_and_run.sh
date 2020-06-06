@@ -76,10 +76,11 @@ if [ "$directory" != "UserManager" -a "$directory" != "UserManager-master" ]; th
 	exit 0
 fi
 
-make clean 
-rm -rf Makefile > /dev/null 2>&1
-qmake -project
-qmake -o Makefile UserManager.pro 
+make clean 2>/dev/null
+rm -rf Makefile 2>/dev/null 
+#2>&1
+qmake -project 2>/dev/null
+qmake -o Makefile UserManager.pro  
 echo "QMAKE_CXXFLAGS += -std=c++11" >> UserManager.pro
 echo "CONFIG += qt debug" >> UserManager.pro
 echo "QMAKE_LIBS += -lcrypt" >> UserManager.pro
@@ -88,13 +89,37 @@ echo "# installation" >> UserManager.pro
 echo "installfiles.files += usermanager" >> UserManager.pro
 echo "installfiles.path += /usr/bin/" >> UserManager.pro  
 echo "INSTALLS += installfiles" >> UserManager.pro
-make
-make install
+errolog=$(mktemp)
+make 1>"$errorlog"
+if [[ -s "$errorlog" ]]; then
+	echo -ne "Ooops something went wrong. Give it another try!"
+	exit 1 
+fi
+echo -ne '#######			(25%)\r'
+sleep 2
+make install &>/dev/null
+
 #cd .. && mv UserManager/ /opt
 #cd /opt/UserManager
+echo -ne '##########			(32%)\r'
+sleep 2
 chown -R root:root UserManager
 chmod -R 700 /opt/UserManager
 chmod 700 /usr/bin/UserManager
+echo -ne '##############		(33%)\r'
+sleep 2
+echo -ne '##################		(57%)\r'
+sleep 2
+echo -ne '######################	(78%)\r'
+sleep 2
+echo -ne '##########################	(89%)\r'
+sleep 2
+echo -ne '#############################	(97%)\r'
+sleep 2
+echo -ne '##############################(100%)\r'
+sleep 2
+echo -ne '\n'
+echo -ne "\nUserManager Installed succesfully! enjoy :) \n\n" 
 #./UserManager 
 
 

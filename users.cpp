@@ -1,9 +1,7 @@
 #include "users.h"
-//#include <QtGui/QtGui>
 #include <QtWidgets>
 #include "myLibb.h"
 #define MAX_FIELD_SIZE          256
-//
 
 using std::string;
 /**
