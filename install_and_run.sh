@@ -13,8 +13,15 @@ directory=$(pwd | cut -d/ -f$num)
 usr=$(whoami)
 found="false"
 
-qt=`dpkg --get-selections | grep qt4-default`
-default=`echo $qt | cut -d" " -f1`
+#qt=`dpkg --get-selections | grep qt5.*`
+#default=`echo $qt | cut -d" " -f1`
+
+qt5=`dpkg-query -W -f='${Status} ${Version}\n' qt5*`
+if [[ ! `echo $qt5 | grep "install ok"` ]]; then echo "Qt5 is not installed. Exiting.."; exit 1; fi
+
+
+echo "$qt"
+
 
 IFS=' ' # space set as delimiter
 read -ra ADDR <<< "$os"
@@ -115,6 +122,7 @@ make install > make_install.log 2>&1 &
         # Give it some time to display the progress to the user.
         sleep 2
 } | whiptail --title "UserManager" --gauge "installation" 8 78 0
+
 
 #cd .. && mv UserManager/ /opt
 #cd /opt/UserManager
