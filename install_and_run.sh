@@ -97,7 +97,7 @@ if [ "$terminated" == "compilation terminated." ]; then
 	exit 1
 fi
 
-make install > make_install.log  &
+make install > make_install.log 2>&1 &
 {
         i="0"
         while (true)
