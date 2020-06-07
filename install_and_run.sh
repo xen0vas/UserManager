@@ -16,8 +16,6 @@ found="false"
 qt5=`dpkg-query -W -f='${Status} ${Version}\n' qt5*`
 if [[ ! `echo $qt5 | grep "install ok"` ]]; then echo "Qt5 is not installed. Exiting.."; exit 1; fi
 
-echo "$qt"
-
 IFS=' ' # space set as delimiter
 read -ra ADDR <<< "$os"
 for i in "${ADDR[@]}"; do # access each element of array
@@ -99,7 +97,7 @@ if [ "$terminated" == "compilation terminated." ]; then
 	exit 1
 fi
 
-make install > make_install.log 2>&1 &
+make install > make_install.log  &
 {
         i="0"
         while (true)
@@ -116,14 +114,8 @@ make install > make_install.log 2>&1 &
 } | whiptail --title "UserManager" --gauge "installation" 8 78 0
 
 
-#cd .. && mv UserManager/ /opt
-#cd /opt/UserManager
-
 chown -R root:root UserManager
 chmod -R 700 /opt/UserManager
 chmod 700 /usr/bin/UserManager
 echo -ne "\n\nUserManager Installed succesfully! enjoy :) \n\n" 
-#./UserManager 
-
-
 
