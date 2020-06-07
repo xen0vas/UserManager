@@ -16,7 +16,7 @@ found="false"
 RED='\033[0;31m'
 GREEN='\e[92m'
 NC='\033[0m' # No Color
-YELOW='\e[33m'
+YELLOW='\e[33m'
 BLUE='\e[96m'
 
 qt5=`dpkg-query -W -f='${Status} ${Version}\n' qt5*`
@@ -107,15 +107,8 @@ fi
 make install > make_install.log 2>&1 &
 pid=$!
 
-spin='-\|/'
-
-i=0
 while kill -0 $pid 2>/dev/null
 do
-  i=$(( (i+1) %4 ))
-  printf "\r${spin:$i:1}"
-  sleep .1
-done
 
 for ((k = 0; k <= 10 ; k++))
 do
@@ -128,7 +121,8 @@ do
     sleep 0.5
 done
 echo
-
+sleep .1
+done 
 
 chown -R root:root UserManager
 chmod -R 700 /opt/UserManager
