@@ -53,7 +53,6 @@ bool Users::userExists( QString name )
 }
 
 /**
- * @xvass
  * Searches for the main group of a certain user. It takes the UID as an argument and then searches the
  * group structure to find the user's group using the group id
  *
