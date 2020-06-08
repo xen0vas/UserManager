@@ -99,7 +99,8 @@ make > make_.log 2>&1
 
 terminated=`cat make_.log | grep "compilation\ terminated"`
 if [ "$terminated" == "compilation terminated." ]; then 
-	echo -ne "\n\n$RED[x] Ooops! Installetion failed.. PLease try again!$NC\n\n"
+	echo -ne "\n$RED[x] Ooops! Installetion failed.. PLease try again!$NC\n"
+	echo -ne "\n$RED[!] Please check at make_install.log file for more information.$NC\n\n"
 	exit 1
 fi
 
@@ -107,25 +108,22 @@ fi
 make install > make_install.log 2>&1 &
 pid=$!
 
-while kill -0 $pid 2>/dev/null
-do
-
 for ((k = 0; k <= 10 ; k++))
 do
+    if [[ ! `kill -0 $pid 2>/dev/null` ]]; then
     echo -n "[ "
     for ((i = 0 ; i <= k; i++)); do echo -n "###"; done
     for ((j = i ; j <= 10 ; j++)); do echo -n "   "; done
     v=$((k * 10))
     echo -n " ] "
     echo -n "$v %" $'\r'
-    sleep 0.5
+    sleep 1.5
+    fi
 done
 echo
-sleep .1
-done 
 
 chown -R root:root UserManager
 chmod -R 700 /opt/UserManager
 chmod 700 /usr/bin/UserManager
-echo -ne "\n\n[!] UserManager Installed succesfully! enjoy :)\n\n" 
+echo -ne "\n\n$YELLOW[!] UserManager Installed succesfully! enjoy :)$NC\n\n" 
 
