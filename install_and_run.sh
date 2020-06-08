@@ -6,18 +6,32 @@
 #
 ##################################################################################
 
+MAGENTA='\033[95m'
+RED='\033[0;31m'
+GREEN='\e[92m'
+NC='\033[0m' # No Color
+BLUE='\e[96m'
+YELLOW='\e[33m'
+
+echo -ne "\n"
+echo -ne "$YELLOW"
+echo  '  / / / /_______  _____/  |/  /___ _____  ____ _____ ____  ____ '
+echo  ' / / / / ___/ _ \/ ___/ /|_/ / __ `/ __ \/ __ `/ __ `/ _ \/ ___/'
+echo  '/ /_/ (__  )  __/ /  / /  / / /_/ / / / / /_/ / /_/ /  __/ /    '
+echo  '\____/____/\___/_/  /_/  /_/\__,_/_/ /_/\__,_/\__, /\___/_/     '
+echo  '                                             /____/             '
+echo
+echo  'UserManager - Linux accounts manager'
+echo  'Version 1.0.56'
+echo  'Written by: @xvass'
+echo -ne "$NC"
+
 os=$(uname -a)
 nu=$(pwd | tr '/' ' ' | wc -w)
 num=$(($nu + 1))
 directory=$(pwd | cut -d/ -f$num)
 usr=$(whoami)
 found="false"
-
-RED='\033[0;31m'
-GREEN='\e[92m'
-NC='\033[0m' # No Color
-YELLOW='\e[33m'
-BLUE='\e[96m'
 
 qt5=`dpkg-query -W -f='${Status} ${Version}\n' qt5*`
 if [[ ! `echo $qt5 | grep "install ok"` ]]; then echo "Qt5 is not installed. Exiting.."; exit 1; fi
@@ -100,7 +114,7 @@ make > make_.log 2>&1
 terminated=`cat make_.log | grep "compilation\ terminated"`
 if [ "$terminated" == "compilation terminated." ]; then 
 	echo -ne "\n$RED[x] Ooops! Installetion failed.. PLease try again!$NC\n"
-	echo -ne "\n$RED[!] Please check at make_install.log file for more information.$NC\n\n"
+	echo -ne "\n$RED[!] Please check at make_.log file for more information.$NC\n\n"
 	exit 1
 fi
 
@@ -111,13 +125,13 @@ pid=$!
 for ((k = 0; k <= 10 ; k++))
 do
     if [[ ! `kill -0 $pid 2>/dev/null` ]]; then
-    echo -n "[ "
+    echo -ne "$MAGENTA[ "
     for ((i = 0 ; i <= k; i++)); do echo -n "###"; done
     for ((j = i ; j <= 10 ; j++)); do echo -n "   "; done
     v=$((k * 10))
-    echo -n " ] "
-    echo -n "$v %" $'\r'
-    sleep 1.5
+    echo -ne " ]$NC "
+    echo -ne "$YELLOW$v %$NC" $'\r'
+    sleep 0.5
     fi
 done
 echo
