@@ -22,7 +22,7 @@ echo  '\____/____/\___/_/  /_/  /_/\__,_/_/ /_/\__,_/\__, /\___/_/     '
 echo  '                                             /____/             '
 echo
 echo  'UserManager - Linux accounts manager'
-echo  'Version 1.0.56'
+echo  'Version 1.0.74'
 echo -ne "$NC"
 
 os=$(uname -a)
