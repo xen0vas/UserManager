@@ -111,12 +111,16 @@ echo "INSTALLS += installfiles" >> UserManager.pro
 make > make_.log 2>&1
 
 terminated=`cat make_.log | grep "compilation\ terminated"`
-if [ "$terminated" == "compilation terminated." ]; then 
+error=`cat make_.log | grep "Error\ 1"`
+error_indicator=`echo "$error" | cut -d: -f1`
+
+
+if [[ "$terminated" == "compilation terminated." || "$error_indicator" == "make" ]]; then 
 	echo -ne "\n$RED[x] Ooops! Installetion failed.. PLease try again!$NC\n"
 	echo -ne "\n$RED[!] Please check at make_.log file for more information.$NC\n\n"
 	exit 1
-fi
 
+else
 
 make install > make_install.log 2>&1 &
 pid=$!
@@ -139,4 +143,5 @@ chown -R root:root UserManager
 chmod -R 700 /opt/UserManager
 chmod 700 /usr/bin/UserManager
 echo -ne "\n\n$YELLOW[!] UserManager Installed succesfully! enjoy :)$NC\n\n" 
+fi
 
