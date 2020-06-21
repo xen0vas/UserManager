@@ -6,6 +6,10 @@
 #include "HashingFactory.h"
 #include "IHashing.h"
 #include <string.h>
+#include <linux/limits.h>
+
+
+
 
 using namespace std;
 
@@ -138,9 +142,25 @@ if(checkBoxEdit->isChecked())
 	QString direc = DirEdit->text();
 	QString shellcon  = shellConnect->currentText();
 
+	char homeDirectoryPath[PATH_MAX+1];
+
 	QByteArray di( direc.toLatin1().data() );
 	QByteArray na( nam.toLatin1().data() );
 	QByteArray shell( shellcon.toLatin1().data() );
+
+	char *actualpath = di.data();
+
+	char *ptr = realpath(actualpath, homeDirectoryPath);
+
+	if (ptr == NULL ) 
+	{
+		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Invalid path  <i>  %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+		
+	}
+	else
+	{
+		pw.pw_dir = di.data();		
+	}
 
 	uid_t userID  = ui.toInt();
 	gid_t groupID = gid.toInt();
@@ -150,7 +170,7 @@ if(checkBoxEdit->isChecked())
 	pw.pw_passwd = pass.data();
 	pw.pw_uid = userID;
 	pw.pw_gid = groupID;
-	pw.pw_dir = di.data();
+	//pw.pw_dir = di.data();
 	pw.pw_shell = shell.data();
 
 	oldf.pw = &pw;
