@@ -21,7 +21,8 @@ echo  '/ /_/ (__  )  __/ /  / /  / / /_/ / / / / /_/ / /_/ /  __/ /    '
 echo  '\____/____/\___/_/  /_/  /_/\__,_/_/ /_/\__,_/\__, /\___/_/     '
 echo  '                                             /____/             '
 echo
-echo  'UserManager - Linux accounts manager'
+echo  'UserManager - Linux Accounts Manager'
+echo  'Authors: @xvass, @mekotsi'
 echo  'Version 1.0.74'
 echo -ne "$NC"
 
