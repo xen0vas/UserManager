@@ -171,7 +171,6 @@ if(checkBoxEdit->isChecked())
 	const size_t len = strlen( di.data() );
 
 	if (path_size > 0) {
-  		realpath_res = (char*)calloc(1,path_size); 		
 		canonical_path = (char*)calloc(1,path_size);
 
 		if (canonical_path == NULL) {
@@ -192,14 +191,13 @@ if(checkBoxEdit->isChecked())
 	}
 	else
 	{
-  		if (strrchr( di.data(), '/') == di.data() + len) 
+  		if (strrchr( di.data(), '/') != di.data() + len) 
 			pw.pw_dir = di.data();		
 		else
 			QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Invalid path detected  </qt> " ) ) ;
 	}
 	
 	if ( canonical_path != NULL ) { free(canonical_path); canonical_path = NULL; }
-	if ( realpath_res != NULL ) { free(realpath_res); realpath_res = NULL; }
 
 	// end of security fix for homedir - consider refactoring in order to centralize security 
 
