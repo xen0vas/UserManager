@@ -2,7 +2,7 @@
 using namespace std;
 
 /**
- * Αρχικοποίηση των components 
+ * Components Initialization 
  */
 Settings::Settings ( QWidget * parent ) : QDialog ( parent )
 {
@@ -21,15 +21,12 @@ initialSettings();
 }
 
 /**
- * Destructor κλάσης
+ * Destructor 
  */
 Settings::~Settings()
 {}
-/**
- * Αρχικοποίηση των components της φόρμας ρυθμίσεων και αποθήκευση των ρυθμίσεων για χρήση τους στην applySettings(..) αργότερα
-   Η συνάρτηση διαβάζει τις ρυθμίσεις μέσω της getconf() στο usermanager.conf, παίρνοτας όλες τις ρυθμίσεις αρχικοποιώντας ανάλογα τα
-  components της φόρμας. 
- */
+
+
 void Settings::initialSettings()
 {
 //edw pairnoume tis arxikes ry8miseis thn stigmh pou anougetai h settings kai tis apo8hkeyoume stis metavlhtes wste na elegxoume otan kleisei to para8yro twn ry8misewn poies exoun alaxtei
@@ -93,13 +90,19 @@ void Settings::setConf ( QString title, QString setting )
 {
 //allazei mia ry8mish sto conf.txt.px an 8eloume na allaxoume to MINIMUM_UID=1000 se MINIMUM_UID=2000 pername thn setconf("MINIMUM_UID","2000")
 char *cmd;
-QString command="sed -i '/"+ title +"/s/=.*/="+setting+"/g' /usr/share/apps/UserManager/other/usermanager.conf";
-cmd=command.toLatin1().data();
-system ( cmd );
+// TO-DO
+//
+// Consider Security issues here ! 
+// temporarily disabled functionality 
+//QString command="sed -i '/"+ title +"/s/=.*/="+setting+"/g' /usr/share/apps/UserManager/other/usermanager.conf";
+//cmd=command.toLatin1().data();
+//system ( cmd );
 
 }
-/**
- * Ενέργεια αποστολής mail σε χρήστες των οποίων ο κωδικός είναι προς λήξη.
+
+/*
+*************************************************************************************
+* Ενέργεια αποστολής mail σε χρήστες των οποίων ο κωδικός είναι προς λήξη.
   Δημιουργεί αν δεν υπάρχει ένα αρχείο cron στον φάκελο /var/spool/cron/crontabs για τον root τον οποίο περιέχει εντολή ώστε να τρέχει το
   script κελύφους exp.sh.Το συγκεκριμένο script διαβάζει το αρχείο /etc/shadow και ψάχνει λογαριασμούς χρηστών οι οποίοι λήγουν μέσα στις
   επόμενες 7 μέρες.Αν βρεθεί χρήστης το script τον ενημερώνει στέλνοντάς του mail μέσω του συστήματος. Ο daemon crond του κάθε συστήματος ψάχνει ανά κάποιο χρονικό διάστημα (2-4 ώρες) τον φάκελο crontabs για τις προγραμματισμένες εργασίες χρηστών, οπότε υπάρχει μια μικρή καθυστέρηση μέχρι να δει την κάθε προγραμματισένη εργασία.
@@ -112,7 +115,7 @@ system ( cmd );
  cron ενεργεί ακόμα και αν ο χρήστης root δεν έχει μπει στο σύστημα.
 Το mail προειδοποίησης που λαμβάνει ο χρήστης έχει την παρακάτω μορφή:
 
-*************************************************************************************
+****************************************************8
 fts@Debian:~$ mail
 
 "/var/mail/fts": 1 message 1 new
@@ -133,24 +136,31 @@ Your password on Debian will be expired in 1 days
 
 &
 **************************************************************************************
+*/
 
+
+/**
+ *
+ * Considering a Security issue here 
+ * Change debian mail with email   
+ * 
+ * TO-DO
+ *
  */
-
 void Settings::sendMail ( )
 {
-	std::string command="exp.sh";//ayto to text psaxnoume an yparxei
+	std::string command="exp.sh";
 	string line;
 	bool done=false;
 	size_t found=' ';
 	ifstream file("/var/spool/cron/crontabs/root",ios::out);
 	if (!file)
-{
-	system("echo 0x1A | echo '01 * * * * sh /usr/share/apps/UserManager/other/exp.sh' | crontab - -u root");//0x1A=EOF/CTRL+D
+	{
+	  system("echo 0x1A | echo '01 * * * * sh /usr/share/apps/UserManager/other/exp.sh' | crontab - -u root");//0x1A=EOF/CTRL+D
 	  file.close();
-}
-
-else
-{
+	}
+	else
+	{
 	fstream file ( "/var/spool/cron/crontabs/root",ios::in|ios::out );
 	file.seekg ( 0 );
 	while ( getline ( file,line ) )
@@ -158,8 +168,8 @@ else
 		if ( ( found = line.find ( command,0 ) ) != string::npos )
 		{
 			done=true;
-			system ( "sed -i '/exp.sh/d' /var/spool/cron/crontabs/root" );//svisimo grammhs h opoia periexei to exp.sh ()
-			setConf("WARN_USER","no");//enhmerwsh tou conf
+			system ( "sed -i '/exp.sh/d' /var/spool/cron/crontabs/root" ); // delete exp.sh
+			setConf("WARN_USER","no"); //update conf
 			break;
 		}
 	}
@@ -167,12 +177,14 @@ else
 	if ( !done )
 	{
 		system("echo '01 * * * * sh /usr/share/apps/UserManager/other/exp.sh' >> /var/spool/cron/crontabs/root");
-		setConf("WARN_USER","yes");//enhmerwsh tou conf
+		setConf("WARN_USER","yes"); //update conf
 	}
 
 
 }
 }
+
+
 /**
  *Αποθηκεύει τις νέες ρυθμίσεις που θα επιλέξει ο διαχειριστής στο usermanager.conf
   ελέγχει αν οι ρυθμίσεις που εισήχθησαν στην φόρμα είναι ίδιες με αυτές του αρχείου.Άν δεν είναι τις αλλάζει μέσα στο usermanager.conf μέσω της συνάρτησης setconf(..)
