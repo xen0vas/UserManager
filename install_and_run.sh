@@ -118,8 +118,13 @@ error_indicator=`echo "$error" | cut -d: -f1`
 if [[ "$terminated" == "compilation terminated." || "$error_indicator" == "make" ]]; then 
 	echo -ne "\n$RED[x] Ooops! Installetion failed.. PLease try again!$NC\n"
 	echo -ne "\n$RED[!] Please check at make_.log file for more information.$NC\n\n"
+	echo '--------------Error Details------------------'
+	echo
+	cat make_.log
+	echo 
+	echo '-------------End of Details------------------'
+	echo 
 	exit 1
-
 else
 
 make install > make_install.log 2>&1 &

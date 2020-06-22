@@ -109,6 +109,19 @@ void EditProperties::comboShell()
 
 }
 
+int verify_file(char *const filename, char *const homedir) {
+
+  const size_t len = strlen( homedir );
+  if (strncmp( filename, homedir , len) != 0) {
+    return 0;
+  }
+ 
+  if (strrchr( filename, '/') == filename + len) {
+    return 1;
+  }
+  return 0;
+}
+
 /**
  *Εκτελεί την αλλαγή των πληροφοριών του χρήστη,
  */
@@ -142,25 +155,52 @@ if(checkBoxEdit->isChecked())
 	QString direc = DirEdit->text();
 	QString shellcon  = shellConnect->currentText();
 
-	char homeDirectoryPath[PATH_MAX+1];
+	size_t  path_size = (size_t) PATH_MAX;
 
 	QByteArray di( direc.toLatin1().data() );
 	QByteArray na( nam.toLatin1().data() );
 	QByteArray shell( shellcon.toLatin1().data() );
+	
+	// security fix: chackout if the homedir is invalid 
 
-	char *actualpath = di.data();
+	char *realpath_res = NULL; 
+	char *canonical_path = NULL; 
+	char *actualpath = NULL; 
+	const size_t len = strlen( di.data() );
 
-	char *ptr = realpath(actualpath, homeDirectoryPath);
+	if (path_size > 0) {
+  		
+		canonical_path = (char*)malloc(path_size);
+		actualpath = (char*)malloc(len); 
 
-	if (ptr == NULL ) 
+		if (canonical_path == NULL) {
+   		    
+	            QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Could not calculate memory for homedir path </qt> " ) ) ;   
+  		}
+		else
+		{
+		actualpath = di.data();
+		realpath_res = realpath(actualpath, canonical_path);
+		}
+
+	}
+
+	if (realpath_res == NULL ) 
 	{
-		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Invalid path  <i>  %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-		
+	       	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Invalid path  <i>  %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 	}
 	else
 	{
-		pw.pw_dir = di.data();		
+  		if (strrchr( di.data(), '/') == di.data() + len) 
+			pw.pw_dir = di.data();		
+		else
+			QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Invalid path detected  </qt> " ) ) ;
 	}
+	
+	free(canonical_path);
+	free(actualpath); 
+
+	// end of security fix for homedir - consider refactoring in order to centralize security 
 
 	uid_t userID  = ui.toInt();
 	gid_t groupID = gid.toInt();
