@@ -155,23 +155,21 @@ if(checkBoxEdit->isChecked())
 	QString direc = DirEdit->text();
 	QString shellcon  = shellConnect->currentText();
 
-	size_t  path_size = (size_t) PATH_MAX;
-
 	QByteArray di( direc.toLatin1().data() );
 	QByteArray na( nam.toLatin1().data() );
 	QByteArray shell( shellcon.toLatin1().data() );
 	
 	// security fix: chackout if the homedir is invalid 
-
+	
+	size_t  path_size = (size_t)PATH_MAX+1;
 	char *realpath_res = NULL; 
 	char *canonical_path = NULL; 
 	char *actualpath = NULL; 
 	const size_t len = strlen( di.data() );
 
 	if (path_size > 0) {
-  		
-		canonical_path = (char*)malloc(path_size);
-		actualpath = (char*)malloc(len); 
+  		realpath_res = (char*)calloc(1,path_size); 		
+		canonical_path = (char*)calloc(1,path_size);
 
 		if (canonical_path == NULL) {
    		    
@@ -197,8 +195,8 @@ if(checkBoxEdit->isChecked())
 			QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Invalid path detected  </qt> " ) ) ;
 	}
 	
-	free(canonical_path);
-	free(actualpath); 
+	if ( canonical_path != NULL ) { free(canonical_path); canonical_path = NULL; }
+	if ( realpath_res != NULL ) { free(realpath_res); realpath_res = NULL; }
 
 	// end of security fix for homedir - consider refactoring in order to centralize security 
 
