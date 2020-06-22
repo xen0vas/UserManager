@@ -159,8 +159,11 @@ if(checkBoxEdit->isChecked())
 	QByteArray na( nam.toLatin1().data() );
 	QByteArray shell( shellcon.toLatin1().data() );
 	
-	// security fix: chackout if the homedir is invalid 
-	
+	/* Security fix: Checkout if the home directory is invalid 
+	*  Reference :
+	*  FIO02-C. Canonicalize path names originating from tainted sources
+	*/
+
 	size_t  path_size = (size_t)PATH_MAX+1;
 	char *realpath_res = NULL; 
 	char *canonical_path = NULL; 
