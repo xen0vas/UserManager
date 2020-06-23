@@ -93,10 +93,10 @@ char *cmd;
 // TO-DO
 //
 // Consider Security issues here ! 
-// temporarily disabled functionality 
-//QString command="sed -i '/"+ title +"/s/=.*/="+setting+"/g' /usr/share/apps/UserManager/other/usermanager.conf";
-//cmd=command.toLatin1().data();
-//system ( cmd );
+ 
+QString command="sed -i '/"+ title +"/s/=.*/="+setting+"/g' /usr/share/apps/UserManager/other/usermanager.conf";
+cmd=command.toLatin1().data();
+system ( cmd );
 
 }
 
