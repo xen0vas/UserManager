@@ -109,19 +109,6 @@ void EditProperties::comboShell()
 
 }
 
-int verify_file(char *const filename, char *const homedir) {
-
-  const size_t len = strlen( homedir );
-  if (strncmp( filename, homedir , len) != 0) {
-    return 0;
-  }
- 
-  if (strrchr( filename, '/') == filename + len) {
-    return 1;
-  }
-  return 0;
-}
-
 /**
  *Εκτελεί την αλλαγή των πληροφοριών του χρήστη,
  */
@@ -159,7 +146,8 @@ if(checkBoxEdit->isChecked())
 	QByteArray na( nam.toLatin1().data() );
 	QByteArray shell( shellcon.toLatin1().data() );
 	
-	/* Security fix: Checkout if the home directory is invalid 
+	/*
+	*  Security fix: Checkout if the home directory is invalid 
 	*  Reference :
 	*  FIO02-C. Canonicalize path names originating from tainted sources
 	*/

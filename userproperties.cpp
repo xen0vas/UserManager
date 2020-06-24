@@ -585,9 +585,18 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole ); //state=2 if the user checkbox is checked or state=0 if the user checkbox is unchecked
 	if ( state == 0 )
 	{
-		QString command="usermod -a -G "  +  index.sibling(row,1).data().toString() + " " + NameLabel->text() + "";
+		Spc *spc = new Spc;
+		QString fromindex = index.sibling(row,1).data().toString();
+	        std::string from_index = fromindex.toUtf8().constData();
+		spc->spc_sanitize(from_index); 
+		QString sanitized_index = QString::fromStdString(from_index);
+		QString fromLabel = NameLabel->text(); 
+		std::string from_Label = fromLabel.toUtf8().constData();
+		spc->spc_sanitize(from_Label);
+		QString sanitized_NameLabel = QString::fromStdString(from_Label);
+		QString command="usermod -a -G "  + sanitized_index + " " + sanitized_NameLabel + "";
 		std::string cmd=command.toUtf8().constData();
-
+		delete spc; 
 		/* 
 		 * Security fix : Change system with execve. 
 		 * Also sanitize arguments and environment and drop privilege if fork will be used
@@ -596,8 +605,6 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		 * TO-DO
 		 *
 		 */
-		Spc *spc = new Spc; 
-		spc->spc_sanitize(cmd); 
 		done = ( system ( cmd.c_str() ) );
 
 	}

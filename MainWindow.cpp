@@ -153,7 +153,7 @@ void MainWindow::addUserBtnClicked()
 	FILE *passBase;
 	FILE *groupBase;
 	FILE *shadowBase;	
-	UserProperties *userProp = new UserProperties();
+	UserProperties *userProp = new UserProperties;
 	MyLibb *fchk { new MyLibb()};
 	shadowBase = fchk->fopen_wrapper(SHADOW_FILE, "r+");
 	groupBase  = fchk->fopen_wrapper(GROUP_FILE , "r+");
