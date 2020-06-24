@@ -5,6 +5,7 @@
 #include "HashingFactory.h"
 #include "IHashing.h"
 #include "HashingAlgorithm.h"
+#include "spc.h"
 
 using namespace std;
 
@@ -70,11 +71,14 @@ UserProperties::UserProperties ( QWidget * parent ) : QDialog ( parent )
 	connect ( makePrimBtn, SIGNAL ( clicked( ) ), this, SLOT ( setPrimaryGroup( ) ) );
 }	
 /**
-*Destructor κλάσης
+* UserProperties Class destractor 
 */
 UserProperties::~UserProperties()
 {}
 
+/**
+ * Execute the Widget that will be used to check the hashing algorithm used when generating the password 
+ */
 void UserProperties::openHashingAlgorithm()
 {
 HashingAlgorithm *hash = new HashingAlgorithm;
@@ -199,8 +203,14 @@ int UserProperties::insertIntoPasswdFile ( QString nam,QString uid,QString gid,Q
 	us.pw_uid    =  userID;
 	us.pw_gid    =  groupID;
 	us.pw_gecos  =  gecos.data();
+
+
 	us.pw_dir    =  dir.data();
+	
+	
 	us.pw_shell  =  shell.data();
+	
+	
 	const char *filename  = PASSWD_FILE;
 	
 	FILE *fp;
@@ -568,16 +578,27 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 	if(col==0 && test!="")
 	{
 	Models model;
-	char *cmd  = new char;
-	cmd = new char[strlen(cmd)+1];
+	//char *cmd  = new char;
+	//cmd = new char[strlen(cmd)+1];
 	int done=1;
 	int row=index.row();
 	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole ); //state=2 if the user checkbox is checked or state=0 if the user checkbox is unchecked
 	if ( state == 0 )
 	{
-		QString command="usermod -a -G "  +  index.sibling(row,1).data().toString() + " " + NameLabel->text() + "";//index.data().toString() periexei ton neo member kai groupNameEdit->text() to group pou 8a mpei
-		cmd=command.toLatin1().data();
-		done = ( system ( cmd ) );
+		QString command="usermod -a -G "  +  index.sibling(row,1).data().toString() + " " + NameLabel->text() + "";
+		std::string cmd=command.toUtf8().constData();
+
+		/* 
+		 * Security fix : Change system with execve. 
+		 * Also sanitize arguments and environment and drop privilege if fork will be used
+		 * References  : ENV33-C. Do not call system(), STR02-C. Sanitize data passed to complex subsystems
+		 * 
+		 * TO-DO
+		 *
+		 */
+		Spc *spc = new Spc; 
+		spc->spc_sanitize(cmd); 
+		done = ( system ( cmd.c_str() ) );
 
 	}
 	else
@@ -598,7 +619,7 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 
 	easyList->clear();
 	fillEasyList();
-	delete [] cmd;
+	//delete [] cmd;
 }
 }
 /**
