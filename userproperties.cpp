@@ -578,11 +578,9 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 	if(col==0 && test!="")
 	{
 	Models model;
-	//char *cmd  = new char;
-	//cmd = new char[strlen(cmd)+1];
 	int done=1;
 	int row=index.row();
-	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole ); //state=2 if the user checkbox is checked or state=0 if the user checkbox is unchecked
+	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole ); 
 	if ( state == 0 )
 	{
 		Spc *spc = new Spc();
@@ -594,8 +592,6 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		std::string from_Label = fromLabel.toUtf8().constData();
 		spc->spc_sanitize(from_Label);
 		QString sanitized_NameLabel = QString::fromStdString(from_Label);
-		QString command="usermod -a -G "  + sanitized_index + " " + sanitized_NameLabel + "";
-		std::string cmd=command.toUtf8().constData();
 		delete spc; 
 		/* 
 		 * Security fix : Change system with execve. 
@@ -605,8 +601,39 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		 * TO-DO
 		 *
 		 */
-		done = ( system ( cmd.c_str() ) );
+		  pid_t pid;
+	      	  int status;
+	      	  pid_t ret;
+		  
+		  QString arg = " -a -G " + sanitized_index + " " + sanitized_NameLabel + "";  
+		  std::string arguments = arg.toUtf8().constData();
+		  int n_index = arguments.length()+1;
 
+		  char argv[n_index]; 
+		  
+		  strncpy( argv, arguments.c_str(), (size_t) n_index); 
+		  if (n_index > 0) argv[n_index - 1] = '\0';
+
+		  char *const args[3] = {"/usr/bin/usermod" ,argv ,NULL};
+		 
+		  pid = fork();
+		  if (pid == -1) {
+		  } 
+		    else if (pid == 0)
+		    {
+		    	if ((ret != -1) && (!WIFEXITED(status) || !WEXITSTATUS(status)) )
+		       	{
+			QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Report unexpected child process <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+		    	}
+		     
+		    else
+		    {
+		    	if (execve("/usr/sbin/usermod ", args, NULL) == -1) {
+		    	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot run usermod  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+		   	 }
+		    }
+		    }
+		
 	}
 	else
 	{
