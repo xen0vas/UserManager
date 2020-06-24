@@ -585,7 +585,7 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole ); //state=2 if the user checkbox is checked or state=0 if the user checkbox is unchecked
 	if ( state == 0 )
 	{
-		Spc *spc = new Spc;
+		Spc *spc = new Spc();
 		QString fromindex = index.sibling(row,1).data().toString();
 	        std::string from_index = fromindex.toUtf8().constData();
 		spc->spc_sanitize(from_index); 
