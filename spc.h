@@ -11,19 +11,6 @@
 #include <string.h>
 #include <paths.h>
 
-//extern char **environ; 
-
-//static char* spc_restricted_environ[ ] = {
-//	"IFS= \t\n",
-//	"PATH=" _PATH_STDPATH, 
-//	0
-//};
-
-//static char *spc_preserve_environ[ ] = {
-//	"TZ",
-//	0
-//};
-
 
 class Spc : public QObject
 {
