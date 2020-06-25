@@ -1,7 +1,7 @@
 language: cpp
 
 compiler:
-  - g++
+  - gcc
 
 os:
   - linux
@@ -11,8 +11,8 @@ addons:
         sources:
             - ubuntu-toolchain-r-test
         packages:
-            - gcc-9
-            - g++-9
+            - gcc-4.9
+            - g++-4.9
 
 #sudo: required
 dist: trusty
