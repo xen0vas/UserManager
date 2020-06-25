@@ -600,9 +600,9 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		 * TO-DO
 		 *
 		 */
-		  pid_t pid;
-	      	  int status;
-	      	  pid_t ret;
+		  int pid;
+	      	  //int status;
+	      	  //pid_t ret;
 		  
 		  QString arg = " -a -G " + sanitized_index + " " + sanitized_NameLabel + "";  
 		  std::string arguments = arg.toUtf8().constData();
@@ -616,24 +616,19 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		  char *const args[3] = {"/usr/bin/usermod" ,argv ,NULL};
 		 
 		  pid = fork();
-		  if (pid == -1) {
-		  } 
-		    else if (pid == 0)
-		    {
-		    	if ((ret != -1) && (!WIFEXITED(status) || !WEXITSTATUS(status)) )
-		       	{
-			QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Unexpected child process <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-		    	}
-		     
-		    else
-		    {
+		  if (pid == 0)
+		  {
 		    	spc->clenv();
 			if (execve("/usr/sbin/usermod ", args, NULL) == -1) {
-		    	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot run usermod  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+		    		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot run usermod  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 		   	 }
-		    }
-		    }
-
+		        //int status; 	
+		        //waitpid(pid,&status,0);		
+		  }
+		  else if (pid < 0) 
+		  {
+			QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Fork failed  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+		  }
 	}
 	else
 	{
