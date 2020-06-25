@@ -101,9 +101,9 @@ rm -rf Makefile 2>/dev/null
 qmake -project 2>/dev/null
 qmake -o Makefile UserManager.pro 
 
-echo "QMAKE_CXXFLAGS += -std=c++11 -O2 -fstack-protector-strong -Wformat -Werror=format-security" >> UserManager.pro
+echo "QMAKE_CXXFLAGS += -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security" >> UserManager.pro
 echo "QMAKE_CPPFLAGS += -Wdate-time -D_FORTIFY_SOURCE=2" >> UserManager.pro
-echo "QMAKE_CFLAGS += -O2 -fstack-protector-strong -Wformat -Werror=format-security" >> UserManager.pro
+echo "QMAKE_CFLAGS += -O2 -fstack-protector-all -Wformat -Werror=format-security" >> UserManager.pro
 echo "LDFLAGS += -Wl,-z,relro" >> UserManager.pro
 echo "CONFIG += qt debug" >> UserManager.pro
 echo "QMAKE_LIBS += -lcrypt" >> UserManager.pro

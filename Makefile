@@ -15,8 +15,8 @@ EQ            = =
 CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
-CFLAGS        = -pipe -O2 -fstack-protector-strong -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -std=c++11 -O2 -fstack-protector-strong -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC $(DEFINES)
+CFLAGS        = -pipe -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC $(DEFINES)
 INCPATH       = -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
@@ -491,7 +491,7 @@ compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
-	g++ -pipe -std=c++11 -O2 -fstack-protector-strong -Wformat -Werror=format-security -g -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
+	g++ -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: moc_About.cpp moc_editProperties.cpp moc_groupProperties.cpp moc_groups.cpp moc_HashingAlgorithm.cpp moc_MainWindow.cpp moc_myLibb.cpp moc_Settings.cpp moc_spc.cpp moc_userproperties.cpp moc_users.cpp
 compiler_moc_header_clean:
