@@ -1045,6 +1045,7 @@ if (done==0)
 	fillEasyList();
 	userGroups->setModel ( model.createUserInGroupsModel ( NameLabel->text() ) );
 	userGroups->setColumnWidth ( 0, 30);
+	delete spc; 
 }
 }
 
