@@ -597,10 +597,10 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		 * Also sanitize arguments and environment and drop privilege if fork will be used
 		 * References  : ENV33-C. Do not call system(), STR02-C. Sanitize data passed to complex subsystems
 		 */
-		 
+		  pid_t pid; 
 		  char *cli_sanitized_index = sanitized_index.toLatin1().data();
 		  char *cli_sanitized_label = sanitized_NameLabel.toLatin1().data(); 
-
+		   
 		  pid = fork();
 		  if (pid == 0)
 		  {
