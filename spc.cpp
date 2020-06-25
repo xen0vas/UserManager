@@ -11,6 +11,13 @@ Spc::Spc()
 Spc::~Spc()
 {}
 
+
+/**
+ * A space-separated list of variable=value pairs is returned, with variable names guaranteed not to contain equal signs (=), 
+ * and variable=value pairs guaranteed not to contain spaces. Used together with the _CS_PATH request,
+ * this completely describes the minimum environment variable settings required to obtain a clean, conforming environment.
+ * On systems conforming to the POSIX.1-2008 standard, this should be used to create a sanitized environment
+ */
 int Spc::clearenv(void)
 {
   
@@ -52,7 +59,11 @@ int Spc::clearenv(void)
 
 }
 
-
+/**
+ * This function used to clear Environmental variables. 
+ * The environment is cleared by clearenv(), and then the PATH and IFS variables are set to safe values before system() is invoked
+ * Ref:. ENV03-C. Sanitize the environment when invoking external programs
+ */
 int Spc::clenv(void)
 {
 
@@ -85,6 +96,11 @@ if (clearenv() != 0) {
 return 0; 
 }	
 
+/**
+ * Sanitize sascpicious characters in order to avoid injections. Possible characters that migh cause harm are 
+ * *,-,+,|,/,\,*,&,{,},[,],\0,\x1A,\r,\t,\n,<,>,;,#,\",' .These chars need to be trimmed. 
+ * The stringValue called be reference and has to be checked 
+ */
 void Spc::spc_sanitize(std::string &stringValue)
 {
 stringValue.erase(
