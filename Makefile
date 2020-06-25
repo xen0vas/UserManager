@@ -79,6 +79,7 @@ SOURCES       = About.cpp \
 		moc_MainWindow.cpp \
 		moc_myLibb.cpp \
 		moc_Settings.cpp \
+		moc_spc.cpp \
 		moc_userproperties.cpp \
 		moc_users.cpp
 OBJECTS       = About.o \
@@ -109,6 +110,7 @@ OBJECTS       = About.o \
 		moc_MainWindow.o \
 		moc_myLibb.o \
 		moc_Settings.o \
+		moc_spc.o \
 		moc_userproperties.o \
 		moc_users.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -491,9 +493,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -std=c++11 -O2 -fstack-protector-strong -Wformat -Werror=format-security -g -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_About.cpp moc_editProperties.cpp moc_groupProperties.cpp moc_groups.cpp moc_HashingAlgorithm.cpp moc_MainWindow.cpp moc_myLibb.cpp moc_Settings.cpp moc_userproperties.cpp moc_users.cpp
+compiler_moc_header_make_all: moc_About.cpp moc_editProperties.cpp moc_groupProperties.cpp moc_groups.cpp moc_HashingAlgorithm.cpp moc_MainWindow.cpp moc_myLibb.cpp moc_Settings.cpp moc_spc.cpp moc_userproperties.cpp moc_users.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_About.cpp moc_editProperties.cpp moc_groupProperties.cpp moc_groups.cpp moc_HashingAlgorithm.cpp moc_MainWindow.cpp moc_myLibb.cpp moc_Settings.cpp moc_userproperties.cpp moc_users.cpp
+	-$(DEL_FILE) moc_About.cpp moc_editProperties.cpp moc_groupProperties.cpp moc_groups.cpp moc_HashingAlgorithm.cpp moc_MainWindow.cpp moc_myLibb.cpp moc_Settings.cpp moc_spc.cpp moc_userproperties.cpp moc_users.cpp
 moc_About.cpp: About.h \
 		ui_About.h \
 		moc_predefs.h \
@@ -575,6 +577,11 @@ moc_Settings.cpp: Settings.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /opt/UserManager/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/9/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include Settings.h -o moc_Settings.cpp
+
+moc_spc.cpp: spc.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /opt/UserManager/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/9/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include spc.h -o moc_spc.cpp
 
 moc_userproperties.cpp: userproperties.h \
 		ui_UserProperties.h \
@@ -948,6 +955,9 @@ moc_myLibb.o: moc_myLibb.cpp
 
 moc_Settings.o: moc_Settings.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_Settings.o moc_Settings.cpp
+
+moc_spc.o: moc_spc.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_spc.o moc_spc.cpp
 
 moc_userproperties.o: moc_userproperties.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_userproperties.o moc_userproperties.cpp

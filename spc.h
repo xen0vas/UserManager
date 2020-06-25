@@ -15,6 +15,7 @@
 class Spc : public QObject
 {
 	Q_OBJECT
+
 public: 
 	Spc();
 	~Spc();	

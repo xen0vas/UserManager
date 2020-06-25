@@ -576,7 +576,14 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 	Spc *spc = new Spc();
 	int row=index.row();
 	QString test = index.sibling(row,1).data().toString();
-	if(col==0 && test!="")
+
+    char *cli_sanitized_index = NULL ;
+    cli_sanitized_index= (char*)calloc(128, sizeof(cli_sanitized_index));
+
+    char *cli_sanitized_label = NULL ;
+    cli_sanitized_label = (char*)calloc(128, sizeof(cli_sanitized_label));
+
+    if(col==0 && test!="")
 	{
 	Models model;
 	int done=1;
@@ -598,9 +605,11 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		 * References  : ENV33-C. Do not call system(), STR02-C. Sanitize data passed to complex subsystems
 		 */
 		  pid_t pid; 
-		  char *cli_sanitized_index = sanitized_index.toLatin1().data();
-		  char *cli_sanitized_label = sanitized_NameLabel.toLatin1().data(); 
-		   
+
+
+          cli_sanitized_index = sanitized_index.toLatin1().data();
+          cli_sanitized_label = sanitized_NameLabel.toLatin1().data();
+		        
 		  pid = fork();
 		  if (pid == 0)
 		  {
@@ -641,6 +650,8 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 
 	easyList->clear();
 	fillEasyList();
+    free(cli_sanitized_index);
+    free(cli_sanitized_label);
 	delete spc;
 }
 }
