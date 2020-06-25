@@ -593,37 +593,23 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		spc->spc_sanitize(from_Label);
 		QString sanitized_NameLabel = QString::fromStdString(from_Label);
 		/* 
-		 * Security fix : Change system with execve. 
+		 * Security fix : Change system with execl. 
 		 * Also sanitize arguments and environment and drop privilege if fork will be used
 		 * References  : ENV33-C. Do not call system(), STR02-C. Sanitize data passed to complex subsystems
-		 * 
-		 * TO-DO
-		 *
 		 */
-		  int pid;
-	      	  //int status;
-	      	  //pid_t ret;
-		  
-		  QString arg = " -a -G " + sanitized_index + " " + sanitized_NameLabel + "";  
-		  std::string arguments = arg.toUtf8().constData();
-		  int n_index = arguments.length()+1;
-
-		  char argv[n_index]; 
-		  
-		  strncpy( argv, arguments.c_str(), (size_t) n_index); 
-		  if (n_index > 0) argv[n_index - 1] = '\0';
-
-		  char *const args[3] = {"/usr/bin/usermod" ,argv ,NULL};
 		 
+		  char *cli_sanitized_index = sanitized_index.toLatin1().data();
+		  char *cli_sanitized_label = sanitized_NameLabel.toLatin1().data(); 
+
 		  pid = fork();
 		  if (pid == 0)
 		  {
 		    	spc->clenv();
-			if (execve("/usr/sbin/usermod ", args, NULL) == -1) {
-		    		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot run usermod  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-		   	 }
-		        //int status; 	
-		        //waitpid(pid,&status,0);		
+		    	if (execl("/usr/sbin/usermod", "-a", "-G", cli_sanitized_index, cli_sanitized_label, NULL) == -1) {
+				QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot run usermod  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+		   	}
+		        int status; 	
+		        waitpid(pid,&status,0);		
 		  }
 		  else if (pid < 0) 
 		  {
