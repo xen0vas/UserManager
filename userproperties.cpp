@@ -577,12 +577,6 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 	int row=index.row();
 	QString test = index.sibling(row,1).data().toString();
 
-    char *cli_sanitized_index = NULL ;
-    cli_sanitized_index= (char*)calloc(128, sizeof(cli_sanitized_index));
-
-    char *cli_sanitized_label = NULL ;
-    cli_sanitized_label = (char*)calloc(128, sizeof(cli_sanitized_label));
-
     if(col==0 && test!="")
 	{
 	Models model;
@@ -607,8 +601,8 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		  pid_t pid; 
 
 
-          cli_sanitized_index = sanitized_index.toLatin1().data();
-          cli_sanitized_label = sanitized_NameLabel.toLatin1().data();
+          char* cli_sanitized_index = sanitized_index.toLatin1().data();
+          char* cli_sanitized_label = sanitized_NameLabel.toLatin1().data();
 		        
 		  pid = fork();
 		  if (pid == 0)
@@ -650,8 +644,6 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 
 	easyList->clear();
 	fillEasyList();
-    free(cli_sanitized_index);
-    free(cli_sanitized_label);
 	delete spc;
 }
 }
