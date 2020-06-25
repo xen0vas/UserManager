@@ -5,7 +5,14 @@ compiler:
 
 os:
   - linux
-  
+
+addons:
+     apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - g++-10
+
 #sudo: required
 dist: trusty
 
