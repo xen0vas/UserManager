@@ -628,6 +628,7 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		     
 		    else
 		    {
+	    /** Validate environment - Here change the PATH to PATH_STDPATH before execute.. dont let adversaries to alter the PATH env vatiable and use their own usermod  **/
 		    	if (execve("/usr/sbin/usermod ", args, NULL) == -1) {
 		    	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot run usermod  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 		   	 }
@@ -938,6 +939,7 @@ void UserProperties::easyAddGroups ( const QModelIndex &index )
 	Models model;
 	Groups group;
 	MyLibb set;
+	Spc *spc = new Spc();
 	char *cmd;
 	struct group *grs = {};
 	int done=-1;
@@ -945,11 +947,14 @@ void UserProperties::easyAddGroups ( const QModelIndex &index )
 	if (state == 2)
 	{
 	done=0;	
+
 	
 	if ( index.data().toString() =="Access external storage devices automatically" )
 	{
+		
 		QString command="addgroup " + NameLabel->text() + " plugdev";
 		cmd=command.toLatin1().data();
+		
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Administer the system" )
@@ -1017,11 +1022,18 @@ void UserProperties::easyAddGroups ( const QModelIndex &index )
 	grs=getgrnam("floppy");
 	if ( index.data().toString() =="Use scanners" )
 	grs=getgrnam("scanner");
-	//h remove_member(grs,getOldUsername().toLatin1().data()	epistrefei thn domh grs pou phre sto orisma ths vgazontas ap ta members ths ton xrhsth ton opoio pernoume apo thn  getOldUsername().toLatin1().data().H epistefomenh domh mpainei san orisma sthn setgrnam gia na mpei h nea domh sto group fle.epistrefei 0 an egine h allagh
+	
 	done=set.setgrnam(group.remove_member(grs,NameLabel->text().toLatin1().data()));
 }
 if (done==0)
 {	
+	/*
+	 * Security fix :  
+	 * 	The environment is cleared by clearenv(), and then the PATH and IFS
+	 * 	variables are set to safe values before system() is invoked.
+	 * Reference : ENV03-C. Sanitize the environment when invoking external programs
+	 */
+	spc->clenv(); 
 	system("sed -i 's/,,/,/g;s/,$//g' /etc/group");
 	easyList->clear();
 	fillEasyList();
@@ -1029,6 +1041,7 @@ if (done==0)
 	userGroups->setColumnWidth ( 0, 30);
 }
 }
+
 /**
  * Η συνάρτηση αλλάζει σε έναν λογαριασμό την κύρια ομάδα.
  */
