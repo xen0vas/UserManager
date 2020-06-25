@@ -622,18 +622,18 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		    {
 		    	if ((ret != -1) && (!WIFEXITED(status) || !WEXITSTATUS(status)) )
 		       	{
-			QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Report unexpected child process <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+			QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Unexpected child process <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 		    	}
 		     
 		    else
 		    {
-	    /** Validate environment - Here change the PATH to PATH_STDPATH before execute.. dont let adversaries to alter the PATH env vatiable and use their own usermod  **/
-		    	if (execve("/usr/sbin/usermod ", args, NULL) == -1) {
+		    	spc->clenv();
+			if (execve("/usr/sbin/usermod ", args, NULL) == -1) {
 		    	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot run usermod  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 		   	 }
 		    }
 		    }
-		
+
 	}
 	else
 	{
