@@ -573,6 +573,7 @@ if ( ok && !userExists)
 void UserProperties::changeMembers ( const QModelIndex &index )
 {
 	int col=index.column();
+	Spc *spc = new Spc();
 	int row=index.row();
 	QString test = index.sibling(row,1).data().toString();
 	if(col==0 && test!="")
@@ -583,7 +584,6 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole ); 
 	if ( state == 0 )
 	{
-		Spc *spc = new Spc();
 		QString fromindex = index.sibling(row,1).data().toString();
 	        std::string from_index = fromindex.toUtf8().constData();
 		spc->spc_sanitize(from_index); 
@@ -592,7 +592,6 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		std::string from_Label = fromLabel.toUtf8().constData();
 		spc->spc_sanitize(from_Label);
 		QString sanitized_NameLabel = QString::fromStdString(from_Label);
-		delete spc; 
 		/* 
 		 * Security fix : Change system with execve. 
 		 * Also sanitize arguments and environment and drop privilege if fork will be used
@@ -647,6 +646,13 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 	}
 	if ( done==0 )
 	{
+		/*
+		* Security fix :  
+	 	* 	The environment is cleared by clearenv(), and then the PATH and IFS
+	 	* 	variables are set to safe values before system() is invoked.
+	 	* Reference : ENV03-C. Sanitize the environment when invoking external programs 
+	 	*/
+		spc->clenv(); 
 		system ( "sed -i 's/,,/,/g;s/,$//g' /etc/group" );
 		userGroups->setModel ( model.createUserInGroupsModel ( NameLabel->text() ) );
 		userGroups->setColumnWidth ( 0, 30);
@@ -654,7 +660,7 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 
 	easyList->clear();
 	fillEasyList();
-	//delete [] cmd;
+	delete spc;
 }
 }
 /**
