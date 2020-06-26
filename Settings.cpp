@@ -94,6 +94,10 @@ char *cmd;
 //
 // Consider Security issues here ! 
  
+// Security fix : change system with execve or execl and sanitize input ane env
+//
+//TODO
+
 QString command="sed -i '/"+ title +"/s/=.*/="+setting+"/g' /usr/share/apps/UserManager/other/usermanager.conf";
 cmd=command.toLatin1().data();
 system ( cmd );
@@ -168,6 +172,9 @@ void Settings::sendMail ( )
 		if ( ( found = line.find ( command,0 ) ) != string::npos )
 		{
 			done=true;
+            // Security fix : sanitize  env
+            //
+            //TODO
 			system ( "sed -i '/exp.sh/d' /var/spool/cron/crontabs/root" ); // delete exp.sh
 			setConf("WARN_USER","no"); //update conf
 			break;
