@@ -85,12 +85,15 @@ void GroupProperties::addMembers( )
 	QModelIndexList indexes = notMembersList->selectionModel()->selectedIndexes();
 	char *cmd;
 	int done=1;
-	//char *member;
+
 	foreach ( QModelIndex index, indexes )
 	{
-		//member=index.data().toByteArray().data();
-		QString command="addgroup " + index.data().toString() + " " + getOldGroupName() + "";//index.data().toString() periexei ton neo member kai groupNameEdit->text() to group pou 8a mpei
+        QString command="addgroup " + index.data().toString() + " " + getOldGroupName() + "";
 		cmd=command.toLatin1().data();
+
+        // Security fix : change system with execve or execl and sanitize input ane env
+        //
+        //TODO
 		done = ( system ( cmd ) );
 	}
 
@@ -149,6 +152,10 @@ bool GroupProperties::renameGroup()
 		Models model;
 		QString command="groupmod -n " + groupNameEdit->text() + " " + getOldGroupName()  + "";
 		cmd=command.toLatin1().data();
+
+        // Security fix : change system with execve or execl and sanitize input ane env
+        //
+        //TODO
 		( system ( cmd ) );
 	}
 return true;

@@ -1018,6 +1018,7 @@ void UserProperties::addGroup(QString label, char* group)
     Spc *spc = new Spc();
     QString fromLabel = label;
     std::string from_Label = fromLabel.toUtf8().constData();
+
     spc->spc_sanitize(from_Label);
     QString sanitized_NameLabel = QString::fromStdString(from_Label);
     char* cli_sanitized_label = sanitized_NameLabel.toLatin1().data();
