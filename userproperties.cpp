@@ -181,11 +181,11 @@ int UserProperties::setPasswdUID()
     //
     //  - TODO -
     //
+
 	fp = fopen ( file, "r" );
 
     uid = atoi(settings.getconf("MINIMUM_UID").c_str());
     int actual_uid = uid;
-
 
 	if ( !fp ) { return 0; }
 
@@ -196,9 +196,9 @@ int UserProperties::setPasswdUID()
         if(getpwuid_r ( (uid_t)i, &pwd, pwdBuffer, pwdlen, &result ) == 0)
         {
             if (result == NULL)
-            break;
+                break;
             else
-            actual_uid++;
+                actual_uid++;
         }
     }
     free(pwdBuffer);
@@ -1170,6 +1170,10 @@ void UserProperties::setPrimaryGroup()
 		//user=getpwnam ( NameLabel->text().toLatin1().data() );
 		QString command="usermod -g " + gname  + " " + NameLabel->text() ;
 		cmd=command.toLatin1().data();
+        /*
+         * Security Fix : change system with execve or execl and sanitize the input
+         *
+         */
 		system ( cmd );
 		userGroups->setModel ( model.createUserInGroupsModel ( NameLabel->text() ) );
 		userGroups->setColumnWidth ( 0, 30 );
