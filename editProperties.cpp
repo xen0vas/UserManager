@@ -528,7 +528,9 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 		cmd=command.toLatin1().data();
 
 
-
+        // Security fix : change system with execve or execl and sanitize input ane env
+        //
+        //TODO
 		done = ( system ( cmd ) );
 	}
 	else
@@ -543,6 +545,9 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 	}
 	if ( done==0 )
 	{
+        // Security fix : sanitize env
+        //
+        //TODO
 		system ( "sed -i 's/,,/,/g;s/,$//g' /etc/group" );
 		userGroups->setModel ( model.createUserInGroupsModel ( getOldUsername() ) );
 		userGroups->setColumnWidth ( 0, 30);
@@ -849,18 +854,27 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	{
 		QString command="addgroup " + getOldUsername() + " plugdev";
 		cmd=command.toLatin1().data();
+        // Security fix : change system with execve or execl and sanitize input and env
+        //
+        //TODO
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Administer the system" )
 	{
 		QString command="addgroup " + getOldUsername() + " adm" + " > /dev/null 2>&1";
 		cmd=command.toLatin1().data();
+        // Security fix : change system with execve or execl and sanitize input and env
+        //
+        //TODO
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Connect to the internet using a modem" )
 	{
 		QString command="addgroup " + getOldUsername() + " dialout" + " > /dev/null 2>&1";
 		cmd=command.toLatin1().data();
+        // Security fix : change system with execve or execl and sanitize input ane env
+        //
+        //TODO
 		system ( cmd );
 	}
 
@@ -868,6 +882,9 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	{
 		QString command="addgroup " + getOldUsername() + " syslog";
 		cmd=command.toLatin1().data();
+        // Security fix : change system with execve or execl and sanitize input ane env
+        //
+        //TODO
 		system ( cmd );
 	}
 
@@ -875,6 +892,9 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	{
 		QString command="addgroup " + getOldUsername() + " fax" + " > /dev/null 2>&1";
 		cmd=command.toLatin1().data();
+        // Security fix : change system with execve or execl and sanitize input ane env
+        //
+        //TODO
 		system ( cmd );
 	}
 
@@ -882,6 +902,9 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	{
 		QString command="addgroup " + getOldUsername() + " cdrom";
 		cmd=command.toLatin1().data();
+        // Security fix : change system with execve or execl and sanitize input ane env
+        //
+        //TODO
 		system ( cmd );
 	}
 
@@ -889,12 +912,18 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	{
 		QString command="addgroup " + getOldUsername() + " floppy";
 		cmd=command.toLatin1().data();
+        // Security fix : change system with execve or execl and sanitize input ane env
+        //
+        //TODO
 		system ( cmd );
 	}
 	else if ( index.data().toString() =="Use scanners" )
 	{
 		QString command="addgroup " + getOldUsername() + " scanner";
 		cmd=command.toLatin1().data();
+        // Security fix : change system with execve or execl and sanitize input ane env
+        //
+        //TODO
 		system ( cmd );
 	}
 }
