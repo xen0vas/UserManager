@@ -185,7 +185,7 @@ int UserProperties::setPasswdUID()
 
     uid = atoi(settings.getconf("MINIMUM_UID").c_str());
     int actual_uid = uid;
-    qDebug() << actual_uid;
+
 
 	if ( !fp ) { return 0; }
 
@@ -195,14 +195,10 @@ int UserProperties::setPasswdUID()
     {
         if(getpwuid_r ( (uid_t)i, &pwd, pwdBuffer, pwdlen, &result ) == 0)
         {
-            if (result == NULL){
+            if (result == NULL)
             break;
-            }
             else
-            {
-                actual_uid++;
-                qDebug() << actual_uid;
-            }
+            actual_uid++;
         }
     }
     free(pwdBuffer);
@@ -635,8 +631,6 @@ void UserProperties::changeMembers ( const QModelIndex &index )
           //usermod_execve(fromindex, fromLabel);
 
 		  pid_t pid; 
-
-
           char* cli_sanitized_index = sanitized_index.toLatin1().data();
           char* cli_sanitized_label = sanitized_NameLabel.toLatin1().data();
 		        
