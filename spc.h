@@ -19,10 +19,11 @@ class Spc : public QObject
 public: 
 	Spc();
 	~Spc();	
-	//void spc_drop_privilleges(int permanent); 
+	void spc_drop_privilleges(int permanent); 
 	void spc_sanitize(std::string &stringValue);
 	int clearenv(void);
         int clenv(void);	
+	void spc_restore_privileges(void); 
 
 };
 #endif

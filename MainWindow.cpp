@@ -153,7 +153,7 @@ void MainWindow::addUserBtnClicked()
 	FILE *passBase;
 	FILE *groupBase;
 	FILE *shadowBase;	
-	UserProperties *userProp = new UserProperties;
+    UserProperties *userProp = new UserProperties();
 	MyLibb *fchk { new MyLibb()};
 	shadowBase = fchk->fopen_wrapper(SHADOW_FILE, "r+");
 	groupBase  = fchk->fopen_wrapper(GROUP_FILE , "r+");
@@ -176,22 +176,21 @@ void MainWindow::addUserBtnClicked()
 	Users user ;
 		if ( !user.userExists( userString ) && okBtn )
 		{
-			userProp->NameLabel->setText( userString );
-			userProp->fillEasyList();
-			userProp->combotext();
-			QString uid;
-			uid = uid.setNum(userProp->setPasswdUID());
-			userProp->uidEdit->setText( uid );
-			userProp->HomeDirEdit->setText( "" "/home/" + userString + "" );	
-			userProp->timeDate->setText("_");
-			userProp->setWindowTitle("User Properties - New User");
-			userProp->show();
+            userProp->NameLabel->setText( userString );
+            userProp->fillEasyList();
+            userProp->combotext();
+            QString uid;
+            uid = uid.setNum(userProp->setPasswdUID());
+            userProp->uidEdit->setText( uid );
+            userProp->HomeDirEdit->setText( "" "/home/" + userString + "" );
+            userProp->timeDate->setText("_");
+            userProp->setWindowTitle("User Properties - New User");
+            userProp->show();
 			if ( userProp->exec() ){}
 			delete userProp;
 			userProp = nullptr;
 			delete fchk;
 			fchk = nullptr;
-
 		}
 	}
 	if (userProp != nullptr )

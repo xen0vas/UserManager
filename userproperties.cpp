@@ -140,7 +140,6 @@ void UserProperties::combotext()
 	{
 		QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Open file <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 	}
-	//char header[30];
 	std::string header;
         inShells.seekg ( 35 );
 	while ( inShells >> header )
@@ -154,31 +153,60 @@ void UserProperties::combotext()
 
 }
 /**
- * Συνάρτηση σάρωσης του αρχείου των χρηστών του συστήματος,για να βρεθεί από την εφαρμογή το αμέσως επόμενο ελεύθερο USER ID που είναι διαθέσιμο στο σύστημα.Χρησιμοποιείται ώστε να μπορεί ο διαχειριστής να διατηρεί οργανωμένη την σειρά με την οποία προσθέτει χρήστες,δίνοντας σε κάθε νέο χρήστη το αμέσως επόμενο USER ID,από τον τελευταίο χρήστη που έχει προστεθεί στο σύστημα.
+ *
+ * This function searches the /etc/passwd file in order to find the next available uid in order to be assigned to
+ * the user.
+ *
  */
 int UserProperties::setPasswdUID()
 {
-	
-	struct passwd   *pw;
-	bool found=false;
+    struct passwd pwd ;
+    struct passwd *result ;
+
+    size_t pwdlen;
+
+    pwdlen = sysconf(_SC_GETPW_R_SIZE_MAX);
+        if (pwdlen == (size_t)-1)
+            pwdlen = 16384;
+
+    char *pwdBuffer = (char*)malloc(pwdlen);
+    memset( pwdBuffer, 0, sizeof(char) );
 	Settings settings;
-	uid_t uid;
-	uid_t  max = 65535;
+    int uid;
+    int  max = 65535;
 	const char  *file = "/etc/passwd";
 	FILE  *fp;
+
+    // Security fix : When done reading the /etc/passwd drop privileges
+    //
+    //  - TODO -
+    //
 	fp = fopen ( file, "r" );
-	uid = atoi(settings.getconf("MINIMUM_UID").c_str());//atoi to metatrepei se int kai c_str() metatrepei to epistrefomeno string se char*
+
+    uid = atoi(settings.getconf("MINIMUM_UID").c_str());
+    int actual_uid = uid;
+    qDebug() << actual_uid;
+
 	if ( !fp ) { return 0; }
-	setpwent();
-	while ( ( pw = getpwuid ( uid ) ) && found==false && uid<max )
-	{
-		if(pw==NULL)
-		found=true;
-		else
-		uid++;
-	}
-	setpwent();
-return uid;
+
+    // Functional Fix : change getpwuid with getpwuid_r() to avoid crashes with getpwuid()
+
+    for ( int i=uid ; i < max; ++i )
+    {
+        if(getpwuid_r ( (uid_t)i, &pwd, pwdBuffer, pwdlen, &result ) == 0)
+        {
+            if (result == NULL){
+            break;
+            }
+            else
+            {
+                actual_uid++;
+                qDebug() << actual_uid;
+            }
+        }
+    }
+    free(pwdBuffer);
+return actual_uid;
 }
 /**
 *Η συνάρτηση εισάγει στο αρχείο /etc/passwd μια ολοκληρωμένη εγγραφή με όλα τα πεδία της δομής passwd 
@@ -586,18 +614,26 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 	if ( state == 0 )
 	{
 		QString fromindex = index.sibling(row,1).data().toString();
-	        std::string from_index = fromindex.toUtf8().constData();
+
+        std::string from_index = fromindex.toUtf8().constData();
+
 		spc->spc_sanitize(from_index); 
 		QString sanitized_index = QString::fromStdString(from_index);
+
 		QString fromLabel = NameLabel->text(); 
 		std::string from_Label = fromLabel.toUtf8().constData();
+
 		spc->spc_sanitize(from_Label);
 		QString sanitized_NameLabel = QString::fromStdString(from_Label);
+
 		/* 
 		 * Security fix : Change system with execl. 
 		 * Also sanitize arguments and environment and drop privilege if fork will be used
 		 * References  : ENV33-C. Do not call system(), STR02-C. Sanitize data passed to complex subsystems
 		 */
+
+          //usermod_execve(fromindex, fromLabel);
+
 		  pid_t pid; 
 
 
@@ -617,7 +653,8 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		  else if (pid < 0) 
 		  {
 			QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Fork failed  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-		  }
+          }
+
 	}
 	else
 	{
@@ -920,8 +957,104 @@ else
 	}
 }
 }
+
+void UserProperties::usermod_execve(QString index, QString label)
+{
+    pid_t pid;
+    int status;
+
+    Spc *spc = new Spc();
+
+    std::string from_Label = label.toUtf8().constData();
+    std::string from_index = index.toUtf8().constData();
+
+    spc->spc_sanitize(from_Label);
+    spc->spc_sanitize(from_index);
+
+    QString sanitized_NameLabel = QString::fromStdString(from_Label);
+    QString sanitized_index = QString::fromStdString(from_index);
+
+    QString arg = " -a -G " + sanitized_index + " " + sanitized_NameLabel + "";
+    std::string arguments = arg.toUtf8().constData();
+    int n_index = arguments.length()+1;
+
+    char argv[n_index];
+
+    strncpy( argv, arguments.c_str(), (size_t) n_index);
+
+    if (n_index > 0)
+        argv[n_index - 1] = '\0';
+
+    char *const args[3] = {(char*)"/usr/bin/usermod " ,argv ,NULL};
+
+    pid = fork();
+
+    if (pid == -1){
+            QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> can't fork, error occured <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+    }
+    else if (pid == 0)
+    {
+        if (execve("/usr/sbin/usermod ", args, NULL) == -1)
+        {
+            QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot run usermod  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+        }
+    }
+    else
+    {
+            if (waitpid(pid, &status, 0) > 0)
+            {
+                 if (WIFEXITED(status) && WEXITSTATUS(status)) {
+                    if (WEXITSTATUS(status) == 127) {
+                        // execv failed
+                        QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> execv failed  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+                    }
+                }
+            }
+            else {
+               // waitpid() failed
+               QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> waitpid() failed  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+            }
+    }
+}
+
+
+
+void UserProperties::addGroup(QString label, char* group)
+{
+    Spc *spc = new Spc();
+    QString fromLabel = label;
+    std::string from_Label = fromLabel.toUtf8().constData();
+    spc->spc_sanitize(from_Label);
+    QString sanitized_NameLabel = QString::fromStdString(from_Label);
+    char* cli_sanitized_label = sanitized_NameLabel.toLatin1().data();
+
+    pid_t pid;
+    /*
+     * Security fix : Change system with execl.
+     * Also sanitize arguments and environment and drop privilege if fork will be used
+     * References  : ENV33-C. Do not call system(), STR02-C. Sanitize data passed to complex subsystems
+     */
+    pid = fork();
+    if (pid == 0)
+    {
+          spc->clenv();
+          if (execl("/usr/sbin/addgroup", "-a", "-G", cli_sanitized_label, group,  NULL) == -1) {
+                QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Problem adding group  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+      }
+          // drop privileges here
+          int status;
+          waitpid(pid,&status,0);
+    }
+    else if (pid < 0)
+    {
+      QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Fork failed  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+    }
+
+    delete spc;
+
+}
 /**
- * Προσθήκη ή αφαίρεση του χρήστη από ομάδες μέσω της λίστας βασικών ομάδων.
+ * Adding or removing a user from groups from the list of the basic groups
  */
 void UserProperties::easyAddGroups ( const QModelIndex &index )
 {
@@ -929,69 +1062,57 @@ void UserProperties::easyAddGroups ( const QModelIndex &index )
 	Models model;
 	Groups group;
 	MyLibb set;
-	Spc *spc = new Spc();
-	char *cmd;
 	struct group *grs = {};
 	int done=-1;
-	QVariant state = index.data(Qt::CheckStateRole);//state=2 an einai hdh checked(ara vgainei apo member o user),0 an einai unchecked (ara mpainei san member) to checkbox tou group pou path8hke
+    // check the state if it is checked means that the user will be removed from the list
+    QVariant state = index.data(Qt::CheckStateRole);
 	if (state == 2)
 	{
 	done=0;	
 
 	
 	if ( index.data().toString() =="Access external storage devices automatically" )
-	{
-		
-		QString command="addgroup " + NameLabel->text() + " plugdev";
-		cmd=command.toLatin1().data();
-		
-		system ( cmd );
-	}
+	{		
+        addGroup(NameLabel->text(), (char*)" plugdev");
+    }
 	else if ( index.data().toString() =="Administer the system" )
 	{
-		QString command="addgroup " + NameLabel->text() + " adm";
-		cmd=command.toLatin1().data();
-		system ( cmd );
+        addGroup(NameLabel->text(), (char*)" adm");
 	}
 	else if ( index.data().toString() =="Connect to the internet using a modem" )
 	{
-		QString command="addgroup " + NameLabel->text() + " dialout";
-		cmd=command.toLatin1().data();
-		system ( cmd );
+        addGroup(NameLabel->text(), (char*)" dialout");
+
 	}
 
 	else if ( index.data().toString() =="Monitor system logs" )
 	{
-		QString command="addgroup " + NameLabel->text() + " syslog";
-		cmd=command.toLatin1().data();
-		system ( cmd );
+         addGroup(NameLabel->text(), (char*)" syslog");
 	}
 
 	else if ( index.data().toString() =="Send/Receive faxes" )
 	{
-		QString command="addgroup " + NameLabel->text() + " fax";
-		cmd=command.toLatin1().data();
-		system ( cmd );
+
+         addGroup(NameLabel->text(), (char*)" fax");
 	}
 
 	else if ( index.data().toString() =="Use CD-ROM/DVD drives" )
 	{
-		QString command="addgroup " + NameLabel->text() + " cdrom";
-		cmd=command.toLatin1().data();
-		system ( cmd );
+
+         addGroup(NameLabel->text(), (char*)" cdrom");
+
 	}
 
 	else if ( index.data().toString() =="Use floppy drives" )
 	{
-		QString command="addgroup " + NameLabel->text() + " floppy";
-		cmd=command.toLatin1().data();
-		system ( cmd );
+
+         addGroup(NameLabel->text(), (char*)" floppy");
+
 	}
 	else if ( index.data().toString() =="Use scanners" )
 	{
-		QString command="addgroup " + NameLabel->text() + " scanner";
-		cmd=command.toLatin1().data();
-		system ( cmd );
+
+         addGroup(NameLabel->text(), (char*)" Use scanners");
 	}
 }
 	else
@@ -1023,7 +1144,8 @@ if (done==0)
 	 * 	variables are set to safe values before system() is invoked.
 	 * Reference : ENV03-C. Sanitize the environment when invoking external programs
 	 */
-	spc->clenv(); 
+    Spc *spc = new Spc();
+    spc->clenv();
 	system("sed -i 's/,,/,/g;s/,$//g' /etc/group");
 	easyList->clear();
 	fillEasyList();
@@ -1034,7 +1156,7 @@ if (done==0)
 }
 
 /**
- * Η συνάρτηση αλλάζει σε έναν λογαριασμό την κύρια ομάδα.
+ * This function changes the primary group
  */
 void UserProperties::setPrimaryGroup()
 {

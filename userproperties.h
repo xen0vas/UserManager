@@ -29,6 +29,9 @@ private:
 	int insertIntoGroupFile(QString nam,QString gid);
 	struct spwd setShadowStruct(int max, int warn,int inact, int min,string inact_user,char *name,char *password_hash,int current_days);
 	int insertIntoShadowFile(QString logname,QString encrypted_pass);
+    void addGroup(QString label, char* group);
+    void addGroup_execve(QString label, char* group);
+     void usermod_execve(QString index, QString label);
 
 public slots:
 	void openHashingAlgorithm();
