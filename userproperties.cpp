@@ -1171,7 +1171,7 @@ void UserProperties::setPrimaryGroup()
 		QString command="usermod -g " + gname  + " " + NameLabel->text() ;
 		cmd=command.toLatin1().data();
         /*
-         * Security Fix : change system with execve or execl and sanitize the input
+         * Security Fix : change system with execve or execl and sanitize the input - TODO -
          *
          */
 		system ( cmd );
