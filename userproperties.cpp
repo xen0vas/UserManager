@@ -638,7 +638,7 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		QString sanitized_NameLabel = QString::fromStdString(from_Label);
 
 		/* 
-		 * Security fix : Change system with execl. 
+		 * Security fix : Change system with execv or execve 
 		 * Also sanitize arguments and environment and drop privilege if fork will be used
 		 * References  : ENV33-C. Do not call system(), STR02-C. Sanitize data passed to complex subsystems
 		 */
@@ -1040,7 +1040,7 @@ void UserProperties::addGroup(QString label, char* group)
 
     pid_t pid;
     /*
-     * Security fix : Change system with execl.
+     * Security fix : Change system with execv or execve.
      * Also sanitize arguments and environment and drop privilege if fork will be used
      * References  : ENV33-C. Do not call system(), STR02-C. Sanitize data passed to complex subsystems
      */
@@ -1187,7 +1187,7 @@ void UserProperties::setPrimaryGroup()
 		QString command="usermod -g " + gname  + " " + NameLabel->text() ;
 		cmd=command.toLatin1().data();
         /*
-         * Security Fix : change system with execve or execl and sanitize the input - TODO -
+         * Security Fix : change system with execve or execv and sanitize the input - TODO -
          *
          */
 		system ( cmd );
