@@ -22,7 +22,8 @@ public:
 	void spc_drop_privilleges(int permanent); 
 	void spc_sanitize(std::string &stringValue);
 	int clearenv(void);
-        int clenv(void);	
+    int clenv(void);
+    char * canonicalize_path(QByteArray di);
 	void spc_restore_privileges(void); 
 
 };

@@ -1,5 +1,7 @@
 #include "MainWindow.h"
 #include "myLibb.h"
+#include "spc.h"
+
 /**
  * Constructor κλάσης/φόρμας
  */
@@ -52,8 +54,9 @@ int GroupProperties::groupStudy(gid_t uid_n)
 	FILE  *fp;
 	int i = 0;
 	fp = fopen ( file, "r" );
-	tmp_gid = atoi ( settings.getconf ( "MINIMUM_GID" ).c_str() );//atoi to metatrepei se int kai c_str() metatrepei to epistrefomeno string se char*;
+    tmp_gid = atoi ( settings.getconf ( "MINIMUM_GID" ).c_str() );
 	setgrent();
+
 	while ( ( grp = getgrent() ) )
 	{
 		if(grp->gr_gid <= max)
@@ -71,7 +74,7 @@ int GroupProperties::groupStudy(gid_t uid_n)
 	QMessageBox::information( 0,tr("User Manager " ), tr ("Reached maximum number of groups"));
 	else
 	if(i == 1)
-	return uid_n;
+        return uid_n;
 
 	return tmp_gid;
 }
@@ -130,6 +133,9 @@ void GroupProperties::removeMembers( )
 	groups.remove_member(grs,username);
 	set.setgrnam(grs);
 	}
+
+    Spc *spc = new Spc();
+    spc->clenv();
 	system("sed -i 's/,,/,/g;s/,$//g' /etc/group");//['s/,,/,/g]->antika8ista ta dyo kommata me ena. [s/,$//g']->antika8ista to koma sto telos ths ka8e grammhs me keno
 	notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toLatin1().data() ) );
 	membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toLatin1().data() ) );
@@ -153,7 +159,7 @@ bool GroupProperties::renameGroup()
 		QString command="groupmod -n " + groupNameEdit->text() + " " + getOldGroupName()  + "";
 		cmd=command.toLatin1().data();
 
-        // Security fix : change system with execve or execl and sanitize input ane env
+        // Security fix : change system with execve  and sanitize input ane env
         //
         //TODO
 		( system ( cmd ) );

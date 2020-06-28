@@ -7,9 +7,7 @@
 #include "IHashing.h"
 #include <string.h>
 #include <linux/limits.h>
-
-
-
+#include "spc.h"
 
 using namespace std;
 
@@ -145,12 +143,13 @@ if(checkBoxEdit->isChecked())
 	QByteArray di( direc.toLatin1().data() );
 	QByteArray na( nam.toLatin1().data() );
 	QByteArray shell( shellcon.toLatin1().data() );
-	
-	/*
+
+
+    /*
 	*  Security fix: Checkout if the home directory is invalid 
 	*  Reference :
 	*  FIO02-C. Canonicalize path names originating from tainted sources
-	*/
+    */
 
 	size_t  path_size = (size_t)PATH_MAX+1;
 	char *realpath_res = NULL; 
@@ -165,12 +164,13 @@ if(checkBoxEdit->isChecked())
    		    
 	            QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Could not calculate memory for homedir path </qt> " ) ) ;   
   		}
-		else
+        else if( (strrchr( di.data(), '/') != di.data() + len) && canonical_path != NULL )
 		{
 		actualpath = di.data();
 		realpath_res = realpath(actualpath, canonical_path);
 		}
-
+        else
+            QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Invalid path detected  </qt> " ) ) ;
 	}
 
 	if (realpath_res == NULL ) 
@@ -178,16 +178,14 @@ if(checkBoxEdit->isChecked())
 	       	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Invalid path  <i>  %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 	}
 	else
-	{
-  		if (strrchr( di.data(), '/') != di.data() + len) 
-			pw.pw_dir = di.data();		
-		else
-			QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Invalid path detected  </qt> " ) ) ;
+	{ 
+            pw.pw_dir = realpath_res;
 	}
 	
 	if ( canonical_path != NULL ) { free(canonical_path); canonical_path = NULL; }
 
 	// end of security fix for homedir - consider refactoring in order to centralize security 
+
 
 	uid_t userID  = ui.toInt();
 	gid_t groupID = gid.toInt();
@@ -197,7 +195,6 @@ if(checkBoxEdit->isChecked())
 	pw.pw_passwd = pass.data();
 	pw.pw_uid = userID;
 	pw.pw_gid = groupID;
-	//pw.pw_dir = di.data();
 	pw.pw_shell = shell.data();
 
 	oldf.pw = &pw;

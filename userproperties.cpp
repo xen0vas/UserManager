@@ -197,6 +197,7 @@ int UserProperties::setPasswdUID()
     }
 
     fclose(fp);
+
     free(pwdBuffer);
 
 return actual_uid;
@@ -224,13 +225,8 @@ int UserProperties::insertIntoPasswdFile ( QString nam,QString uid,QString gid,Q
 	us.pw_uid    =  userID;
 	us.pw_gid    =  groupID;
 	us.pw_gecos  =  gecos.data();
-
-
 	us.pw_dir    =  dir.data();
-	
-	
 	us.pw_shell  =  shell.data();
-	
 	
 	const char *filename  = PASSWD_FILE;
 	
@@ -294,8 +290,8 @@ sp.sp_lstchg = current_days;
 
 EditProperties *edit {new EditProperties()};
 			
-			if( !requires_Pass->isChecked())//προκαθορισμένες τιμές σε περίπτωση που δεν υπάρχει password
-			{	
+            if( !requires_Pass->isChecked())
+            {
 				sp.sp_max  = 99999; 
 				sp.sp_min  = 0;
 				sp.sp_warn =	7;
@@ -315,7 +311,7 @@ EditProperties *edit {new EditProperties()};
 				sp.sp_min = 0;
 			}
 
-			if(!alway->isChecked())//πότε λήγει ο κωδικός
+            if(!alway->isChecked()) //this is where the password expires..
 				sp.sp_expire = edit->set_shad_expire(months->currentText(),days->value(),years->value());
 			else
 			{
@@ -492,20 +488,36 @@ void UserProperties::addUserBase()
 		userExists=true;
 		}
 		if ( ( pass_done == 0 ) && ( group_done == 0 ) && ( shadow_done == 0 ) )
-		{
-			QByteArray dir = directory.toLatin1();
-			const char *path = dir.data();
-			mkdir ( path,X_OK );
-			chmod ( path,0700 );
-			chown ( path, ( uid_t ) userID, ( gid_t ) groupID );
+        {
+            Spc *spc = new Spc();
 
-	
+            QRegExp rx ( "{}\"[:.'|<>?*]" );
+
+            if (! HomeDirEdit->text().contains(rx))
+            {
+
+            int n_index = HomeDirEdit->text().length()+1;
+
+            char cli_sanitized_path[n_index] ;
+
+            strncpy( cli_sanitized_path, directory.toUtf8().data(), (size_t) n_index);
+
+            if (n_index > 0)
+                cli_sanitized_path[n_index - 1] = '\0';
+
+
+            mkdir ( cli_sanitized_path,X_OK );
+            chmod ( cli_sanitized_path,0700 );
+            chown ( cli_sanitized_path, ( uid_t ) userID, ( gid_t ) groupID );
+
+
 			pid  = fork();
 			if ( pid == 0 ) //parent process
 			{
-				if (execl("/bin/cp", "-i", "-p", "/etc/skel/.bash_logout",path, (char*)0) == -1)
+                spc->clenv(); // clear environment resotinrg the system default
+                if (execl("/bin/cp", "-i", "-p", "/etc/skel/.bash_logout",cli_sanitized_path, (char*)0) == -1)
 				{
-					QMessageBox::information ( this,tr ( "User Manager" ),tr ("copy %1 failed" ).arg ( path ) );
+                    QMessageBox::information ( this,tr ( "User Manager" ),tr ("copy %1 failed" ).arg ( cli_sanitized_path ) );
 				}
 					
 				int status;
@@ -515,10 +527,11 @@ void UserProperties::addUserBase()
 			pid1 = fork();
 			if ( pid1 == 0 ) //child process 1
 			{
-				if (execl("/bin/cp", "-i", "-p", "/etc/skel/.bashrc",path,(char*)0) == -1) 
+                spc->clenv(); // clear environment restoring the system default
+                if (execl("/bin/cp", "-i", "-p", "/etc/skel/.bashrc", cli_sanitized_path ,(char*)0) == -1)
 				{
 
-					QMessageBox::information ( this,tr ( "User Manager" ),tr ("copy %1 failed" ).arg ( path ) );
+                    QMessageBox::information ( this,tr ( "User Manager" ),tr ("copy %1 failed" ).arg ( cli_sanitized_path ) );
 				}
 			
 				int status1;
@@ -528,10 +541,10 @@ void UserProperties::addUserBase()
 			pid2 = fork();
 			if ( pid2 == 0 ) // child process 2
 			{
-				if (execl("/bin/cp", "-i", "-p", "/etc/skel/.profile",path, (char*)0) == -1 )
+                if (execl("/bin/cp", "-i", "-p", "/etc/skel/.profile", cli_sanitized_path, (char*)0) == -1 )
 				{
 
-					QMessageBox::information ( this,tr ( "User Manager" ),tr ("copy %1 failed" ).arg ( path ) );
+                    QMessageBox::information ( this,tr ( "User Manager" ),tr ("copy %1 failed" ).arg ( cli_sanitized_path ) );
 				}
 				
 				int status2;
@@ -552,10 +565,15 @@ void UserProperties::addUserBase()
 			link ( SHADOW_FILE,SHADOW_FILE".bak" );
 			//dimiourgei back up arxeio gia to shadow
 			
-	
 			QMessageBox::information ( this,tr ( "User Manager" ),tr ( " User %1 Inserted succesfully!!" ).arg ( nam ) );
 			passBtn->setEnabled(true);
-			}
+
+            }
+            else
+            QMessageBox::information ( 0,tr ( "User Manager" ),tr ( " User %1 Not Inserted" ).arg ( nam ) );
+
+            delete spc;
+        }
 		else
 		QMessageBox::information ( 0,tr ( "User Manager" ),tr ( " User %1 Not Inserted" ).arg ( nam ) );
 	}

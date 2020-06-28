@@ -2,8 +2,6 @@
 #include <unistd.h>
 #include <QMessageBox>
 
-
-
 using std::string; 
 
 
@@ -57,7 +55,7 @@ int Spc::clearenv(void)
     	}
     }
 
-  if (namebuf!= NULL) free (namebuf) ; else namebuf = NULL ;
+  if (namebuf!= NULL) { free (namebuf) ;  namebuf = NULL; }
 
 return 0;
 }
@@ -102,6 +100,41 @@ if (clearenv() != 0) {
 
 return 0; 
 }	
+
+char *Spc::canonicalize_path(QByteArray directory)
+{
+    size_t  path_size = (size_t)PATH_MAX+1;
+    char *realpath_res = NULL;
+    char *canonical_path = NULL;
+    char *actualpath = NULL;
+    const size_t len = strlen( directory.data() );
+
+    if (path_size > 0) {
+        canonical_path = (char*)calloc(1,path_size);
+
+        if (canonical_path == NULL) {
+
+                QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Could not calculate memory for homedir path </qt> " ) ) ;
+        }
+        else if( (strrchr( directory.data(), '/') != directory.data() + len) && canonical_path != NULL )
+        {
+        actualpath = directory.data();
+        realpath_res = realpath(actualpath, canonical_path);
+        }
+        else
+            QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Invalid path detected  </qt> " ) ) ;
+    }
+
+    if (realpath_res == NULL )
+    {
+            QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Invalid path  <i>  %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+    }
+
+    if ( canonical_path != NULL ) { free(canonical_path); canonical_path = NULL; }
+
+    // end of security fix for homedir - consider refactoring in order to centralize security
+    return realpath_res;
+}
 
 /**
  * Sanitize sascpicious characters in order to avoid injections. Possible characters that migh cause harm are 

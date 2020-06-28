@@ -703,7 +703,8 @@ editProperties.o: editProperties.cpp editProperties.h \
 		models.h \
 		HashingAlgorithm.h \
 		HashingFactory.h \
-		IHashing.h
+		IHashing.h \
+		spc.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o editProperties.o editProperties.cpp
 
 groupProperties.o: groupProperties.cpp MainWindow.h \
@@ -723,7 +724,8 @@ groupProperties.o: groupProperties.cpp MainWindow.h \
 		About.h \
 		groups.h \
 		pathfile.h \
-		models.h
+		models.h \
+		spc.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o groupProperties.o groupProperties.cpp
 
 groups.o: groups.cpp groups.h \
