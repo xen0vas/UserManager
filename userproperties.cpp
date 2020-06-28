@@ -155,7 +155,7 @@ void UserProperties::combotext()
 /**
  *
  * This function searches the /etc/passwd file in order to find the next available uid in order to be assigned to
- * the user.
+ * the new user. The initial uid value taken from the configuration provided by the user through the Settings class
  *
  */
 int UserProperties::setPasswdUID()
