@@ -56,9 +56,10 @@ int Spc::clearenv(void)
     	return -1; 
     	}
     }
-  
-  return 0;	
 
+  if (namebuf!= NULL) free (namebuf) ; else namebuf = NULL ;
+
+return 0;
 }
 
 /**
@@ -76,14 +77,18 @@ size_t n;
 n = confstr(_CS_PATH, NULL, 0);
 
 if (clearenv() != 0) {
-       QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Clearing the environment failed <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-       return -1;
+    QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Clearing the environment failed <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+    return -1;
 } else if (n == 0) {
   	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Could not allocate memory for path<i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 	return -1;
 } else if ((pathbuf = (char*)malloc(n)) == NULL) {
  	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Could not allocate memory for path<i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 	return -1;
+    /*
+    *  _CS_PATH : This parameter’s value is the recommended default path for
+    *  searching for executable files. This is the path that a user has by default just after logging in
+    */
 } else if (confstr(_CS_PATH, pathbuf, n) == 0) {
  	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Could not get configuration dependent string variables <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 	return -1;

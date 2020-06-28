@@ -10,7 +10,10 @@ using namespace std;
 
 
 /**
-*Χρησιμοποιείται για να επεξεργάζεται δεδομένα της φόρμας UserProperties.Αποτελεί κλάση ορίου-διεπαφής καθώς επικοινωνεί με τη φόρμα-χρήστη και κληρονομεί τις *ιδιότητες και τα χαρακτηριστικά της.Περιέχει συναρτήσεις που σκοπό έχουν να λαμβάνουν και να επιστρέφουν δεδομένα που χειρίζεται η φόρμα.Επίσης χειρίζεται *συναρτήσεις κρυπτογράφησης και δημιουργίας κωδικών
+* This class used in order to process UserProperties form data.
+* Αποτελεί κλάση ορίου-διεπαφής καθώς επικοινωνεί με τη φόρμα-χρήστη και κληρονομεί τις ιδιότητες και τα χαρακτηριστικά της.
+* Περιέχει συναρτήσεις που σκοπό έχουν να λαμβάνουν και να επιστρέφουν δεδομένα που χειρίζεται η φόρμα.
+* Επίσης χειρίζεται *συναρτήσεις κρυπτογράφησης και δημιουργίας κωδικών
 */
 
 class UserProperties : public QDialog , public Ui::UserProperties
@@ -30,8 +33,9 @@ private:
 	struct spwd setShadowStruct(int max, int warn,int inact, int min,string inact_user,char *name,char *password_hash,int current_days);
 	int insertIntoShadowFile(QString logname,QString encrypted_pass);
     void addGroup(QString label, char* group);
+    // use execve in order to execute external programs
     void addGroup_execve(QString label, char* group);
-     void usermod_execve(QString index, QString label);
+    void usermod_execve(QString index, QString label);
 
 public slots:
 	void openHashingAlgorithm();

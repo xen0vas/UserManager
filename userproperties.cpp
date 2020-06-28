@@ -171,16 +171,12 @@ int UserProperties::setPasswdUID()
 
     char *pwdBuffer = (char*)malloc(pwdlen);
     memset( pwdBuffer, 0, sizeof(char) );
+
 	Settings settings;
     int uid;
     int  max = 65535;
 	const char  *file = "/etc/passwd";
 	FILE  *fp;
-
-    // Security fix : When done reading the /etc/passwd drop privileges
-    //
-    //  - TODO -
-    //
 
 	fp = fopen ( file, "r" );
 
@@ -188,8 +184,6 @@ int UserProperties::setPasswdUID()
     int actual_uid = uid;
 
 	if ( !fp ) { return 0; }
-
-    // Functional Fix : change getpwuid with getpwuid_r() to avoid crashes with getpwuid()
 
     for ( int i=uid ; i < max; ++i )
     {
@@ -201,7 +195,10 @@ int UserProperties::setPasswdUID()
                 actual_uid++;
         }
     }
+
+    fclose(fp);
     free(pwdBuffer);
+
 return actual_uid;
 }
 /**
