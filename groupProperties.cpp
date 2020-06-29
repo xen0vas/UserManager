@@ -94,7 +94,7 @@ void GroupProperties::addMembers( )
         QString command="addgroup " + index.data().toString() + " " + getOldGroupName() + "";
 		cmd=command.toLatin1().data();
 
-        // Security fix : change system with execve or execl and sanitize input ane env
+        // Security fix : change system with execve or and sanitize input and env
         //
         //TODO
 		done = ( system ( cmd ) );
