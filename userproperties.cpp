@@ -491,9 +491,9 @@ void UserProperties::addUserBase()
         {
             Spc *spc = new Spc();
 
-            QRegExp rx ( "{}\"[:.'|<>?*]" );
+            QRegExp rx ( "[A-Za-z0-9]" );
 
-            if (! HomeDirEdit->text().contains(rx))
+            if (HomeDirEdit->text().contains(rx))
             {
 
             int n_index = HomeDirEdit->text().length()+1;

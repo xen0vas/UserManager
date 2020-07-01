@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>784</width>
-    <height>403</height>
+    <height>411</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -174,7 +174,11 @@
         </widget>
        </item>
        <item row="7" column="2" colspan="4">
-        <widget class="QComboBox" name="shellConnect"/>
+        <widget class="QComboBox" name="shellConnect">
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+        </widget>
        </item>
        <item row="9" column="0">
         <widget class="QLabel" name="label_7">
@@ -998,7 +1002,6 @@
   <zorder>tabWidget</zorder>
  </widget>
  <resources>
-  <include location="../resources/images.qrc"/>
   <include location="../resources/images.qrc"/>
  </resources>
  <connections>

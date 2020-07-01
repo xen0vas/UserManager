@@ -26,7 +26,7 @@ EditProperties::EditProperties ( QWidget * parent ) : QDialog ( parent )
 	warn->setEnabled(false);
 	min->setEnabled(false);
 	shellConnect->setAutoCompletion ( true );
-	shellConnect->setEditable ( true );
+	shellConnect->setEditable ( false );
 	min->setSpecialValueText ( "never" );
 	max->setSpecialValueText ( "never" );
 	warn->setSpecialValueText ( "never" );

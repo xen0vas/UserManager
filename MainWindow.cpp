@@ -77,7 +77,7 @@ menuDiskUsage->setShortcut( QString( "Ctrl+D" ) );
 //Key Events
 
 userTreeView->installEventFilter (this);
-userTreeView->setSelectionMode(QAbstractItemView::MultiSelection);
+userTreeView->setSelectionMode(QAbstractItemView::SingleSelection);
 groupTreeView->installEventFilter (this);
 
 //Connections

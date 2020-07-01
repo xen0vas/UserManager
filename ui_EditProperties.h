@@ -111,7 +111,7 @@ public:
     {
         if (EditProperties->objectName().isEmpty())
             EditProperties->setObjectName(QString::fromUtf8("EditProperties"));
-        EditProperties->resize(784, 403);
+        EditProperties->resize(784, 411);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/new/prefix1/images/editUser.png"), QSize(), QIcon::Normal, QIcon::Off);
         EditProperties->setWindowIcon(icon);
@@ -212,6 +212,7 @@ public:
 
         shellConnect = new QComboBox(tab);
         shellConnect->setObjectName(QString::fromUtf8("shellConnect"));
+        shellConnect->setEditable(false);
 
         gridLayout_2->addWidget(shellConnect, 7, 2, 1, 4);
 
