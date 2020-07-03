@@ -166,8 +166,14 @@ void MainWindow::addUserBtnClicked()
 	else
 	{
 	bool okBtn;
-	QString userString = QInputDialog::getText( 0, QObject::tr( "Add User" ), QObject::tr( "Please Enter User Name:" ), QLineEdit::Normal, QString( "" ), &okBtn );
-	if ( userString == "" && okBtn )
+
+    QRegExp rx;
+    rx.setPattern( "\\S+" );
+    QRegExpValidator *v = new QRegExpValidator(rx,0);
+
+
+    QString userString = QInputDialog::getText( 0, QObject::tr( "Add User" ), QObject::tr( "Please Enter User Name:" ), QLineEdit::Normal, QString( "" ), &okBtn );
+    if ( userString == "" && okBtn )
 	{
 		QMessageBox::information( 0, tr( "User Manager" ), tr( "Empty field!! " ) );
 	}

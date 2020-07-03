@@ -20,6 +20,10 @@ UserProperties::UserProperties ( QWidget * parent ) : QDialog ( parent )
 	setModal ( true );
 	QValidator *validator = new QIntValidator(1, 65535, this);
 	uidEdit->setValidator(validator);
+
+
+
+
 	easyList->setVisible(false);
 
 	min->setMaximum(99999);// long int sp_min;  /* Μικρότερος αριθμός ημερών στον οποίο γίνεται αλλαγή κωδικού */  
@@ -424,11 +428,22 @@ void UserProperties::addUserBase()
 	int shadow_done = 0 ;
 	QString nam = NameLabel->text();
 	QString uid = uidEdit->text();
-	struct passwd *u;
+    struct passwd *u;
 	gid_t ui = uid.toInt();
 	int free_gid  = grp.groupStudy(ui);
 	QString gid =  gid.number(free_gid);
 	QString gec = "";
+
+    QRegExp rx;
+    rx.setPattern( "[%{}#\\[^:\\.*?\"<>|\\]*$]+");
+    QRegExpValidator *v = new QRegExpValidator(rx,0);
+    HomeDirEdit->setValidator(v);
+
+
+    if (HomeDirEdit->text().contains(rx))
+        QMessageBox::information ( 0,tr ( "User Manager" ),tr ( "Home directory contains unwanted characters" ));
+    else{
+    //delete v ;
 
 	if (FullNameEdit->text() == "" && office1Edit->text() == "" && office2Edit->text() == "" && addressEdit->text() == "")
 	gec = "";
@@ -473,14 +488,14 @@ void UserProperties::addUserBase()
 		QMessageBox::information ( 0,tr ( "User Manager" ),tr ( " Empty fields " ) );
 	else
 	{
-		
+
+        // change this to getpwuid_r
 		u = getpwuid ( userID );
 		if ( u == NULL )
 		{
 			pass_done = insertIntoPasswdFile ( nam,uid,gid,directory,gec,shellcon );
 			group_done = insertIntoGroupFile ( nam,gid );
-			shadow_done = insertIntoShadowFile ( nam,passhash );
-			
+			shadow_done = insertIntoShadowFile ( nam,passhash );	
 		}
 		else
 		{
@@ -490,11 +505,6 @@ void UserProperties::addUserBase()
 		if ( ( pass_done == 0 ) && ( group_done == 0 ) && ( shadow_done == 0 ) )
         {
             Spc *spc = new Spc();
-
-            QRegExp rx ( "[A-Za-z0-9]" );
-
-            if (HomeDirEdit->text().contains(rx))
-            {
 
             int n_index = HomeDirEdit->text().length()+1;
 
@@ -568,9 +578,9 @@ void UserProperties::addUserBase()
 			QMessageBox::information ( this,tr ( "User Manager" ),tr ( " User %1 Inserted succesfully!!" ).arg ( nam ) );
 			passBtn->setEnabled(true);
 
-            }
-            else
-            QMessageBox::information ( 0,tr ( "User Manager" ),tr ( " User %1 Not Inserted" ).arg ( nam ) );
+            //}
+           // else
+           // QMessageBox::information ( 0,tr ( "User Manager" ),tr ( " User %1 Not Inserted" ).arg ( nam ) );
 
             delete spc;
         }
@@ -603,6 +613,9 @@ if ( ok && !userExists)
 	model = nullptr;
 
 }
+
+  }
+
 }
 
 /**
@@ -643,18 +656,21 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		 * References  : ENV33-C. Do not call system(), STR02-C. Sanitize data passed to complex subsystems
 		 */
 
-          //usermod_execve(fromindex, fromLabel);
+          usermod_execve(fromindex, fromLabel);
 
+          /*
 		  pid_t pid; 
           char* cli_sanitized_index = sanitized_index.toLatin1().data();
           char* cli_sanitized_label = sanitized_NameLabel.toLatin1().data();
-		        
+
+
 		  pid = fork();
 		  if (pid == 0)
 		  {
 		    	spc->clenv();
-		    	if (execl("/usr/sbin/usermod", "-a", "-G", cli_sanitized_index, cli_sanitized_label, NULL) == -1) {
-				QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot run usermod  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+                if (execl("/usr/sbin/usermod", "-a", "-G", cli_sanitized_index, cli_sanitized_label, NULL) == -1) {
+
+                QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot run usermod  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 		   	}
 		        int status; 	
 		        waitpid(pid,&status,0);		
@@ -663,7 +679,7 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		  {
 			QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Fork failed  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
           }
-
+*/
 	}
 	else
 	{
@@ -1003,7 +1019,7 @@ void UserProperties::usermod_execve(QString index, QString label)
     }
     else if (pid == 0)
     {
-        if (execve("/usr/sbin/usermod ", args, NULL) == -1)
+        if (execv("/usr/sbin/usermod ", args) == -1)
         {
             QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot run usermod  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
         }
