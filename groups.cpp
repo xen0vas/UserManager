@@ -2,6 +2,7 @@
 #include "myLibb.h"
 #include <QMessageBox> 
 #include <QInputDialog> 
+#include "spc.h"
 
 /**
  Constructor κλάσης 
@@ -72,6 +73,7 @@ struct group *Groups::searchGroup()
 struct group *Groups::remove_member(struct group *in,char *uname)
 {	
 	int i;
+    Spc *spc = new Spc();
 	QString memo = "";
 	if (in == NULL) return NULL;
 	
@@ -82,7 +84,11 @@ struct group *Groups::remove_member(struct group *in,char *uname)
 				in->gr_mem[i] = memo.toLatin1().data();
 			}
 		}
-	system("sed -i 's/,,/,/g;s/,$//g' /etc/group");//['s/,,/,/g]->antika8ista ta dyo kommata me ena. [s/,$//g']->antika8ista to koma sto telos ths ka8e grammhs me keno
+    spc->clenv();
+    system("sed -i 's/,,/,/g;s/,$//g' /etc/group");
+
+    if (spc != NULL) { delete spc; spc = NULL; }
+
 	return in;
 }
 
@@ -166,6 +172,6 @@ while (( users = getpwent() ) )
 	}
 }
 endpwent();
-primOfUsers.chop(1);//kovei 1 xarakthra ap to telos(to teleytaio komma)
+primOfUsers.chop(1); // cut out the last comma
 return primOfUsers;
 }
