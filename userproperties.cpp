@@ -572,6 +572,7 @@ void UserProperties::addUserBase()
 			pid2 = fork();
 			if ( pid2 == 0 ) // child process 2
 			{
+                // Security fix: change execl with execv or implement QProcess - Critical
                 if (execl("/bin/cp", "-i", "-p", "/etc/skel/.profile", cli_sanitized_path, (char*)0) == -1 )
 				{
 
@@ -582,19 +583,24 @@ void UserProperties::addUserBase()
 				waitpid(pid2,&status2,0);
 			}
 			
-			//dimiourgei back up arxeio gia to passwd
+            // deletes the previous passwd backup file
 			unlink(PASSWD_FILE".bak");
 
+            //creates a new passwd backup file
 			link ( PASSWD_FILE, PASSWD_FILE".bak" );
-			//dimiourgei back up arxeio gia to group
+
+            //deletes the previous group backup file
 			unlink ( GROUP_FILE".bak" );
 
+            //creates a new group backup file
 			link ( GROUP_FILE,GROUP_FILE".bak" );
-			//dimiourgei back up arxeio gia to shadow
+
+            // deletes the previous shadow backup file
 			unlink ( SHADOW_FILE".bak" );
 
+            // creates a new shadow backup file
 			link ( SHADOW_FILE,SHADOW_FILE".bak" );
-			//dimiourgei back up arxeio gia to shadow
+
 			
 			QMessageBox::information ( this,tr ( "User Manager" ),tr ( " User %1 Inserted succesfully!!" ).arg ( nam ) );
 			passBtn->setEnabled(true);

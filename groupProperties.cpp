@@ -42,7 +42,7 @@ QString GroupProperties::getOldGroupName()
 	return oldGroupName_;
 }
 /**
- * Συνάρτηση σάρωσης του αρχείου των ομάδων του συστήματος,για να βρεθεί από την εφαρμογή το αμέσως επόμενο ελεύθερο GROUP ID που είναι διαθέσιμο στο σύστημα.Χρησιμοποιείται ώστε να μπορεί ο διαχειριστής να διατηρεί οργανωμένη την σειρά με την οποία προσθέτει ομάδες,δίνοντας σε κάθε νέα ομάδα το αμέσως επόμενο GROUP ID,από την τελευταία ομάδα που έχει προστεθεί στο σύστημα.
+ * This functions searches the system Groups at /etc/group in order to find the next available free Group ID - GID .
  */
 int GroupProperties::groupSearch(gid_t uid_n)
 {
