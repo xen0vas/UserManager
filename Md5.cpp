@@ -37,7 +37,7 @@ char *Md5::encryptpass( QString passwd) const
 
 	char *buf = ( char * )calloc ( 512, sizeof(*buf) );
 	char *password = passwd.toLatin1().data();
-	strncpy ( buf,password,strlen(password));
+    memcpy ( buf,password,strlen(password));
 
 	/*
 	 * The crypt_r function does the same thing as crypt, 

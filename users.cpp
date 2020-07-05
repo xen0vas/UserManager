@@ -286,11 +286,10 @@ QString emptystr = "";
     /* create the new gecos string */
     len   =(strlen (pinfo->full_name) + strlen (pinfo->office) + strlen (pinfo->office_phone) + strlen (pinfo->home_phone) + 4);
     char *gecos =(char*)calloc(len, sizeof(char));
-    int fname = sizeof(pinfo->full_name);
+    int fname = strlen(pinfo->full_name);
 
 	if (pinfo->full_name == emptystr.toLatin1().data() && pinfo->office == emptystr.toLatin1().data() && pinfo->office_phone == emptystr.toLatin1().data() && pinfo->home_phone == emptystr.toLatin1().data())
 	strncpy(gecos, emptystr.toLatin1().data(), fname);
-		//gecos = emptystr.toLatin1().data();
 
 	else
 	{
