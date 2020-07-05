@@ -16,7 +16,7 @@ class GroupProperties : public QDialog , public Ui::GroupProperties
 	public:
 		GroupProperties ( QWidget *parent = 0 );
 		~GroupProperties();
-		int groupStudy(gid_t uid_n);
+        int groupSearch(gid_t uid_n);
 		virtual void setOldGroupName ( QString oldGroupName );
 		virtual QString getOldGroupName();
 		

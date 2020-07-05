@@ -444,7 +444,7 @@ void UserProperties::addUserBase()
 
 
 	gid_t ui = uid.toInt();
-	int free_gid  = grp.groupStudy(ui);
+    int free_gid  = grp.groupSearch(ui);
 	QString gid =  gid.number(free_gid);
 	QString gec = "";
 

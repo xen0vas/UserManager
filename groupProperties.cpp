@@ -44,7 +44,7 @@ QString GroupProperties::getOldGroupName()
 /**
  * Συνάρτηση σάρωσης του αρχείου των ομάδων του συστήματος,για να βρεθεί από την εφαρμογή το αμέσως επόμενο ελεύθερο GROUP ID που είναι διαθέσιμο στο σύστημα.Χρησιμοποιείται ώστε να μπορεί ο διαχειριστής να διατηρεί οργανωμένη την σειρά με την οποία προσθέτει ομάδες,δίνοντας σε κάθε νέα ομάδα το αμέσως επόμενο GROUP ID,από την τελευταία ομάδα που έχει προστεθεί στο σύστημα.
  */
-int GroupProperties::groupStudy(gid_t uid_n)
+int GroupProperties::groupSearch(gid_t uid_n)
 {
 	struct group *grp = NULL;
 	Settings settings;

@@ -977,7 +977,7 @@ void MainWindow::addGroupBtnClicked()
 {
 GroupProperties *newGroup = new GroupProperties();
 QString gid;
-newGroup->GIDEdit->setText(gid.setNum(newGroup->groupStudy(0))); //epomeno eley8ero GID
+newGroup->GIDEdit->setText(gid.setNum(newGroup->groupSearch(0))); //epomeno eley8ero GID
 newGroup->setWindowTitle("Add Group");
 newGroup->GIDEdit->setVisible(true);
 newGroup->addBtn->setEnabled(false);
