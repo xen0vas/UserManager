@@ -428,20 +428,34 @@ void UserProperties::addUserBase()
 	int shadow_done = 0 ;
 	QString nam = NameLabel->text();
 	QString uid = uidEdit->text();
-    struct passwd *u;
+
+
+    struct passwd pwd ;
+    struct passwd *result ;
+
+    size_t pwdlen;
+
+    pwdlen = sysconf(_SC_GETPW_R_SIZE_MAX);
+        if (pwdlen == (size_t)-1)
+            pwdlen = 16384;
+
+    char *pwdBuffer = (char*)malloc(pwdlen);
+    memset( pwdBuffer, 0, sizeof(char) );
+
+
 	gid_t ui = uid.toInt();
 	int free_gid  = grp.groupStudy(ui);
 	QString gid =  gid.number(free_gid);
 	QString gec = "";
 
     QRegExp rx;
-    rx.setPattern( "[%{}#\\[^:\\.*?\"<>|\\]*$]+");
+    rx.setPattern( "[%+{}#\\[^:;\\.*?\"<>|\\]*$]+");
+
     QRegExpValidator *v = new QRegExpValidator(rx,0);
     HomeDirEdit->setValidator(v);
 
-
     if (HomeDirEdit->text().contains(rx))
-        QMessageBox::information ( 0,tr ( "User Manager" ),tr ( "Home directory contains unwanted characters" ));
+        QMessageBox::information ( 0,tr ( "User Manager" ),tr ( " Home Directory contains invalid characters " ));
     else{
     //delete v ;
 
@@ -488,20 +502,23 @@ void UserProperties::addUserBase()
 		QMessageBox::information ( 0,tr ( "User Manager" ),tr ( " Empty fields " ) );
 	else
 	{
-
-        // change this to getpwuid_r
-		u = getpwuid ( userID );
-		if ( u == NULL )
-		{
+        if(getpwuid_r ( (uid_t)userID, &pwd, pwdBuffer, pwdlen, &result ) == 0)
+        {
+            if (result == NULL)
+            {
 			pass_done = insertIntoPasswdFile ( nam,uid,gid,directory,gec,shellcon );
 			group_done = insertIntoGroupFile ( nam,gid );
 			shadow_done = insertIntoShadowFile ( nam,passhash );	
-		}
-		else
-		{
-		QMessageBox::information ( 0,tr ( "User Manager" ),tr ( "UID %1 already exists " ).arg(uid) );
-		userExists=true;
-		}
+            }
+            else
+            {
+            QMessageBox::information ( 0,tr ( "User Manager" ),tr ( "UID %1 already exists " ).arg(uid) );
+            userExists=true;
+            }
+        }
+        else
+            QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "Could not read /etc/passwd - %1" ).arg(errno) );
+
 		if ( ( pass_done == 0 ) && ( group_done == 0 ) && ( shadow_done == 0 ) )
         {
             Spc *spc = new Spc();
@@ -525,6 +542,8 @@ void UserProperties::addUserBase()
 			if ( pid == 0 ) //parent process
 			{
                 spc->clenv(); // clear environment resotinrg the system default
+
+                // Security fix: change execl with execv or implement QProcess - Critical
                 if (execl("/bin/cp", "-i", "-p", "/etc/skel/.bash_logout",cli_sanitized_path, (char*)0) == -1)
 				{
                     QMessageBox::information ( this,tr ( "User Manager" ),tr ("copy %1 failed" ).arg ( cli_sanitized_path ) );
@@ -538,6 +557,8 @@ void UserProperties::addUserBase()
 			if ( pid1 == 0 ) //child process 1
 			{
                 spc->clenv(); // clear environment restoring the system default
+
+                // Security fix: change execl with execv or implement QProcess - Critical
                 if (execl("/bin/cp", "-i", "-p", "/etc/skel/.bashrc", cli_sanitized_path ,(char*)0) == -1)
 				{
 

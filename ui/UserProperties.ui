@@ -41,7 +41,7 @@ p, li { white-space: pre-wrap; }
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="4" column="0">
-        <widget class="QLabel" name="label_5">
+        <widget class="QLabel" name="FullName">
          <property name="text">
           <string>Full Name :</string>
          </property>
@@ -54,7 +54,7 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item row="10" column="0">
-        <widget class="QLabel" name="label_10">
+        <widget class="QLabel" name="Office1">
          <property name="text">
           <string>Office  1# :</string>
          </property>
@@ -67,7 +67,7 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="UserID">
          <property name="text">
           <string>User ID :</string>
          </property>
@@ -83,7 +83,7 @@ p, li { white-space: pre-wrap; }
         <widget class="QLineEdit" name="HomeDirEdit"/>
        </item>
        <item row="8" column="0">
-        <widget class="QLabel" name="label_7">
+        <widget class="QLabel" name="Home">
          <property name="text">
           <string>Home Directory :</string>
          </property>
@@ -148,7 +148,7 @@ p, li { white-space: pre-wrap; }
         </spacer>
        </item>
        <item row="0" column="0">
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="UserLogin">
          <property name="text">
           <string>User Login :</string>
          </property>
@@ -180,7 +180,7 @@ p, li { white-space: pre-wrap; }
         </spacer>
        </item>
        <item row="12" column="0">
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="Office2">
          <property name="text">
           <string>Office  2# :</string>
          </property>
@@ -212,7 +212,7 @@ p, li { white-space: pre-wrap; }
         </spacer>
        </item>
        <item row="6" column="0">
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="ShellConn">
          <property name="text">
           <string>Shell Connection :</string>
          </property>
@@ -239,7 +239,7 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item row="16" column="0">
-        <widget class="QLabel" name="label_12">
+        <widget class="QLabel" name="AccountDisabled">
          <property name="text">
           <string>Account Disabled  :</string>
          </property>
@@ -290,7 +290,7 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item row="14" column="0">
-        <widget class="QLabel" name="label_11">
+        <widget class="QLabel" name="Address">
          <property name="text">
           <string>Address :</string>
          </property>
@@ -944,8 +944,6 @@ p, li { white-space: pre-wrap; }
   </layout>
  </widget>
  <resources>
-  <include location="../resources/images.qrc"/>
-  <include location="../resources/images.qrc"/>
   <include location="../resources/images.qrc"/>
  </resources>
  <connections>

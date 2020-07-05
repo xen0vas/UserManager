@@ -167,10 +167,7 @@ void MainWindow::addUserBtnClicked()
 	{
 	bool okBtn;
 
-    QRegExp rx;
-    rx.setPattern( "\\S+" );
-    QRegExpValidator *v = new QRegExpValidator(rx,0);
-
+    // consider to add custom QDialog in order to validate input
 
     QString userString = QInputDialog::getText( 0, QObject::tr( "Add User" ), QObject::tr( "Please Enter User Name:" ), QLineEdit::Normal, QString( "" ), &okBtn );
     if ( userString == "" && okBtn )

@@ -39,29 +39,29 @@ public:
     QTabWidget *tabWidget;
     QWidget *tab_2;
     QGridLayout *gridLayout_2;
-    QLabel *label_5;
-    QLabel *label_10;
-    QLabel *label_3;
+    QLabel *FullName;
+    QLabel *Office1;
+    QLabel *UserID;
     QLineEdit *HomeDirEdit;
-    QLabel *label_7;
+    QLabel *Home;
     QCheckBox *checkBox;
     QSpacerItem *verticalSpacer;
     QSpacerItem *verticalSpacer_2;
-    QLabel *label_4;
+    QLabel *UserLogin;
     QComboBox *shellConnect;
     QSpacerItem *verticalSpacer_7;
-    QLabel *label_8;
+    QLabel *Office2;
     QLineEdit *office2Edit;
     QSpacerItem *verticalSpacer_8;
-    QLabel *label_6;
+    QLabel *ShellConn;
     QLineEdit *FullNameEdit;
     QPushButton *passBtn;
-    QLabel *label_12;
+    QLabel *AccountDisabled;
     QSpacerItem *verticalSpacer_5;
     QLineEdit *office1Edit;
     QLineEdit *uidEdit;
     QLabel *label_17;
-    QLabel *label_11;
+    QLabel *Address;
     QLineEdit *addressEdit;
     QSpacerItem *verticalSpacer_3;
     QSpacerItem *verticalSpacer_6;
@@ -124,38 +124,38 @@ public:
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         gridLayout_2 = new QGridLayout(tab_2);
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
-        label_5 = new QLabel(tab_2);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setScaledContents(true);
-        label_5->setWordWrap(false);
+        FullName = new QLabel(tab_2);
+        FullName->setObjectName(QString::fromUtf8("FullName"));
+        FullName->setScaledContents(true);
+        FullName->setWordWrap(false);
 
-        gridLayout_2->addWidget(label_5, 4, 0, 1, 1);
+        gridLayout_2->addWidget(FullName, 4, 0, 1, 1);
 
-        label_10 = new QLabel(tab_2);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
-        label_10->setScaledContents(true);
-        label_10->setWordWrap(false);
+        Office1 = new QLabel(tab_2);
+        Office1->setObjectName(QString::fromUtf8("Office1"));
+        Office1->setScaledContents(true);
+        Office1->setWordWrap(false);
 
-        gridLayout_2->addWidget(label_10, 10, 0, 1, 1);
+        gridLayout_2->addWidget(Office1, 10, 0, 1, 1);
 
-        label_3 = new QLabel(tab_2);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setScaledContents(true);
-        label_3->setWordWrap(false);
+        UserID = new QLabel(tab_2);
+        UserID->setObjectName(QString::fromUtf8("UserID"));
+        UserID->setScaledContents(true);
+        UserID->setWordWrap(false);
 
-        gridLayout_2->addWidget(label_3, 2, 0, 1, 1);
+        gridLayout_2->addWidget(UserID, 2, 0, 1, 1);
 
         HomeDirEdit = new QLineEdit(tab_2);
         HomeDirEdit->setObjectName(QString::fromUtf8("HomeDirEdit"));
 
         gridLayout_2->addWidget(HomeDirEdit, 8, 1, 1, 4);
 
-        label_7 = new QLabel(tab_2);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setScaledContents(true);
-        label_7->setWordWrap(false);
+        Home = new QLabel(tab_2);
+        Home->setObjectName(QString::fromUtf8("Home"));
+        Home->setScaledContents(true);
+        Home->setWordWrap(false);
 
-        gridLayout_2->addWidget(label_7, 8, 0, 1, 1);
+        gridLayout_2->addWidget(Home, 8, 0, 1, 1);
 
         checkBox = new QCheckBox(tab_2);
         checkBox->setObjectName(QString::fromUtf8("checkBox"));
@@ -179,12 +179,12 @@ public:
 
         gridLayout_2->addItem(verticalSpacer_2, 13, 0, 1, 1);
 
-        label_4 = new QLabel(tab_2);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setScaledContents(true);
-        label_4->setWordWrap(false);
+        UserLogin = new QLabel(tab_2);
+        UserLogin->setObjectName(QString::fromUtf8("UserLogin"));
+        UserLogin->setScaledContents(true);
+        UserLogin->setWordWrap(false);
 
-        gridLayout_2->addWidget(label_4, 0, 0, 1, 1);
+        gridLayout_2->addWidget(UserLogin, 0, 0, 1, 1);
 
         shellConnect = new QComboBox(tab_2);
         shellConnect->setObjectName(QString::fromUtf8("shellConnect"));
@@ -195,12 +195,12 @@ public:
 
         gridLayout_2->addItem(verticalSpacer_7, 3, 0, 1, 1);
 
-        label_8 = new QLabel(tab_2);
-        label_8->setObjectName(QString::fromUtf8("label_8"));
-        label_8->setScaledContents(true);
-        label_8->setWordWrap(false);
+        Office2 = new QLabel(tab_2);
+        Office2->setObjectName(QString::fromUtf8("Office2"));
+        Office2->setScaledContents(true);
+        Office2->setWordWrap(false);
 
-        gridLayout_2->addWidget(label_8, 12, 0, 1, 1);
+        gridLayout_2->addWidget(Office2, 12, 0, 1, 1);
 
         office2Edit = new QLineEdit(tab_2);
         office2Edit->setObjectName(QString::fromUtf8("office2Edit"));
@@ -211,12 +211,12 @@ public:
 
         gridLayout_2->addItem(verticalSpacer_8, 1, 0, 1, 1);
 
-        label_6 = new QLabel(tab_2);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setScaledContents(true);
-        label_6->setWordWrap(false);
+        ShellConn = new QLabel(tab_2);
+        ShellConn->setObjectName(QString::fromUtf8("ShellConn"));
+        ShellConn->setScaledContents(true);
+        ShellConn->setWordWrap(false);
 
-        gridLayout_2->addWidget(label_6, 6, 0, 1, 1);
+        gridLayout_2->addWidget(ShellConn, 6, 0, 1, 1);
 
         FullNameEdit = new QLineEdit(tab_2);
         FullNameEdit->setObjectName(QString::fromUtf8("FullNameEdit"));
@@ -231,12 +231,12 @@ public:
 
         gridLayout_2->addWidget(passBtn, 0, 4, 1, 1);
 
-        label_12 = new QLabel(tab_2);
-        label_12->setObjectName(QString::fromUtf8("label_12"));
-        label_12->setScaledContents(true);
-        label_12->setWordWrap(false);
+        AccountDisabled = new QLabel(tab_2);
+        AccountDisabled->setObjectName(QString::fromUtf8("AccountDisabled"));
+        AccountDisabled->setScaledContents(true);
+        AccountDisabled->setWordWrap(false);
 
-        gridLayout_2->addWidget(label_12, 16, 0, 1, 1);
+        gridLayout_2->addWidget(AccountDisabled, 16, 0, 1, 1);
 
         verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
 
@@ -260,12 +260,12 @@ public:
 
         gridLayout_2->addWidget(label_17, 0, 3, 1, 1);
 
-        label_11 = new QLabel(tab_2);
-        label_11->setObjectName(QString::fromUtf8("label_11"));
-        label_11->setScaledContents(true);
-        label_11->setWordWrap(false);
+        Address = new QLabel(tab_2);
+        Address->setObjectName(QString::fromUtf8("Address"));
+        Address->setScaledContents(true);
+        Address->setWordWrap(false);
 
-        gridLayout_2->addWidget(label_11, 14, 0, 1, 1);
+        gridLayout_2->addWidget(Address, 14, 0, 1, 1);
 
         addressEdit = new QLineEdit(tab_2);
         addressEdit->setObjectName(QString::fromUtf8("addressEdit"));
@@ -574,18 +574,18 @@ public:
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>", nullptr));
 #endif // QT_NO_WHATSTHIS
-        label_5->setText(QApplication::translate("UserProperties", "Full Name :", nullptr));
-        label_10->setText(QApplication::translate("UserProperties", "Office  1# :", nullptr));
-        label_3->setText(QApplication::translate("UserProperties", "User ID :", nullptr));
-        label_7->setText(QApplication::translate("UserProperties", "Home Directory :", nullptr));
+        FullName->setText(QApplication::translate("UserProperties", "Full Name :", nullptr));
+        Office1->setText(QApplication::translate("UserProperties", "Office  1# :", nullptr));
+        UserID->setText(QApplication::translate("UserProperties", "User ID :", nullptr));
+        Home->setText(QApplication::translate("UserProperties", "Home Directory :", nullptr));
         checkBox->setText(QString());
-        label_4->setText(QApplication::translate("UserProperties", "User Login :", nullptr));
-        label_8->setText(QApplication::translate("UserProperties", "Office  2# :", nullptr));
-        label_6->setText(QApplication::translate("UserProperties", "Shell Connection :", nullptr));
+        UserLogin->setText(QApplication::translate("UserProperties", "User Login :", nullptr));
+        Office2->setText(QApplication::translate("UserProperties", "Office  2# :", nullptr));
+        ShellConn->setText(QApplication::translate("UserProperties", "Shell Connection :", nullptr));
         passBtn->setText(QApplication::translate("UserProperties", "&Set Password ....", nullptr));
-        label_12->setText(QApplication::translate("UserProperties", "Account Disabled  :", nullptr));
+        AccountDisabled->setText(QApplication::translate("UserProperties", "Account Disabled  :", nullptr));
         label_17->setText(QString());
-        label_11->setText(QApplication::translate("UserProperties", "Address :", nullptr));
+        Address->setText(QApplication::translate("UserProperties", "Address :", nullptr));
         NameLabel->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("UserProperties", "User &Info", nullptr));
         label->setText(QApplication::translate("UserProperties", "Last Password Change :", nullptr));

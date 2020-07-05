@@ -108,7 +108,7 @@ void EditProperties::comboShell()
 }
 
 /**
- *Εκτελεί την αλλαγή των πληροφοριών του χρήστη,
+ * This function changes the gecos information of the selected user in /etc/passwd file ,
  */
 
 void EditProperties::ok_to_edit_Button()
@@ -208,6 +208,18 @@ if(checkBoxEdit->isChecked())
 	QByteArray off1( office1.toLatin1().data() );
 	QByteArray off2( office2.toLatin1().data() );
 	QByteArray addr( address.toLatin1().data() );
+
+    struct passwd pwd ;
+    struct passwd *result ;
+
+    size_t pwdlen;
+
+    pwdlen = sysconf(_SC_GETPW_R_SIZE_MAX);
+        if (pwdlen == (size_t)-1)
+            pwdlen = 16384;
+
+    char *pwdBuffer = (char*)malloc(pwdlen);
+    memset( pwdBuffer, 0, sizeof(char) );
 	
 	newf.username    =  na.data();
 	QString emptystr = "";
@@ -235,7 +247,13 @@ if(checkBoxEdit->isChecked())
 	if ( res < 0 )
 		newf.home_phone = emptystr.toLatin1().data();
 
-	user.passwd_parse(getpwuid(userID), &oldf);
+    if(getpwuid_r ( (uid_t)userID, &pwd, pwdBuffer, pwdlen, &result ) == 0)
+    {
+        if (result == NULL)
+        {
+            user.passwd_parse(result, &oldf);
+        }
+    }
 
 	if ( !oldf.username ) {
 		QMessageBox::information( 0, tr( "User Manager" ), tr( "User does not exist." ) );
@@ -258,10 +276,11 @@ if(checkBoxEdit->isChecked())
 		QMessageBox::information( 0, tr( "User Manager" ), tr( "Finger information *NOT* changed." ) );
 		
 	}
-	struct passwd *p;
-	p = getpwuid(pw.pw_uid);
 
-	if ( p != NULL ) 
+    if(getpwuid_r ( (uid_t)pw.pw_uid, &pwd, pwdBuffer, pwdlen, &result ) == 0)
+    {
+
+    if ( result != NULL )
 		{
 		status = user.save_new_info( &oldf,pw.pw_uid,pw.pw_shell );
 	
@@ -269,7 +288,9 @@ if(checkBoxEdit->isChecked())
 			 QMessageBox::information( 0, tr( "User Manager" ), tr( "Finger information *NOT* changed. " ) );
 
 		}
-	if(status != 1)
+    }
+
+    if(status != 1)
 	this->deleteLater();
 	if ( cp != nullptr) { delete cp; cp = nullptr;}
 }
