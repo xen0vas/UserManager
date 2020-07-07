@@ -155,3 +155,69 @@ stringValue.erase(
     );
 }
 
+void Spc::spc_drop_privilleges(int permanent)
+{
+  gid_t newgid = getgid(  ), oldgid = getegid(  );
+  uid_t newuid = getuid(  ), olduid = geteuid(  );
+
+  if (!permanent) {
+    /* Save information about the privileges that are being dropped so that they
+     * can be restored later.
+     */
+    orig_gid = oldgid;
+    orig_uid = olduid;
+    orig_ngroups = getgroups(NGROUPS_MAX, orig_groups);
+  }
+
+  if (!olduid)
+      setgroups(1, &newgid);
+
+
+   if (newgid != oldgid) {
+ #if !defined(linux)
+     setegid(newgid);
+     if (permanent && setgid(newgid) == -1) abort(  );
+ #else
+     if (setregid((permanent ? newgid : -1), newgid) =  = -1) abort(  );
+ #endif
+   }
+
+   if (newuid != olduid) {
+ #if !defined(linux)
+     seteuid(newuid);
+     if (permanent && setuid(newuid) == -1) abort(  );
+ #else
+     if (setreuid((permanent ? newuid : -1), newuid) =  = -1) abort(  );
+ #endif
+   }
+
+   if (newuid != olduid) {
+   #if !defined(linux)
+       seteuid(newuid);
+       if (permanent && setuid(newuid) == -1) abort(  );
+   #else
+       if (setreuid((permanent ? newuid : -1), newuid) =  = -1) abort(  );
+   #endif
+     }
+
+     /* verify that the changes were successful */
+     if (permanent) {
+       if (newgid != oldgid && (setegid(oldgid) != -1 || getegid(  ) != newgid))
+         abort(  );
+       if (newuid != olduid && (seteuid(olduid) != -1 || geteuid(  ) != newuid))
+         abort(  );
+     } else {
+       if (newgid != oldgid && getegid(  ) != newgid) abort(  );
+       if (newuid != olduid && geteuid(  ) != newuid) abort(  );
+     }
+}
+
+void Spc::spc_restore_privileges()
+{
+    if (geteuid(  ) != orig_uid)
+        if (seteuid(orig_uid) == -1 || geteuid(  ) != orig_uid) abort(  );
+      if (getegid(  ) != orig_gid)
+        if (setegid(orig_gid) == -1 || getegid(  ) != orig_gid) abort(  );
+      if (!orig_uid)
+        setgroups(orig_ngroups, orig_groups);
+}

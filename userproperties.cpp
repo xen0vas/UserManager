@@ -21,9 +21,6 @@ UserProperties::UserProperties ( QWidget * parent ) : QDialog ( parent )
 	QValidator *validator = new QIntValidator(1, 65535, this);
 	uidEdit->setValidator(validator);
 
-
-
-
 	easyList->setVisible(false);
 
 	min->setMaximum(99999);// long int sp_min;  /* Μικρότερος αριθμός ημερών στον οποίο γίνεται αλλαγή κωδικού */  
@@ -429,7 +426,6 @@ void UserProperties::addUserBase()
 	QString nam = NameLabel->text();
 	QString uid = uidEdit->text();
 
-
     struct passwd pwd ;
     struct passwd *result ;
 
@@ -441,7 +437,6 @@ void UserProperties::addUserBase()
 
     char *pwdBuffer = (char*)malloc(pwdlen);
     memset( pwdBuffer, 0, sizeof(char) );
-
 
 	gid_t ui = uid.toInt();
     int free_gid  = grp.groupSearch(ui);
@@ -457,7 +452,6 @@ void UserProperties::addUserBase()
     if (HomeDirEdit->text().contains(rx))
         QMessageBox::information ( 0,tr ( "User Manager" ),tr ( " Home Directory contains invalid characters " ));
     else{
-    //delete v ;
 
 	if (FullNameEdit->text() == "" && office1Edit->text() == "" && office2Edit->text() == "" && addressEdit->text() == "")
 	gec = "";
@@ -605,9 +599,6 @@ void UserProperties::addUserBase()
 			QMessageBox::information ( this,tr ( "User Manager" ),tr ( " User %1 Inserted succesfully!!" ).arg ( nam ) );
 			passBtn->setEnabled(true);
 
-            //}
-           // else
-           // QMessageBox::information ( 0,tr ( "User Manager" ),tr ( " User %1 Not Inserted" ).arg ( nam ) );
 
             delete spc;
         }

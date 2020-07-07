@@ -2,6 +2,7 @@
 #define GROUPS_H
 #include "pathfile.h"
 #include <QtGui/QtGui>
+#include <spc.h>
 
 /**
 Η Κλάση αυτή περιέχει συναρτήσεις οι οποίες ενεργούν πάνω στις ομάδες ενός συστήματος.
@@ -13,6 +14,7 @@ class Groups: public QObject
 public:
 	Groups();
 	~Groups();
+
 	static struct group *remove_member(struct group *in,char *uname);
 	QString getPrimaryUsers(int gid);
 	int deleteGroup(QString gname);
@@ -23,6 +25,7 @@ public:
 
 private:
 	int setgrnam(struct group *gr);
+    Spc *spc;
 
 	
 };

@@ -520,6 +520,7 @@ moc_editProperties.cpp: editProperties.h \
 		About.h \
 		groups.h \
 		pathfile.h \
+		spc.h \
 		models.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -533,6 +534,7 @@ moc_groupProperties.cpp: groupProperties.h \
 
 moc_groups.cpp: groups.h \
 		pathfile.h \
+		spc.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /opt/UserManager/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/9/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include groups.h -o moc_groups.cpp
@@ -562,6 +564,7 @@ moc_MainWindow.cpp: MainWindow.h \
 		About.h \
 		groups.h \
 		pathfile.h \
+		spc.h \
 		models.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -601,6 +604,7 @@ moc_userproperties.cpp: userproperties.h \
 		About.h \
 		groups.h \
 		pathfile.h \
+		spc.h \
 		models.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -624,6 +628,7 @@ moc_users.cpp: users.h \
 		About.h \
 		groups.h \
 		pathfile.h \
+		spc.h \
 		models.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -700,11 +705,11 @@ editProperties.o: editProperties.cpp editProperties.h \
 		myLibb.h \
 		groups.h \
 		pathfile.h \
+		spc.h \
 		models.h \
 		HashingAlgorithm.h \
 		HashingFactory.h \
-		IHashing.h \
-		spc.h
+		IHashing.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o editProperties.o editProperties.cpp
 
 groupProperties.o: groupProperties.cpp MainWindow.h \
@@ -724,14 +729,14 @@ groupProperties.o: groupProperties.cpp MainWindow.h \
 		About.h \
 		groups.h \
 		pathfile.h \
-		models.h \
-		spc.h
+		spc.h \
+		models.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o groupProperties.o groupProperties.cpp
 
 groups.o: groups.cpp groups.h \
 		pathfile.h \
-		myLibb.h \
-		spc.h
+		spc.h \
+		myLibb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o groups.o groups.cpp
 
 HashEncode.o: HashEncode.cpp HashEncode.h
@@ -755,6 +760,7 @@ HashingAlgorithm.o: HashingAlgorithm.cpp HashingAlgorithm.h \
 		About.h \
 		groups.h \
 		pathfile.h \
+		spc.h \
 		models.h \
 		HashingFactory.h \
 		IHashing.h
@@ -786,6 +792,7 @@ main.o: main.cpp MainWindow.h \
 		About.h \
 		groups.h \
 		pathfile.h \
+		spc.h \
 		models.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
@@ -806,6 +813,7 @@ MainWindow.o: MainWindow.cpp MainWindow.h \
 		About.h \
 		groups.h \
 		pathfile.h \
+		spc.h \
 		models.h \
 		HashingAlgorithm.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
@@ -832,7 +840,8 @@ models.o: models.cpp models.h \
 		About.h \
 		myLibb.h \
 		groups.h \
-		pathfile.h
+		pathfile.h \
+		spc.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o models.o models.cpp
 
 myLibb.o: myLibb.cpp myLibb.h \
@@ -852,6 +861,7 @@ myLibb.o: myLibb.cpp myLibb.h \
 		Settings.h \
 		About.h \
 		groups.h \
+		spc.h \
 		models.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o myLibb.o myLibb.cpp
 
@@ -872,6 +882,7 @@ Settings.o: Settings.cpp MainWindow.h \
 		About.h \
 		groups.h \
 		pathfile.h \
+		spc.h \
 		models.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Settings.o Settings.cpp
 
@@ -905,11 +916,11 @@ userproperties.o: userproperties.cpp userproperties.h \
 		About.h \
 		groups.h \
 		pathfile.h \
+		spc.h \
 		models.h \
 		HashingFactory.h \
 		IHashing.h \
-		HashingAlgorithm.h \
-		spc.h
+		HashingAlgorithm.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o userproperties.o userproperties.cpp
 
 users.o: users.cpp users.h \
@@ -929,6 +940,7 @@ users.o: users.cpp users.h \
 		About.h \
 		groups.h \
 		pathfile.h \
+		spc.h \
 		models.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o users.o users.cpp
 

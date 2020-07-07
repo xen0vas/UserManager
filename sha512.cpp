@@ -37,7 +37,7 @@ char *sha512::encryptpass( QString passwd) const
 
 	char *buf = ( char * )calloc ( 512, sizeof(*buf) );
 	char *password = passwd.toLatin1().data();
-    memcpy( buf,password,strlen(password));
+    strncpy( buf,password,strlen(password));
 
 	/*
     * The crypt_r function does the same thing as crypt, but takes an extra parameter which includes space

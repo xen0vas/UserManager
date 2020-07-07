@@ -58,6 +58,7 @@ private:
 	struct group *groups_info;
 	void  loadUsersAndGroups( );
 	void initialize();
+    Spc *spc;
 
 private slots:
 	void tabChanged( int tab );

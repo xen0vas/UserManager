@@ -63,7 +63,7 @@ int GroupProperties::groupSearch(gid_t uid_n)
 		if ( grp->gr_gid==tmp_gid )
 		{
 			if(tmp_gid != uid_n && uid_n != 0)
-			i++;	
+                i++;
 
 			tmp_gid++;
 			endgrent();
@@ -71,10 +71,10 @@ int GroupProperties::groupSearch(gid_t uid_n)
 	}
 	fclose ( fp );
 	if(tmp_gid>max)
-	QMessageBox::information( 0,tr("User Manager " ), tr ("Reached maximum number of groups"));
-	else
-	if(i == 1)
-        return uid_n;
+        QMessageBox::information( 0,tr("User Manager " ), tr ("Reached maximum number of groups"));
+    //else
+   // if(i == 1)
+    //    return uid_n;
 
 	return tmp_gid;
 }

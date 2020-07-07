@@ -8,12 +8,18 @@
  Constructor κλάσης 
  */
 Groups::Groups( )
-{} 
+{
+    spc = new Spc();
+}
 /**
  *Destructor κλάσης
  */
 Groups::~Groups( )
-{}
+{
+    if (spc != NULL) { delete spc; spc = NULL; }
+}
+
+
 /**
  *Εισάγει κάθε νέο χρήστη σε σε βασικές ομάδες όπως audio (ήχο),video (χρήση βίντεο),cdrom (χρήση cdrom),floppy (χρήση δισκέτας) και plugdev (χρήση αποθηκευτικών μέσων).
  */
@@ -73,10 +79,10 @@ struct group *Groups::searchGroup()
 struct group *Groups::remove_member(struct group *in,char *uname)
 {	
 	int i;
-    Spc *spc = new Spc();
+
 	QString memo = "";
 	if (in == NULL) return NULL;
-	
+
 	for (i = 0; in->gr_mem[i]; i++)
 		{
 			if (!strncmp(in->gr_mem[i], uname, strlen(in->gr_mem[i])))
@@ -84,10 +90,17 @@ struct group *Groups::remove_member(struct group *in,char *uname)
 				in->gr_mem[i] = memo.toLatin1().data();
 			}
 		}
-    spc->clenv();
-    system("sed -i 's/,,/,/g;s/,$//g' /etc/group");
 
-    if (spc != NULL) { delete spc; spc = NULL; }
+    const QString delgroup = "sed -i 's/,,/,/g;s/,$//g' /etc/group";
+
+    QProcess *process3 = new QProcess();
+    process3->start("/bin/bash", {"-c", delgroup} );
+    if (process3->waitForStarted())
+    {
+        qDebug() << process3->arguments();
+    }
+    process3->waitForFinished();
+    usleep(1000);
 
 	return in;
 }
@@ -99,13 +112,14 @@ struct group *Groups::remove_member(struct group *in,char *uname)
 int Groups::rm_grMember(QString log)
 {
     struct group *grs = NULL;
+
 	FILE * f;
 	MyLibb *set = new MyLibb();
 	f = fopen(GR_FILE,"r");
 	char *login = log.toLatin1().data();
 	setgrent();
 	while((grs = fgetgrent(f)))
-	{		
+    {
 		remove_member(grs , login);
 		if(set->setgrnam(grs)<0)
 		{
