@@ -24,16 +24,19 @@ class Spc : public QObject
 {
 	Q_OBJECT
 
-public: 
+protected:
 	Spc();
 	~Spc();	
 	void spc_drop_privilleges(int permanent); 
+    void spc_restore_privileges(void);
 	void spc_sanitize(std::string &stringValue);
 	int clearenv(void);
     int clenv(void);
-    char * canonicalize_path(QByteArray di);
-	void spc_restore_privileges(void); 
-
+    char *canonicalize_path(QByteArray di);
+    friend class GroupProperties;
+    friend class UserProperties;
+    friend class Groups;
+    friend class MainWindow;
 };
 #endif
 

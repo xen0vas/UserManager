@@ -369,6 +369,7 @@ void MainWindow::deleteUser()
     struct group *grr = {};
     passs = getpwnam(username.toLatin1().data());
 
+    Spc *sec = new Spc();
 
     if (passBase!=NULL)
     {
@@ -396,6 +397,7 @@ void MainWindow::deleteUser()
                     const QString delshadow = "sed 's/" + username + ".*$//' /etc/shadow > /tmp/.shad";//remove to user apo to shadow file
                     const QString delemptylines = "sed '/^$/D' /tmp/.shad > /tmp/.sh ";//afairei tin keni grammi pou dimiourgeitai
 
+                    sec->clenv();
                     QProcess *process = new QProcess(this);
                     process->start("/bin/bash", {"-c", delshadow} );
                     process->waitForFinished();
@@ -472,7 +474,7 @@ void MainWindow::deleteUser()
 
                         if (okk == 0 )
                         {
-                            //groupBase  = fchk->fopen_wrapper ( GROUP_FILE,  "r+" );
+
                             result  = gr.deleteGroup ( username );
 
                             if ( result == -1 && result2 == -1 )
@@ -491,6 +493,7 @@ void MainWindow::deleteUser()
                 delete fchk;
                 fchk = nullptr;
             }
+             if (sec != NULL ) { delete sec; sec = NULL ;}
 }
 /**
  *Διαγραφή μιας ομάδας από το σύστημα όταν πατηθεί το κουμπί της διαγραφής ομάδων από την κύρια φόρμα.

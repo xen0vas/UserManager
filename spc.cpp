@@ -23,10 +23,9 @@ int Spc::clearenv(void)
   
   static char *namebuf = NULL;
   static size_t lastlen = 0;
- 
+
   while (environ != NULL && environ[0] != NULL)
   {
-
     size_t len = strcspn(environ[0], "=");
     
     if (len == 0) {
@@ -36,7 +35,7 @@ int Spc::clearenv(void)
     
     if (len > lastlen) {
       namebuf = (char*)realloc(namebuf, len+1);
-      
+
       if (namebuf == NULL) {
         QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot rellocate memory <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
       	return -1;
@@ -50,12 +49,10 @@ int Spc::clearenv(void)
     
     if (unsetenv(namebuf) == -1) {
         QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot unset the environmental variable <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-      
+        if (namebuf != NULL)
     	return -1; 
     	}
     }
-
-  if (namebuf!= NULL) { free (namebuf) ;  namebuf = NULL; }
 
 return 0;
 }
@@ -68,7 +65,7 @@ return 0;
 int Spc::clenv(void)
 {
 
-char *pathbuf;
+char *pathbuf = {} ;
 
 size_t n;
 
@@ -80,9 +77,10 @@ if (clearenv() != 0) {
 } else if (n == 0) {
   	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Could not allocate memory for path<i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 	return -1;
-} else if ((pathbuf = (char*)malloc(n)) == NULL) {
+} else if ((pathbuf = (char*)calloc(128, n)) == NULL) {
  	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Could not allocate memory for path<i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-	return -1;
+    free(pathbuf);
+    return -1;
 
     /*
     *  _CS_PATH : This parameter’s value is the recommended default path for
@@ -91,15 +89,18 @@ if (clearenv() != 0) {
 
 } else if (confstr(_CS_PATH, pathbuf, n) == 0) {
  	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Could not get configuration dependent string variables <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-	return -1;
+    free(pathbuf);
+    return -1;
 } else if (setenv("PATH", pathbuf, 1) == -1) {
 	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Setting default environment failed <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-	return -1;
+    free(pathbuf);
+    return -1;
 } else if (setenv("IFS", " \t\n", 1) == -1) {
 	QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Setting IFS failed <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+    free(pathbuf);
 	return -1; 
 }
-
+free(pathbuf);
 return 0; 
 }	
 
@@ -134,7 +135,6 @@ char *Spc::canonicalize_path(QByteArray directory)
 
     if ( canonical_path != NULL ) { free(canonical_path); canonical_path = NULL; }
 
-    // end of security fix for homedir - consider refactoring in order to centralize security
     return realpath_res;
 }
 
