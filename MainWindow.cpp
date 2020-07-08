@@ -9,7 +9,7 @@
 #include <sys/resource.h>
 #include <QDebug>
 #include <sys/time.h>
-
+#include "InputDialogValidator.h"
 
 using namespace std;
 
@@ -172,23 +172,21 @@ void MainWindow::addUserBtnClicked()
     passBase   = fchk->fopen_wrapper(PASSWD_FILE, "r+");
 
     if( passBase == NULL || groupBase == NULL || shadowBase == NULL )
-
         QMessageBox::critical(0,tr("User Manager"),tr("<qt>  <i> %1 </i>  </qt> ").arg(strerror(errno)));
-
     else
     {
     bool okBtn;
 
-    // consider to add custom QDialog in order to validate input
-
-    QString userString = QInputDialog::getText( 0, QObject::tr( "Add User" ), QObject::tr( "Please Enter User Name:" ), QLineEdit::Normal, QString( "" ), &okBtn );
-    if ( userString == "" && okBtn )
-    {
-        QMessageBox::information( 0, tr( "User Manager" ), tr( "Empty field!! " ) );
-    }
-    else
-    {
-    Users user ;
+    /*
+     * Security Fix : Perform Input validation when adding a new user
+     * @InputDialogValidator
+     */
+    QRegExp regExp("[a-zA-Z0-9]+");
+    QString userString = InputDialogValidator::getText( this, "Add New User", \
+                                                        "", \
+                                                        "", \
+                                                        regExp, &okBtn );
+        Users user ;
         if ( !user.userExists( userString ) && okBtn )
         {
             userProp->NameLabel->setText( userString );
@@ -207,18 +205,14 @@ void MainWindow::addUserBtnClicked()
             delete fchk;
             fchk = nullptr;
         }
-    }
-    if (userProp != nullptr )
-    {
-        delete userProp;
-        userProp = nullptr;
-    }
-    if (fchk != nullptr)
-        {
-        delete fchk;
-        fchk = nullptr;
-        }
 
+    fclose(passBase);
+    fclose(groupBase);
+    fclose(shadowBase);
+
+    if (userProp != nullptr ){ delete userProp; userProp = nullptr; }
+
+    if (fchk != nullptr){ delete fchk; fchk = nullptr; }
 
     }
 
