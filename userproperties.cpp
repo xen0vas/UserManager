@@ -1061,6 +1061,12 @@ void UserProperties::usermod_execve(QString index, QString label)
 }
 
 
+/**
+ * @brief UserProperties::addGroup adds a new group into /etc/group
+ * @param label
+ * @param group
+ *
+ */
 
 void UserProperties::addGroup(QString label, char* group)
 {
@@ -1072,27 +1078,17 @@ void UserProperties::addGroup(QString label, char* group)
     QString sanitized_NameLabel = QString::fromStdString(from_Label);
     char* cli_sanitized_label = sanitized_NameLabel.toLatin1().data();
 
-    pid_t pid;
-    /*
-     * Security fix : Change system with execv or execve.
-     * Also sanitize arguments and environment and drop privilege if fork will be used
-     * References  : ENV33-C. Do not call system(), STR02-C. Sanitize data passed to complex subsystems
-     */
-    pid = fork();
-    if (pid == 0)
-    {
-          spc->clenv();
-          if (execl("/usr/sbin/addgroup", "-a", "-G", cli_sanitized_label, group,  NULL) == -1) {
-                QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Problem adding group  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-      }
-          // drop privileges here
-          int status;
-          waitpid(pid,&status,0);
-    }
-    else if (pid < 0)
-    {
-      QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Fork failed  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-    }
+    QProcess process;
+    QString program = "/usr/sbin/addgroup";
+    QStringList arguments;
+
+    arguments << "-a" <<  "-G" << cli_sanitized_label << group ;
+
+    process.start(program, arguments);
+    process.waitForStarted();
+    process.waitForFinished();
+
+    arguments.clear();
 
     delete spc;
 
@@ -1189,8 +1185,10 @@ if (done==0)
 	 * Reference : ENV03-C. Sanitize the environment when invoking external programs
 	 */
     Spc *spc = new Spc();
-    spc->clenv();
+
+    spc->clenv(); // clear the environment
 	system("sed -i 's/,,/,/g;s/,$//g' /etc/group");
+
 	easyList->clear();
 	fillEasyList();
 	userGroups->setModel ( model.createUserInGroupsModel ( NameLabel->text() ) );
@@ -1205,26 +1203,31 @@ if (done==0)
 void UserProperties::setPrimaryGroup()
 {
 	struct group *grp;
-	//struct passwd *user;
+
 	Users *usr { new Users };
 	Models model;
 	QString gname="";
 	const char *groupname="";
-	char *cmd;
+
 	QModelIndex index=userGroups->selectionModel()->currentIndex();
 	if ( index.data().toString() !="" )
 	{
 		groupname=index.data().toString().toLatin1().data();
 		grp=getgrnam ( groupname );
 		gname.append ( grp->gr_name );
-		//user=getpwnam ( NameLabel->text().toLatin1().data() );
-		QString command="usermod -g " + gname  + " " + NameLabel->text() ;
-		cmd=command.toLatin1().data();
-        /*
-         * Security Fix : change system with execve or execv and sanitize the input - TODO -
-         *
-         */
-		system ( cmd );
+
+        QProcess process;
+        QString program = "/usr/sbin/usermod";
+        QStringList arguments;
+
+        arguments << "-g" << gname << NameLabel->text() ;
+
+        process.start(program, arguments);
+        process.waitForStarted();
+        process.waitForFinished();
+
+        arguments.clear();
+
 		userGroups->setModel ( model.createUserInGroupsModel ( NameLabel->text() ) );
 		userGroups->setColumnWidth ( 0, 30 );
 		primGroupLabel->setText ( usr->getPrimaryGroup ( NameLabel->text() ) );

@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include <iostream>
 #include "myLibb.h"
 #include "spc.h"
 
@@ -72,9 +73,6 @@ int GroupProperties::groupSearch(gid_t uid_n)
 	fclose ( fp );
 	if(tmp_gid>max)
         QMessageBox::information( 0,tr("User Manager " ), tr ("Reached maximum number of groups"));
-    //else
-   // if(i == 1)
-    //    return uid_n;
 
 	return tmp_gid;
 }
@@ -86,26 +84,32 @@ void GroupProperties::addMembers( )
 {
 	Models model;
 	QModelIndexList indexes = notMembersList->selectionModel()->selectedIndexes();
-	char *cmd;
-	int done=1;
+
+    Spc *spc = new Spc();
+
+    spc->clenv();
 
 	foreach ( QModelIndex index, indexes )
 	{
-        QString command="addgroup " + index.data().toString() + " " + getOldGroupName() + "";
-		cmd=command.toLatin1().data();
 
-        // Security fix : change system with execve or and sanitize input and env
-        //
-        //TODO
-		done = ( system ( cmd ) );
+        // TO-DO : find program from PATH but first use spc->clenv() to clear the environmental variables
+        QString program = "/usr/sbin/addgroup";
+        QStringList arguments;
+
+        arguments << index.data().toString() << getOldGroupName() ;
+
+        QProcess *process = new QProcess();
+        process->start(program, arguments);
+
+        process->waitForFinished();
+        arguments.clear();
+
 	}
 
-	if ( done==0 )
-	{
 		notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toLatin1().data() ) );
 		membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toLatin1().data() ) );
 
-	}
+    delete spc;
 
 }
 
@@ -123,10 +127,15 @@ void GroupProperties::removeMembers( )
 	Models model;
 	struct group *grs = NULL;
 	MyLibb set;
-	char *gname=getOldGroupName().toLatin1().data();
+
+    char *gname = (char*)calloc(1, sizeof(getOldGroupName().toLatin1().data()));
+
+    memcpy(gname, getOldGroupName().toLatin1().data(), strlen(getOldGroupName().toLatin1().data()));
+
 	char *username;
 	grs=getgrnam(gname);
-	QModelIndexList indexes = membersList->selectionModel()->selectedIndexes();
+
+    QModelIndexList indexes = membersList->selectionModel()->selectedIndexes();
 	foreach ( QModelIndex index, indexes )
 	{
 	username=index.data().toByteArray().data();
@@ -134,11 +143,34 @@ void GroupProperties::removeMembers( )
 	set.setgrnam(grs);
 	}
 
-    Spc *spc = new Spc();
-    spc->clenv();
-	system("sed -i 's/,,/,/g;s/,$//g' /etc/group");//['s/,,/,/g]->antika8ista ta dyo kommata me ena. [s/,$//g']->antika8ista to koma sto telos ths ka8e grammhs me keno
+    //Spc *spc = new Spc();
+    //spc->clenv();
+
+    QString program = "/usr/bin/sed ";
+    QString ed = "s/,,/,/g;s/,$//g"; //replaces two commas with one
+    QString groupfile = "/etc/group";
+
+    QStringList arguments;
+
+    arguments << "-i" << ed << groupfile  ;
+
+    QProcess process;
+    process.start(program, arguments);
+    if ( process.waitForStarted() )
+    {
+        qDebug () << arguments ;
+    }
+    if ( process.waitForFinished() )
+    {
+        qDebug () << arguments ;
+    }
+    arguments.clear();
+
 	notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toLatin1().data() ) );
 	membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toLatin1().data() ) );
+
+    if (gname != NULL) { free (gname); gname = NULL;}
+    //if ( spc != NULL ) delete spc;
 
 }
 /**
@@ -148,28 +180,60 @@ void GroupProperties::removeMembers( )
 
 bool GroupProperties::renameGroup()
 {
-	char *cmd;
-	if ( oldGroupName_==groupNameEdit->text() )
-	{
-		return 0;
-	}
-	else
-	{
-		Models model;
-		QString command="groupmod -n " + groupNameEdit->text() + " " + getOldGroupName()  + "";
-		cmd=command.toLatin1().data();
+Spc * sec = new Spc();
+QRegExp rx ( "[:.'|<>?/*\\+=&*%]" );
+int res = 0 ;
+int pos = 0;
+int count = 0;
 
-        // Security fix : change system with execve  and sanitize input ane env
-        //
-        //TODO
-		( system ( cmd ) );
-	}
+char *groupname = (char*)calloc( 1, sizeof(groupNameEdit->text().toLatin1().data()) );
+
+    // check if memory allocated succesully to avoid undefined behaviours and potential security issues
+    if ( groupname == NULL )
+    {
+            QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory - %1" ).arg(errno));
+            return -1;
+    }
+    else
+    {
+            memcpy(groupname, groupNameEdit->text().toLatin1().data(), strlen(groupNameEdit->text().toLatin1().data()));
+
+            QString gname = QString::fromUtf8(groupname);
+
+            res = rx.indexIn(gname, pos);
+
+            while ( (res != -1))
+            {
+                count++;
+                pos+= rx.matchedLength();
+            }
+
+            if ( pos == -1)
+            {
+                sec->clenv();
+
+                QString program = "/usr/sbin/groupmod";
+                QStringList arguments;
+
+                arguments << "-n" << gname << getOldGroupName() ;
+
+                QProcess *process = new QProcess();
+                process->start(program, arguments);
+                process->waitForFinished();
+                arguments.clear();
+            }
+    }
+delete sec;
+
+if (groupname != NULL) { free(groupname); groupname = NULL ; }
+
 return true;
 this->~GroupProperties();
 }
 
 /**
- * Συνάρτηση η οποία σαρώνει το αρχείο των ομάδων και ενημερώνει τον διαχειριστή για πιθανή απόπειρα προσθήκης/μετονομασίας μιας ομάδας,με όνομα όμως το οποίο υπάρχει ήδη  στο σύστημα.
+ * Συνάρτηση η οποία σαρώνει το αρχείο των ομάδων και ενημερώνει τον διαχειριστή για πιθανή απόπειρα προσθήκης/μετονομασίας μιας ομάδας,
+ * με όνομα όμως το οποίο υπάρχει ήδη  στο σύστημα.
  */
 
 void GroupProperties::checkGroupname ( const QString &text )
@@ -177,7 +241,8 @@ void GroupProperties::checkGroupname ( const QString &text )
 	okBtn->setEnabled ( true );
 	existsLabel->clear();
 	struct group *grp;
-	QRegExp rx ( "[:.'|<>?/*]" );//ayta den ta 8eloume sto editbox
+    QRegExp rx ( "[:.'|<>?/*\\&;%*]" );//ayta den ta 8eloume sto editbox
+
 	setgrent();
 
 	while ( ( grp = getgrent() ) )
@@ -306,7 +371,7 @@ else
 	if ( groupbase!=NULL )
 	{
 		result = putgrent ( &grp, groupbase );
-		fclose ( groupbase );
+        fclose ( groupbase );
 	}
 
 	if ( result==0 )

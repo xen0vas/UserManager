@@ -91,15 +91,22 @@ struct group *Groups::remove_member(struct group *in,char *uname)
 			}
 		}
 
-    const QString delgroup = "sed -i 's/,,/,/g;s/,$//g' /etc/group";
+        QString program = "/usr/bin/sed";
+        QString ed = "s/,,/,/g;s/,$//g"; //replaces two commas with one
+        QString groupfile = "/etc/group";
 
-    QProcess *process3 = new QProcess();
-    process3->start("/bin/bash", {"-c", delgroup} );
-    if (process3->waitForStarted())
-    {
-        qDebug() << process3->arguments();
-    }
-    process3->waitForFinished();
+        QStringList arguments;
+
+        arguments << "-i" << ed << groupfile  ;
+
+        QProcess process;
+        process.start(program, arguments);
+        process.waitForStarted();
+
+        process.waitForFinished();
+
+        arguments.clear();
+
     usleep(1000);
 
 	return in;

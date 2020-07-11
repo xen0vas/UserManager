@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <sys/time.h>
 #include "InputDialogValidator.h"
+#include <qwt/qwt_text.h>
 
 using namespace std;
 
@@ -33,8 +34,6 @@ MainWindow::MainWindow( QWidget * parent, Qt::WindowFlags f ): QMainWindow( pare
     }
     setupUi( this );
     initialize();
-   // spc = new Spc();
-  //  spc->clenv();
 
 }
 
@@ -44,7 +43,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WindowFlags f ): QMainWindow( pare
 
 MainWindow::~MainWindow()
 {
-   // if (spc != NULL ) { delete spc; spc = NULL ;}
+
 }
 /**
  *Περιορισμός μεγέθους στηλών στα περιεχόμενά τους
@@ -181,10 +180,12 @@ void MainWindow::addUserBtnClicked()
      * Security Fix : Perform Input validation when adding a new user
      * @InputDialogValidator
      */
+
+
     QRegExp regExp("[a-zA-Z0-9]+");
     QString userString = InputDialogValidator::getText( this, "Add New User", \
                                                         "", \
-                                                        "", \
+                                                        "placeholder", \
                                                         regExp, &okBtn );
         Users user ;
         if ( !user.userExists( userString ) && okBtn )
@@ -388,27 +389,42 @@ void MainWindow::deleteUser()
         spp = getspnam(username.toLatin1().data());
                 if (spp != NULL)
                 {
-                    const QString delshadow = "sed 's/" + username + ".*$//' /etc/shadow > /tmp/.shad";//remove to user apo to shadow file
-                    const QString delemptylines = "sed '/^$/D' /tmp/.shad > /tmp/.sh ";//afairei tin keni grammi pou dimiourgeitai
-
                     sec->clenv();
-                    QProcess *process = new QProcess(this);
-                    process->start("/bin/bash", {"-c", delshadow} );
-                    process->waitForFinished();
-                    usleep(1000);
-
-                    QProcess *process2 = new QProcess(this);
-                    process2->start("/bin/bash", {"-c", delemptylines} );
-                    process2->waitForFinished();
-                    usleep(1000);
 
                     unlink(SH_FILE".bak");
                     link(SH_FILE, SH_FILE".bak");
-                    unlink(SH_FILE);
-                    unlink("/tmp/.shad");
-                    link("/tmp/.sh",SH_FILE);
-                    unlink("/tmp/.sh");
 
+                    const QString sed = "/usr/bin/sed";
+                    QProcess process1;
+
+                    QString ed1 = "s/^"+username+":.*$//";
+                    const QString options = "-i";
+                    const QString shadowpath = "/etc/shadow";
+                    QStringList arguments1;
+
+                    arguments1 << options << ed1 << shadowpath;
+
+                    process1.start(sed, arguments1);
+
+                    process1.waitForFinished();
+
+                    arguments1.clear();
+
+                    usleep(2000);
+
+                    QProcess process2;
+                    QString ed2 = "/^$/D";
+                    QStringList arguments2;
+
+                    arguments2 << options << ed2 << "/etc/shadow";
+
+                    process2.start(sed, arguments2);
+                    process2.waitForStarted();
+                    process2.waitForFinished();
+
+                    arguments2.clear();
+
+                    usleep(1000);
 
                     //meta ti diagrafi to arxeio paramenei me dikaiomata root yia user kai root yia group.
                     //kanonika tha prepei na einai group shadow.kai permissions forbitten yia allous, read kai write yia ton owner, kai read yia
@@ -417,7 +433,7 @@ void MainWindow::deleteUser()
                     struct group *grp;
                     grp = getgrnam("shadow");
                     chown ( SH_FILE, (uid_t)0 ,(gid_t)grp->gr_gid);
-                    }
+                 }
                     char * logg  = username.toLatin1().data();
                     string  logdata(logg);
                     string  path = "/home/" + logdata + "/.profile";
@@ -442,15 +458,19 @@ void MainWindow::deleteUser()
                     else
                     {
                     //diagrafi tou home directory tou xristi pou epilegetai.
-                    const QString deldir = "rm -rf " + pathdir;
+                    const QString rm = "/usr/bin/rm";
 
-                    QProcess *process3 = new QProcess(this);
-                    process3->start("/bin/bash", {"-c", deldir} );
-                    if (process3->waitForStarted())
-                    {
-                        qDebug() << process3->arguments();
-                    }
-                    process3->waitForFinished();
+                    QProcess process3;
+                    QString args = "-rf";
+                    QStringList arguments3;
+
+                    arguments3 << args << pathdir  ;
+
+                    process3.start(rm, arguments3);
+                    process3.waitForStarted();
+                    process3.waitForFinished();
+                    arguments3.clear();
+
                     usleep(1000);
 
                     }
@@ -479,9 +499,13 @@ void MainWindow::deleteUser()
                         }
 
                     }
+                     fclose(pFile);
             }
+
         }
     }
+            fclose(passBase);
+
             if (fchk != nullptr)
             {
                 delete fchk;

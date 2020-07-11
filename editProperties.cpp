@@ -531,25 +531,33 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 {
 	int col=index.column();
 	int row=index.row();
-	QString test = index.sibling(row,1).data().toString();
-	if(col==0 && test!="")
+    QString empty = index.sibling(row,1).data().toString();
+    QProcess process ; //= new QProcess();
+
+    if(col==0 && empty!="")
 	{
 	Models model;
-	char *cmd;
-	int done=1;
+
+    int done=-1;
 	int row=index.row();
-	//InputValidation input = new InputValidation();
+
 	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole );//state=2 an eiani checked,0 an einai unchecked to checkbox tou xrhsth pou path8hke
-	if ( state == 0 )
+
+    if ( state == 0 )
 	{
-		QString command ="usermod -a -G "  +  index.sibling(row,1).data().toString() + " " + getOldUsername() + "";//index.data().toString() periexei ton neo member kai groupNameEdit->text() to group pou 8a mpei
-		cmd=command.toLatin1().data();
 
+        QString program = "/usr/sbin/usermod";
+        QStringList arguments;
 
-        // Security fix : change system with execve or execl and sanitize input ane env
-        //
-        //TODO
-		done = ( system ( cmd ) );
+        arguments << "-a" << "-G" << index.sibling(row,1).data().toString() << getOldUsername() ;
+
+        process.start(program, arguments);
+        process.waitForStarted();
+        if (process.waitForFinished() == 0)
+        {
+            done = 0;
+        }
+            arguments.clear();
 	}
 	else
 	{
@@ -563,10 +571,19 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 	}
 	if ( done==0 )
 	{
-        // Security fix : sanitize env
-        //
-        //TODO
-		system ( "sed -i 's/,,/,/g;s/,$//g' /etc/group" );
+
+        QString program = "/usr/bin/sed";
+        QString ed ="'s/,,/,/g;s/,$//g'";
+        QString groupfile = "/etc/group";
+        QStringList arguments;
+
+        arguments << "-i" << ed << groupfile ;
+
+        //QProcess *process = new QProcess();
+        process.start(program, arguments);
+        process.waitForFinished();
+        arguments.clear();
+
 		userGroups->setModel ( model.createUserInGroupsModel ( getOldUsername() ) );
 		userGroups->setColumnWidth ( 0, 30);
 	}
@@ -859,7 +876,8 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	Models model;
 	Groups group;
 	MyLibb set;
-	char *cmd;
+
+   // QProcess *process = new QProcess();
 
 	struct group *grs=NULL;
 	int done=-1;
@@ -870,79 +888,126 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	
 	if ( index.data().toString() =="Access external storage devices automatically" )
 	{
-		QString command="addgroup " + getOldUsername() + " plugdev";
-		cmd=command.toLatin1().data();
-        // Security fix : change system with execve or execl and sanitize input and env
-        //
-        //TODO
-		system ( cmd );
+
+
+        QString program = "/usr/sbin/addgroup";
+        QStringList arguments;
+
+        arguments << "-a" << "-G" << getOldUsername() << "plugdev" ;
+
+        QProcess *process = new QProcess();
+        process->start(program, arguments);
+        process->waitForFinished();
+        arguments.clear();
+
+
 	}
 	else if ( index.data().toString() =="Administer the system" )
 	{
-		QString command="addgroup " + getOldUsername() + " adm" + " > /dev/null 2>&1";
-		cmd=command.toLatin1().data();
-        // Security fix : change system with execve or execl and sanitize input and env
-        //
-        //TODO
-		system ( cmd );
+
+        QString program = "/usr/sbin/addgroup";
+        QStringList arguments;
+
+        arguments << "-a" << "-G" << getOldUsername() << "adm"  ;
+        QProcess *process = new QProcess();
+        process->start(program, arguments);
+
+        if ( process->waitForFinished() )
+        {
+            done = 0 ;
+        }
+
+        arguments.clear();
+
 	}
 	else if ( index.data().toString() =="Connect to the internet using a modem" )
 	{
-		QString command="addgroup " + getOldUsername() + " dialout" + " > /dev/null 2>&1";
-		cmd=command.toLatin1().data();
-        // Security fix : change system with execve or execl and sanitize input ane env
-        //
-        //TODO
-		system ( cmd );
+
+
+        QString program = "/usr/sbin/addgroup";
+        QStringList arguments;
+         QProcess *process = new QProcess();
+        arguments << "-a" << "-G" << getOldUsername() << "dialout" << ">" << "/dev/null" << "2>&1" ;
+
+        process->start(program, arguments);
+        process->waitForFinished();
+        arguments.clear();
+
 	}
 
 	else if ( index.data().toString() =="Monitor system logs" )
 	{
-		QString command="addgroup " + getOldUsername() + " syslog";
-		cmd=command.toLatin1().data();
-        // Security fix : change system with execve or execl and sanitize input ane env
-        //
-        //TODO
-		system ( cmd );
+
+        QString program = "/usr/sbin/addgroup";
+        QStringList arguments;
+
+        arguments << "-a" << "-G" << getOldUsername() << "syslog" << ">" << "/dev/null" << "2>&1" ;
+
+        QProcess *process = new QProcess();
+        process->start(program, arguments);
+        process->waitForFinished();
+        arguments.clear();
+
 	}
 
 	else if ( index.data().toString() =="Send/Receive faxes" )
 	{
-		QString command="addgroup " + getOldUsername() + " fax" + " > /dev/null 2>&1";
-		cmd=command.toLatin1().data();
-        // Security fix : change system with execve or execl and sanitize input ane env
-        //
-        //TODO
-		system ( cmd );
+
+        QString program = "/usr/sbin/addgroup";
+        QStringList arguments;
+
+        arguments << "-a" << "-G" << getOldUsername() << "fax" << ">" << "/dev/null" << "2>&1" ;
+
+        QProcess *process = new QProcess();
+        process->start(program, arguments);
+        process->waitForFinished();
+        arguments.clear();
+
+
 	}
 
 	else if ( index.data().toString() =="Use CD-ROM/DVD drives" )
 	{
-		QString command="addgroup " + getOldUsername() + " cdrom";
-		cmd=command.toLatin1().data();
-        // Security fix : change system with execve or execl and sanitize input ane env
-        //
-        //TODO
-		system ( cmd );
+
+        QString program = "/usr/sbin/addgroup";
+        QStringList arguments;
+
+        arguments << "-a" << "-G" << getOldUsername() << "cdrom" << ">" << "/dev/null" << "2>&1" ;
+
+        QProcess *process = new QProcess();
+        process->start(program, arguments);
+        process->waitForFinished();
+
+        arguments.clear();
+
 	}
 
 	else if ( index.data().toString() =="Use floppy drives" )
 	{
-		QString command="addgroup " + getOldUsername() + " floppy";
-		cmd=command.toLatin1().data();
-        // Security fix : change system with execve or execl and sanitize input ane env
-        //
-        //TODO
-		system ( cmd );
+
+        QString program = "/usr/sbin/addgroup";
+        QStringList arguments;
+
+        arguments << "-a" << "-G" << getOldUsername() << "floppy" << ">" << "/dev/null" << "2>&1" ;
+         QProcess *process = new QProcess();
+        process->start(program, arguments);
+        process->waitForFinished();
+        arguments.clear();
+
 	}
 	else if ( index.data().toString() =="Use scanners" )
 	{
-		QString command="addgroup " + getOldUsername() + " scanner";
-		cmd=command.toLatin1().data();
-        // Security fix : change system with execve or execl and sanitize input ane env
-        //
-        //TODO
-		system ( cmd );
+
+        QString program = "/usr/sbin/addgroup";
+        QStringList arguments;
+
+        arguments << "-a" << "-G" << getOldUsername() << "scanner" << ">" << "/dev/null" << "2>&1" ;
+
+        QProcess *process = new QProcess();
+        process->start(program, arguments);
+        process->waitForFinished();
+        arguments.clear();
+
 	}
 }
 	else
@@ -969,6 +1034,8 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 }
 if (done==0)
 {	
+
+
 	system("sed -i 's/,,/,/g;s/,$//g' /etc/group");
 	easyList->clear();
 	fillEasyList();
