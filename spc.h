@@ -37,6 +37,7 @@ protected:
     friend class UserProperties;
     friend class Groups;
     friend class MainWindow;
+    friend class EditProperties;
 };
 #endif
 

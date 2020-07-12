@@ -6,6 +6,7 @@
 #include "IHashing.h"
 #include "HashingAlgorithm.h"
 #include "spc.h"
+#include <string.h>
 
 using namespace std;
 
@@ -145,7 +146,6 @@ void UserProperties::combotext()
         inShells.seekg ( 35 );
 	while ( inShells >> header )
 	{
-		//shellConnect->addItems ( QStringList ( QObject::tr ( header ) ) );
 		shellConnect->addItems ( QStringList ( QString::fromStdString( header )  ) );
         }
 	
@@ -531,20 +531,28 @@ void UserProperties::addUserBase()
             chmod ( cli_sanitized_path,0700 );
             chown ( cli_sanitized_path, ( uid_t ) userID, ( gid_t ) groupID );
 
+            spc->clenv();  // Security : clear the environment
+
+            // read the environment
+
+
+
+            char *const arr[] =  { "cp", "-l", "-p", "/etc/skel/.bash_logout", cli_sanitized_path, NULL };
+
 
 			pid  = fork();
 			if ( pid == 0 ) //parent process
 			{
-                spc->clenv(); // clear environment resotinrg the system default
+                // clear environment resotinrg the system default
 
                 // Security fix: change execl with execv or implement QProcess - Critical
-                if (execl("/bin/cp", "-i", "-p", "/etc/skel/.bash_logout",cli_sanitized_path, (char*)0) == -1)
+                if (execv("/bin/cp", arr ) == -1)
 				{
                     QMessageBox::information ( this,tr ( "User Manager" ),tr ("copy %1 failed" ).arg ( cli_sanitized_path ) );
 				}
 					
-				int status;
-				waitpid(pid,&status,0);
+                //int status;
+                //waitpid(pid,&status,0);
 			}
 
 			pid1 = fork();
@@ -668,36 +676,25 @@ void UserProperties::changeMembers ( const QModelIndex &index )
 		spc->spc_sanitize(from_Label);
 		QString sanitized_NameLabel = QString::fromStdString(from_Label);
 
-		/* 
-		 * Security fix : Change system with execv or execve 
-		 * Also sanitize arguments and environment and drop privilege if fork will be used
-		 * References  : ENV33-C. Do not call system(), STR02-C. Sanitize data passed to complex subsystems
-		 */
 
-          usermod_execve(fromindex, fromLabel);
 
-          /*
-		  pid_t pid; 
+          //usermod_execve(fromindex, fromLabel);
+
           char* cli_sanitized_index = sanitized_index.toLatin1().data();
           char* cli_sanitized_label = sanitized_NameLabel.toLatin1().data();
 
+          QProcess process;
+          QString program = "/usr/sbin/usermod";
+          QStringList arguments;
 
-		  pid = fork();
-		  if (pid == 0)
-		  {
-		    	spc->clenv();
-                if (execl("/usr/sbin/usermod", "-a", "-G", cli_sanitized_index, cli_sanitized_label, NULL) == -1) {
+          arguments << "-a" << "-G" << cli_sanitized_index << cli_sanitized_label ;
 
-                QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot run usermod  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-		   	}
-		        int status; 	
-		        waitpid(pid,&status,0);		
-		  }
-		  else if (pid < 0) 
-		  {
-			QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Fork failed  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
-          }
-*/
+          process.start(program, arguments);
+          process.waitForStarted();
+          process.waitForFinished();
+
+          arguments.clear();
+
 	}
 	else
 	{
@@ -1028,7 +1025,7 @@ void UserProperties::usermod_execve(QString index, QString label)
     if (n_index > 0)
         argv[n_index - 1] = '\0';
 
-    char *const args[3] = {(char*)"/usr/bin/usermod " ,argv ,NULL};
+    char *const args[3] = {(char*)"/usr/sbin/usermod " ,argv ,NULL};
 
     pid = fork();
 
@@ -1042,14 +1039,14 @@ void UserProperties::usermod_execve(QString index, QString label)
             QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Cannot run usermod  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
         }
     }
-    else
+   else
     {
-            if (waitpid(pid, &status, 0) > 0)
-            {
+        if (waitpid(pid, &status, 0) > 0)
+           {
                  if (WIFEXITED(status) && WEXITSTATUS(status)) {
-                    if (WEXITSTATUS(status) == 127) {
-                        // execv failed
-                        QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> execv failed  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+                   if (WEXITSTATUS(status) == 127) {
+                    //     execv failed
+                       QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> execv failed  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
                     }
                 }
             }
@@ -1057,7 +1054,7 @@ void UserProperties::usermod_execve(QString index, QString label)
                // waitpid() failed
                QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> waitpid() failed  <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
             }
-    }
+   }
 }
 
 

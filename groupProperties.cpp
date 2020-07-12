@@ -156,14 +156,9 @@ void GroupProperties::removeMembers( )
 
     QProcess process;
     process.start(program, arguments);
-    if ( process.waitForStarted() )
-    {
-        qDebug () << arguments ;
-    }
-    if ( process.waitForFinished() )
-    {
-        qDebug () << arguments ;
-    }
+    process.waitForStarted();
+    process.waitForFinished();
+
     arguments.clear();
 
 	notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toLatin1().data() ) );

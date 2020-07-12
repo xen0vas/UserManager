@@ -90,13 +90,13 @@ void Settings::setConf ( QString title, QString setting )
 {
 //allazei mia ry8mish sto conf.txt.px an 8eloume na allaxoume to MINIMUM_UID=1000 se MINIMUM_UID=2000 pername thn setconf("MINIMUM_UID","2000")
 char *cmd;
+
 // TO-DO
 //
 // Consider Security issues here ! 
  
 // Security fix : change system with execve or execl and sanitize input ane env
 //
-//TODO
 
 QString command="sed -i '/"+ title +"/s/=.*/="+setting+"/g' /usr/share/apps/UserManager/other/usermanager.conf";
 cmd=command.toLatin1().data();

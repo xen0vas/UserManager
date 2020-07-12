@@ -532,7 +532,7 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 	int col=index.column();
 	int row=index.row();
     QString empty = index.sibling(row,1).data().toString();
-    QProcess process ; //= new QProcess();
+    QProcess process ;
 
     if(col==0 && empty!="")
 	{
@@ -573,13 +573,12 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 	{
 
         QString program = "/usr/bin/sed";
-        QString ed ="'s/,,/,/g;s/,$//g'";
+        QString ed ="s/,,/,/g;s/,$//g";
         QString groupfile = "/etc/group";
         QStringList arguments;
 
         arguments << "-i" << ed << groupfile ;
 
-        //QProcess *process = new QProcess();
         process.start(program, arguments);
         process.waitForFinished();
         arguments.clear();
@@ -877,8 +876,6 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	Groups group;
 	MyLibb set;
 
-   // QProcess *process = new QProcess();
-
 	struct group *grs=NULL;
 	int done=-1;
 	QVariant state = index.data(Qt::CheckStateRole);//state=2 an einai hdh checked(ara vgainei apo member o user),0 an einai unchecked (ara mpainei san member) to checkbox tou group pou path8hke
@@ -927,7 +924,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
         QString program = "/usr/sbin/addgroup";
         QStringList arguments;
          QProcess *process = new QProcess();
-        arguments << "-a" << "-G" << getOldUsername() << "dialout" << ">" << "/dev/null" << "2>&1" ;
+        arguments << "-a" << "-G" << getOldUsername() << "dialout"  ;
 
         process->start(program, arguments);
         process->waitForFinished();
@@ -941,7 +938,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
         QString program = "/usr/sbin/addgroup";
         QStringList arguments;
 
-        arguments << "-a" << "-G" << getOldUsername() << "syslog" << ">" << "/dev/null" << "2>&1" ;
+        arguments << "-a" << "-G" << getOldUsername() << "syslog"  ;
 
         QProcess *process = new QProcess();
         process->start(program, arguments);
@@ -956,7 +953,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
         QString program = "/usr/sbin/addgroup";
         QStringList arguments;
 
-        arguments << "-a" << "-G" << getOldUsername() << "fax" << ">" << "/dev/null" << "2>&1" ;
+        arguments << "-a" << "-G" << getOldUsername() << "fax"  ;
 
         QProcess *process = new QProcess();
         process->start(program, arguments);
@@ -972,7 +969,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
         QString program = "/usr/sbin/addgroup";
         QStringList arguments;
 
-        arguments << "-a" << "-G" << getOldUsername() << "cdrom" << ">" << "/dev/null" << "2>&1" ;
+        arguments << "-a" << "-G" << getOldUsername() << "cdrom" ;
 
         QProcess *process = new QProcess();
         process->start(program, arguments);
@@ -988,7 +985,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
         QString program = "/usr/sbin/addgroup";
         QStringList arguments;
 
-        arguments << "-a" << "-G" << getOldUsername() << "floppy" << ">" << "/dev/null" << "2>&1" ;
+        arguments << "-a" << "-G" << getOldUsername() << "floppy"  ;
          QProcess *process = new QProcess();
         process->start(program, arguments);
         process->waitForFinished();
@@ -1001,7 +998,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
         QString program = "/usr/sbin/addgroup";
         QStringList arguments;
 
-        arguments << "-a" << "-G" << getOldUsername() << "scanner" << ">" << "/dev/null" << "2>&1" ;
+        arguments << "-a" << "-G" << getOldUsername() << "scanner" ;
 
         QProcess *process = new QProcess();
         process->start(program, arguments);
@@ -1034,17 +1031,18 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 }
 if (done==0)
 {	
-
-
+    Spc *sec = new Spc();
+    sec->clenv();
 	system("sed -i 's/,,/,/g;s/,$//g' /etc/group");
 	easyList->clear();
 	fillEasyList();
 	userGroups->setModel ( model.createUserInGroupsModel ( getOldUsername() ) );
 	userGroups->setColumnWidth ( 0, 30);
+    delete sec ;
 }
 }
 /**
- * Η συνάρτηση αλλάζει σε έναν λογαριασμό την κύρια ομάδα.
+ * This function changes the primary group
  */
 void EditProperties::setPrimaryGroup()
 {
@@ -1053,16 +1051,25 @@ void EditProperties::setPrimaryGroup()
 	Models model;
 	QString gname="";
 	const char *groupname="";
-	char *cmd;
 	QModelIndexList indexes = userGroups->selectionModel()->selectedIndexes();
+
 	foreach ( QModelIndex index, indexes )
-	{	if(index.data().toString()!="")
+    {
+        if(index.data().toString()!="")
 		{		groupname=index.data().toString().toLatin1().data();
 				grp=getgrnam ( groupname );
 				gname.append ( grp->gr_name );
-				QString command="usermod -g " + gname  + " " + LoginName->text() ;
-				cmd=command.toLatin1().data();
-				system(cmd);
+
+                QString program = "/usr/sbin/usermod";
+                QStringList arguments;
+
+                arguments << "-g" << gname << LoginName->text() ;
+
+                QProcess *process = new QProcess();
+                process->start(program, arguments);
+                process->waitForFinished();
+                arguments.clear();
+
 				userGroups->setModel ( model.createUserInGroupsModel (  LoginName->text() ) );
 				userGroups->setColumnWidth ( 0, 30);
 				primGroupLabel->setText(usr->getPrimaryGroup(LoginName->text()));

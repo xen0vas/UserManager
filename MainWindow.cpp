@@ -185,7 +185,7 @@ void MainWindow::addUserBtnClicked()
     QRegExp regExp("[a-zA-Z0-9]+");
     QString userString = InputDialogValidator::getText( this, "Add New User", \
                                                         "", \
-                                                        "placeholder", \
+                                                        "", \
                                                         regExp, &okBtn );
         Users user ;
         if ( !user.userExists( userString ) && okBtn )
@@ -416,7 +416,7 @@ void MainWindow::deleteUser()
                     QString ed2 = "/^$/D";
                     QStringList arguments2;
 
-                    arguments2 << options << ed2 << "/etc/shadow";
+                    arguments2 << options << ed2 << shadowpath;
 
                     process2.start(sed, arguments2);
                     process2.waitForStarted();
