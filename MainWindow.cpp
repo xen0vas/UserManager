@@ -10,7 +10,6 @@
 #include <QDebug>
 #include <sys/time.h>
 #include "InputDialogValidator.h"
-#include <qwt/qwt_text.h>
 
 using namespace std;
 
@@ -417,6 +416,7 @@ void MainWindow::deleteUser()
                     QStringList arguments2;
 
                     arguments2 << options << ed2 << shadowpath;
+
 
                     process2.start(sed, arguments2);
                     process2.waitForStarted();

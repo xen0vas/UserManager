@@ -90,12 +90,11 @@ void EditProperties::comboShell()
 			{
 				QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Open file <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
 			}
-			//char header[30];
+
 			std::string header;
 		        inShells.seekg ( 35 );
 			while ( inShells >> header )
 			{
-				//shellConnect->addItems ( QStringList ( QObject::tr ( header ) ) );
 				shellConnect->addItems ( QStringList ( QString::fromStdString( header )  ) );
 			}
 
@@ -184,9 +183,6 @@ if(checkBoxEdit->isChecked())
 	
 	if ( canonical_path != NULL ) { free(canonical_path); canonical_path = NULL; }
 
-	// end of security fix for homedir - consider refactoring in order to centralize security 
-
-
 	uid_t userID  = ui.toInt();
 	gid_t groupID = gid.toInt();
 
@@ -219,8 +215,10 @@ if(checkBoxEdit->isChecked())
             pwdlen = 16384;
 
     char *pwdBuffer = (char*)malloc(pwdlen);
-    memset( pwdBuffer, 0, sizeof(char) );
-	
+
+    if ( pwdBuffer != NULL )
+        memset( pwdBuffer, 0, sizeof(char) );
+
 	newf.username    =  na.data();
 	QString emptystr = "";
 	res = user.check_gecos_string( na.data() );
@@ -1025,7 +1023,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	grs=getgrnam("floppy");
 	if ( index.data().toString() =="Use scanners" )
 	grs=getgrnam("scanner");
-	//h remove_member(grs,getOldUsername().toLatin1().data()	epistrefei thn domh grs pou phre sto orisma ths vgazontas ap ta members ths grs ton xrhsth ton opoio pernoume apo thn  getOldUsername().toLatin1().data().H epistefomenh domh mpainei san orisma sthn setgrnam gia na mpei h nea domh sto group fle.epistrefei 0 an egine h allagh
+
 	if ( grs != NULL)
 	done=set.setgrnam(group.remove_member(grs,getOldUsername().toLatin1().data()));
 }
