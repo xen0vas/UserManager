@@ -6,7 +6,6 @@
 #include <QLabel>
 #include <QDialogButtonBox>
 #include <QRegExpValidator>
-#include <qwt/qwt_text.h>
 
 class InputDialogValidator : public QDialog{
 
