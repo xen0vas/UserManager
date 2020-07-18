@@ -1056,10 +1056,22 @@ delete settings;
  */
 void MainWindow::createBackup()
 {
+
+Spc *sec = new Spc() ;
+
 int ret = QMessageBox::information( this,tr ( "User Manager" ),tr ( "This will create a backup file containing /etc/passwd,/etc/group and /etc/shadow files, in the /tmp directory." ) ,QMessageBox::Ok | QMessageBox::Cancel);
 
 if (ret==1024)//message box returns 1024 when the button is pressed
 {
+
+/*
+ * ENV03-C. Sanitize the environment when invoking external programs
+ *
+ * https://wiki.sei.cmu.edu/confluence/display/c/ENV03-C.+Sanitize+the+environment+when+invoking+external+programs
+ */
+sec->clenv(); // clear the environment before calling system
+
+
 if ((system("tar -cvvf /tmp/backup$(date +'%Y%m%d%S').tar /etc/passwd  /etc/group  /etc/shadow") && system("sudo chmod 600 /tmp/backup$(date +'%Y%m%d%S').tar"))==0)//me allagh dikaiwmatwn gia na einai prosvasimo mono ston root
 QMessageBox::information(0,tr ( "User Manager" ),tr ( "Backup Created" ) );
 else
