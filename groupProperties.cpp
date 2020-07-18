@@ -128,11 +128,12 @@ void GroupProperties::removeMembers( )
 	struct group *grs;
 	MyLibb set;
 
-    	char *gname = (char*)calloc(128, sizeof(getOldGroupName().toLatin1().data()));
-    	memcpy(gname, getOldGroupName().toLatin1().data(), strlen(getOldGroupName().toLatin1().data()));
+    Spc *sec = new Spc();
+
+    char *gname = (char*)calloc(1, sizeof(getOldGroupName().toLatin1().data()));
+    memcpy(gname, getOldGroupName().toLatin1().data(), strlen(getOldGroupName().toLatin1().data()));
 
 	static char *username = NULL;
-	size_t len ; 
 
 	grs=getgrnam(gname);
 
@@ -141,11 +142,32 @@ void GroupProperties::removeMembers( )
 	foreach ( QModelIndex index, indexes )
 	{
 		username= (char*)realloc(username, strlen(index.data().toByteArray().data())+1);
-        	memcpy(username, index.data().toByteArray().data(), strlen(index.data().toByteArray().data()));
-	        username[strlen(index.data().toByteArray().data())] = '\0'; //safe
+        memcpy(username, index.data().toByteArray().data(), strlen(index.data().toByteArray().data()));
+        username[strlen(index.data().toByteArray().data())] = '\0'; //safe
 		groups.remove_member(grs,username);
 		set.setgrnam(grs);
 	}
+
+    sec->clenv(); // clear environment
+
+    QString program = "sed";
+
+    QString ed = "s/,,/,/g;s/,.$//g";
+
+    QString groupfile = "/etc/group";
+
+    QStringList arguments;
+
+    arguments << "-i" << ed << groupfile  ;
+
+    QProcess process;
+    process.start(program, arguments);
+    process.waitForStarted();
+    process.waitForFinished();
+    arguments.clear();
+
+    if ( sec != NULL ) { delete sec; sec = NULL; }
+
 	notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toLatin1().data() ) );
 	membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toLatin1().data() ) );
 

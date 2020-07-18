@@ -79,9 +79,9 @@ struct group *Groups::searchGroup()
 struct group *Groups::remove_member(struct group *in,char *uname)
 {	
 	int i;
-	Spc *sec = new Spc(); 
+
 	
-	QString memo = "";
+    QString memo = " ";
 
 	if (in == NULL) return NULL;
 
@@ -90,33 +90,15 @@ struct group *Groups::remove_member(struct group *in,char *uname)
 			if (!strncmp(in->gr_mem[i], uname, strlen(in->gr_mem[i])))
 			{
 				in->gr_mem[i] = memo.toLatin1().data();
-			}
+            }
 		}
 
 
-	sec->clenv(); // clear environment
-        
-	QString program = "sed";
-        
-	QString ed = "s/,,/,/g;s/,.$//g"; //replaces two commas with one
-       
-	QString groupfile = "/etc/group";
 
-        QStringList arguments;
-
-        arguments << "-i" << ed << groupfile  ;
-
-        QProcess process;
-        process.start(program, arguments);
-        process.waitForStarted();
-
-        process.waitForFinished();
-
-        arguments.clear();
 
         usleep(1000);
 	
-    	if ( sec != NULL ) { delete sec; sec = NULL; }
+
 
 	return in;
 }

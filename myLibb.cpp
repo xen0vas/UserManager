@@ -317,7 +317,8 @@ pwf = fopen_wrapper(GR_FILE, "r");
 
 namelen = strlen(gr->gr_name);
 found = false;
-//διαβάζεται γραμμή προς γραμμή το προσωρινο αρχείο GR_FILE που βρίσκεται στον κατάλογο /tmp/. 
+
+//διαβάζεται γραμμή προς γραμμή το προσωρινο αρχείο GR_FILE.
 while (fgets(linebuf, buflen, pwf) != NULL) 
 {
 
