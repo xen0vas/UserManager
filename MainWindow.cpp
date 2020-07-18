@@ -393,7 +393,7 @@ void MainWindow::deleteUser()
                     unlink(SH_FILE".bak");
                     link(SH_FILE, SH_FILE".bak");
 
-                    const QString sed = "/usr/bin/sed";
+                    const QString sed = "sed";
                     QProcess process1;
 
                     QString ed1 = "s/^"+username+":.*$//";

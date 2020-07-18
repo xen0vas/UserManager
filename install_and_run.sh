@@ -39,7 +39,7 @@ if [[ ! `echo $qt5 | grep "install ok"` ]]; then echo "Qt5 is not installed. Exi
 IFS=' ' # space set as delimiter
 read -ra ADDR <<< "$os"
 for i in "${ADDR[@]}"; do # access each element of array
-    if [ "$i" = "Debian" -o "$i" = "Ubuntu" -o "$i" = "debian" ];then
+    if [ "$i" = "Debian" -o "$i" = "#84-Ubuntu" -o "$i" = "Ubuntu" -o "$i" = "debian" ];then
 	found="true"
     fi
 done
