@@ -527,8 +527,8 @@ setshadow.setspnam( &sp );
 
 void EditProperties::changeMembers ( const QModelIndex &index )
 {
-	int col=index.column();
-	int row=index.row();
+    int col=index.column();
+    int row=index.row();
     QString empty = index.sibling(row,1).data().toString();
     QProcess process ;
 
@@ -536,15 +536,19 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 	{
 	Models model;
 
-    int done=-1;
+    	int done=-1;
 	int row=index.row();
+	Spc *spc = new Spc();  
 
-	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole );//state=2 an eiani checked,0 an einai unchecked to checkbox tou xrhsth pou path8hke
-
+	//state=2 an eiani checked,0 an einai unchecked to checkbox tou xrhsth pou path8hke
+	QVariant state = index.sibling(row,0).data ( Qt::CheckStateRole );
+	
+	spc->clenv() ; // Security fix : clear the environmental variables
+	
     if ( state == 0 )
 	{
 
-        QString program = "/usr/sbin/usermod";
+        QString program = "usermod";
         QStringList arguments;
 
         arguments << "-a" << "-G" << index.sibling(row,1).data().toString() << getOldUsername() ;
@@ -570,7 +574,7 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 	if ( done==0 )
 	{
 
-        QString program = "/usr/bin/sed";
+        QString program = "sed";
         QString ed ="s/,,/,/g;s/,$//g";
         QString groupfile = "/etc/group";
         QStringList arguments;
@@ -584,7 +588,8 @@ void EditProperties::changeMembers ( const QModelIndex &index )
 		userGroups->setModel ( model.createUserInGroupsModel ( getOldUsername() ) );
 		userGroups->setColumnWidth ( 0, 30);
 	}
-
+	
+	delete spc; 
 	easyList->clear();
 	fillEasyList();
 }
@@ -874,18 +879,24 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	Groups group;
 	MyLibb set;
 
+	Spc *spc = new Spc() ; 
+
+	spc->clenv(); // Security Fix : clear the environmental variables 
+
 	struct group *grs=NULL;
 	int done=-1;
-	QVariant state = index.data(Qt::CheckStateRole);//state=2 an einai hdh checked(ara vgainei apo member o user),0 an einai unchecked (ara mpainei san member) to checkbox tou group pou path8hke
+	QVariant state = index.data(Qt::CheckStateRole);
+	//state=2 an einai hdh checked(ara vgainei apo member o user),0 an einai unchecked (ara mpainei san member) to checkbox tou group pou path8hke
 	if (state == 2)
 	{
 	done=0;	
+	
+        QString program = "addgroup";
 	
 	if ( index.data().toString() =="Access external storage devices automatically" )
 	{
 
 
-        QString program = "/usr/sbin/addgroup";
         QStringList arguments;
 
         arguments << "-a" << "-G" << getOldUsername() << "plugdev" ;
@@ -900,7 +911,6 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	else if ( index.data().toString() =="Administer the system" )
 	{
 
-        QString program = "/usr/sbin/addgroup";
         QStringList arguments;
 
         arguments << "-a" << "-G" << getOldUsername() << "adm"  ;
@@ -918,10 +928,8 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	else if ( index.data().toString() =="Connect to the internet using a modem" )
 	{
 
-
-        QString program = "/usr/sbin/addgroup";
         QStringList arguments;
-         QProcess *process = new QProcess();
+        QProcess *process = new QProcess();
         arguments << "-a" << "-G" << getOldUsername() << "dialout"  ;
 
         process->start(program, arguments);
@@ -933,7 +941,6 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	else if ( index.data().toString() =="Monitor system logs" )
 	{
 
-        QString program = "/usr/sbin/addgroup";
         QStringList arguments;
 
         arguments << "-a" << "-G" << getOldUsername() << "syslog"  ;
@@ -948,7 +955,6 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	else if ( index.data().toString() =="Send/Receive faxes" )
 	{
 
-        QString program = "/usr/sbin/addgroup";
         QStringList arguments;
 
         arguments << "-a" << "-G" << getOldUsername() << "fax"  ;
@@ -964,7 +970,6 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	else if ( index.data().toString() =="Use CD-ROM/DVD drives" )
 	{
 
-        QString program = "/usr/sbin/addgroup";
         QStringList arguments;
 
         arguments << "-a" << "-G" << getOldUsername() << "cdrom" ;
@@ -980,7 +985,6 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	else if ( index.data().toString() =="Use floppy drives" )
 	{
 
-        QString program = "/usr/sbin/addgroup";
         QStringList arguments;
 
         arguments << "-a" << "-G" << getOldUsername() << "floppy"  ;
@@ -993,7 +997,6 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	else if ( index.data().toString() =="Use scanners" )
 	{
 
-        QString program = "/usr/sbin/addgroup";
         QStringList arguments;
 
         arguments << "-a" << "-G" << getOldUsername() << "scanner" ;
@@ -1029,15 +1032,13 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 }
 if (done==0)
 {	
-    Spc *sec = new Spc();
-    sec->clenv();
 	system("sed -i 's/,,/,/g;s/,$//g' /etc/group");
 	easyList->clear();
 	fillEasyList();
 	userGroups->setModel ( model.createUserInGroupsModel ( getOldUsername() ) );
 	userGroups->setColumnWidth ( 0, 30);
-    delete sec ;
 }
+	delete spc; 
 }
 /**
  * This function changes the primary group

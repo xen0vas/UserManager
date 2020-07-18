@@ -143,10 +143,10 @@ void GroupProperties::removeMembers( )
 	set.setgrnam(grs);
 	}
 
-    //Spc *spc = new Spc();
-    //spc->clenv();
+    Spc *spc = new Spc();
+    spc->clenv();
 
-    QString program = "/usr/bin/sed ";
+    QString program = "sed ";
     QString ed = "s/,,/,/g;s/,$//g"; //replaces two commas with one
     QString groupfile = "/etc/group";
 
@@ -165,7 +165,7 @@ void GroupProperties::removeMembers( )
 	membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toLatin1().data() ) );
 
     if (gname != NULL) { free (gname); gname = NULL;}
-    //if ( spc != NULL ) delete spc;
+    if ( spc != NULL ) delete spc;
 
 }
 /**
