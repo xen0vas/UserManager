@@ -1077,6 +1077,9 @@ QMessageBox::information(0,tr ( "User Manager" ),tr ( "Backup Created" ) );
 else
 QMessageBox::information(0,tr ( "User Manager" ),tr ( "Error:Backup not created" ) );
 }
+
+if ( sec != NULL ) { delete sec; sec = NULL; }
+
 }
 /**
  *Εμφανίζει την φόρμα με τις πληροφορίες της εφαρμογής.
