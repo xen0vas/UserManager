@@ -150,17 +150,18 @@ void GroupProperties::removeMembers( )
 
     sec->clenv(); // clear environment
 
+    QProcess process;
     QString program = "sed";
-
     QString ed = "s/,,/,/g;s/,$//g";
-
     QString groupfile = "/etc/group";
-
     QStringList arguments;
 
     arguments << "-i" << ed << groupfile  ;
-
-    QProcess process;
+    process.start(program, arguments);
+    process.waitForStarted();
+    process.waitForFinished();
+    arguments.clear();
+    arguments << "-i" << ed << groupfile  ;
     process.start(program, arguments);
     process.waitForStarted();
     process.waitForFinished();
