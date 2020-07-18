@@ -126,15 +126,20 @@ void GroupProperties::removeMembers( )
 	Groups groups;
 	Models model;
 	struct group *grs;
-	MyLibb set;
+    MyLibb set;
+
+    char *gname = (char*)calloc(1, sizeof(getOldGroupName().toLatin1().data()));
+
+    if ( gname != NULL )
+    {
 
     Spc *sec = new Spc();
 
-    char *gname = (char*)calloc(1, sizeof(getOldGroupName().toLatin1().data()));
     memcpy(gname, getOldGroupName().toLatin1().data(), strlen(getOldGroupName().toLatin1().data()));
 
 	static char *username = NULL;
 
+    bool allocate = true;
 	grs=getgrnam(gname);
 
 	QModelIndexList indexes = membersList->selectionModel()->selectedIndexes();
@@ -142,12 +147,22 @@ void GroupProperties::removeMembers( )
 	foreach ( QModelIndex index, indexes )
 	{
 		username= (char*)realloc(username, strlen(index.data().toByteArray().data())+1);
-        memcpy(username, index.data().toByteArray().data(), strlen(index.data().toByteArray().data()));
-        username[strlen(index.data().toByteArray().data())] = '\0'; //safe
-		groups.remove_member(grs,username);
-		set.setgrnam(grs);
+        if ( username != NULL )
+        {
+                memcpy(username, index.data().toByteArray().data(), strlen(index.data().toByteArray().data()));
+                username[strlen(index.data().toByteArray().data())] = '\0'; //safe
+                groups.remove_member(grs,username);
+                set.setgrnam(grs);
+        }
+        else
+        {
+             allocate = false ;
+             QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory - %1" ).arg(errno));
+        }
 	}
 
+    if ( allocate != false )
+    {
     sec->clenv(); // clear environment
 
     QProcess process;
@@ -167,12 +182,19 @@ void GroupProperties::removeMembers( )
     process.waitForFinished();
     arguments.clear();
 
+    notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toLatin1().data() ) );
+    membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toLatin1().data() ) );
+
+    }
+
     if ( sec != NULL ) { delete sec; sec = NULL; }
-
-	notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toLatin1().data() ) );
-	membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toLatin1().data() ) );
-
     if (gname != NULL) { free (gname); gname = NULL;}
+
+    }
+    else
+    {
+         QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory - %1" ).arg(errno));
+    }
 }
 
 
