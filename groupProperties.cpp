@@ -152,7 +152,7 @@ void GroupProperties::removeMembers( )
 
     QString program = "sed";
 
-    QString ed = "s/,,/,/g;s/,.$//g";
+    QString ed = "s/,,/,/g;s/.,$//g";
 
     QString groupfile = "/etc/group";
 

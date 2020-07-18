@@ -79,27 +79,20 @@ struct group *Groups::searchGroup()
 struct group *Groups::remove_member(struct group *in,char *uname)
 {	
 	int i;
-
 	
     QString memo = "";
 
 	if (in == NULL) return NULL;
 
 	for (i = 0; in->gr_mem[i]; i++)
-		{
+    {
 			if (!strncmp(in->gr_mem[i], uname, strlen(in->gr_mem[i])))
 			{
 				in->gr_mem[i] = memo.toLatin1().data();
             }
-		}
+    }
 
-
-
-
-        usleep(1000);
-	
-
-
+    usleep(1000);
 	return in;
 }
 
