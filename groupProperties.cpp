@@ -130,6 +130,7 @@ void GroupProperties::removeMembers( )
 
     char *gname = (char*)calloc(1, sizeof(getOldGroupName().toLatin1().data()));
 
+    // check for unwanted NULL pointer dereferences
     if ( gname != NULL )
     {
 
