@@ -915,8 +915,8 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 
         QStringList arguments;
 
-        //arguments << "-a" << "-G" << getOldUsername() << "adm"  ;
-        QProcess *process = new QProcess();
+        arguments << "-a" << "-G" << getOldUsername() << "adm"  ;
+        //QProcess *process = new QProcess();
         process->start(program, arguments);
 
         if ( process->waitForFinished() )
@@ -931,7 +931,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	{
 
         QStringList arguments;
-        QProcess *process = new QProcess();
+        //QProcess *process = new QProcess();
         arguments << "-a" << "-G" << getOldUsername() << "dialout"  ;
 
         process->start(program, arguments);
