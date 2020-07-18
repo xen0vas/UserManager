@@ -125,49 +125,34 @@ void GroupProperties::removeMembers( )
 {
 	Groups groups;
 	Models model;
-	struct group *grs = NULL;
+	struct group *grs;
 	MyLibb set;
 
-    char *gname = (char*)calloc(1, sizeof(getOldGroupName().toLatin1().data()));
+    	char *gname = (char*)calloc(128, sizeof(getOldGroupName().toLatin1().data()));
+    	memcpy(gname, getOldGroupName().toLatin1().data(), strlen(getOldGroupName().toLatin1().data()));
 
-    memcpy(gname, getOldGroupName().toLatin1().data(), strlen(getOldGroupName().toLatin1().data()));
+	static char *username = NULL;
+	size_t len ; 
 
-	char *username;
 	grs=getgrnam(gname);
 
-    QModelIndexList indexes = membersList->selectionModel()->selectedIndexes();
+	QModelIndexList indexes = membersList->selectionModel()->selectedIndexes();
+	
 	foreach ( QModelIndex index, indexes )
 	{
-	username=index.data().toByteArray().data();
-	groups.remove_member(grs,username);
-	set.setgrnam(grs);
+		username= (char*)realloc(username, strlen(index.data().toByteArray().data())+1);
+        	memcpy(username, index.data().toByteArray().data(), strlen(index.data().toByteArray().data()));
+	        username[strlen(index.data().toByteArray().data())] = '\0'; //safe
+		groups.remove_member(grs,username);
+		set.setgrnam(grs);
 	}
-
-    Spc *spc = new Spc();
-    spc->clenv();
-
-    QString program = "sed ";
-    QString ed = "s/,,/,/g;s/,$//g"; //replaces two commas with one
-    QString groupfile = "/etc/group";
-
-    QStringList arguments;
-
-    arguments << "-i" << ed << groupfile  ;
-
-    QProcess process;
-    process.start(program, arguments);
-    process.waitForStarted();
-    process.waitForFinished();
-
-    arguments.clear();
-
 	notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toLatin1().data() ) );
 	membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toLatin1().data() ) );
 
     if (gname != NULL) { free (gname); gname = NULL;}
-    if ( spc != NULL ) delete spc;
-
 }
+
+
 /**
  * Η παραπάνω συνάρτηση χρησιμοποιείται για να αλλάξει το όνομα μιας ομάδας.
    Καλεί μέσω της system το εργαλείο groupmod με την παράμετρο -n το οποίο αλλάζει το όνομα της ομάδας. 
@@ -236,7 +221,7 @@ void GroupProperties::checkGroupname ( const QString &text )
 	okBtn->setEnabled ( true );
 	existsLabel->clear();
 	struct group *grp;
-    QRegExp rx ( "[:.'|<>?/*\\&;%*]" );//ayta den ta 8eloume sto editbox
+    	QRegExp rx ( "[:.'|<>?/*\\&;%*]" );
 
 	setgrent();
 

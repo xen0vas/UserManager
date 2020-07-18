@@ -79,8 +79,10 @@ struct group *Groups::searchGroup()
 struct group *Groups::remove_member(struct group *in,char *uname)
 {	
 	int i;
-
+	Spc *sec = new Spc(); 
+	
 	QString memo = "";
+
 	if (in == NULL) return NULL;
 
 	for (i = 0; in->gr_mem[i]; i++)
@@ -91,9 +93,14 @@ struct group *Groups::remove_member(struct group *in,char *uname)
 			}
 		}
 
-        QString program = "/usr/bin/sed";
-        QString ed = "s/,,/,/g;s/,$//g"; //replaces two commas with one
-        QString groupfile = "/etc/group";
+
+	sec->clenv(); // clear environment
+        
+	QString program = "sed";
+        
+	QString ed = "s/,,/,/g;s/,.$//g"; //replaces two commas with one
+       
+	QString groupfile = "/etc/group";
 
         QStringList arguments;
 
@@ -107,7 +114,9 @@ struct group *Groups::remove_member(struct group *in,char *uname)
 
         arguments.clear();
 
-    usleep(1000);
+        usleep(1000);
+	
+    	if ( sec != NULL ) { delete sec; sec = NULL; }
 
 	return in;
 }
