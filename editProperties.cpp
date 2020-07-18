@@ -548,7 +548,7 @@ void EditProperties::changeMembers ( const QModelIndex &index )
     if ( state == 0 )
 	{
 
-        QString program = "usermod";
+        QString program = "/usr/sbin/usermod";
         QStringList arguments;
 
         arguments << "-a" << "-G" << index.sibling(row,1).data().toString() << getOldUsername() ;
@@ -891,8 +891,10 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 	{
 	done=0;	
 	
-        QString program = "addgroup";
+        QString program = "/usr/sbin/addgroup";
 	
+	QProcess *process = new QProcess(); 
+
 	if ( index.data().toString() =="Access external storage devices automatically" )
 	{
 
@@ -901,7 +903,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 
         arguments << "-a" << "-G" << getOldUsername() << "plugdev" ;
 
-        QProcess *process = new QProcess();
+        //QProcess *process = new QProcess();
         process->start(program, arguments);
         process->waitForFinished();
         arguments.clear();
@@ -913,7 +915,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 
         QStringList arguments;
 
-        arguments << "-a" << "-G" << getOldUsername() << "adm"  ;
+        //arguments << "-a" << "-G" << getOldUsername() << "adm"  ;
         QProcess *process = new QProcess();
         process->start(program, arguments);
 
@@ -945,7 +947,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 
         arguments << "-a" << "-G" << getOldUsername() << "syslog"  ;
 
-        QProcess *process = new QProcess();
+       // QProcess *process = new QProcess();
         process->start(program, arguments);
         process->waitForFinished();
         arguments.clear();
@@ -959,7 +961,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 
         arguments << "-a" << "-G" << getOldUsername() << "fax"  ;
 
-        QProcess *process = new QProcess();
+        //QProcess *process = new QProcess();
         process->start(program, arguments);
         process->waitForFinished();
         arguments.clear();
@@ -974,7 +976,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 
         arguments << "-a" << "-G" << getOldUsername() << "cdrom" ;
 
-        QProcess *process = new QProcess();
+        //QProcess *process = new QProcess();
         process->start(program, arguments);
         process->waitForFinished();
 
@@ -988,7 +990,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
         QStringList arguments;
 
         arguments << "-a" << "-G" << getOldUsername() << "floppy"  ;
-         QProcess *process = new QProcess();
+        // QProcess *process = new QProcess();
         process->start(program, arguments);
         process->waitForFinished();
         arguments.clear();
@@ -1001,7 +1003,7 @@ void EditProperties::easyAddGroups ( const QModelIndex &index )
 
         arguments << "-a" << "-G" << getOldUsername() << "scanner" ;
 
-        QProcess *process = new QProcess();
+        //QProcess *process = new QProcess();
         process->start(program, arguments);
         process->waitForFinished();
         arguments.clear();
@@ -1046,6 +1048,7 @@ if (done==0)
 void EditProperties::setPrimaryGroup()
 {
 	struct group *grp=NULL;
+	Spc *sec = new Spc(); 
 	Users *usr = new Users();
 	Models model;
 	QString gname="";
@@ -1058,6 +1061,8 @@ void EditProperties::setPrimaryGroup()
 		{		groupname=index.data().toString().toLatin1().data();
 				grp=getgrnam ( groupname );
 				gname.append ( grp->gr_name );
+		
+		sec->clenv(); // clear environment 
 
                 QString program = "/usr/sbin/usermod";
                 QStringList arguments;
@@ -1074,6 +1079,7 @@ void EditProperties::setPrimaryGroup()
 				primGroupLabel->setText(usr->getPrimaryGroup(LoginName->text()));
 		}
 	}
+	if (sec != NULL) { delete sec; sec = NULL; }
 	if (usr != nullptr){ delete usr; usr = nullptr;}
 }
 /**
