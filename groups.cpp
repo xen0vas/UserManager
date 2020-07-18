@@ -81,7 +81,7 @@ struct group *Groups::remove_member(struct group *in,char *uname)
 	int i;
 
 	
-    QString memo = " ";
+    QString memo = "";
 
 	if (in == NULL) return NULL;
 
