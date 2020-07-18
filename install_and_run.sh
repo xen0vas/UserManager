@@ -37,9 +37,13 @@ qt5=`dpkg-query -W -f='${Status} ${Version}\n' qt5*`
 if [[ ! `echo $qt5 | grep "install ok"` ]]; then echo "Qt5 is not installed. Exiting.."; exit 1; fi
 
 IFS=' ' # space set as delimiter
+
 read -ra ADDR <<< "$os"
+
 for i in "${ADDR[@]}"; do # access each element of array
-    if [ "$i" = "Debian" -o "$i" = "#84-Ubuntu" -o "$i" = "Ubuntu" -o "$i" = "debian" ];then
+    
+    Ubuntu=`echo $i | grep "^.*Ubuntu" | cut -d- -f2`
+    if [ "$i" = "Debian" -o "$Ubuntu" = "Ubuntu" -o "$i" = "Ubuntu" -o "$i" = "debian" ];then
 	found="true"
     fi
 done
