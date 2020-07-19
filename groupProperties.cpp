@@ -145,10 +145,10 @@ void GroupProperties::removeMembers( )
 	foreach ( QModelIndex index, indexes )
     {
 
-       username = (char*)realloc(username, strlen(index.data().toByteArray().data())+1);
+       username = (char*)realloc(username, strlen(index.data().toByteArray().data())*2);
        if ( username != NULL )
        {
-          memcpy(username, index.data().toByteArray().data(), strlen(index.data().toByteArray().data()));
+          memcpy(username, index.data().toByteArray().data(), strlen(index.data().toByteArray().data())+1);
           username[strlen(index.data().toByteArray().data())] = '\0';
 
           groups.remove_member(grs,username);
