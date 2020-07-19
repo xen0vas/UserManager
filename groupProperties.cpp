@@ -85,14 +85,10 @@ void GroupProperties::addMembers( )
 	Models model;
 	QModelIndexList indexes = notMembersList->selectionModel()->selectedIndexes();
 
-    Spc *spc = new Spc();
-
-    spc->clenv();
-
 	foreach ( QModelIndex index, indexes )
 	{
 
-        // TO-DO : find program from PATH but first use spc->clenv() to clear the environmental variables
+
         QString program = "/usr/sbin/addgroup";
         QStringList arguments;
 
@@ -108,8 +104,6 @@ void GroupProperties::addMembers( )
 
 		notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toLatin1().data() ) );
 		membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toLatin1().data() ) );
-
-    delete spc;
 
 }
 
@@ -128,7 +122,7 @@ void GroupProperties::removeMembers( )
 	struct group *grs;
     MyLibb set;
 
-    char *gname = (char*)calloc(1, sizeof(getOldGroupName().toLatin1().data()));
+    char *gname = (char*)calloc(128, sizeof(getOldGroupName().toLatin1().data()));
 
     // check for unwanted NULL pointer dereferences
     if ( gname != NULL )
@@ -138,27 +132,34 @@ void GroupProperties::removeMembers( )
 
     memcpy(gname, getOldGroupName().toLatin1().data(), strlen(getOldGroupName().toLatin1().data()));
 
-	static char *username = NULL;
+    char *username = NULL;
+
+    username = (char*)malloc(sizeof(username));
 
     bool allocate = true;
+
 	grs=getgrnam(gname);
 
 	QModelIndexList indexes = membersList->selectionModel()->selectedIndexes();
 	
 	foreach ( QModelIndex index, indexes )
-	{
-		username= (char*)realloc(username, strlen(index.data().toByteArray().data())+1);
-        if ( username != NULL )
-        {
-                memcpy(username, index.data().toByteArray().data(), strlen(index.data().toByteArray().data()));
-                username[strlen(index.data().toByteArray().data())] = '\0'; //safe
-                groups.remove_member(grs,username);
-                set.setgrnam(grs);
+    {
+
+       username = (char*)realloc(username, strlen(index.data().toByteArray().data())+1);
+       if ( username != NULL )
+       {
+          memcpy(username, index.data().toByteArray().data(), strlen(index.data().toByteArray().data()));
+          username[strlen(index.data().toByteArray().data())] = '\0';
+
+          groups.remove_member(grs,username);
+          set.setgrnam(grs);
+
         }
         else
         {
              allocate = false ;
-             QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory - %1" ).arg(errno));
+             QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory : %1" ).arg(errno));
+             break;
         }
 	}
 
@@ -190,7 +191,7 @@ void GroupProperties::removeMembers( )
 
     if ( sec != NULL ) { delete sec; sec = NULL; }
     if (gname != NULL) { free (gname); gname = NULL;}
-
+    free(username);
     }
     else
     {

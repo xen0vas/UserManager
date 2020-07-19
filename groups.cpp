@@ -141,7 +141,7 @@ int Groups::deleteGroup(QString gname)
 /**
  *Ελέγχει αν υπάρχει χρήστης ο οποίος έχει σαν κύρια ομάδα,την ομάδα με το GROUP ID που παίρνει σαν όρισμα.
  */
-bool Groups::isPrimary(int gid)//h synarthsh epistrefei true an yparxei kapoios xrhsths pou exei to group san prwteywn
+bool Groups::isPrimary(int gid)
 {
 gid_t gidt=gid;
 
