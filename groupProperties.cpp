@@ -122,7 +122,21 @@ void GroupProperties::removeMembers( )
 	struct group *grs;
     MyLibb set;
 
-    char *gname = (char*)calloc(128, sizeof(getOldGroupName().toLatin1().data()));
+    size_t len = strlen(getOldGroupName().toLatin1().data());
+
+    char *gname = (char*)calloc(len, sizeof(getOldGroupName().toLatin1().data()));
+
+    char *username = NULL;
+
+    username = (char*)malloc(sizeof(char));
+
+    if ( username == NULL )
+    {
+        errno = ENOMEM;
+        QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory : %1" ).arg(errno));
+    }
+    else
+    {
 
     // check for unwanted NULL pointer dereferences
     if ( gname != NULL )
@@ -132,9 +146,6 @@ void GroupProperties::removeMembers( )
 
     memcpy(gname, getOldGroupName().toLatin1().data(), strlen(getOldGroupName().toLatin1().data()));
 
-    char *username = NULL;
-
-    username = (char*)malloc(sizeof(username));
 
     bool allocate = true;
 
@@ -145,11 +156,12 @@ void GroupProperties::removeMembers( )
 	foreach ( QModelIndex index, indexes )
     {
 
-       username = (char*)realloc(username, strlen(index.data().toByteArray().data())*2);
+       username = (char*)realloc(username, strlen(index.data().toByteArray().data()));
+
        if ( username != NULL )
        {
           memcpy(username, index.data().toByteArray().data(), strlen(index.data().toByteArray().data())+1);
-          username[strlen(index.data().toByteArray().data())] = '\0';
+          username[strlen(index.data().toByteArray().data())] = '\0'; //not necesary because we are using calloc
 
           groups.remove_member(grs,username);
           set.setgrnam(grs);
@@ -158,6 +170,7 @@ void GroupProperties::removeMembers( )
         else
         {
              allocate = false ;
+             errno = ENOMEM;
              QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory : %1" ).arg(errno));
              break;
         }
@@ -178,6 +191,7 @@ void GroupProperties::removeMembers( )
     process.waitForStarted();
     process.waitForFinished();
     arguments.clear();
+
     arguments << "-i" << ed << groupfile  ;
     process.start(program, arguments);
     process.waitForStarted();
@@ -186,17 +200,17 @@ void GroupProperties::removeMembers( )
 
     notMembersList->setModel ( model.UsersNotInGroupModel ( getOldGroupName().toLatin1().data() ) );
     membersList->setModel ( model.UsersInGroupModel ( getOldGroupName().toLatin1().data() ) );
-
     }
 
     if ( sec != NULL ) { delete sec; sec = NULL; }
     if (gname != NULL) { free (gname); gname = NULL;}
-    free(username);
+    if (username != NULL ) { free(username); username = NULL; }
     }
     else
     {
          QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory - %1" ).arg(errno));
     }
+  }
 }
 
 

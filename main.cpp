@@ -1,5 +1,4 @@
 #include <QApplication>
-//#include <QtGui/QtGui>
 #include <QtWidgets>
 #include "MainWindow.h"
 #include <string>
@@ -63,7 +62,7 @@ int main(int argc, char ** argv)
 
 			QMessageBox::critical ( 0,QObject::tr ( "User Manager" ),QObject::tr ( " Entry of user ' <i><b>%1</b></i> ' in /etc/shadow does not exist in /etc/passwd  " ).arg ( sp->sp_namp ) );
 			
-}
+    }
         // if the user is not root the application will not start
 		char *user = (char *)calloc(128, sizeof(char));
 		pw = getpwuid(getuid());
@@ -75,12 +74,10 @@ int main(int argc, char ** argv)
 			exit (0);
 		}
 
-
 	MainWindow win;
 	win.show();
 	
-	
-	free(user);
+    if ( user != NULL ) { free(user); user = NULL; }
 	
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	return app.exec();

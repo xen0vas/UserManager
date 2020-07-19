@@ -49,7 +49,8 @@ int MyLibb::setpwnam_r (struct passwd *pwd,char *name)
 
    int buflen = 512;
    char *linebuf = (char*)calloc(buflen,sizeof(char));
-   if (!linebuf) return -1;
+   if (linebuf == NULL)
+       return -1;
 
 //σε περίπτωση που το προσωρινό αρχείο υπάρχει και δεν έχει διαγραφεί για λόγους όπως να έχει διακοπεί η διεργασία πριν διαγραφεί το αρχείο ,τοτε η παρακάτω επανάληψη χρησιμοποιειται για να διαγράψει προσωρινα αρχεία και να δημιουργήσει καινούρια 
    for (x = 0; x < 3; x++) {
@@ -290,7 +291,8 @@ int namelen;
 int buflen = 256;
 char *linebuf = (char*)calloc(buflen, sizeof(char));
 
-if (!linebuf) return -1;
+if (linebuf == NULL)
+    return -1;
 //σε περίπτωση που το προσωρινό αρχείο υπάρχει και δεν έχει διαγραφεί για λόγους όπως να έχει διακοπεί η διεργασία πριν διαγραφεί το αρχείο ,τοτε η παρακάτω επανάληψη χρησιμοποιειται για να διαγράψει προσωρινα αρχεία και να δημιουργήσει καινούρια 
 for (x = 0; x < 3; x++) {
      if (x > 0)
@@ -322,8 +324,7 @@ found = false;
 while (fgets(linebuf, buflen, pwf) != NULL) 
 {
 
-
-int res = strncmp(linebuf, gr->gr_name, namelen); 	
+int res = strncmp(linebuf, gr->gr_name, namelen);
         if ((found == false) && (res == 0) )
         {
             putgrent(gr, fp);
