@@ -9,14 +9,14 @@
  */
 Groups::Groups( )
 {
-    spc = new Spc();
+
 }
 /**
  *Destructor κλάσης
  */
 Groups::~Groups( )
 {
-    if (spc != NULL) { delete spc; spc = NULL; }
+
 }
 
 
@@ -136,7 +136,7 @@ int Groups::deleteGroup(QString gname)
 			return -1;
 		}
 
-	return 0;
+    return 0;
 }
 /**
  *Ελέγχει αν υπάρχει χρήστης ο οποίος έχει σαν κύρια ομάδα,την ομάδα με το GROUP ID που παίρνει σαν όρισμα.

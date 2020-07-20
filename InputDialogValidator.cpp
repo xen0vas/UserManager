@@ -19,7 +19,7 @@ label=new QLabel(this);
 
 // Security Fix : Whitelisted characters and digits
 
-regExp=QRegExp("[a-zA-Z0-9]+");
+regExp=QRegExp("^[a-zA-Z0-9-_]{0,12}$");
 
 validator=new QRegExpValidator(regExp);
 

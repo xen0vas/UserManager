@@ -180,8 +180,8 @@ void MainWindow::addUserBtnClicked()
      * @InputDialogValidator
      */
 
+    QRegExp regExp("^[a-zA-Z0-9-_]{0,12}$");
 
-    QRegExp regExp("[a-zA-Z0-9]+");
     QString userString = InputDialogValidator::getText( this, "Add New User", \
                                                         "", \
                                                         "", \
@@ -307,7 +307,7 @@ void MainWindow::getEditDetails(const QModelIndex &index)
     fnam  = index.sibling( row, 2 ).data( Qt::DisplayRole ).toString();
     dir   = index.sibling( row, 3 ).data( Qt::DisplayRole ).toString();
     shell = index.sibling( row, 4 ).data( Qt::DisplayRole ).toStringList();
-    struct spwd *sp = {};
+    struct spwd *sp ;
     sp = getspnam(log.toLatin1().data());
     if (sp != NULL)
         UserDetails();

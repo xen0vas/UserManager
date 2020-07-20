@@ -342,9 +342,13 @@ fclose(pwf);
 
 if (!found) 
 {
-        errno = EIDRM; 
+    errno = EIDRM;
 	QMessageBox::critical( 0,tr( "User Manager" ),tr( "%1").arg(strerror(errno)));
-	if (linebuf!=NULL) free(linebuf);
+    if (linebuf!=NULL)
+    {
+        free(linebuf);
+        linebuf = NULL;
+    }
 	return -1;
 }
 	
@@ -354,7 +358,7 @@ link(GR_FILE, GR_FILE".bak");
 
 rename(GTMP_FILE, GR_FILE) ;
 
-if (linebuf != NULL) free(linebuf);
+if (linebuf != NULL) { free(linebuf); linebuf = NULL; }
 unlink(GTMP_FILE);
 
 return 0;

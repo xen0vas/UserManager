@@ -124,9 +124,19 @@ void GroupProperties::removeMembers( )
 
     size_t len = strlen(getOldGroupName().toLatin1().data());
 
-    char *gname = (char*)calloc(len, sizeof(getOldGroupName().toLatin1().data()));
+    char *gname = NULL;
+
+    if ( len == 0)
+        QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Zero length detected: %1" ).arg(errno));
+
+    else
+    {
+
+    gname = (char*)calloc(len, sizeof(getOldGroupName().toLatin1().data()));
 
     char *username = NULL;
+
+    char *ptr;
 
     username = (char*)malloc(sizeof(char));
 
@@ -138,7 +148,7 @@ void GroupProperties::removeMembers( )
     else
     {
 
-    // check for unwanted NULL pointer dereferences
+
     if ( gname != NULL )
     {
 
@@ -156,16 +166,16 @@ void GroupProperties::removeMembers( )
 	foreach ( QModelIndex index, indexes )
     {
 
-       username = (char*)realloc(username, strlen(index.data().toByteArray().data()));
+       ptr = (char*)realloc(username, strlen(index.data().toByteArray().data())*2);
+
+       username = ptr ;
 
        if ( username != NULL )
        {
           memcpy(username, index.data().toByteArray().data(), strlen(index.data().toByteArray().data())+1);
-          username[strlen(index.data().toByteArray().data())] = '\0'; //not necesary because we are using calloc
-
+          username[strlen(index.data().toByteArray().data())] = '\0';
           groups.remove_member(grs,username);
           set.setgrnam(grs);
-
         }
         else
         {
@@ -208,9 +218,11 @@ void GroupProperties::removeMembers( )
     }
     else
     {
-         QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory - %1" ).arg(errno));
+        errno = ENOMEM;
+        QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory - %1" ).arg(errno));
     }
   }
+    }
 }
 
 
