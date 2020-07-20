@@ -107,12 +107,15 @@ void GroupProperties::addMembers( )
 
 }
 
+
 /**
- * Αφαιρεί μέλη από μια ομάδα.Εκτελείται όταν πατηθεί το κουμπί με τον τίτλο “Remove” στην φόρμα των ομάδων.
-    Για κάθε ένα χρήστη που είναι προς απομάκρυνση καλείται η remove_member από την κλάση MyLibb η οποία αφαιρεί τον χρήστη από την ομάδα
-    και έπειτα καλείται η setgrnam από την κλάση Groups η οποία βάζει μέσα στο /etc/group την νέα δομή της ομάδας χωρίς τον χρήστη που
-    αφαιρέθηκε 
-    Στο τέλος εκτελείται ο sed για να καθαρίσει πιθανά υπολείμματα κομμάτων από το /etc/group
+ * @brief GroupProperties::removeMembers
+ * This function removes user members from a Group.
+ * The user selects the member and then clicks on 'remove' button in order to remove the member from the group
+ * for every user member that needs to be removed the 'remove_member' function is called from myLibb class.
+ * After the user member removal, the setgrnam function is called from the class Group which recreates the file /etc/group with the new stracture where
+ * the deleted user member is not included. At the end, the third party program 'sed' is called in order to clean any unwanted characters from inside
+ * the file /etc/group
  */
 
 void GroupProperties::removeMembers( )
@@ -125,6 +128,7 @@ void GroupProperties::removeMembers( )
 
     char *gname = NULL;
 
+    // bware for overflows
     if ( len == 0 || len > SIZE_MAX / sizeof(char))
         QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Possible overflow due to wrong sting length: %1" ).arg(errno));
     else
@@ -408,7 +412,7 @@ if ( GIDEdit->text() =="" )
 
 int GroupProperties::addNewGroup()
 {
-	MyLibb *fchk = NULL;
+    MyLibb *fchk = new MyLibb();
 	QByteArray pass = "x";
 
 
@@ -416,7 +420,8 @@ disconnect ( okBtn, SIGNAL ( clicked() ), this, SLOT ( renameGroup() ) ); //disc
 if (groupNameEdit->text()==NULL || GIDEdit->text()==NULL)
 {
 QMessageBox::information ( 0,tr ( "User Manager" ),tr ( "Insert Group Name" ));
-return 1;
+   if (fchk != NULL) { delete fchk; fchk = NULL; }
+   return 1;
 }
 else
 {
@@ -432,12 +437,17 @@ else
 	const char *filename = "/etc/group";
 	int result = 0 ;
 
-	groupbase = fchk->fopen_wrapper ( filename, "a+" );
+    groupbase = fchk->fopen_wrapper ( filename, "a+" );
+
 	if ( groupbase!=NULL )
 	{
 		result = putgrent ( &grp, groupbase );
         fclose ( groupbase );
-	}
+    }
+    else
+    {
+         QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate create Group - %1" ).arg(errno));
+    }
 
 	if ( result==0 )
 	{
@@ -452,7 +462,8 @@ else
 		newGroupBtn->setEnabled ( false );
 		addBtn->setEnabled ( true );
 		removeBtn->setEnabled ( true );
-	}
+    }
+    if (fchk != NULL) { delete fchk; fchk = NULL; }
 	return result;
 }
 }

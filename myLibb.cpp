@@ -23,13 +23,12 @@ MyLibb::~MyLibb()
  */
 FILE *MyLibb::fopen_wrapper(const char *filename,const char *mode)//elegxos prosvasis sto arxeio. An oxi epistrefei sfalma
 {
-	
     FILE *f;
     f = fopen(filename,mode);
     if (f == NULL) 
 	{
-	QMessageBox::critical(0,tr("User Manager"),tr("<qt> could not Open DataBase file <i> %1 </i> </qt>").arg(filename));
-    	
+        QMessageBox::critical(0,tr("User Manager"),tr("<qt> could not Open DataBase file <i> %1 </i> </qt>").arg(filename));
+
 	}
     return f;
 }
