@@ -119,19 +119,16 @@ void GroupProperties::removeMembers( )
 {
 	Groups groups;
 	Models model;
-	struct group *grs;
     MyLibb set;
 
     size_t len = strlen(getOldGroupName().toLatin1().data());
 
     char *gname = NULL;
 
-    if ( len == 0)
-        QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Zero length detected: %1" ).arg(errno));
-
+    if ( len == 0 || len > SIZE_MAX / sizeof(char))
+        QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Possible overflow due to wrong sting length: %1" ).arg(errno));
     else
     {
-
     gname = (char*)calloc(len, sizeof(getOldGroupName().toLatin1().data()));
 
     char *username = NULL;
@@ -147,33 +144,46 @@ void GroupProperties::removeMembers( )
     }
     else
     {
-
-
     if ( gname != NULL )
     {
 
     Spc *sec = new Spc();
 
-    memcpy(gname, getOldGroupName().toLatin1().data(), strlen(getOldGroupName().toLatin1().data()));
-
+    memcpy(gname, getOldGroupName().toLatin1().data(), len);
 
     bool allocate = true;
+
+    struct group *grs;
 
 	grs=getgrnam(gname);
 
 	QModelIndexList indexes = membersList->selectionModel()->selectedIndexes();
+
+    size_t index_len;
 	
 	foreach ( QModelIndex index, indexes )
     {
 
-       ptr = (char*)realloc(username, strlen(index.data().toByteArray().data())*2);
+       index_len = (size_t)strlen(index.data().toByteArray().data());
+
+       if ( len == 0 || len > SIZE_MAX / sizeof(char) )
+       {
+           allocate = false ;
+           errno = ENOMEM;
+           QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Possible overflow due to wrong sting length: %1" ).arg(errno));
+           break;
+       }
+       else
+       {
+
+       ptr = (char*)realloc(username,(size_t)index_len*2);
 
        username = ptr ;
 
        if ( username != NULL )
        {
-          memcpy(username, index.data().toByteArray().data(), strlen(index.data().toByteArray().data())+1);
-          username[strlen(index.data().toByteArray().data())] = '\0';
+          memcpy(username, index.data().toByteArray().data(), index_len+1);
+          username[index_len] = '\0';
           groups.remove_member(grs,username);
           set.setgrnam(grs);
         }
@@ -184,6 +194,8 @@ void GroupProperties::removeMembers( )
              QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory : %1" ).arg(errno));
              break;
         }
+
+       }
 	}
 
     if ( allocate != false )

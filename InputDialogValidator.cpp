@@ -17,7 +17,7 @@ QVBoxLayout *l=new QVBoxLayout(this);
 
 label=new QLabel(this);
 
-// Security Fix : Whitelisted characters and digits
+// Security Fix : Whitelisted characters digits and symbols
 
 regExp=QRegExp("^[a-zA-Z0-9-_]{0,12}$");
 
