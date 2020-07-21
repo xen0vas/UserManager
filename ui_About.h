@@ -10,12 +10,10 @@
 #define UI_ABOUT_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
@@ -26,27 +24,26 @@ QT_BEGIN_NAMESPACE
 class Ui_About
 {
 public:
-    QVBoxLayout *verticalLayout_2;
+    QVBoxLayout *verticalLayout;
     QTabWidget *tabWidget;
     QWidget *tab;
-    QTextEdit *textEdit;
     QLabel *label;
+    QHBoxLayout *horizontalLayout_2;
+    QTextEdit *textEdit;
     QWidget *tab_2;
     QHBoxLayout *horizontalLayout_3;
     QTextEdit *textEdit_2;
     QWidget *tab_3;
     QHBoxLayout *horizontalLayout;
     QTextEdit *textEdit_3;
-    QVBoxLayout *verticalLayout;
-    QPushButton *OK;
 
     void setupUi(QDialog *About)
     {
         if (About->objectName().isEmpty())
             About->setObjectName(QString::fromUtf8("About"));
-        About->resize(611, 377);
-        verticalLayout_2 = new QVBoxLayout(About);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        About->resize(624, 401);
+        verticalLayout = new QVBoxLayout(About);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         tabWidget = new QTabWidget(About);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
         tabWidget->setAutoFillBackground(false);
@@ -54,18 +51,22 @@ public:
         tabWidget->setTabShape(QTabWidget::Triangular);
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
-        textEdit = new QTextEdit(tab);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        textEdit->setGeometry(QRect(10, 10, 571, 281));
-        textEdit->setAutoFillBackground(false);
-        textEdit->setStyleSheet(QString::fromUtf8("background-color: lightgrey"));
-        textEdit->setReadOnly(true);
-        textEdit->setTextInteractionFlags(Qt::NoTextInteraction);
         label = new QLabel(tab);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(270, 100, 51, 41));
         label->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/UserManager.gif")));
         label->setScaledContents(true);
+        horizontalLayout_2 = new QHBoxLayout(tab);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        textEdit = new QTextEdit(tab);
+        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        textEdit->setAutoFillBackground(false);
+        textEdit->setStyleSheet(QString::fromUtf8("background-color: lightgrey"));
+        textEdit->setReadOnly(true);
+        textEdit->setTextInteractionFlags(Qt::NoTextInteraction);
+
+        horizontalLayout_2->addWidget(textEdit);
+
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
@@ -94,21 +95,7 @@ public:
 
         tabWidget->addTab(tab_3, QString());
 
-        verticalLayout_2->addWidget(tabWidget);
-
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        OK = new QPushButton(About);
-        OK->setObjectName(QString::fromUtf8("OK"));
-        OK->setMinimumSize(QSize(591, 0));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8(":/new/prefix1/images/ok.png"), QSize(), QIcon::Normal, QIcon::Off);
-        OK->setIcon(icon);
-
-        verticalLayout->addWidget(OK);
-
-
-        verticalLayout_2->addLayout(verticalLayout);
+        verticalLayout->addWidget(tabWidget);
 
 
         retranslateUi(About);
@@ -122,6 +109,7 @@ public:
     void retranslateUi(QDialog *About)
     {
         About->setWindowTitle(QApplication::translate("About", "User Manager-About", nullptr));
+        label->setText(QString());
         textEdit->setHtml(QApplication::translate("About", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -136,11 +124,10 @@ public:
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans'; font-size:16pt"
                         "; font-weight:600;\"><br /></p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans'; font-size:16pt; font-weight:600;\"><br /></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:11pt; font-weight:600; font-style:italic;\">A Linux Accounts Management Utitlity </span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:11pt; font-weight:600; font-style:italic;\">Linux Accounts Management Utility </span></p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans'; font-size:11pt; font-weight:600; font-style:italic;\"><br /></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:11pt; font-weight"
-                        ":600; font-style:italic;\">	                        </span></p></body></html>", nullptr));
-        label->setText(QString());
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:11pt; font-weight:60"
+                        "0; font-style:italic;\">	                        </span></p></body></html>", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("About", "About", nullptr));
         textEdit_2->setHtml(QApplication::translate("About", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -384,7 +371,6 @@ public:
                         "n-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans'; font-size:10pt;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">END OF TERMS AND CONDITIONS</span></p></body></html>", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("About", "License Agreement", nullptr));
-        OK->setText(QApplication::translate("About", "OK", nullptr));
     } // retranslateUi
 
 };

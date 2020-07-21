@@ -23,7 +23,7 @@ echo  '                                             /____/             '
 echo
 echo  'UserManager - Linux Accounts Manager'
 echo  'Authors: @xvass, @mekotsi'
-echo  'Version 1.0.74'
+echo  'Version 1.0.75'
 echo -ne "$NC"
 
 os=$(uname -a)
