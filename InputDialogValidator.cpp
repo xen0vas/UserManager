@@ -18,8 +18,8 @@ QVBoxLayout *l=new QVBoxLayout(this);
 label=new QLabel(this);
 
 // Security Fix : Whitelisted characters digits and symbols
-
-regExp=QRegExp("^[a-zA-Z0-9-_]{0,12}$");
+QRegExp regExp("^[a-zA-Z0-9-_]+$");
+//regExp=QRegExp("^[a-zA-Z0-9-_]{0,12}$");
 
 validator=new QRegExpValidator(regExp);
 

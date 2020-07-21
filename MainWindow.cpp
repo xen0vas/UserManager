@@ -179,8 +179,8 @@ void MainWindow::addUserBtnClicked()
      * Security Fix : Perform Input validation when adding a new user
      * @InputDialogValidator
      */
-
-    QRegExp regExp("^[a-zA-Z0-9-_]{0,12}$");
+    QRegExp regExp("^[a-zA-Z0-9-_]+$");
+    //QRegExp regExp("^[a-zA-Z0-9-_]{0,12}$");
 
     QString userString = InputDialogValidator::getText( this, "Add New User", \
                                                         "", \

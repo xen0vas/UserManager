@@ -182,22 +182,26 @@ void GroupProperties::removeMembers( )
 
        ptr = (char*)realloc(username,(size_t)index_len*2);
 
-       username = ptr ;
-
-       if ( username != NULL )
+       if ( ptr != NULL )
        {
-          memcpy(username, index.data().toByteArray().data(), index_len+1);
+          memcpy(ptr, index.data().toByteArray().data(), index_len+1);
           username[index_len] = '\0';
+          username = ptr ;
           groups.remove_member(grs,username);
           set.setgrnam(grs);
-        }
-        else
-        {
+       }
+       else if ( ptr == NULL )
+       {
+             if ( username != NULL )
+             {
+                  free(username);
+                  username = NULL;
+             }
              allocate = false ;
              errno = ENOMEM;
              QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory : %1" ).arg(errno));
              break;
-        }
+       }
 
        }
 	}
@@ -249,22 +253,35 @@ void GroupProperties::removeMembers( )
 
 bool GroupProperties::renameGroup()
 {
-Spc * sec = new Spc();
-QRegExp rx ( "[:.'|<>?/*\\+=&*%]" );
-int res = 0 ;
-int pos = 0;
-int count = 0;
+//Spc * sec = new Spc();
+QRegExp rx ( "[:.'|<>?/*\\+=&*%]" ); // check out this invalid chars
 
-char *groupname = (char*)calloc( 1, sizeof(groupNameEdit->text().toLatin1().data()) );
+size_t len = strlen(groupNameEdit->text().toLatin1().data());
+
+if ( len == 0 || len > SIZE_MAX / sizeof(char) )
+{
+    errno = ENOMEM;
+    QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory - %1" ).arg(errno));
+    return false;
+}
+else
+{
+
+char *groupname = (char*)calloc( 128, len);
 
     // check if memory allocated succesully to avoid undefined behaviours and potential security issues
     if ( groupname == NULL )
     {
+            errno = ENOMEM;
             QMessageBox::critical( 0,tr ( "User Manager" ),tr ( "Could not allocate memory - %1" ).arg(errno));
-            return -1;
+            return false;
     }
     else
     {
+            int res = 0 ;
+            int count = 0;
+            int pos = 0;
+
             memcpy(groupname, groupNameEdit->text().toLatin1().data(), strlen(groupNameEdit->text().toLatin1().data()));
 
             QString gname = QString::fromUtf8(groupname);
@@ -279,7 +296,7 @@ char *groupname = (char*)calloc( 1, sizeof(groupNameEdit->text().toLatin1().data
 
             if ( pos == -1)
             {
-                sec->clenv();
+                //sec->clenv(); we dont need to clear the environment since we get the full path of the groupmod program
 
                 QString program = "/usr/sbin/groupmod";
                 QStringList arguments;
@@ -292,12 +309,13 @@ char *groupname = (char*)calloc( 1, sizeof(groupNameEdit->text().toLatin1().data
                 arguments.clear();
             }
     }
-delete sec;
+//if ( sec != NULL ) { delete sec; sec = NULL; }
 
-if (groupname != NULL) { free(groupname); groupname = NULL ; }
+if ( groupname != NULL ) { free(groupname); groupname = NULL ; }
 
+
+}
 return true;
-this->~GroupProperties();
 }
 
 /**
