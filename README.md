@@ -20,7 +20,13 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 * add,edit,delete user accounts and groups
 * add users to groups
 * search users
+* search groups
 * remove users from groups 
+* set primary groups 
+* add members to groups 
+* remove members from groups 
+* add individual groups 
+* show and edit user information 
 * set UIDs and GIDs
 * set users passwords 
 * set working directories
