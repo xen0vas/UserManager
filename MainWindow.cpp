@@ -388,7 +388,7 @@ void MainWindow::deleteUser()
         spp = getspnam(username.toLatin1().data());
                 if (spp != NULL)
                 {
-                    sec->clenv();
+                    sec->clenv(); // Secusiry fix : clear the environmental variables before calling a third party program 
 
                     unlink(SH_FILE".bak");
                     link(SH_FILE, SH_FILE".bak");
@@ -396,6 +396,10 @@ void MainWindow::deleteUser()
                     const QString sed = "sed";
                     QProcess process1;
 
+                    /* 
+                    * username is allready taken from the model index and not from user input. 
+                    * If the usernames are allready in the treeview then there isnt any security concern regarding command injections 
+                    */
                     QString ed1 = "s/^"+username+":.*$//";
                     const QString options = "-i";
                     const QString shadowpath = "/etc/shadow";
