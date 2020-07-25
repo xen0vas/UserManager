@@ -41,7 +41,7 @@ TODO :
 * implement password generator 
 * provide apllication usage from limited users in order to be able to change their passwords ( same like passwd program )
 * implement password strenght checks
-* implements password suggestions 
+* implement password suggestions 
 
 ------------------
 
