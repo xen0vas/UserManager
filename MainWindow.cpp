@@ -202,7 +202,7 @@ void MainWindow::addUserBtnClicked()
     //QRegExp regExp("^[a-zA-Z0-9-_]{0,12}$");
 
     QString userString = InputDialogValidator::getText( this, "Add New User", \
-                                                        "", \
+                                                        "Enter User Name :", \
                                                         "", \
                                                         regExp, &okBtn );
         Users user ;
@@ -295,8 +295,12 @@ void  MainWindow::loadUsersAndGroups( )
     model = nullptr;
 
 }
+
+
 /**
- *Επαναφόρτωση των λιστών ομάδων και χρήστων της κύριας φόρμας με αλλαγές σε components της φόρμας.
+ * @brief MainWindow::reloadUsersAndGroups
+ * @abstract Reloads Users and Groups index in dashbord treeview
+ *
  */
 void MainWindow::reloadUsersAndGroups()
 {
@@ -304,16 +308,23 @@ void MainWindow::reloadUsersAndGroups()
     if (folderSizeCheckBox->isChecked())
         folderSizeCheckBox->setChecked(false);
     Models *model {new Models()};
-    userModel = model->createUsersModel( );
-    groupModel = model->createGroupsModel( );
-    userTreeView->setModel( userModel );
-    beautyTree( userTreeView, 6 );
-    groupTreeView->setModel( groupModel );
-    beautyTree( groupTreeView, 1 );
-    clearEditBoxes();
-    if (tabWidget->currentIndex()==0)
-    folderSizeCheckBox->setVisible(true);
-    if (model != nullptr) {delete model ;model = nullptr;}
+    if ( model != nullptr ){
+        userModel = model->createUsersModel( );
+        groupModel = model->createGroupsModel( );
+        userTreeView->setModel( userModel );
+    	beautyTree( userTreeView, 6 );
+    	groupTreeView->setModel( groupModel );
+    	beautyTree( groupTreeView, 1 );
+    	clearEditBoxes();
+    	if (tabWidget->currentIndex()==0)
+    	folderSizeCheckBox->setVisible(true);
+        delete model ;
+        model = nullptr;
+		}
+    else {
+        errno = ENOMEM ;
+        QMessageBox::critical ( 0, tr ( " UserManager " ),tr ( "User '<i><b>%1</b></i>'" ).arg(errno) );
+    }
 }
 /**
  *Αποθήκευση των στοιχείων του χρήστη που πατήθηκε από την λίστα σε ανάλογες μεταβλητές της κλάσης για επεξεργασία.
@@ -522,12 +533,13 @@ void MainWindow::deleteUser()
                         }
 
                     }
-                     fclose(pFile);
+                     if (pFile != NULL ) fclose(pFile);
             }
 
         }
     }
-            fclose(passBase);
+            if ( passBase != NULL )
+                fclose(passBase);
 
             if (fchk != nullptr)
             {
@@ -541,7 +553,9 @@ void MainWindow::deleteUser()
  */
 int  MainWindow::deleteGroup()
 {
-    MyLibb *fchk {new MyLibb()};
+    //MyLibb *fchk {new MyLibb()};
+
+    std::unique_ptr<MyLibb> fchk(new MyLibb);
     FILE  *groupBase;
     Groups gr;
     int result;
@@ -574,17 +588,17 @@ int  MainWindow::deleteGroup()
                     {
                         QMessageBox::information ( 0, tr ( " User Manager " ), tr ( " Group '%1' deleted from Database " ).arg ( groupname ) );
                         reloadUsersAndGroups();
-                        delete fchk;
-                        fchk = nullptr;
+                        //delete fchk;
+                        //fchk = nullptr;
                         return 0;
                     }
                 }
     }
-    if (fchk != nullptr)
-    {
-        delete fchk;
-        fchk = nullptr;
-    }
+    //if (fchk != nullptr)
+    //{
+    //    delete fchk;
+    //    fchk = nullptr;
+    //}
 return 1;
 }
 
