@@ -55,7 +55,7 @@ UserProperties::UserProperties ( QWidget * parent ) : QDialog ( parent )
 	years->setEnabled(false);
 	alway->setCheckState(Qt::Checked);
 	passBtn->setEnabled(false);
-	shellConnect->setAutoCompletion ( true );
+    //shellConnect->setCompleter();
 	tabWidget->setTabEnabled(2,false);
 	expire->setSpecialValueText("never");
 	expire->stepBy(-1);
@@ -184,7 +184,10 @@ int UserProperties::setPasswdUID()
     uid = atoi(settings.getconf("MINIMUM_UID").c_str());
     int actual_uid = uid;
 
-	if ( !fp ) { return 0; }
+    if ( !fp ) {
+        free(pwdBuffer);
+        return 0;
+    }
 
     for ( int i=uid ; i < max; ++i )
     {

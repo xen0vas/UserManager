@@ -553,12 +553,14 @@ void MainWindow::deleteUser()
  */
 int  MainWindow::deleteGroup()
 {
-    //MyLibb *fchk {new MyLibb()};
-
     std::unique_ptr<MyLibb> fchk(new MyLibb);
     FILE  *groupBase;
     Groups gr;
     int result;
+
+    // TO-DO
+    // use flock to lock the group file before using it
+
     groupBase  = fchk->fopen_wrapper ( GROUP_FILE,  "r+" );
     QModelIndex index=groupTreeView->selectionModel()->currentIndex();
     int row=index.row();
@@ -588,17 +590,10 @@ int  MainWindow::deleteGroup()
                     {
                         QMessageBox::information ( 0, tr ( " User Manager " ), tr ( " Group '%1' deleted from Database " ).arg ( groupname ) );
                         reloadUsersAndGroups();
-                        //delete fchk;
-                        //fchk = nullptr;
                         return 0;
                     }
                 }
     }
-    //if (fchk != nullptr)
-    //{
-    //    delete fchk;
-    //    fchk = nullptr;
-    //}
 return 1;
 }
 
@@ -609,7 +604,8 @@ return 1;
 void MainWindow::getSelectedUserInfo( const QModelIndex &index )
 {
 
-    Users *user = {new Users()};
+    //Users *user = {new Users()};
+    std::unique_ptr<Users> user(new Users);
     Users u;
     int row = index.row();
     QString uid = index.sibling( row, 0).data( Qt::DisplayRole).toString() ;
@@ -627,11 +623,11 @@ void MainWindow::getSelectedUserInfo( const QModelIndex &index )
     {
         statusEdit->setText(tr("Enabled"));
     }
-    if (user != nullptr)
-    {
-        delete user;
-        user = nullptr;
-    }
+    //if (user != nullptr)
+    //{
+    //    delete user;
+    //    user = nullptr;
+    //}
 
 }
 /**
@@ -639,14 +635,14 @@ void MainWindow::getSelectedUserInfo( const QModelIndex &index )
  */
 void MainWindow::getSelectedGroupInfo( const QModelIndex &index )
 {
-    Models *model {new Models()};
+
+    std::unique_ptr<Models> model(new Models);
     int row = index.row();
     QString  groupnameString = index.sibling( row, 1 ).data( Qt::DisplayRole ).toString();
     QByteArray groupnameArray = groupnameString.toLatin1();
     const char *groupName = groupnameArray.data();
     membersTree->setModel( model->createMembersModel( groupName ) );
     beautyTree( membersTree, 2 );
-    if (model != nullptr) {delete 	model;	model = nullptr;}
 
 }
 /**
