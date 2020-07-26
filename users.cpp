@@ -107,8 +107,8 @@ QString Users::getUsersSecondaryGroups( QString name )
 	const char *userChar = nameArray.data();
 	
 	char **members;
-	members = (char**)malloc(sizeof(char**));
-	memset(&members, 0, sizeof(members));
+    members = (char**)malloc(sizeof(char*));
+    memset(&members, 0, sizeof(members));
 	while (( group = getgrent() ) != NULL )
 	{
 		for ( members = group->gr_mem; *members; members++ )
@@ -118,7 +118,7 @@ QString Users::getUsersSecondaryGroups( QString name )
 				listGroup.append( "," );
 			}
 	}
-    	listGroup.chop(2);
+        listGroup.chop(1);
 	endgrent();
 	free(*members); 
 	return listGroup;

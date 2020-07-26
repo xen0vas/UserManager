@@ -602,7 +602,6 @@ return 1;
 void MainWindow::getSelectedUserInfo( const QModelIndex &index )
 {
 
-    //Users *user = {new Users()};
     std::unique_ptr<Users> user(new Users);
     Users u;
     int row = index.row();
@@ -621,12 +620,6 @@ void MainWindow::getSelectedUserInfo( const QModelIndex &index )
     {
         statusEdit->setText(tr("Enabled"));
     }
-    //if (user != nullptr)
-    //{
-    //    delete user;
-    //    user = nullptr;
-    //}
-
 }
 /**
  *Εμφάνιση των στοιχείων της ομάδας που επιλέχθηκε από την λίστα των ομάδων στην κύρια φόρμα.
