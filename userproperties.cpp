@@ -376,6 +376,15 @@ int UserProperties::insertIntoShadowFile ( QString logname,QString encrypted_pas
 		spw = setShadowStruct(atoi ( maximum.c_str() ),atoi(warn_pass.c_str()),atoi ( inactuser.c_str() ),atoi ( minim.c_str() ),inactuser,name.data(),acc.toLatin1().data(),curdays);
 		}
 
+	/*
+	*
+	*  - TODO - 
+	*
+	*   lock the shadow file with flock() in order to prevent conflicts 
+	*
+	*
+	*/ 
+	
 	setspent();
 	FILE *shadowbase;
 	const char *sh_file = SHADOW_FILE;
