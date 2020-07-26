@@ -287,13 +287,11 @@ void  MainWindow::loadUsersAndGroups( )
         userModel = model->createUsersModel( );
         groupModel = model->createGroupsModel( );
         userTreeView->setModel( userModel );
-
         beautyTree( userTreeView, 6 );
         groupTreeView->setModel( groupModel );
         beautyTree( groupTreeView, 1 );
         delete model;
-    model = nullptr;
-
+        model = nullptr;
 }
 
 

@@ -31,7 +31,7 @@ HashingAlgorithm::~HashingAlgorithm()
 
 void HashingAlgorithm::storePassShadow(QString name, QString passhash)
 {
-	MyLibb *fchk = new MyLibb;
+    std::unique_ptr<MyLibb> fchk(new MyLibb);
 	struct spwd spd;
 	MainWindow main;
 	int curdays = time ( NULL ) / ( 60 * 60 * 24 );
@@ -41,7 +41,6 @@ void HashingAlgorithm::storePassShadow(QString name, QString passhash)
 
 	fchk->setspnam(&spd);
 	main.reloadUsersAndGroups();
-	if (fchk != nullptr) { delete fchk; fchk = nullptr;}
 }
 
 bool HashingAlgorithm::getBlowIsChecked()
