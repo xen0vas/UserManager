@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'Settings.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.5
+** Created by: Qt User Interface Compiler version 5.14.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -88,13 +88,13 @@ public:
 
     void retranslateUi(QDialog *Settings)
     {
-        Settings->setWindowTitle(QApplication::translate("Settings", "UserManager-Settings", nullptr));
+        Settings->setWindowTitle(QCoreApplication::translate("Settings", "UserManager-Settings", nullptr));
         warnCheckBox->setText(QString());
-        warnLabel->setText(QApplication::translate("Settings", "E-mail users before account expires", nullptr));
-        okSetBtn->setText(QApplication::translate("Settings", "OK", nullptr));
-        label->setText(QApplication::translate("Settings", "First Normal UID:", nullptr));
-        label_2->setText(QApplication::translate("Settings", "First Normal GID:", nullptr));
-        label_3->setText(QApplication::translate("Settings", "Select Language:", nullptr));
+        warnLabel->setText(QCoreApplication::translate("Settings", "E-mail users before account expires", nullptr));
+        okSetBtn->setText(QCoreApplication::translate("Settings", "OK", nullptr));
+        label->setText(QCoreApplication::translate("Settings", "First Normal UID:", nullptr));
+        label_2->setText(QCoreApplication::translate("Settings", "First Normal GID:", nullptr));
+        label_3->setText(QCoreApplication::translate("Settings", "Select Language:", nullptr));
     } // retranslateUi
 
 };

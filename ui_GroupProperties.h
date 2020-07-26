@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'GroupProperties.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.5
+** Created by: Qt User Interface Compiler version 5.14.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -238,16 +238,16 @@ public:
 
     void retranslateUi(QDialog *GroupProperties)
     {
-        GroupProperties->setWindowTitle(QApplication::translate("GroupProperties", "Group Properties", nullptr));
+        GroupProperties->setWindowTitle(QCoreApplication::translate("GroupProperties", "Group Properties", nullptr));
         GIDLabel->setText(QString());
-        label->setText(QApplication::translate("GroupProperties", "Group ID:", nullptr));
-        newGroupBtn->setText(QApplication::translate("GroupProperties", "...", nullptr));
-        label_2->setText(QApplication::translate("GroupProperties", "Group Name:", nullptr));
+        label->setText(QCoreApplication::translate("GroupProperties", "Group ID:", nullptr));
+        newGroupBtn->setText(QCoreApplication::translate("GroupProperties", "...", nullptr));
+        label_2->setText(QCoreApplication::translate("GroupProperties", "Group Name:", nullptr));
         existsLabel->setText(QString());
-        addBtn->setText(QApplication::translate("GroupProperties", "<- Add", nullptr));
-        removeBtn->setText(QApplication::translate("GroupProperties", "Remove->", nullptr));
-        okBtn->setText(QApplication::translate("GroupProperties", "&OK", nullptr));
-        closeBtn->setText(QApplication::translate("GroupProperties", "&Close", nullptr));
+        addBtn->setText(QCoreApplication::translate("GroupProperties", "<- Add", nullptr));
+        removeBtn->setText(QCoreApplication::translate("GroupProperties", "Remove->", nullptr));
+        okBtn->setText(QCoreApplication::translate("GroupProperties", "&OK", nullptr));
+        closeBtn->setText(QCoreApplication::translate("GroupProperties", "&Close", nullptr));
     } // retranslateUi
 
 };

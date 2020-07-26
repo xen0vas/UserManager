@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'EditProperties.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.5
+** Created by: Qt User Interface Compiler version 5.14.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -588,63 +588,63 @@ public:
 
     void retranslateUi(QDialog *EditProperties)
     {
-        EditProperties->setWindowTitle(QApplication::translate("EditProperties", "User Properties", nullptr));
-        cancelBtn->setText(QApplication::translate("EditProperties", "&Close", nullptr));
-        edit->setText(QApplication::translate("EditProperties", "&Ok", nullptr));
-        label_4->setText(QApplication::translate("EditProperties", "User Login :", nullptr));
+        EditProperties->setWindowTitle(QCoreApplication::translate("EditProperties", "User Properties", nullptr));
+        cancelBtn->setText(QCoreApplication::translate("EditProperties", "&Close", nullptr));
+        edit->setText(QCoreApplication::translate("EditProperties", "&Ok", nullptr));
+        label_4->setText(QCoreApplication::translate("EditProperties", "User Login :", nullptr));
         LoginName->setText(QString());
-        pass->setText(QApplication::translate("EditProperties", "&Set Password ....", nullptr));
-        label_3->setText(QApplication::translate("EditProperties", "User ID :", nullptr));
-        label_5->setText(QApplication::translate("EditProperties", "Full Name :", nullptr));
-        label_6->setText(QApplication::translate("EditProperties", "Shell Connection :", nullptr));
-        label_7->setText(QApplication::translate("EditProperties", "Home Directory :", nullptr));
-        browseBtn->setText(QApplication::translate("EditProperties", "Browse...", nullptr));
-        label_10->setText(QApplication::translate("EditProperties", "Office  1# :", nullptr));
-        label_8->setText(QApplication::translate("EditProperties", "Office  2# :", nullptr));
-        label_11->setText(QApplication::translate("EditProperties", "Address :", nullptr));
-        label_12->setText(QApplication::translate("EditProperties", "Account Disabled  :", nullptr));
+        pass->setText(QCoreApplication::translate("EditProperties", "&Set Password ....", nullptr));
+        label_3->setText(QCoreApplication::translate("EditProperties", "User ID :", nullptr));
+        label_5->setText(QCoreApplication::translate("EditProperties", "Full Name :", nullptr));
+        label_6->setText(QCoreApplication::translate("EditProperties", "Shell Connection :", nullptr));
+        label_7->setText(QCoreApplication::translate("EditProperties", "Home Directory :", nullptr));
+        browseBtn->setText(QCoreApplication::translate("EditProperties", "Browse...", nullptr));
+        label_10->setText(QCoreApplication::translate("EditProperties", "Office  1# :", nullptr));
+        label_8->setText(QCoreApplication::translate("EditProperties", "Office  2# :", nullptr));
+        label_11->setText(QCoreApplication::translate("EditProperties", "Address :", nullptr));
+        label_12->setText(QCoreApplication::translate("EditProperties", "Account Disabled  :", nullptr));
         checkBoxEdit->setText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("EditProperties", "User &Info", nullptr));
-        label_2->setText(QApplication::translate("EditProperties", "Last Password Change :", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("EditProperties", "User &Info", nullptr));
+        label_2->setText(QCoreApplication::translate("EditProperties", "Last Password Change :", nullptr));
         datetime->setText(QString());
-        label_9->setText(QApplication::translate("EditProperties", "Password Aging :", nullptr));
+        label_9->setText(QCoreApplication::translate("EditProperties", "Password Aging :", nullptr));
         requires_Pass->setText(QString());
-        max->setSuffix(QApplication::translate("EditProperties", "  days", nullptr));
+        max->setSuffix(QCoreApplication::translate("EditProperties", "  days", nullptr));
         max->setPrefix(QString());
-        label_14->setText(QApplication::translate("EditProperties", "Warn before password expires :", nullptr));
+        label_14->setText(QCoreApplication::translate("EditProperties", "Warn before password expires :", nullptr));
         warn->setSpecialValueText(QString());
-        warn->setSuffix(QApplication::translate("EditProperties", "  days", nullptr));
-        warn->setPrefix(QApplication::translate("EditProperties", "After ", nullptr));
-        label_15->setText(QApplication::translate("EditProperties", "Disable account after password expires :", nullptr));
+        warn->setSuffix(QCoreApplication::translate("EditProperties", "  days", nullptr));
+        warn->setPrefix(QCoreApplication::translate("EditProperties", "After ", nullptr));
+        label_15->setText(QCoreApplication::translate("EditProperties", "Disable account after password expires :", nullptr));
         expire->setSpecialValueText(QString());
-        expire->setSuffix(QApplication::translate("EditProperties", "  days", nullptr));
+        expire->setSuffix(QCoreApplication::translate("EditProperties", "  days", nullptr));
         enforce_Pass->setText(QString());
-        label_16->setText(QApplication::translate("EditProperties", "Enforce minimum password age:", nullptr));
+        label_16->setText(QCoreApplication::translate("EditProperties", "Enforce minimum password age:", nullptr));
         min->setSpecialValueText(QString());
-        min->setSuffix(QApplication::translate("EditProperties", "  days", nullptr));
+        min->setSuffix(QCoreApplication::translate("EditProperties", "  days", nullptr));
         min->setPrefix(QString());
-        label_17->setText(QApplication::translate("EditProperties", "Account will expire  on:", nullptr));
-        months->setItemText(0, QApplication::translate("EditProperties", "January ", nullptr));
-        months->setItemText(1, QApplication::translate("EditProperties", "February", nullptr));
-        months->setItemText(2, QApplication::translate("EditProperties", "March", nullptr));
-        months->setItemText(3, QApplication::translate("EditProperties", "April", nullptr));
-        months->setItemText(4, QApplication::translate("EditProperties", "May", nullptr));
-        months->setItemText(5, QApplication::translate("EditProperties", "June ", nullptr));
-        months->setItemText(6, QApplication::translate("EditProperties", "July", nullptr));
-        months->setItemText(7, QApplication::translate("EditProperties", "August", nullptr));
-        months->setItemText(8, QApplication::translate("EditProperties", "September", nullptr));
-        months->setItemText(9, QApplication::translate("EditProperties", "October", nullptr));
-        months->setItemText(10, QApplication::translate("EditProperties", "November", nullptr));
-        months->setItemText(11, QApplication::translate("EditProperties", "December", nullptr));
+        label_17->setText(QCoreApplication::translate("EditProperties", "Account will expire  on:", nullptr));
+        months->setItemText(0, QCoreApplication::translate("EditProperties", "January ", nullptr));
+        months->setItemText(1, QCoreApplication::translate("EditProperties", "February", nullptr));
+        months->setItemText(2, QCoreApplication::translate("EditProperties", "March", nullptr));
+        months->setItemText(3, QCoreApplication::translate("EditProperties", "April", nullptr));
+        months->setItemText(4, QCoreApplication::translate("EditProperties", "May", nullptr));
+        months->setItemText(5, QCoreApplication::translate("EditProperties", "June ", nullptr));
+        months->setItemText(6, QCoreApplication::translate("EditProperties", "July", nullptr));
+        months->setItemText(7, QCoreApplication::translate("EditProperties", "August", nullptr));
+        months->setItemText(8, QCoreApplication::translate("EditProperties", "September", nullptr));
+        months->setItemText(9, QCoreApplication::translate("EditProperties", "October", nullptr));
+        months->setItemText(10, QCoreApplication::translate("EditProperties", "November", nullptr));
+        months->setItemText(11, QCoreApplication::translate("EditProperties", "December", nullptr));
 
-        alway->setText(QApplication::translate("EditProperties", "Never", nullptr));
-        label_13->setText(QApplication::translate("EditProperties", "Require new password after:", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("EditProperties", "Password &Manager", nullptr));
-        easyCheckbox->setText(QApplication::translate("EditProperties", "Privileges and groups", nullptr));
-        label->setText(QApplication::translate("EditProperties", "Primary Group:", nullptr));
-        makePrimBtn->setText(QApplication::translate("EditProperties", "Set as Primary", nullptr));
+        alway->setText(QCoreApplication::translate("EditProperties", "Never", nullptr));
+        label_13->setText(QCoreApplication::translate("EditProperties", "Require new password after:", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("EditProperties", "Password &Manager", nullptr));
+        easyCheckbox->setText(QCoreApplication::translate("EditProperties", "Privileges and groups", nullptr));
+        label->setText(QCoreApplication::translate("EditProperties", "Primary Group:", nullptr));
+        makePrimBtn->setText(QCoreApplication::translate("EditProperties", "Set as Primary", nullptr));
         primGroupLabel->setText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("EditProperties", "&Groups", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("EditProperties", "&Groups", nullptr));
     } // retranslateUi
 
 };

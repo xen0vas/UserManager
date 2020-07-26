@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'HashingAlgorithm.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.5
+** Created by: Qt User Interface Compiler version 5.14.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -219,20 +219,20 @@ public:
 
     void retranslateUi(QDialog *HashingAlgorithm)
     {
-        HashingAlgorithm->setWindowTitle(QApplication::translate("HashingAlgorithm", "Setup Password", nullptr));
-        UserLabel->setText(QApplication::translate("HashingAlgorithm", "User name :", nullptr));
+        HashingAlgorithm->setWindowTitle(QCoreApplication::translate("HashingAlgorithm", "Setup Password", nullptr));
+        UserLabel->setText(QCoreApplication::translate("HashingAlgorithm", "User name :", nullptr));
         UserNameLabel->setText(QString());
         NameLabelHidden->setText(QString());
-        groupBox->setTitle(QApplication::translate("HashingAlgorithm", "Hashing Algorithm", nullptr));
-        Sha512rdb->setText(QApplication::translate("HashingAlgorithm", "SHA-512", nullptr));
-        MD5rdb->setText(QApplication::translate("HashingAlgorithm", "MD5", nullptr));
-        Sha256rdb->setText(QApplication::translate("HashingAlgorithm", "SHA-256", nullptr));
-        Blowfishrdb->setText(QApplication::translate("HashingAlgorithm", "Blowfish", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("HashingAlgorithm", "Hashing Algorithm", nullptr));
+        Sha512rdb->setText(QCoreApplication::translate("HashingAlgorithm", "SHA-512", nullptr));
+        MD5rdb->setText(QCoreApplication::translate("HashingAlgorithm", "MD5", nullptr));
+        Sha256rdb->setText(QCoreApplication::translate("HashingAlgorithm", "SHA-256", nullptr));
+        Blowfishrdb->setText(QCoreApplication::translate("HashingAlgorithm", "Blowfish", nullptr));
         groupBox_2->setTitle(QString());
-        label_2->setText(QApplication::translate("HashingAlgorithm", "Password: ", nullptr));
-        label_3->setText(QApplication::translate("HashingAlgorithm", "Confirm: ", nullptr));
-        okBtn->setText(QApplication::translate("HashingAlgorithm", "Close", nullptr));
-        Save->setText(QApplication::translate("HashingAlgorithm", "Accept", nullptr));
+        label_2->setText(QCoreApplication::translate("HashingAlgorithm", "Password: ", nullptr));
+        label_3->setText(QCoreApplication::translate("HashingAlgorithm", "Confirm: ", nullptr));
+        okBtn->setText(QCoreApplication::translate("HashingAlgorithm", "Close", nullptr));
+        Save->setText(QCoreApplication::translate("HashingAlgorithm", "Accept", nullptr));
     } // retranslateUi
 
 };

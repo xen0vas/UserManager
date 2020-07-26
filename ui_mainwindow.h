@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.5
+** Created by: Qt User Interface Compiler version 5.14.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -565,97 +565,97 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "User Manager", nullptr));
-        menuReload->setText(QApplication::translate("MainWindow", "&Reload", nullptr));
-#ifndef QT_NO_STATUSTIP
-        menuReload->setStatusTip(QApplication::translate("MainWindow", "Exit Program", nullptr));
-#endif // QT_NO_STATUSTIP
-        menuConfiguration->setText(QApplication::translate("MainWindow", "&Configuration...", nullptr));
-#ifndef QT_NO_STATUSTIP
-        menuConfiguration->setStatusTip(QApplication::translate("MainWindow", "UserManager Settings", nullptr));
-#endif // QT_NO_STATUSTIP
-        menuLanguage->setText(QApplication::translate("MainWindow", "Language", nullptr));
-#ifndef QT_NO_STATUSTIP
-        menuLanguage->setStatusTip(QApplication::translate("MainWindow", "Change Language", nullptr));
-#endif // QT_NO_STATUSTIP
-        menuBackup->setText(QApplication::translate("MainWindow", "Create Backup", nullptr));
-#ifndef QT_NO_STATUSTIP
-        menuBackup->setStatusTip(QApplication::translate("MainWindow", "Backup system files", nullptr));
-#endif // QT_NO_STATUSTIP
-        menuAddUser->setText(QApplication::translate("MainWindow", "&Add...", nullptr));
-        menuDeleteUser->setText(QApplication::translate("MainWindow", "&Delete...", nullptr));
-        menuEditUser->setText(QApplication::translate("MainWindow", "&Edit...", nullptr));
-        menuSetPassword->setText(QApplication::translate("MainWindow", "&Set Pass&word...", nullptr));
-        menuAddGroup->setText(QApplication::translate("MainWindow", "&Add...", nullptr));
-        menuDeleteGroup->setText(QApplication::translate("MainWindow", "&Delete...", nullptr));
-        menuQuit->setText(QApplication::translate("MainWindow", "&Quit", nullptr));
-        menuAboutUserManager->setText(QApplication::translate("MainWindow", "&About User&Manager", nullptr));
-        menuAbout_Qt->setText(QApplication::translate("MainWindow", "About Qt", nullptr));
-        menuEditGroup->setText(QApplication::translate("MainWindow", "Edit", nullptr));
-        menuDiskUsage->setText(QApplication::translate("MainWindow", "DIsk Usage", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "User Manager", nullptr));
+        menuReload->setText(QCoreApplication::translate("MainWindow", "&Reload", nullptr));
+#if QT_CONFIG(statustip)
+        menuReload->setStatusTip(QCoreApplication::translate("MainWindow", "Exit Program", nullptr));
+#endif // QT_CONFIG(statustip)
+        menuConfiguration->setText(QCoreApplication::translate("MainWindow", "&Configuration...", nullptr));
+#if QT_CONFIG(statustip)
+        menuConfiguration->setStatusTip(QCoreApplication::translate("MainWindow", "UserManager Settings", nullptr));
+#endif // QT_CONFIG(statustip)
+        menuLanguage->setText(QCoreApplication::translate("MainWindow", "Language", nullptr));
+#if QT_CONFIG(statustip)
+        menuLanguage->setStatusTip(QCoreApplication::translate("MainWindow", "Change Language", nullptr));
+#endif // QT_CONFIG(statustip)
+        menuBackup->setText(QCoreApplication::translate("MainWindow", "Create Backup", nullptr));
+#if QT_CONFIG(statustip)
+        menuBackup->setStatusTip(QCoreApplication::translate("MainWindow", "Backup system files", nullptr));
+#endif // QT_CONFIG(statustip)
+        menuAddUser->setText(QCoreApplication::translate("MainWindow", "&Add...", nullptr));
+        menuDeleteUser->setText(QCoreApplication::translate("MainWindow", "&Delete...", nullptr));
+        menuEditUser->setText(QCoreApplication::translate("MainWindow", "&Edit...", nullptr));
+        menuSetPassword->setText(QCoreApplication::translate("MainWindow", "&Set Pass&word...", nullptr));
+        menuAddGroup->setText(QCoreApplication::translate("MainWindow", "&Add...", nullptr));
+        menuDeleteGroup->setText(QCoreApplication::translate("MainWindow", "&Delete...", nullptr));
+        menuQuit->setText(QCoreApplication::translate("MainWindow", "&Quit", nullptr));
+        menuAboutUserManager->setText(QCoreApplication::translate("MainWindow", "&About User&Manager", nullptr));
+        menuAbout_Qt->setText(QCoreApplication::translate("MainWindow", "About Qt", nullptr));
+        menuEditGroup->setText(QCoreApplication::translate("MainWindow", "Edit", nullptr));
+        menuDiskUsage->setText(QCoreApplication::translate("MainWindow", "DIsk Usage", nullptr));
         groupBox->setTitle(QString());
-#ifndef QT_NO_TOOLTIP
+#if QT_CONFIG(tooltip)
         reloadBtn->setToolTip(QString());
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_STATUSTIP
-        reloadBtn->setStatusTip(QApplication::translate("MainWindow", "Reload Lists", nullptr));
-#endif // QT_NO_STATUSTIP
-#ifndef QT_NO_WHATSTHIS
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        reloadBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Reload Lists", nullptr));
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(whatsthis)
         reloadBtn->setWhatsThis(QString());
-#endif // QT_NO_WHATSTHIS
+#endif // QT_CONFIG(whatsthis)
         reloadBtn->setText(QString());
-#ifndef QT_NO_STATUSTIP
-        addUserBtn->setStatusTip(QApplication::translate("MainWindow", "Add New User", nullptr));
-#endif // QT_NO_STATUSTIP
+#if QT_CONFIG(statustip)
+        addUserBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Add New User", nullptr));
+#endif // QT_CONFIG(statustip)
         addUserBtn->setText(QString());
-#ifndef QT_NO_STATUSTIP
-        delUserBtn->setStatusTip(QApplication::translate("MainWindow", "Delete User", nullptr));
-#endif // QT_NO_STATUSTIP
+#if QT_CONFIG(statustip)
+        delUserBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Delete User", nullptr));
+#endif // QT_CONFIG(statustip)
         delUserBtn->setText(QString());
-#ifndef QT_NO_STATUSTIP
-        searchUserBtn->setStatusTip(QApplication::translate("MainWindow", "Search User", nullptr));
-#endif // QT_NO_STATUSTIP
+#if QT_CONFIG(statustip)
+        searchUserBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Search User", nullptr));
+#endif // QT_CONFIG(statustip)
         searchUserBtn->setText(QString());
-#ifndef QT_NO_STATUSTIP
-        searchGroupBtn->setStatusTip(QApplication::translate("MainWindow", "Search Group", nullptr));
-#endif // QT_NO_STATUSTIP
+#if QT_CONFIG(statustip)
+        searchGroupBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Search Group", nullptr));
+#endif // QT_CONFIG(statustip)
         searchGroupBtn->setText(QString());
-#ifndef QT_NO_STATUSTIP
-        editBtn->setStatusTip(QApplication::translate("MainWindow", "Edit User", nullptr));
-#endif // QT_NO_STATUSTIP
-        editBtn->setText(QApplication::translate("MainWindow", "...", nullptr));
-#ifndef QT_NO_STATUSTIP
-        delGroupBtn->setStatusTip(QApplication::translate("MainWindow", "Delete Group", nullptr));
-#endif // QT_NO_STATUSTIP
-        delGroupBtn->setText(QApplication::translate("MainWindow", "...", nullptr));
-#ifndef QT_NO_STATUSTIP
-        addGroupBtn->setStatusTip(QApplication::translate("MainWindow", "Add New Group", nullptr));
-#endif // QT_NO_STATUSTIP
-        addGroupBtn->setText(QApplication::translate("MainWindow", "...", nullptr));
-#ifndef QT_NO_STATUSTIP
-        editGroupBtn->setStatusTip(QApplication::translate("MainWindow", "Edit Group", nullptr));
-#endif // QT_NO_STATUSTIP
-        editGroupBtn->setText(QApplication::translate("MainWindow", "...", nullptr));
-#ifndef QT_NO_STATUSTIP
+#if QT_CONFIG(statustip)
+        editBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Edit User", nullptr));
+#endif // QT_CONFIG(statustip)
+        editBtn->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
+#if QT_CONFIG(statustip)
+        delGroupBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Delete Group", nullptr));
+#endif // QT_CONFIG(statustip)
+        delGroupBtn->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
+#if QT_CONFIG(statustip)
+        addGroupBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Add New Group", nullptr));
+#endif // QT_CONFIG(statustip)
+        addGroupBtn->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
+#if QT_CONFIG(statustip)
+        editGroupBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Edit Group", nullptr));
+#endif // QT_CONFIG(statustip)
+        editGroupBtn->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
+#if QT_CONFIG(statustip)
         tabWidget->setStatusTip(QString());
-#endif // QT_NO_STATUSTIP
-        folderSizeCheckBox->setText(QApplication::translate("MainWindow", "Show Usage", nullptr));
-        userDetails->setTitle(QApplication::translate("MainWindow", "Details:", nullptr));
-        loginNameLabel_2->setText(QApplication::translate("MainWindow", "Login Name:", nullptr));
-        realNameLabel->setText(QApplication::translate("MainWindow", "Real Name:", nullptr));
-        UIDLabel->setText(QApplication::translate("MainWindow", "UID:", nullptr));
-        statusLabel->setText(QApplication::translate("MainWindow", "Status:", nullptr));
-        priGrouplabel->setText(QApplication::translate("MainWindow", "Primary Group:", nullptr));
-        secGroupLabel->setText(QApplication::translate("MainWindow", "Secondary Group(s):", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(usersTab), QApplication::translate("MainWindow", "Users", nullptr));
-        membersLabel->setText(QApplication::translate("MainWindow", "Group Members", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(groupsTab), QApplication::translate("MainWindow", "Groups", nullptr));
-        close_app->setText(QApplication::translate("MainWindow", "Close", nullptr));
-        menuFIile->setTitle(QApplication::translate("MainWindow", "&File", nullptr));
-        menuUser->setTitle(QApplication::translate("MainWindow", "&User", nullptr));
-        menuGroup->setTitle(QApplication::translate("MainWindow", "&Group", nullptr));
-        menuSettings->setTitle(QApplication::translate("MainWindow", "&Settings", nullptr));
-        menu_Help->setTitle(QApplication::translate("MainWindow", "&Help", nullptr));
+#endif // QT_CONFIG(statustip)
+        folderSizeCheckBox->setText(QCoreApplication::translate("MainWindow", "Show Usage", nullptr));
+        userDetails->setTitle(QCoreApplication::translate("MainWindow", "Details:", nullptr));
+        loginNameLabel_2->setText(QCoreApplication::translate("MainWindow", "Login Name:", nullptr));
+        realNameLabel->setText(QCoreApplication::translate("MainWindow", "Real Name:", nullptr));
+        UIDLabel->setText(QCoreApplication::translate("MainWindow", "UID:", nullptr));
+        statusLabel->setText(QCoreApplication::translate("MainWindow", "Status:", nullptr));
+        priGrouplabel->setText(QCoreApplication::translate("MainWindow", "Primary Group:", nullptr));
+        secGroupLabel->setText(QCoreApplication::translate("MainWindow", "Secondary Group(s):", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(usersTab), QCoreApplication::translate("MainWindow", "Users", nullptr));
+        membersLabel->setText(QCoreApplication::translate("MainWindow", "Group Members", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(groupsTab), QCoreApplication::translate("MainWindow", "Groups", nullptr));
+        close_app->setText(QCoreApplication::translate("MainWindow", "Close", nullptr));
+        menuFIile->setTitle(QCoreApplication::translate("MainWindow", "&File", nullptr));
+        menuUser->setTitle(QCoreApplication::translate("MainWindow", "&User", nullptr));
+        menuGroup->setTitle(QCoreApplication::translate("MainWindow", "&Group", nullptr));
+        menuSettings->setTitle(QCoreApplication::translate("MainWindow", "&Settings", nullptr));
+        menu_Help->setTitle(QCoreApplication::translate("MainWindow", "&Help", nullptr));
     } // retranslateUi
 
 };

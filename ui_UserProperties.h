@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'UserProperties.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.5
+** Created by: Qt User Interface Compiler version 5.14.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -561,72 +561,72 @@ public:
 
     void retranslateUi(QDialog *UserProperties)
     {
-        UserProperties->setWindowTitle(QApplication::translate("UserProperties", "Properties", nullptr));
-#ifndef QT_NO_TOOLTIP
-        tabWidget->setToolTip(QApplication::translate("UserProperties", "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+        UserProperties->setWindowTitle(QCoreApplication::translate("UserProperties", "Properties", nullptr));
+#if QT_CONFIG(tooltip)
+        tabWidget->setToolTip(QCoreApplication::translate("UserProperties", "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> </p></body></html>", nullptr));
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_WHATSTHIS
-        tabWidget->setWhatsThis(QApplication::translate("UserProperties", "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(whatsthis)
+        tabWidget->setWhatsThis(QCoreApplication::translate("UserProperties", "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>", nullptr));
-#endif // QT_NO_WHATSTHIS
-        FullName->setText(QApplication::translate("UserProperties", "Full Name :", nullptr));
-        Office1->setText(QApplication::translate("UserProperties", "Office  1# :", nullptr));
-        UserID->setText(QApplication::translate("UserProperties", "User ID :", nullptr));
-        Home->setText(QApplication::translate("UserProperties", "Home Directory :", nullptr));
+#endif // QT_CONFIG(whatsthis)
+        FullName->setText(QCoreApplication::translate("UserProperties", "Full Name :", nullptr));
+        Office1->setText(QCoreApplication::translate("UserProperties", "Office  1# :", nullptr));
+        UserID->setText(QCoreApplication::translate("UserProperties", "User ID :", nullptr));
+        Home->setText(QCoreApplication::translate("UserProperties", "Home Directory :", nullptr));
         checkBox->setText(QString());
-        UserLogin->setText(QApplication::translate("UserProperties", "User Login :", nullptr));
-        Office2->setText(QApplication::translate("UserProperties", "Office  2# :", nullptr));
-        ShellConn->setText(QApplication::translate("UserProperties", "Shell Connection :", nullptr));
-        passBtn->setText(QApplication::translate("UserProperties", "&Set Password ....", nullptr));
-        AccountDisabled->setText(QApplication::translate("UserProperties", "Account Disabled  :", nullptr));
+        UserLogin->setText(QCoreApplication::translate("UserProperties", "User Login :", nullptr));
+        Office2->setText(QCoreApplication::translate("UserProperties", "Office  2# :", nullptr));
+        ShellConn->setText(QCoreApplication::translate("UserProperties", "Shell Connection :", nullptr));
+        passBtn->setText(QCoreApplication::translate("UserProperties", "&Set Password ....", nullptr));
+        AccountDisabled->setText(QCoreApplication::translate("UserProperties", "Account Disabled  :", nullptr));
         label_17->setText(QString());
-        Address->setText(QApplication::translate("UserProperties", "Address :", nullptr));
+        Address->setText(QCoreApplication::translate("UserProperties", "Address :", nullptr));
         NameLabel->setText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("UserProperties", "User &Info", nullptr));
-        label->setText(QApplication::translate("UserProperties", "Last Password Change :", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("UserProperties", "User &Info", nullptr));
+        label->setText(QCoreApplication::translate("UserProperties", "Last Password Change :", nullptr));
         timeDate->setText(QString());
-        label_2->setText(QApplication::translate("UserProperties", "Password aging :", nullptr));
+        label_2->setText(QCoreApplication::translate("UserProperties", "Password aging :", nullptr));
         requires_Pass->setText(QString());
-        label_9->setText(QApplication::translate("UserProperties", "Require new password after:", nullptr));
+        label_9->setText(QCoreApplication::translate("UserProperties", "Require new password after:", nullptr));
         max->setSpecialValueText(QString());
-        max->setSuffix(QApplication::translate("UserProperties", " days", nullptr));
+        max->setSuffix(QCoreApplication::translate("UserProperties", " days", nullptr));
         max->setPrefix(QString());
-        label_13->setText(QApplication::translate("UserProperties", "Warn before password expires :", nullptr));
-        warn->setSuffix(QApplication::translate("UserProperties", " days", nullptr));
-        label_14->setText(QApplication::translate("UserProperties", "Disable account after password expires:", nullptr));
-        expire->setSuffix(QApplication::translate("UserProperties", " days", nullptr));
+        label_13->setText(QCoreApplication::translate("UserProperties", "Warn before password expires :", nullptr));
+        warn->setSuffix(QCoreApplication::translate("UserProperties", " days", nullptr));
+        label_14->setText(QCoreApplication::translate("UserProperties", "Disable account after password expires:", nullptr));
+        expire->setSuffix(QCoreApplication::translate("UserProperties", " days", nullptr));
         enforce_Pass->setText(QString());
-        label_15->setText(QApplication::translate("UserProperties", "Enforce minimum password age :", nullptr));
-        min->setSuffix(QApplication::translate("UserProperties", " days", nullptr));
-        label_16->setText(QApplication::translate("UserProperties", "Acount will expire on :", nullptr));
-        months->setItemText(0, QApplication::translate("UserProperties", "January ", nullptr));
-        months->setItemText(1, QApplication::translate("UserProperties", "February", nullptr));
-        months->setItemText(2, QApplication::translate("UserProperties", "March", nullptr));
-        months->setItemText(3, QApplication::translate("UserProperties", "April", nullptr));
-        months->setItemText(4, QApplication::translate("UserProperties", "May", nullptr));
-        months->setItemText(5, QApplication::translate("UserProperties", "June ", nullptr));
-        months->setItemText(6, QApplication::translate("UserProperties", "July", nullptr));
-        months->setItemText(7, QApplication::translate("UserProperties", "August", nullptr));
-        months->setItemText(8, QApplication::translate("UserProperties", "September", nullptr));
-        months->setItemText(9, QApplication::translate("UserProperties", "October", nullptr));
-        months->setItemText(10, QApplication::translate("UserProperties", "November", nullptr));
-        months->setItemText(11, QApplication::translate("UserProperties", "December", nullptr));
+        label_15->setText(QCoreApplication::translate("UserProperties", "Enforce minimum password age :", nullptr));
+        min->setSuffix(QCoreApplication::translate("UserProperties", " days", nullptr));
+        label_16->setText(QCoreApplication::translate("UserProperties", "Acount will expire on :", nullptr));
+        months->setItemText(0, QCoreApplication::translate("UserProperties", "January ", nullptr));
+        months->setItemText(1, QCoreApplication::translate("UserProperties", "February", nullptr));
+        months->setItemText(2, QCoreApplication::translate("UserProperties", "March", nullptr));
+        months->setItemText(3, QCoreApplication::translate("UserProperties", "April", nullptr));
+        months->setItemText(4, QCoreApplication::translate("UserProperties", "May", nullptr));
+        months->setItemText(5, QCoreApplication::translate("UserProperties", "June ", nullptr));
+        months->setItemText(6, QCoreApplication::translate("UserProperties", "July", nullptr));
+        months->setItemText(7, QCoreApplication::translate("UserProperties", "August", nullptr));
+        months->setItemText(8, QCoreApplication::translate("UserProperties", "September", nullptr));
+        months->setItemText(9, QCoreApplication::translate("UserProperties", "October", nullptr));
+        months->setItemText(10, QCoreApplication::translate("UserProperties", "November", nullptr));
+        months->setItemText(11, QCoreApplication::translate("UserProperties", "December", nullptr));
 
-        alway->setText(QApplication::translate("UserProperties", "Never", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("UserProperties", "Password &Manager", nullptr));
+        alway->setText(QCoreApplication::translate("UserProperties", "Never", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("UserProperties", "Password &Manager", nullptr));
         primGroupLabel->setText(QString());
-        pglabel->setText(QApplication::translate("UserProperties", "Primary Group:", nullptr));
-        easyCheckbox->setText(QApplication::translate("UserProperties", "Privileges and groups", nullptr));
-        makePrimBtn->setText(QApplication::translate("UserProperties", "Set as Primary", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("UserProperties", "&Groups", nullptr));
-        add->setText(QApplication::translate("UserProperties", "Apply", nullptr));
-        closeBtn->setText(QApplication::translate("UserProperties", "&Close", nullptr));
-        ok->setText(QApplication::translate("UserProperties", "&OK", nullptr));
+        pglabel->setText(QCoreApplication::translate("UserProperties", "Primary Group:", nullptr));
+        easyCheckbox->setText(QCoreApplication::translate("UserProperties", "Privileges and groups", nullptr));
+        makePrimBtn->setText(QCoreApplication::translate("UserProperties", "Set as Primary", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("UserProperties", "&Groups", nullptr));
+        add->setText(QCoreApplication::translate("UserProperties", "Apply", nullptr));
+        closeBtn->setText(QCoreApplication::translate("UserProperties", "&Close", nullptr));
+        ok->setText(QCoreApplication::translate("UserProperties", "&OK", nullptr));
     } // retranslateUi
 
 };

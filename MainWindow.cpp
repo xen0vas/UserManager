@@ -14,7 +14,7 @@
 using namespace std;
 
 /**
- *Constructor της κλάσης/φόρμας.
+ *Constructor
  */
 MainWindow::MainWindow( QWidget * parent, Qt::WindowFlags f ): QMainWindow( parent, f )
  {
@@ -37,7 +37,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WindowFlags f ): QMainWindow( pare
 }
 
 /**
- *Destructor κλάσης/φόρμας
+ *Destructor
  */
 
 MainWindow::~MainWindow()
@@ -132,9 +132,11 @@ reloadUsersAndGroups();
 }
 
 /**
- * Αλλαγή κωδικού χρήστη από το μενού της κύριας φόρμας (Users->Set Password)
+ * @brief MainWindow::setPassMenu
+ * @abstract Sets the User's password
+ * @details the function used to change user's password
+ * and calls the HashingAlgorithm class in order to show the corresponding Dialog
  */
-
 void MainWindow::setPassMenu()
 {
 QModelIndex index=userTreeView->selectionModel()->currentIndex();
@@ -145,10 +147,27 @@ QMessageBox::information ( 0, tr ( " UserManager " ),tr ( " Please Select a User
 else
 {
     HashingAlgorithm *hash= new HashingAlgorithm();
-    hash->NameLabelHidden->setText(username);
-    hash->UserNameLabel->setText("<font color='Red'>" + username + "</font>");
-    hash->show();
-    if ( hash->exec() ){}
+    if (hash != nullptr ) hash->NameLabelHidden->setText(username);
+    if (hash != nullptr ) hash->UserNameLabel->setText("<font color='Red'>" + username + "</font>");
+    else
+    {
+        errno = ENOMEM;
+        QMessageBox::critical(0,tr("User Manager"),tr("<qt>  <i> %1 </i>  </qt> ").arg(strerror(errno)));
+    }
+    if (hash != nullptr ) hash->show();
+    else
+    {
+        errno = ENOMEM;
+        QMessageBox::critical(0,tr("User Manager"),tr("<qt>  <i> %1 </i>  </qt> ").arg(strerror(errno)));
+
+    }
+    if (hash != nullptr ) hash->exec();
+    else
+    {
+        errno = ENOMEM;
+        QMessageBox::critical(0,tr("User Manager"),tr("<qt>  <i> %1 </i>  </qt> ").arg(strerror(errno)));
+
+    }
     if (hash != nullptr) { delete hash; hash = nullptr; }
 }
 
