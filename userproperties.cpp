@@ -548,9 +548,7 @@ void UserProperties::addUserBase()
             // read the environment
 
 
-
-            char *const arr[] =  { "cp", "-l", "-p", "/etc/skel/.bash_logout", cli_sanitized_path, NULL };
-
+            char* const arr[] =  { (char*) "cp", (char*)"-l", (char*)"-p", (char*)"/etc/skel/.bash_logout", cli_sanitized_path, NULL };
 
 			pid  = fork();
 			if ( pid == 0 ) //parent process
