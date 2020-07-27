@@ -14,7 +14,7 @@ addons:
             - gcc-7
             - g++-7
 
-#sudo: required
+sudo: required
 dist: bionic
 
 env:
