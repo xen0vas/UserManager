@@ -40,8 +40,8 @@ before_install:
   - sudo apt-get install qt5-default qttools5-dev-tools
 
 install:
-  - if [ "$QT_BASE" = "51" ]; then sudo apt-get install -qq qt51base; source /opt/qt511/bin/qt511-env.sh; fi
-  - if [ "$QT_BASE" = "52" ]; then sudo apt-get install -qq qt52base; source /opt/qt521/bin/qt521-env.sh; fi
+  - if [ "$QT_BASE" = "51" ]; then sudo apt-get install -qq qt511base; source /opt/qt511/bin/qt511-env.sh; fi
+  - if [ "$QT_BASE" = "52" ]; then sudo apt-get install -qq qt521base; source /opt/qt521/bin/qt521-env.sh; fi
   - if [ "$QT_BASE" = "53" ]; then sudo apt-get install -qq qt53base; source /opt/qt532/bin/qt532-env.sh; fi
   - if [ "$QT_BASE" = "54" ]; then sudo apt-get install -qq qt54base; source /opt/qt542/bin/qt542-env.sh; fi
   - if [ "$QT_BASE" = "55" ]; then sudo apt-get install -qq qt55base; source /opt/qt551/bin/qt551-env.sh; fi
