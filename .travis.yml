@@ -15,7 +15,7 @@ addons:
             - g++-7
 
 sudo: required
-dist: bionic
+dist: trusty
 
 env:
   - QT_BASE=51
