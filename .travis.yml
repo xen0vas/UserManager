@@ -18,7 +18,7 @@ addons:
             - g++-7
 
 sudo: required
-dist: trusty
+dist: xenial
 
 env:
   - QT_BASE=51
