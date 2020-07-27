@@ -178,25 +178,25 @@ void Spc::spc_drop_privilleges(int permanent)
      setegid(newgid);
      if (permanent && setgid(newgid) == -1) abort(  );
  #else
-     if (setregid((permanent ? newgid : -1), newgid) =  = -1) abort(  );
+     if (setregid((permanent ? newgid : -1), newgid) == -1) abort(  );
  #endif
    }
 
    if (newuid != olduid) {
  #if !defined(linux)
      seteuid(newuid);
-     if (permanent && setuid(newuid) == -1) abort(  );
+     if (permanent && setuid(newuid) == -1) abort();
  #else
-     if (setreuid((permanent ? newuid : -1), newuid) =  = -1) abort(  );
+     if (setreuid((permanent ? newuid : -1), newuid) == -1) abort(  );
  #endif
    }
 
    if (newuid != olduid) {
    #if !defined(linux)
        seteuid(newuid);
-       if (permanent && setuid(newuid) == -1) abort(  );
+       if (permanent && setuid(newuid) == -1) abort();
    #else
-       if (setreuid((permanent ? newuid : -1), newuid) =  = -1) abort(  );
+       if (setreuid((permanent ? newuid : -1), newuid) == -1) abort(  );
    #endif
      }
 
