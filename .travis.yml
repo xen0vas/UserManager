@@ -29,22 +29,22 @@ env:
  # - QT_BASE=56
 
 before_install:
-  - if [ "$QT_BASE" = "51" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.11.0-xenial -y; fi
-  - if [ "$QT_BASE" = "52" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.21.0-xenial -y; fi
-  - if [ "$QT_BASE" = "53" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.32.0-xenial -y; fi
-  - if [ "$QT_BASE" = "54" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.42.0-xenial -y; fi
-  - if [ "$QT_BASE" = "55" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.51.0-xenial -y; fi
+  - if [ "$QT_BASE" = "51" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.12.0-xenial -y; fi
+  #- if [ "$QT_BASE" = "52" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.21.0-xenial -y; fi
+  #- if [ "$QT_BASE" = "53" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.32.0-xenial -y; fi
+  #- if [ "$QT_BASE" = "54" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.42.0-xenial -y; fi
+  #- if [ "$QT_BASE" = "55" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.51.0-xenial -y; fi
   #- if [ "$QT_BASE" = "56" ]; then sudo add-apt-repository ppa:beineri/opt-qt56-xenial -y; fi
   - sudo apt-get update -qq
   - sudo apt-get install qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev
   - sudo apt-get install qt5-default qttools5-dev-tools
 
 install:
-  - if [ "$QT_BASE" = "51" ]; then sudo apt-get install -qq qt511base; source /opt/qt511/bin/qt511-env.sh; fi
-  - if [ "$QT_BASE" = "52" ]; then sudo apt-get install -qq qt521base; source /opt/qt521/bin/qt521-env.sh; fi
-  - if [ "$QT_BASE" = "53" ]; then sudo apt-get install -qq qt53base; source /opt/qt532/bin/qt532-env.sh; fi
-  - if [ "$QT_BASE" = "54" ]; then sudo apt-get install -qq qt54base; source /opt/qt542/bin/qt542-env.sh; fi
-  - if [ "$QT_BASE" = "55" ]; then sudo apt-get install -qq qt55base; source /opt/qt551/bin/qt551-env.sh; fi
+  - if [ "$QT_BASE" = "51" ]; then sudo apt-get install -qq qt512base; source /opt/qt512/bin/qt512-env.sh; fi
+  #- if [ "$QT_BASE" = "52" ]; then sudo apt-get install -qq qt512base; source /opt/qt521/bin/qt521-env.sh; fi
+  #- if [ "$QT_BASE" = "53" ]; then sudo apt-get install -qq qt53base; source /opt/qt532/bin/qt532-env.sh; fi
+  #- if [ "$QT_BASE" = "54" ]; then sudo apt-get install -qq qt54base; source /opt/qt542/bin/qt542-env.sh; fi
+  #- if [ "$QT_BASE" = "55" ]; then sudo apt-get install -qq qt55base; source /opt/qt551/bin/qt551-env.sh; fi
   #- if [ "$QT_BASE" = "56" ]; then sudo apt-get install -qq qt56base; source /opt/qt56/bin/qt560-env.sh; fi
 
 script:
