@@ -29,11 +29,11 @@ env:
  # - QT_BASE=56
 
 before_install:
-  - if [ "$QT_BASE" = "51" ]; then sudo add-apt-repository ppa:beineri/opt-qt511-xenial -y; fi
-  - if [ "$QT_BASE" = "52" ]; then sudo add-apt-repository ppa:beineri/opt-qt521-xenial -y; fi
-  - if [ "$QT_BASE" = "53" ]; then sudo add-apt-repository ppa:beineri/opt-qt532-xenial -y; fi
-  - if [ "$QT_BASE" = "54" ]; then sudo add-apt-repository ppa:beineri/opt-qt542-xenial -y; fi
-  - if [ "$QT_BASE" = "55" ]; then sudo add-apt-repository ppa:beineri/opt-qt551-xenial -y; fi
+  - if [ "$QT_BASE" = "51" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.11.0-xenial -y; fi
+  - if [ "$QT_BASE" = "52" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.21.0-xenial -y; fi
+  - if [ "$QT_BASE" = "53" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.32.0-xenial -y; fi
+  - if [ "$QT_BASE" = "54" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.42.0-xenial -y; fi
+  - if [ "$QT_BASE" = "55" ]; then sudo add-apt-repository ppa:beineri/opt-qt-5.51.0-xenial -y; fi
   #- if [ "$QT_BASE" = "56" ]; then sudo add-apt-repository ppa:beineri/opt-qt56-xenial -y; fi
   - sudo apt-get update -qq
   - sudo apt-get install qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev
