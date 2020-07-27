@@ -9,8 +9,11 @@ os:
 addons:
      apt:
         sources:
-            - ubuntu-toolchain-r-test
+            #- ubuntu-toolchain-r-test
+            ppa:chris-lea/redis-server
         packages:
+            - redis-tools
+            - redis-server
             - gcc-7
             - g++-7
 
