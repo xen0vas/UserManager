@@ -11,8 +11,8 @@ addons:
         sources:
             - ubuntu-toolchain-r-test
         packages:
-            - gcc-4.9.3
-            - g++-4.9.3
+            - gcc-7
+            - g++-7
 
 #sudo: required
 dist: xenial
