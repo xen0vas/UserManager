@@ -56,11 +56,9 @@ void EditProperties::openHashingAlgorithm()
 
 try
 {
-HashingAlgorithm *hash = new HashingAlgorithm;
-QString username = LoginName->text();
+    HashingAlgorithm *hash = new HashingAlgorithm;
+    QString username = LoginName->text();
 
-if (hash != NULL )
-{
     hash->NameLabelHidden->setText(username);
 
     hash->UserNameLabel->setText("<font color='Red'>" + username + "</font>");
@@ -69,12 +67,10 @@ if (hash != NULL )
 
     if ( hash->exec() ){}
 
-    delete hash;
-    hash = nullptr;
+    hash->~HashingAlgorithm();
 
-}
 } catch (const std::bad_alloc& e) {
-    QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Open file <i> %1 </i> </qt> " ).arg ( e.what()) );
+    QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> <i> %1 </i> </qt> " ).arg ( e.what()) );
     }
 }
 
