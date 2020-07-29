@@ -307,12 +307,12 @@ char *groupname = (char*)calloc( 128, len);
                 process->start(program, arguments);
                 process->waitForFinished();
                 arguments.clear();
+
             }
+
+             free(groupname);
+             groupname = NULL ;
     }
-//if ( sec != NULL ) { delete sec; sec = NULL; }
-
-if ( groupname != NULL ) { free(groupname); groupname = NULL ; }
-
 
 }
 return true;
@@ -450,15 +450,17 @@ else
 	grp.gr_passwd = pass.data();
 	grp.gr_gid = groupID  ;
 	grp.gr_mem = NULL;
-	FILE *groupbase;
+    FILE *groupbase;
 
 	const char *filename = "/etc/group";
 	int result = 0 ;
 
+
     groupbase = fchk->fopen_wrapper ( filename, "a+" );
 
-	if ( groupbase!=NULL )
-	{
+    if ( groupbase!=NULL )
+    {
+
 		result = putgrent ( &grp, groupbase );
         fclose ( groupbase );
     }

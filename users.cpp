@@ -66,7 +66,14 @@ QString Users::getUsersPrimaryGroup( QString UID )
     QString groupName="";
 
     QByteArray pwuid = UID.toLatin1();
-    char *pwuid_t = (char*)calloc(200, sizeof(char));
+
+    size_t size = strlen(pwuid.data());
+
+    char *pwuid_t = (char*)calloc(size, sizeof(char));
+
+    if (pwuid_t != NULL)
+    {
+
     strncpy(pwuid_t, pwuid.data(), strlen(pwuid.data()));
 
     pwdlen = sysconf(_SC_GETPW_R_SIZE_MAX);
@@ -74,6 +81,7 @@ QString Users::getUsersPrimaryGroup( QString UID )
         pwdlen = 16384;
 
     char *pwdBuffer = (char*)malloc(pwdlen);
+
 	memset( pwdBuffer, 0, sizeof(char) ); 
 
     setgrent();
@@ -88,7 +96,12 @@ QString Users::getUsersPrimaryGroup( QString UID )
     endgrent();
 	if ( pwuid_t != NULL ) { free(pwuid_t) ; pwuid_t = NULL; }   
 	if ( pwdBuffer != NULL ) { free(pwdBuffer); pwdBuffer = NULL; }
-
+    }
+    else
+    {
+        errno = ENOMEM;
+        QMessageBox::critical( 0, QObject::tr( "User Manager" ), QObject::tr("Bad memory allocation : %1 ").arg(errno));
+    }
 	return groupName;
 }
 

@@ -22,7 +22,7 @@ class EditProperties : public QDialog , public Ui::EditProperties
 {
 Q_OBJECT
 public:
- 	void setOldUsername ( QString oldUsername );
+    void setOldUsername (const QString oldUsername );
 	QString getOldUsername();
 	EditProperties( QWidget *parent = 0 );
 	~EditProperties();

@@ -231,7 +231,11 @@ int UserProperties::insertIntoPasswdFile ( QString nam,QString uid,QString gid,Q
 	us.pw_gecos  =  gecos.data();
 	us.pw_dir    =  dir.data();
 	us.pw_shell  =  shell.data();
-	
+
+	//TODO 
+	//
+	//lock passwd file with flock  before inserting the new record 
+	//
 	const char *filename  = PASSWD_FILE;
 	
 	FILE *fp;

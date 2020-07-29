@@ -19,13 +19,14 @@ EditProperties::EditProperties ( QWidget * parent ) : QDialog ( parent )
 {
 	setupUi ( this );
 	QValidator *validator = new QIntValidator(1, 65535, this);
-	uiEdit->setValidator(validator);
+    uiEdit->setValidator(validator);
+    primGroupLabel->setWordWrap(true);
+
 	easyList->setVisible ( false );
 	max->setEnabled(false);
 	expire->setEnabled(false);
-	warn->setEnabled(false);
+    warn->setEnabled(false);
 	min->setEnabled(false);
-	shellConnect->setAutoCompletion ( true );
 	shellConnect->setEditable ( false );
 	min->setSpecialValueText ( "never" );
 	max->setSpecialValueText ( "never" );
@@ -52,13 +53,29 @@ EditProperties::~EditProperties()
 
 void EditProperties::openHashingAlgorithm()
 {
+
+try
+{
 HashingAlgorithm *hash = new HashingAlgorithm;
 QString username = LoginName->text();
-hash->NameLabelHidden->setText(username);
-hash->UserNameLabel->setText("<font color='Red'>" + username + "</font>");
-hash->show();
-if ( hash->exec() ){}
-if (hash != nullptr){ delete hash; hash = nullptr;}
+
+if (hash != NULL )
+{
+    hash->NameLabelHidden->setText(username);
+
+    hash->UserNameLabel->setText("<font color='Red'>" + username + "</font>");
+
+    hash->show();
+
+    if ( hash->exec() ){}
+
+    delete hash;
+    hash = nullptr;
+
+}
+} catch (const std::bad_alloc& e) {
+    QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Open file <i> %1 </i> </qt> " ).arg ( e.what()) );
+    }
 }
 
 /**
@@ -66,7 +83,7 @@ if (hash != nullptr){ delete hash; hash = nullptr;}
  * Thus, we know anytime for which user the data are processed
  */
 
-void EditProperties::setOldUsername ( QString oldUsername )
+void EditProperties::setOldUsername ( const QString oldUsername )
 {
 	oldUsername_ = oldUsername;
 }
@@ -161,7 +178,7 @@ if(checkBoxEdit->isChecked())
 
 		if (canonical_path == NULL) {
    		    
-	            QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Could not calculate memory for homedir path </qt> " ) ) ;   
+                QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> Could not allocate memory for homedir path </qt> " ) ) ;
   		}
         else if( (strrchr( di.data(), '/') != di.data() + len) && canonical_path != NULL )
 		{
@@ -1049,7 +1066,8 @@ void EditProperties::setPrimaryGroup()
 {
 	struct group *grp=NULL;
 	Spc *sec = new Spc(); 
-	Users *usr = new Users();
+
+    std::unique_ptr<Users> usr(new Users());
 	Models model;
 	QString gname="";
 	const char *groupname="";
@@ -1062,7 +1080,7 @@ void EditProperties::setPrimaryGroup()
 				grp=getgrnam ( groupname );
 				gname.append ( grp->gr_name );
 		
-		sec->clenv(); // clear environment 
+                sec->clenv(); // clear environment
 
                 QString program = "/usr/sbin/usermod";
                 QStringList arguments;
@@ -1080,7 +1098,6 @@ void EditProperties::setPrimaryGroup()
 		}
 	}
 	if (sec != NULL) { delete sec; sec = NULL; }
-	if (usr != nullptr){ delete usr; usr = nullptr;}
 }
 /**
  * Περιήγηση στον προσωπικό φάκελο του επιλεγμένου χρήστη. 
