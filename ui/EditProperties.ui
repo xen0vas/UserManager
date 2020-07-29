@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>784</width>
-    <height>435</height>
+    <width>867</width>
+    <height>502</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>User Properties</string>
@@ -18,14 +24,14 @@
     <normaloff>:/new/prefix1/images/editUser.png</normaloff>:/new/prefix1/images/editUser.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="3">
-    <widget class="QPushButton" name="cancelBtn">
+   <item row="2" column="2">
+    <widget class="QPushButton" name="edit">
      <property name="text">
-      <string>&amp;Close</string>
+      <string>&amp;Ok</string>
      </property>
      <property name="icon">
       <iconset resource="../resources/images.qrc">
-       <normaloff>:/new/prefix1/images/cancel.png</normaloff>:/new/prefix1/images/cancel.png</iconset>
+       <normaloff>:/new/prefix1/images/ok.png</normaloff>:/new/prefix1/images/ok.png</iconset>
      </property>
     </widget>
    </item>
@@ -45,14 +51,14 @@
      </property>
     </spacer>
    </item>
-   <item row="2" column="2">
-    <widget class="QPushButton" name="edit">
+   <item row="2" column="3">
+    <widget class="QPushButton" name="cancelBtn">
      <property name="text">
-      <string>&amp;Ok</string>
+      <string>&amp;Close</string>
      </property>
      <property name="icon">
       <iconset resource="../resources/images.qrc">
-       <normaloff>:/new/prefix1/images/ok.png</normaloff>:/new/prefix1/images/ok.png</iconset>
+       <normaloff>:/new/prefix1/images/cancel.png</normaloff>:/new/prefix1/images/cancel.png</iconset>
      </property>
     </widget>
    </item>
@@ -835,7 +841,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>751</width>
+         <width>831</width>
          <height>311</height>
         </rect>
        </property>
@@ -888,9 +894,9 @@
       <widget class="QListWidget" name="easyList">
        <property name="geometry">
         <rect>
-         <x>4</x>
+         <x>14</x>
          <y>0</y>
-         <width>311</width>
+         <width>301</width>
          <height>311</height>
         </rect>
        </property>
@@ -913,99 +919,82 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QCheckBox" name="easyCheckbox">
+      <widget class="QFrame" name="frame">
        <property name="geometry">
         <rect>
-         <x>4</x>
+         <x>10</x>
          <y>320</y>
-         <width>185</width>
-         <height>28</height>
+         <width>821</width>
+         <height>91</height>
         </rect>
        </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
        </property>
-       <property name="text">
-        <string>Privileges and groups</string>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
        </property>
-      </widget>
-      <widget class="QLabel" name="label">
-       <property name="geometry">
-        <rect>
-         <x>340</x>
-         <y>320</y>
-         <width>131</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>16777209</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Primary Group:</string>
-       </property>
-       <property name="scaledContents">
-        <bool>false</bool>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="makePrimBtn">
-       <property name="geometry">
-        <rect>
-         <x>560</x>
-         <y>320</y>
-         <width>184</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Set as Primary</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="primGroupLabel">
-       <property name="geometry">
-        <rect>
-         <x>440</x>
-         <y>320</y>
-         <width>121</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="sizeIncrement">
-        <size>
-         <width>0</width>
-         <height>3</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">selection-color: red</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QCheckBox" name="easyCheckbox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Privileges and groups</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777209</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>                    Primary Group:</string>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="primGroupLabel">
+            <property name="styleSheet">
+             <string notr="true">selection-color: red</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="makePrimBtn">
+            <property name="text">
+             <string>Set as Primary</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
     </widget>

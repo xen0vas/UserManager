@@ -17,6 +17,7 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -34,9 +35,9 @@ class Ui_EditProperties
 {
 public:
     QGridLayout *gridLayout;
-    QPushButton *cancelBtn;
-    QSpacerItem *horizontalSpacer_2;
     QPushButton *edit;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *cancelBtn;
     QTabWidget *tabWidget;
     QWidget *tab;
     QGridLayout *gridLayout_2;
@@ -102,48 +103,56 @@ public:
     QWidget *tab_3;
     QTreeView *userGroups;
     QListWidget *easyList;
+    QFrame *frame;
+    QHBoxLayout *horizontalLayout_2;
+    QHBoxLayout *horizontalLayout;
     QCheckBox *easyCheckbox;
     QLabel *label;
-    QPushButton *makePrimBtn;
     QLabel *primGroupLabel;
+    QPushButton *makePrimBtn;
 
     void setupUi(QDialog *EditProperties)
     {
         if (EditProperties->objectName().isEmpty())
             EditProperties->setObjectName(QString::fromUtf8("EditProperties"));
-        EditProperties->resize(784, 435);
+        EditProperties->resize(867, 502);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(EditProperties->sizePolicy().hasHeightForWidth());
+        EditProperties->setSizePolicy(sizePolicy);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/new/prefix1/images/editUser.png"), QSize(), QIcon::Normal, QIcon::Off);
         EditProperties->setWindowIcon(icon);
         gridLayout = new QGridLayout(EditProperties);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        cancelBtn = new QPushButton(EditProperties);
-        cancelBtn->setObjectName(QString::fromUtf8("cancelBtn"));
+        edit = new QPushButton(EditProperties);
+        edit->setObjectName(QString::fromUtf8("edit"));
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/new/prefix1/images/cancel.png"), QSize(), QIcon::Normal, QIcon::Off);
-        cancelBtn->setIcon(icon1);
+        icon1.addFile(QString::fromUtf8(":/new/prefix1/images/ok.png"), QSize(), QIcon::Normal, QIcon::Off);
+        edit->setIcon(icon1);
 
-        gridLayout->addWidget(cancelBtn, 2, 3, 1, 1);
+        gridLayout->addWidget(edit, 2, 2, 1, 1);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         gridLayout->addItem(horizontalSpacer_2, 2, 1, 1, 1);
 
-        edit = new QPushButton(EditProperties);
-        edit->setObjectName(QString::fromUtf8("edit"));
+        cancelBtn = new QPushButton(EditProperties);
+        cancelBtn->setObjectName(QString::fromUtf8("cancelBtn"));
         QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/new/prefix1/images/ok.png"), QSize(), QIcon::Normal, QIcon::Off);
-        edit->setIcon(icon2);
+        icon2.addFile(QString::fromUtf8(":/new/prefix1/images/cancel.png"), QSize(), QIcon::Normal, QIcon::Off);
+        cancelBtn->setIcon(icon2);
 
-        gridLayout->addWidget(edit, 2, 2, 1, 1);
+        gridLayout->addWidget(cancelBtn, 2, 3, 1, 1);
 
         tabWidget = new QTabWidget(EditProperties);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
-        tabWidget->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
+        tabWidget->setSizePolicy(sizePolicy1);
         QFont font;
         font.setBold(false);
         font.setItalic(false);
@@ -354,11 +363,11 @@ public:
 
         requires_Pass = new QCheckBox(tab_2);
         requires_Pass->setObjectName(QString::fromUtf8("requires_Pass"));
-        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(requires_Pass->sizePolicy().hasHeightForWidth());
-        requires_Pass->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(requires_Pass->sizePolicy().hasHeightForWidth());
+        requires_Pass->setSizePolicy(sizePolicy2);
         QFont font1;
         font1.setStrikeOut(false);
         requires_Pass->setFont(font1);
@@ -367,11 +376,11 @@ public:
 
         max = new QSpinBox(tab_2);
         max->setObjectName(QString::fromUtf8("max"));
-        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(max->sizePolicy().hasHeightForWidth());
-        max->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(max->sizePolicy().hasHeightForWidth());
+        max->setSizePolicy(sizePolicy3);
         max->setLayoutDirection(Qt::LeftToRight);
         max->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         max->setMaximum(99999);
@@ -515,12 +524,12 @@ public:
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
         userGroups = new QTreeView(tab_3);
         userGroups->setObjectName(QString::fromUtf8("userGroups"));
-        userGroups->setGeometry(QRect(0, 0, 751, 311));
-        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(userGroups->sizePolicy().hasHeightForWidth());
-        userGroups->setSizePolicy(sizePolicy3);
+        userGroups->setGeometry(QRect(0, 0, 831, 311));
+        QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(userGroups->sizePolicy().hasHeightForWidth());
+        userGroups->setSizePolicy(sizePolicy4);
         userGroups->setAutoFillBackground(false);
         userGroups->setFrameShape(QFrame::StyledPanel);
         userGroups->setFrameShadow(QFrame::Sunken);
@@ -536,43 +545,59 @@ public:
         userGroups->setWordWrap(true);
         easyList = new QListWidget(tab_3);
         easyList->setObjectName(QString::fromUtf8("easyList"));
-        easyList->setGeometry(QRect(4, 0, 311, 311));
-        sizePolicy3.setHeightForWidth(easyList->sizePolicy().hasHeightForWidth());
-        easyList->setSizePolicy(sizePolicy3);
+        easyList->setGeometry(QRect(14, 0, 301, 311));
+        sizePolicy4.setHeightForWidth(easyList->sizePolicy().hasHeightForWidth());
+        easyList->setSizePolicy(sizePolicy4);
         easyList->setAutoFillBackground(false);
         easyList->setProperty("isWrapping", QVariant(false));
         easyList->setViewMode(QListView::ListMode);
         easyList->setWordWrap(true);
-        easyCheckbox = new QCheckBox(tab_3);
+        frame = new QFrame(tab_3);
+        frame->setObjectName(QString::fromUtf8("frame"));
+        frame->setGeometry(QRect(10, 320, 821, 91));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        horizontalLayout_2 = new QHBoxLayout(frame);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        easyCheckbox = new QCheckBox(frame);
         easyCheckbox->setObjectName(QString::fromUtf8("easyCheckbox"));
-        easyCheckbox->setGeometry(QRect(4, 320, 185, 28));
-        QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Ignored);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(easyCheckbox->sizePolicy().hasHeightForWidth());
-        easyCheckbox->setSizePolicy(sizePolicy4);
-        label = new QLabel(tab_3);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(340, 320, 131, 28));
-        QSizePolicy sizePolicy5(QSizePolicy::Ignored, QSizePolicy::Preferred);
+        QSizePolicy sizePolicy5(QSizePolicy::Preferred, QSizePolicy::Ignored);
         sizePolicy5.setHorizontalStretch(0);
         sizePolicy5.setVerticalStretch(0);
-        sizePolicy5.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
-        label->setSizePolicy(sizePolicy5);
+        sizePolicy5.setHeightForWidth(easyCheckbox->sizePolicy().hasHeightForWidth());
+        easyCheckbox->setSizePolicy(sizePolicy5);
+
+        horizontalLayout->addWidget(easyCheckbox);
+
+        label = new QLabel(frame);
+        label->setObjectName(QString::fromUtf8("label"));
+        QSizePolicy sizePolicy6(QSizePolicy::Ignored, QSizePolicy::Preferred);
+        sizePolicy6.setHorizontalStretch(0);
+        sizePolicy6.setVerticalStretch(0);
+        sizePolicy6.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
+        label->setSizePolicy(sizePolicy6);
         label->setMaximumSize(QSize(16777215, 16777209));
         label->setScaledContents(false);
         label->setWordWrap(true);
-        makePrimBtn = new QPushButton(tab_3);
-        makePrimBtn->setObjectName(QString::fromUtf8("makePrimBtn"));
-        makePrimBtn->setGeometry(QRect(560, 320, 184, 28));
-        primGroupLabel = new QLabel(tab_3);
+
+        horizontalLayout->addWidget(label);
+
+        primGroupLabel = new QLabel(frame);
         primGroupLabel->setObjectName(QString::fromUtf8("primGroupLabel"));
-        primGroupLabel->setGeometry(QRect(440, 320, 121, 28));
-        sizePolicy3.setHeightForWidth(primGroupLabel->sizePolicy().hasHeightForWidth());
-        primGroupLabel->setSizePolicy(sizePolicy3);
-        primGroupLabel->setSizeIncrement(QSize(0, 3));
         primGroupLabel->setStyleSheet(QString::fromUtf8("selection-color: red"));
-        primGroupLabel->setWordWrap(true);
+
+        horizontalLayout->addWidget(primGroupLabel);
+
+        makePrimBtn = new QPushButton(frame);
+        makePrimBtn->setObjectName(QString::fromUtf8("makePrimBtn"));
+
+        horizontalLayout->addWidget(makePrimBtn);
+
+
+        horizontalLayout_2->addLayout(horizontalLayout);
+
         tabWidget->addTab(tab_3, QString());
 
         gridLayout->addWidget(tabWidget, 0, 0, 1, 4);
@@ -593,8 +618,8 @@ public:
     void retranslateUi(QDialog *EditProperties)
     {
         EditProperties->setWindowTitle(QCoreApplication::translate("EditProperties", "User Properties", nullptr));
-        cancelBtn->setText(QCoreApplication::translate("EditProperties", "&Close", nullptr));
         edit->setText(QCoreApplication::translate("EditProperties", "&Ok", nullptr));
+        cancelBtn->setText(QCoreApplication::translate("EditProperties", "&Close", nullptr));
         label_4->setText(QCoreApplication::translate("EditProperties", "User Login :", nullptr));
         LoginName->setText(QString());
         pass->setText(QCoreApplication::translate("EditProperties", "&Set Password ....", nullptr));
@@ -645,9 +670,9 @@ public:
         label_13->setText(QCoreApplication::translate("EditProperties", "Require new password after:", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("EditProperties", "Password &Manager", nullptr));
         easyCheckbox->setText(QCoreApplication::translate("EditProperties", "Privileges and groups", nullptr));
-        label->setText(QCoreApplication::translate("EditProperties", "Primary Group:", nullptr));
-        makePrimBtn->setText(QCoreApplication::translate("EditProperties", "Set as Primary", nullptr));
+        label->setText(QCoreApplication::translate("EditProperties", "                    Primary Group:", nullptr));
         primGroupLabel->setText(QString());
+        makePrimBtn->setText(QCoreApplication::translate("EditProperties", "Set as Primary", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("EditProperties", "&Groups", nullptr));
     } // retranslateUi
 

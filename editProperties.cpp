@@ -61,6 +61,8 @@ try
 
     hash->NameLabelHidden->setText(username);
 
+    hash->UserNameLabel->setWordWrap(true);
+
     hash->UserNameLabel->setText("<font color='Red'>" + username + "</font>");
 
     hash->show();
