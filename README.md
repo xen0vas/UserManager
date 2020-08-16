@@ -38,11 +38,11 @@ UserManager has been developed in C/C++ and Qt framework. The application has be
 
 TODO :
 
-* implement password generator 
-* provide application usage from limited users in order to be able to change their passwords (same like passwd)
-* implement password strength checks
-* implement password suggestions 
-* send an email to the users in case their passwords are about to be expired 
+* Implement password generator 
+* Application usage from low privileged users
+* Implement password strength checks
+* Implement password suggestions 
+* Send an email to the users in case their passwords are about to be expired 
 
 ------------------
 
