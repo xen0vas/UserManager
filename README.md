@@ -105,6 +105,8 @@ chmod +x install_and_run.sh
 ### Modify Groups
 --------------
 
+![Sep-03-2020 15-41-06](https://user-images.githubusercontent.com/12726776/92116055-fe76e380-edfb-11ea-9b39-37a707bee7b9.gif)
+
 
 ### Password Manager
 -------------------
