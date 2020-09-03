@@ -102,10 +102,9 @@ chmod +x install_and_run.sh
 ![groups](https://cloud.githubusercontent.com/assets/12726776/19677661/ff30ea24-9aa2-11e6-8e16-1f9f001186d7.PNG)
 
 
-### Add Groups
--------------
+### Modify Groups
+--------------
 
-![add_groups](https://cloud.githubusercontent.com/assets/12726776/19677652/f4d972e4-9aa2-11e6-9fe5-09f6cd91864a.PNG)
 
 ### Password Manager
 -------------------
