@@ -3,7 +3,7 @@
 # ![UserManager](https://user-images.githubusercontent.com/12726776/80515471-b3028380-898a-11ea-9aac-f1d0e44628b5.gif)   UserManager 
 
 
-![Language](https://img.shields.io/badge/Language-C%2FC%2B%2B-yellow)    ![license](https://img.shields.io/github/license/xvass/UserManager)   ![openissues](https://img.shields.io/github/issues/xvass/UserManager) ![closedissues](https://img.shields.io/github/issues-closed-raw/xvass/UserManager) ![forks](https://img.shields.io/github/forks/xvass/UserManager) ![stars](https://img.shields.io/github/stars/xvass/UserManager) ![version](https://img.shields.io/badge/version-1.0.75-brightgreen) ![last_commit](https://img.shields.io/github/last-commit/xvass/UserManager) ![beta](https://img.shields.io/badge/status-beta-lightgrey)
+![Language](https://img.shields.io/badge/Language-C%2FC%2B%2B-yellow)    ![license](https://img.shields.io/github/license/xvass/UserManager)   ![openissues](https://img.shields.io/github/issues/xvass/UserManager) ![closedissues](https://img.shields.io/github/issues-closed-raw/xvass/UserManager) ![forks](https://img.shields.io/github/forks/xvass/UserManager) ![stars](https://img.shields.io/github/stars/xvass/UserManager) ![version](https://img.shields.io/badge/version-1.0.75-brightgreen) ![last_commit](https://img.shields.io/github/last-commit/xvass/UserManager) ![beta](https://img.shields.io/badge/status-beta-lightgrey) ![counter](https://enisjijudcevtuq.m.pipedream.net)
 
 
 | Branch |  Linux Build  |
