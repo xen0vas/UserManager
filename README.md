@@ -15,7 +15,7 @@
 
 ----------------------
 
-UserManager is a software utility that has been developed in C/C++ and Qt framework. UserManager application has been designed to provide assistance to Linux administrators in order to manage users and groups. This application was part of my BSc Thesis many years ago since 2007 when i was graduating. Im still contributing to this project because is a great resource that helps me develop and maintain my skills in software development in C and C++. This application has a friendly dashboard and offers the following functionality 
+UserManager is a software utility that has been developed in C/C++ and Qt framework. UserManager application has been designed to provide assistance to Linux administrators in order to manage users and groups. This application was part of my BSc Thesis many years ago since 2007 when i was graduating. Im still contributing to this project because is a great resource that helps me develop and maintain my skills in C and C++ software development. This application has a friendly dashboard and offers the following functionality 
 
 * add,edit,delete user accounts and groups
 * add users to groups
