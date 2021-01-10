@@ -87,7 +87,7 @@ chmod +x install_and_run.sh
 ### User Properties
 ------------------
 
-![user_properties](https://cloud.githubusercontent.com/assets/12726776/19657721/0139518c-9a2e-11e6-922f-27656a68bed4.PNG)
+<img src="https://cloud.githubusercontent.com/assets/12726776/19657721/0139518c-9a2e-11e6-922f-27656a68bed4.PNG" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
 
 ### Disk Quota
 --------------
