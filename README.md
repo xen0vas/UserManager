@@ -89,40 +89,55 @@ chmod +x install_and_run.sh
 ### User Properties
 ------------------
 
+<p align="center">
 <img src="https://cloud.githubusercontent.com/assets/12726776/19657721/0139518c-9a2e-11e6-922f-27656a68bed4.PNG" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
+</p>
 
 ### Disk Quota
 --------------
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/12726776/30857814-d3fcc20c-a2c5-11e7-993b-6ec3f8aad7fd.PNG" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
+</p>
 
 ### User Groups
 --------------
 
+<p align="center">
 <img src="https://cloud.githubusercontent.com/assets/12726776/19677661/ff30ea24-9aa2-11e6-8e16-1f9f001186d7.PNG" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
+</p>
 
 ### Modify Groups
 --------------
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/12726776/92116055-fe76e380-edfb-11ea-9b39-37a707bee7b9.gif" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
-
+</p>
+  
 ### Password Manager
 -------------------
 
+<p align="center">
 <img src="https://cloud.githubusercontent.com/assets/12726776/19719422/7be2f682-9b72-11e6-86fe-5dfa13fcba3e.PNG" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
+</p>
 
 ### Groups
 -----------
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/12726776/30519031-68528cbc-9b95-11e7-93c6-32f382ec7783.PNG" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
+</p>
 
 ### Set Password 
 ----------------
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/12726776/30519036-8d2a8ce2-9b95-11e7-8fb8-890db6880149.PNG" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
-
+</p>
+  
 ### Group Privileges
 --------------------
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/12726776/30855524-f5ba60d2-a2bd-11e7-96ee-9a07814cdd11.PNG" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
-
+</p>
