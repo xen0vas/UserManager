@@ -82,7 +82,9 @@ chmod +x install_and_run.sh
 ### UserManager Main View
 ------------------------
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/12726776/30857766-aa6a1c96-a2c5-11e7-8210-9666b0949e24.PNG" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="560">
+</p>
 
 ### User Properties
 ------------------
