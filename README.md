@@ -102,28 +102,25 @@ chmod +x install_and_run.sh
 ### Modify Groups
 --------------
 
-![Sep-03-2020 15-41-06](https://user-images.githubusercontent.com/12726776/92116055-fe76e380-edfb-11ea-9b39-37a707bee7b9.gif)
-
+<img src="https://user-images.githubusercontent.com/12726776/92116055-fe76e380-edfb-11ea-9b39-37a707bee7b9.gif" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
 
 ### Password Manager
 -------------------
 
-![password_manager](https://cloud.githubusercontent.com/assets/12726776/19719422/7be2f682-9b72-11e6-86fe-5dfa13fcba3e.PNG)
-
-------------------
+<img src="https://cloud.githubusercontent.com/assets/12726776/19719422/7be2f682-9b72-11e6-86fe-5dfa13fcba3e.PNG" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
 
 ### Groups
 -----------
 
-![groups](https://user-images.githubusercontent.com/12726776/30519031-68528cbc-9b95-11e7-93c6-32f382ec7783.PNG)
+<img src="https://user-images.githubusercontent.com/12726776/30519031-68528cbc-9b95-11e7-93c6-32f382ec7783.PNG" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
 
 ### Set Password 
 ----------------
 
-![setpassword](https://user-images.githubusercontent.com/12726776/30519036-8d2a8ce2-9b95-11e7-8fb8-890db6880149.PNG)
+<img src="https://user-images.githubusercontent.com/12726776/30519036-8d2a8ce2-9b95-11e7-8fb8-890db6880149.PNG" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
 
 ### Group Privileges
 --------------------
 
-![groups](https://user-images.githubusercontent.com/12726776/30855524-f5ba60d2-a2bd-11e7-96ee-9a07814cdd11.PNG)
+<img src="https://user-images.githubusercontent.com/12726776/30855524-f5ba60d2-a2bd-11e7-96ee-9a07814cdd11.PNG" style="display:block;margin-left:auto;margin-right:auto;border:1px solid #1A1B1C;" width="750" height="460">
 
