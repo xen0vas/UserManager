@@ -90,11 +90,6 @@ chmod +x install_and_run.sh
 
 ![loading](https://user-images.githubusercontent.com/12726776/30857814-d3fcc20c-a2c5-11e7-993b-6ec3f8aad7fd.PNG) 
 
-### Group Properties
--------------------
-
-![group_properties](https://user-images.githubusercontent.com/12726776/30582746-840576ba-9d2d-11e7-95cb-9c3cbeb957de.PNG)
-
 
 ### User Groups
 --------------
