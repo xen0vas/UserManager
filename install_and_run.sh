@@ -22,7 +22,7 @@ echo  '\____/____/\___/_/  /_/  /_/\__,_/_/ /_/\__,_/\__, /\___/_/     '
 echo  '                                             /____/             '
 echo
 echo  'UserManager - Linux Accounts Manager'
-echo  'Authors: @xvass, @mekotsi'
+echo  'Script Author: @xvass'
 echo  'Version 1.0.75'
 echo -ne "$NC"
 
