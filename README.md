@@ -17,7 +17,7 @@
 
 <dl>
 <dd style=text-align:justify>
-UserManager is a software tool developed in C/C++ and Qt framework. UserManager has been designed to provide Linux systems administration assistance regarding the managment of user accounts and groups. This application was part of an assignment many years ago since 2006 when i was still at University. Im still contributing to this project because it is a great resource that helps me develop and maintain my skills in C/C++ software development. This application has a friendly dashboard and offers the following functionality 
+UserManager is a software tool developed in C/C++ and Qt framework. Moreover, it has been designed to provide Linux systems administration assistance regarding the managment of user accounts and groups. This application was part of an assignment many years ago since 2006 when i was still at University. Im still contributing to this project because it is a great resource that helps me develop and maintain my skills in C/C++ . This application has a friendly dashboard and offers the following functionality 
 </dd>
 </dl>
 
