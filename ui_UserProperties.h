@@ -603,7 +603,7 @@ public:
         enforce_Pass->setText(QString());
         label_15->setText(QCoreApplication::translate("UserProperties", "Enforce minimum password age :", nullptr));
         min->setSuffix(QCoreApplication::translate("UserProperties", " days", nullptr));
-        label_16->setText(QCoreApplication::translate("UserProperties", "Acount will expire on :", nullptr));
+        label_16->setText(QCoreApplication::translate("UserProperties", "Account will expire on :", nullptr));
         months->setItemText(0, QCoreApplication::translate("UserProperties", "January ", nullptr));
         months->setItemText(1, QCoreApplication::translate("UserProperties", "February", nullptr));
         months->setItemText(2, QCoreApplication::translate("UserProperties", "March", nullptr));

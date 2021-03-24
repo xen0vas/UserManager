@@ -1080,7 +1080,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Μέρες</translation>
     </message>
     <message>
-        <source>Acount will expire on :</source>
+        <source>Account will expire on :</source>
         <translation type="unfinished">Λήξη λογαριασμού:</translation>
     </message>
     <message>
@@ -1168,7 +1168,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished">Κενά πεδία</translation>
     </message>
     <message>
-        <source> User %1 Inserted succesfully!!</source>
+        <source> User %1 Inserted successfully!!</source>
         <translation type="unfinished">Ο χρήστης %1 αποθηκεύτηκε με επιτυχία</translation>
     </message>
     <message>

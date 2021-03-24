@@ -559,7 +559,7 @@ p, li { white-space: pre-wrap; }
        <item row="13" column="1">
         <widget class="QLabel" name="label_16">
          <property name="text">
-          <string>Acount will expire on :</string>
+          <string>Account will expire on :</string>
          </property>
         </widget>
        </item>
