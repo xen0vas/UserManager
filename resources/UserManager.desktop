@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=UserManager
+Comment=provides administration support for user management
+Icon=UserManager
+Exec=/usr/bin/UserManager
+Terminal=false
+Categories=System;Application;Utility;

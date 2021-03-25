@@ -618,7 +618,7 @@ void UserProperties::addUserBase()
 			link ( SHADOW_FILE,SHADOW_FILE".bak" );
 
 			
-			QMessageBox::information ( this,tr ( "User Manager" ),tr ( " User %1 Inserted succesfully!!" ).arg ( nam ) );
+			QMessageBox::information ( this,tr ( "User Manager" ),tr ( " User %1 Inserted successfully!!" ).arg ( nam ) );
 			passBtn->setEnabled(true);
 
 
@@ -1044,7 +1044,7 @@ void UserProperties::usermod_execve(QString index, QString label)
     pid = fork();
 
     if (pid == -1){
-            QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> can't fork, error occured <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
+            QMessageBox::critical ( 0,tr ( "User Manager" ),tr ( "<qt> can't fork, error occurred <i> %1 </i> </qt> " ).arg ( strerror ( errno ) ) );
     }
     else if (pid == 0)
     {
