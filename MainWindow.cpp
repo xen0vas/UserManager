@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <sys/time.h>
 #include "InputDialogValidator.h"
+#include <memory>
 
 using namespace std;
 

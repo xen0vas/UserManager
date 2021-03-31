@@ -1,0 +1,430 @@
+/usr/lib/qt5/bin/qmake -o Makefile UserManager.pro
+/usr/lib/qt5/bin/uic ui/About.ui -o ui_About.h
+/usr/lib/qt5/bin/uic ui/EditProperties.ui -o ui_EditProperties.h
+ui/EditProperties.ui: Warning: Z-order assignment: 'horizontalSpacer_2' is not a valid widget.
+/usr/lib/qt5/bin/uic ui/GroupProperties.ui -o ui_GroupProperties.h
+/usr/lib/qt5/bin/uic ui/HashingAlgorithm.ui -o ui_HashingAlgorithm.h
+ui/HashingAlgorithm.ui: Warning: Z-order assignment: 'verticalSpacer_10' is not a valid widget.
+ui/HashingAlgorithm.ui: Warning: Z-order assignment: 'verticalSpacer_11' is not a valid widget.
+ui/HashingAlgorithm.ui: Warning: Z-order assignment: 'verticalSpacer_13' is not a valid widget.
+/usr/lib/qt5/bin/uic ui/mainwindow.ui -o ui_mainwindow.h
+/usr/lib/qt5/bin/uic ui/Settings.ui -o ui_Settings.h
+/usr/lib/qt5/bin/uic ui/UserProperties.ui -o ui_UserProperties.h
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o About.o About.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o Blowfish.o Blowfish.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o editProperties.o editProperties.cpp
+editProperties.cpp: In member function ‘void EditProperties::ok_to_edit_Button()’:
+editProperties.cpp:235:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+     if ( pwdBuffer != NULL )
+     ^~
+editProperties.cpp:238:2: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  newf.username    =  na.data();
+  ^~~~
+editProperties.cpp:307:5: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+     if(status != 1)
+     ^~
+editProperties.cpp:309:2: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  if ( cp != nullptr) { delete cp; cp = nullptr;}
+  ^~
+editProperties.cpp: In member function ‘void EditProperties::easyAddGroups(const QModelIndex&)’:
+editProperties.cpp:1053:8: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+  system("sed -i 's/,,/,/g;s/,$//g' /etc/group");
+  ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from users.h:4,
+                 from userproperties.h:7,
+                 from editProperties.h:12,
+                 from editProperties.cpp:1:
+./spc.h: At global scope:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o groupProperties.o groupProperties.cpp
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from groupProperties.cpp:1:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o groups.o groups.cpp
+In file included from groups.h:5:0,
+                 from groups.cpp:1:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o HashEncode.o HashEncode.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o HashingAlgorithm.o HashingAlgorithm.cpp
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from HashingAlgorithm.cpp:3:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o HashingFactory.o HashingFactory.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o InputDialogValidator.o InputDialogValidator.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o main.o main.cpp
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from main.cpp:3:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o MainWindow.o MainWindow.cpp
+MainWindow.cpp: In member function ‘void MainWindow::deleteUser()’:
+MainWindow.cpp:423:25: warning: ignoring return value of ‘int link(const char*, const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+                     link(SH_FILE, SH_FILE".bak");
+                     ~~~~^~~~~~~~~~~~~~~~~~~~~~~~
+MainWindow.cpp:468:27: warning: ignoring return value of ‘int chown(const char*, __uid_t, __gid_t)’, declared with attribute warn_unused_result [-Wunused-result]
+                     chown ( SH_FILE, (uid_t)0 ,(gid_t)grp->gr_gid);
+                     ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+MainWindow.cpp:481:27: warning: ignoring return value of ‘int chown(const char*, __uid_t, __gid_t)’, declared with attribute warn_unused_result [-Wunused-result]
+                     chown ( paths, (uid_t)0 ,(gid_t)0 );
+                     ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from MainWindow.cpp:1:
+./spc.h: At global scope:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o Md5.o Md5.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o models.o models.cpp
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from users.h:4,
+                 from userproperties.h:7,
+                 from editProperties.h:12,
+                 from models.h:3,
+                 from models.cpp:1:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o myLibb.o myLibb.cpp
+myLibb.cpp: In member function ‘int MyLibb::setpwnam_r(passwd*, char*)’:
+myLibb.cpp:108:9: warning: ignoring return value of ‘int link(const char*, const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+     link(PASSWD_FILE, PASSWD_FILE".bak");
+     ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+myLibb.cpp: In member function ‘int MyLibb::setgrnam_r(group*, char*)’:
+myLibb.cpp:193:5: warning: ignoring return value of ‘int link(const char*, const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+ link(GR_FILE, GR_FILE".bak");
+ ~~~~^~~~~~~~~~~~~~~~~~~~~~~~
+myLibb.cpp: In member function ‘int MyLibb::setspnam(spwd*)’:
+myLibb.cpp:270:5: warning: ignoring return value of ‘int link(const char*, const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+ link(SH_FILE, SH_FILE".bak");
+ ~~~~^~~~~~~~~~~~~~~~~~~~~~~~
+myLibb.cpp: In member function ‘int MyLibb::setgrnam(group*)’:
+myLibb.cpp:356:5: warning: ignoring return value of ‘int link(const char*, const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+ link(GR_FILE, GR_FILE".bak");
+ ~~~~^~~~~~~~~~~~~~~~~~~~~~~~
+myLibb.cpp: In member function ‘int MyLibb::setpwnam(passwd*)’:
+myLibb.cpp:435:9: warning: ignoring return value of ‘int link(const char*, const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+     link(PASSWD_FILE, PASSWD_FILE".bak");
+     ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from users.h:4,
+                 from userproperties.h:7,
+                 from myLibb.cpp:7:
+./spc.h: At global scope:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o Settings.o Settings.cpp
+Settings.cpp: In member function ‘void Settings::setConf(QString, QString)’:
+Settings.cpp:103:8: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+ system ( cmd );
+ ~~~~~~~^~~~~~~
+Settings.cpp: In member function ‘void Settings::sendMail()’:
+Settings.cpp:163:10: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+    system("echo 0x1A | echo '01 * * * * sh /usr/share/apps/UserManager/other/exp.sh' | crontab - -u root");//0x1A=EOF/CTRL+D
+    ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Settings.cpp:178:11: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+    system ( "sed -i '/exp.sh/d' /var/spool/cron/crontabs/root" ); // delete exp.sh
+    ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Settings.cpp:186:9: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+   system("echo '01 * * * * sh /usr/share/apps/UserManager/other/exp.sh' >> /var/spool/cron/crontabs/root");
+   ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from Settings.cpp:1:
+./spc.h: At global scope:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o sha256.o sha256.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o sha512.o sha512.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o spc.o spc.cpp
+spc.cpp: In member function ‘void Spc::spc_drop_privilleges(int)’:
+spc.cpp:178:13: warning: ignoring return value of ‘int setegid(__gid_t)’, declared with attribute warn_unused_result [-Wunused-result]
+      setegid(newgid);
+      ~~~~~~~^~~~~~~~
+spc.cpp:187:13: warning: ignoring return value of ‘int seteuid(__uid_t)’, declared with attribute warn_unused_result [-Wunused-result]
+      seteuid(newuid);
+      ~~~~~~~^~~~~~~~
+spc.cpp:196:15: warning: ignoring return value of ‘int seteuid(__uid_t)’, declared with attribute warn_unused_result [-Wunused-result]
+        seteuid(newuid);
+        ~~~~~~~^~~~~~~~
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o userproperties.o userproperties.cpp
+userproperties.cpp: In member function ‘int UserProperties::insertIntoShadowFile(QString, QString)’:
+userproperties.cpp:411:8: warning: ignoring return value of ‘int chown(const char*, __uid_t, __gid_t)’, declared with attribute warn_unused_result [-Wunused-result]
+  chown (SHADOW_FILE , (uid_t)0 ,(gid_t)grp->gr_gid);
+  ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+userproperties.cpp: In member function ‘void UserProperties::addUserBase()’:
+userproperties.cpp:548:19: warning: ignoring return value of ‘int chown(const char*, __uid_t, __gid_t)’, declared with attribute warn_unused_result [-Wunused-result]
+             chown ( cli_sanitized_path, ( uid_t ) userID, ( gid_t ) groupID );
+             ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+userproperties.cpp:606:9: warning: ignoring return value of ‘int link(const char*, const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+    link ( PASSWD_FILE, PASSWD_FILE".bak" );
+    ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+userproperties.cpp:612:9: warning: ignoring return value of ‘int link(const char*, const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+    link ( GROUP_FILE,GROUP_FILE".bak" );
+    ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+userproperties.cpp:618:9: warning: ignoring return value of ‘int link(const char*, const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+    link ( SHADOW_FILE,SHADOW_FILE".bak" );
+    ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+userproperties.cpp: In member function ‘void UserProperties::changeMembers(const QModelIndex&)’:
+userproperties.cpp:731:10: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+   system ( "sed -i 's/,,/,/g;s/,$//g' /etc/group" );
+   ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+userproperties.cpp: In member function ‘void UserProperties::easyAddGroups(const QModelIndex&)’:
+userproperties.cpp:1201:8: warning: ignoring return value of ‘int system(const char*)’, declared with attribute warn_unused_result [-Wunused-result]
+  system("sed -i 's/,,/,/g;s/,$//g' /etc/group");
+  ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from users.h:4,
+                 from userproperties.h:7,
+                 from userproperties.cpp:1:
+./spc.h: At global scope:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o users.o users.cpp
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from users.h:4,
+                 from users.cpp:1:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+/usr/lib/qt5/bin/rcc -name images resources/images.qrc -o qrc_images.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o qrc_images.o qrc_images.cpp
+g++ -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
+/usr/lib/qt5/bin/moc -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include About.h -o moc_About.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o moc_About.o moc_About.cpp
+/usr/lib/qt5/bin/moc -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include editProperties.h -o moc_editProperties.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o moc_editProperties.o moc_editProperties.cpp
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from users.h:4,
+                 from userproperties.h:7,
+                 from editProperties.h:12,
+                 from moc_editProperties.cpp:9:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+/usr/lib/qt5/bin/moc -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include groupProperties.h -o moc_groupProperties.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o moc_groupProperties.o moc_groupProperties.cpp
+/usr/lib/qt5/bin/moc -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include groups.h -o moc_groups.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o moc_groups.o moc_groups.cpp
+In file included from groups.h:5:0,
+                 from moc_groups.cpp:9:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+/usr/lib/qt5/bin/moc -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include HashingAlgorithm.h -o moc_HashingAlgorithm.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o moc_HashingAlgorithm.o moc_HashingAlgorithm.cpp
+/usr/lib/qt5/bin/moc -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include InputDialogValidator.h -o moc_InputDialogValidator.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o moc_InputDialogValidator.o moc_InputDialogValidator.cpp
+/usr/lib/qt5/bin/moc -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MainWindow.h -o moc_MainWindow.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o moc_MainWindow.o moc_MainWindow.cpp
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from moc_MainWindow.cpp:9:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+/usr/lib/qt5/bin/moc -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include myLibb.h -o moc_myLibb.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o moc_myLibb.o moc_myLibb.cpp
+/usr/lib/qt5/bin/moc -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include Settings.h -o moc_Settings.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o moc_Settings.o moc_Settings.cpp
+/usr/lib/qt5/bin/moc -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include spc.h -o moc_spc.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o moc_spc.o moc_spc.cpp
+In file included from moc_spc.cpp:9:0:
+spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+/usr/lib/qt5/bin/moc -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include userproperties.h -o moc_userproperties.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o moc_userproperties.o moc_userproperties.cpp
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from users.h:4,
+                 from userproperties.h:7,
+                 from moc_userproperties.cpp:9:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+/usr/lib/qt5/bin/moc -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/opt/UserManager -I/opt/UserManager -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include users.h -o moc_users.cpp
+g++ -c -pipe -std=c++11 -O2 -fstack-protector-all -Wformat -Werror=format-security -g -D_REENTRANT -Wall -W -fPIC -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -o moc_users.o moc_users.cpp
+In file included from groups.h:5:0,
+                 from MainWindow.h:17,
+                 from users.h:4,
+                 from moc_users.cpp:9:
+./spc.h:21:14: warning: ‘orig_groups’ defined but not used [-Wunused-variable]
+ static gid_t orig_groups[NGROUPS_MAX];
+              ^~~~~~~~~~~
+./spc.h:20:14: warning: ‘orig_uid’ defined but not used [-Wunused-variable]
+ static uid_t orig_uid = -1;
+              ^~~~~~~~
+./spc.h:19:14: warning: ‘orig_gid’ defined but not used [-Wunused-variable]
+ static gid_t orig_gid = -1;
+              ^~~~~~~~
+./spc.h:18:14: warning: ‘orig_ngroups’ defined but not used [-Wunused-variable]
+ static int   orig_ngroups = -1;
+              ^~~~~~~~~~~~
+g++  -o UserManager About.o Blowfish.o editProperties.o groupProperties.o groups.o HashEncode.o HashingAlgorithm.o HashingFactory.o InputDialogValidator.o main.o MainWindow.o Md5.o models.o myLibb.o Settings.o sha256.o sha512.o spc.o userproperties.o users.o qrc_images.o moc_About.o moc_editProperties.o moc_groupProperties.o moc_groups.o moc_HashingAlgorithm.o moc_InputDialogValidator.o moc_MainWindow.o moc_myLibb.o moc_Settings.o moc_spc.o moc_userproperties.o moc_users.o   -lcrypt -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 

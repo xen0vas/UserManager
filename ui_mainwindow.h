@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.2
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,9 +10,9 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QIcon>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
@@ -103,7 +103,7 @@ public:
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
-            MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
+            MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(925, 750);
         QPalette palette;
         QBrush brush(QColor(229, 229, 229, 255));
@@ -114,7 +114,7 @@ public:
         MainWindow->setPalette(palette);
         MainWindow->setAcceptDrops(true);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/new/prefix1/images/UserManager.gif"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/new/prefix1/images/UserManager.gif"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setLayoutDirection(Qt::LeftToRight);
         MainWindow->setAutoFillBackground(true);
@@ -122,138 +122,138 @@ public:
         MainWindow->setDockNestingEnabled(true);
         MainWindow->setUnifiedTitleAndToolBarOnMac(false);
         menuReload = new QAction(MainWindow);
-        menuReload->setObjectName(QString::fromUtf8("menuReload"));
+        menuReload->setObjectName(QStringLiteral("menuReload"));
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/new/prefix1/images/reload.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QStringLiteral(":/new/prefix1/images/reload.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuReload->setIcon(icon1);
         menuConfiguration = new QAction(MainWindow);
-        menuConfiguration->setObjectName(QString::fromUtf8("menuConfiguration"));
+        menuConfiguration->setObjectName(QStringLiteral("menuConfiguration"));
         QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/new/prefix1/images/settings.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/new/prefix1/images/settings.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuConfiguration->setIcon(icon2);
         menuLanguage = new QAction(MainWindow);
-        menuLanguage->setObjectName(QString::fromUtf8("menuLanguage"));
+        menuLanguage->setObjectName(QStringLiteral("menuLanguage"));
         QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/new/prefix1/images/language.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon3.addFile(QStringLiteral(":/new/prefix1/images/language.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuLanguage->setIcon(icon3);
         menuBackup = new QAction(MainWindow);
-        menuBackup->setObjectName(QString::fromUtf8("menuBackup"));
+        menuBackup->setObjectName(QStringLiteral("menuBackup"));
         QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/new/prefix1/images/backup.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon4.addFile(QStringLiteral(":/new/prefix1/images/backup.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuBackup->setIcon(icon4);
         menuAddUser = new QAction(MainWindow);
-        menuAddUser->setObjectName(QString::fromUtf8("menuAddUser"));
+        menuAddUser->setObjectName(QStringLiteral("menuAddUser"));
         QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/new/prefix1/images/user_add.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon5.addFile(QStringLiteral(":/new/prefix1/images/user_add.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuAddUser->setIcon(icon5);
         menuDeleteUser = new QAction(MainWindow);
-        menuDeleteUser->setObjectName(QString::fromUtf8("menuDeleteUser"));
+        menuDeleteUser->setObjectName(QStringLiteral("menuDeleteUser"));
         QIcon icon6;
-        icon6.addFile(QString::fromUtf8(":/new/prefix1/images/user_remove.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon6.addFile(QStringLiteral(":/new/prefix1/images/user_remove.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuDeleteUser->setIcon(icon6);
         menuEditUser = new QAction(MainWindow);
-        menuEditUser->setObjectName(QString::fromUtf8("menuEditUser"));
+        menuEditUser->setObjectName(QStringLiteral("menuEditUser"));
         QIcon icon7;
-        icon7.addFile(QString::fromUtf8(":/new/prefix1/images/editUser.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon7.addFile(QStringLiteral(":/new/prefix1/images/editUser.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuEditUser->setIcon(icon7);
         menuSetPassword = new QAction(MainWindow);
-        menuSetPassword->setObjectName(QString::fromUtf8("menuSetPassword"));
+        menuSetPassword->setObjectName(QStringLiteral("menuSetPassword"));
         QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/new/prefix1/images/keys.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon8.addFile(QStringLiteral(":/new/prefix1/images/keys.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuSetPassword->setIcon(icon8);
         menuAddGroup = new QAction(MainWindow);
-        menuAddGroup->setObjectName(QString::fromUtf8("menuAddGroup"));
+        menuAddGroup->setObjectName(QStringLiteral("menuAddGroup"));
         QIcon icon9;
-        icon9.addFile(QString::fromUtf8(":/new/prefix1/images/group_add.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon9.addFile(QStringLiteral(":/new/prefix1/images/group_add.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuAddGroup->setIcon(icon9);
         menuDeleteGroup = new QAction(MainWindow);
-        menuDeleteGroup->setObjectName(QString::fromUtf8("menuDeleteGroup"));
+        menuDeleteGroup->setObjectName(QStringLiteral("menuDeleteGroup"));
         QIcon icon10;
-        icon10.addFile(QString::fromUtf8(":/new/prefix1/images/group_remove.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon10.addFile(QStringLiteral(":/new/prefix1/images/group_remove.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuDeleteGroup->setIcon(icon10);
         menuQuit = new QAction(MainWindow);
-        menuQuit->setObjectName(QString::fromUtf8("menuQuit"));
+        menuQuit->setObjectName(QStringLiteral("menuQuit"));
         QIcon icon11;
-        icon11.addFile(QString::fromUtf8("../resources/images/quit.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon11.addFile(QStringLiteral("../resources/images/quit.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuQuit->setIcon(icon11);
         menuAboutUserManager = new QAction(MainWindow);
-        menuAboutUserManager->setObjectName(QString::fromUtf8("menuAboutUserManager"));
+        menuAboutUserManager->setObjectName(QStringLiteral("menuAboutUserManager"));
         menuAboutUserManager->setIcon(icon);
         menuAbout_Qt = new QAction(MainWindow);
-        menuAbout_Qt->setObjectName(QString::fromUtf8("menuAbout_Qt"));
+        menuAbout_Qt->setObjectName(QStringLiteral("menuAbout_Qt"));
         QIcon icon12;
-        icon12.addFile(QString::fromUtf8(":/new/prefix1/images/qt.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon12.addFile(QStringLiteral(":/new/prefix1/images/qt.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuAbout_Qt->setIcon(icon12);
         menuEditGroup = new QAction(MainWindow);
-        menuEditGroup->setObjectName(QString::fromUtf8("menuEditGroup"));
+        menuEditGroup->setObjectName(QStringLiteral("menuEditGroup"));
         QIcon icon13;
-        icon13.addFile(QString::fromUtf8(":/new/prefix1/images/editGroup.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon13.addFile(QStringLiteral(":/new/prefix1/images/editGroup.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuEditGroup->setIcon(icon13);
         menuDiskUsage = new QAction(MainWindow);
-        menuDiskUsage->setObjectName(QString::fromUtf8("menuDiskUsage"));
+        menuDiskUsage->setObjectName(QStringLiteral("menuDiskUsage"));
         QIcon icon14;
-        icon14.addFile(QString::fromUtf8(":/new/prefix1/images/storage.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon14.addFile(QStringLiteral(":/new/prefix1/images/storage.png"), QSize(), QIcon::Normal, QIcon::Off);
         menuDiskUsage->setIcon(icon14);
         centralwidget = new QWidget(MainWindow);
-        centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        centralwidget->setObjectName(QStringLiteral("centralwidget"));
         gridLayout = new QGridLayout(centralwidget);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
 
         gridLayout->addItem(verticalSpacer, 0, 0, 1, 1);
 
         groupBox = new QGroupBox(centralwidget);
-        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setObjectName(QStringLiteral("groupBox"));
         reloadBtn = new QToolButton(groupBox);
-        reloadBtn->setObjectName(QString::fromUtf8("reloadBtn"));
+        reloadBtn->setObjectName(QStringLiteral("reloadBtn"));
         reloadBtn->setGeometry(QRect(0, 0, 51, 41));
         reloadBtn->setIcon(icon1);
         reloadBtn->setIconSize(QSize(60, 60));
         reloadBtn->setAutoRaise(false);
         reloadBtn->setArrowType(Qt::NoArrow);
         addUserBtn = new QToolButton(groupBox);
-        addUserBtn->setObjectName(QString::fromUtf8("addUserBtn"));
+        addUserBtn->setObjectName(QStringLiteral("addUserBtn"));
         addUserBtn->setGeometry(QRect(50, 0, 51, 41));
         addUserBtn->setAutoFillBackground(false);
         addUserBtn->setIcon(icon5);
         addUserBtn->setIconSize(QSize(60, 60));
         delUserBtn = new QToolButton(groupBox);
-        delUserBtn->setObjectName(QString::fromUtf8("delUserBtn"));
+        delUserBtn->setObjectName(QStringLiteral("delUserBtn"));
         delUserBtn->setGeometry(QRect(100, 0, 51, 41));
         delUserBtn->setAutoFillBackground(false);
         delUserBtn->setIcon(icon6);
         delUserBtn->setIconSize(QSize(60, 60));
         searchUserBtn = new QToolButton(groupBox);
-        searchUserBtn->setObjectName(QString::fromUtf8("searchUserBtn"));
+        searchUserBtn->setObjectName(QStringLiteral("searchUserBtn"));
         searchUserBtn->setGeometry(QRect(150, 0, 51, 41));
         searchUserBtn->setAutoFillBackground(false);
         QIcon icon15;
-        icon15.addFile(QString::fromUtf8(":/new/prefix1/images/search.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon15.addFile(QStringLiteral(":/new/prefix1/images/search.png"), QSize(), QIcon::Normal, QIcon::Off);
         searchUserBtn->setIcon(icon15);
         searchUserBtn->setIconSize(QSize(60, 60));
         searchGroupBtn = new QToolButton(groupBox);
-        searchGroupBtn->setObjectName(QString::fromUtf8("searchGroupBtn"));
+        searchGroupBtn->setObjectName(QStringLiteral("searchGroupBtn"));
         searchGroupBtn->setGeometry(QRect(380, 0, 51, 41));
         searchGroupBtn->setAutoFillBackground(false);
         searchGroupBtn->setIcon(icon15);
         searchGroupBtn->setIconSize(QSize(60, 60));
         editBtn = new QToolButton(groupBox);
-        editBtn->setObjectName(QString::fromUtf8("editBtn"));
+        editBtn->setObjectName(QStringLiteral("editBtn"));
         editBtn->setGeometry(QRect(200, 0, 41, 41));
         editBtn->setIcon(icon7);
         editBtn->setIconSize(QSize(60, 60));
         delGroupBtn = new QToolButton(groupBox);
-        delGroupBtn->setObjectName(QString::fromUtf8("delGroupBtn"));
+        delGroupBtn->setObjectName(QStringLiteral("delGroupBtn"));
         delGroupBtn->setGeometry(QRect(330, 0, 51, 41));
         delGroupBtn->setIcon(icon10);
         delGroupBtn->setIconSize(QSize(60, 60));
         addGroupBtn = new QToolButton(groupBox);
-        addGroupBtn->setObjectName(QString::fromUtf8("addGroupBtn"));
+        addGroupBtn->setObjectName(QStringLiteral("addGroupBtn"));
         addGroupBtn->setGeometry(QRect(280, 0, 51, 41));
         addGroupBtn->setIcon(icon9);
         addGroupBtn->setIconSize(QSize(60, 60));
         editGroupBtn = new QToolButton(groupBox);
-        editGroupBtn->setObjectName(QString::fromUtf8("editGroupBtn"));
+        editGroupBtn->setObjectName(QStringLiteral("editGroupBtn"));
         editGroupBtn->setEnabled(false);
         editGroupBtn->setGeometry(QRect(240, 0, 41, 41));
         editGroupBtn->setIcon(icon13);
@@ -266,7 +266,7 @@ public:
         gridLayout->addItem(verticalSpacer_2, 0, 4, 1, 1);
 
         tabWidget = new QTabWidget(centralwidget);
-        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+        tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tabWidget->setFocusPolicy(Qt::TabFocus);
         tabWidget->setAcceptDrops(true);
         tabWidget->setAutoFillBackground(false);
@@ -274,11 +274,11 @@ public:
         tabWidget->setTabShape(QTabWidget::Rounded);
         tabWidget->setIconSize(QSize(20, 20));
         usersTab = new QWidget();
-        usersTab->setObjectName(QString::fromUtf8("usersTab"));
+        usersTab->setObjectName(QStringLiteral("usersTab"));
         gridLayout_2 = new QGridLayout(usersTab);
-        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         userTreeView = new QTreeView(usersTab);
-        userTreeView->setObjectName(QString::fromUtf8("userTreeView"));
+        userTreeView->setObjectName(QStringLiteral("userTreeView"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -288,7 +288,7 @@ public:
         userTreeView->setContextMenuPolicy(Qt::DefaultContextMenu);
         userTreeView->setAcceptDrops(true);
         userTreeView->setAutoFillBackground(true);
-        userTreeView->setStyleSheet(QString::fromUtf8(""));
+        userTreeView->setStyleSheet(QStringLiteral(""));
         userTreeView->setLineWidth(0);
         userTreeView->setEditTriggers(QAbstractItemView::NoEditTriggers);
         userTreeView->setTabKeyNavigation(true);
@@ -307,7 +307,7 @@ public:
         gridLayout_2->addItem(horizontalSpacer_3, 1, 0, 1, 1);
 
         folderSizeCheckBox = new QCheckBox(usersTab);
-        folderSizeCheckBox->setObjectName(QString::fromUtf8("folderSizeCheckBox"));
+        folderSizeCheckBox->setObjectName(QStringLiteral("folderSizeCheckBox"));
         folderSizeCheckBox->setAutoFillBackground(false);
         folderSizeCheckBox->setIcon(icon14);
         folderSizeCheckBox->setIconSize(QSize(20, 20));
@@ -316,7 +316,7 @@ public:
         gridLayout_2->addWidget(folderSizeCheckBox, 1, 1, 1, 1);
 
         userDetails = new QGroupBox(usersTab);
-        userDetails->setObjectName(QString::fromUtf8("userDetails"));
+        userDetails->setObjectName(QStringLiteral("userDetails"));
         userDetails->setEnabled(true);
         userDetails->setAutoFillBackground(false);
         userDetails->setAlignment(Qt::AlignCenter);
@@ -324,9 +324,9 @@ public:
         userDetails->setCheckable(false);
         userDetails->setChecked(false);
         gridLayout_10 = new QGridLayout(userDetails);
-        gridLayout_10->setObjectName(QString::fromUtf8("gridLayout_10"));
+        gridLayout_10->setObjectName(QStringLiteral("gridLayout_10"));
         loginNameLabel_2 = new QLabel(userDetails);
-        loginNameLabel_2->setObjectName(QString::fromUtf8("loginNameLabel_2"));
+        loginNameLabel_2->setObjectName(QStringLiteral("loginNameLabel_2"));
         loginNameLabel_2->setFrameShape(QFrame::NoFrame);
         loginNameLabel_2->setFrameShadow(QFrame::Raised);
         loginNameLabel_2->setTextFormat(Qt::AutoText);
@@ -336,7 +336,7 @@ public:
         gridLayout_10->addWidget(loginNameLabel_2, 0, 0, 1, 1);
 
         loginNameEdit = new QLineEdit(userDetails);
-        loginNameEdit->setObjectName(QString::fromUtf8("loginNameEdit"));
+        loginNameEdit->setObjectName(QStringLiteral("loginNameEdit"));
         loginNameEdit->setEnabled(true);
         loginNameEdit->setCursor(QCursor(Qt::ArrowCursor));
         loginNameEdit->setReadOnly(true);
@@ -344,7 +344,7 @@ public:
         gridLayout_10->addWidget(loginNameEdit, 0, 1, 1, 1);
 
         realNameEdit = new QLineEdit(userDetails);
-        realNameEdit->setObjectName(QString::fromUtf8("realNameEdit"));
+        realNameEdit->setObjectName(QStringLiteral("realNameEdit"));
         realNameEdit->setEnabled(true);
         realNameEdit->setBaseSize(QSize(0, 0));
         realNameEdit->setCursor(QCursor(Qt::ArrowCursor));
@@ -353,7 +353,7 @@ public:
         gridLayout_10->addWidget(realNameEdit, 0, 3, 1, 1);
 
         realNameLabel = new QLabel(userDetails);
-        realNameLabel->setObjectName(QString::fromUtf8("realNameLabel"));
+        realNameLabel->setObjectName(QStringLiteral("realNameLabel"));
         realNameLabel->setFrameShape(QFrame::NoFrame);
         realNameLabel->setFrameShadow(QFrame::Raised);
         realNameLabel->setTextFormat(Qt::AutoText);
@@ -363,7 +363,7 @@ public:
         gridLayout_10->addWidget(realNameLabel, 0, 2, 1, 1);
 
         UIDLabel = new QLabel(userDetails);
-        UIDLabel->setObjectName(QString::fromUtf8("UIDLabel"));
+        UIDLabel->setObjectName(QStringLiteral("UIDLabel"));
         UIDLabel->setFrameShape(QFrame::NoFrame);
         UIDLabel->setFrameShadow(QFrame::Raised);
         UIDLabel->setTextFormat(Qt::AutoText);
@@ -373,7 +373,7 @@ public:
         gridLayout_10->addWidget(UIDLabel, 1, 0, 1, 1);
 
         UIDEdit = new QLineEdit(userDetails);
-        UIDEdit->setObjectName(QString::fromUtf8("UIDEdit"));
+        UIDEdit->setObjectName(QStringLiteral("UIDEdit"));
         UIDEdit->setEnabled(true);
         UIDEdit->setCursor(QCursor(Qt::ArrowCursor));
         UIDEdit->setAutoFillBackground(false);
@@ -383,7 +383,7 @@ public:
         gridLayout_10->addWidget(UIDEdit, 1, 1, 1, 1);
 
         priGroupEdit = new QLineEdit(userDetails);
-        priGroupEdit->setObjectName(QString::fromUtf8("priGroupEdit"));
+        priGroupEdit->setObjectName(QStringLiteral("priGroupEdit"));
         priGroupEdit->setEnabled(true);
         priGroupEdit->setCursor(QCursor(Qt::ArrowCursor));
         priGroupEdit->setReadOnly(true);
@@ -391,7 +391,7 @@ public:
         gridLayout_10->addWidget(priGroupEdit, 2, 1, 1, 1);
 
         statusLabel = new QLabel(userDetails);
-        statusLabel->setObjectName(QString::fromUtf8("statusLabel"));
+        statusLabel->setObjectName(QStringLiteral("statusLabel"));
         statusLabel->setFrameShape(QFrame::NoFrame);
         statusLabel->setFrameShadow(QFrame::Raised);
         statusLabel->setTextFormat(Qt::AutoText);
@@ -401,7 +401,7 @@ public:
         gridLayout_10->addWidget(statusLabel, 1, 2, 1, 1);
 
         statusEdit = new QLineEdit(userDetails);
-        statusEdit->setObjectName(QString::fromUtf8("statusEdit"));
+        statusEdit->setObjectName(QStringLiteral("statusEdit"));
         statusEdit->setEnabled(true);
         statusEdit->setCursor(QCursor(Qt::ArrowCursor));
         statusEdit->setReadOnly(true);
@@ -409,7 +409,7 @@ public:
         gridLayout_10->addWidget(statusEdit, 1, 3, 1, 1);
 
         priGrouplabel = new QLabel(userDetails);
-        priGrouplabel->setObjectName(QString::fromUtf8("priGrouplabel"));
+        priGrouplabel->setObjectName(QStringLiteral("priGrouplabel"));
         priGrouplabel->setFrameShape(QFrame::NoFrame);
         priGrouplabel->setFrameShadow(QFrame::Raised);
         priGrouplabel->setTextFormat(Qt::AutoText);
@@ -419,7 +419,7 @@ public:
         gridLayout_10->addWidget(priGrouplabel, 2, 0, 1, 1);
 
         secGroupLabel = new QLabel(userDetails);
-        secGroupLabel->setObjectName(QString::fromUtf8("secGroupLabel"));
+        secGroupLabel->setObjectName(QStringLiteral("secGroupLabel"));
         secGroupLabel->setFrameShape(QFrame::NoFrame);
         secGroupLabel->setFrameShadow(QFrame::Raised);
         secGroupLabel->setTextFormat(Qt::AutoText);
@@ -429,7 +429,7 @@ public:
         gridLayout_10->addWidget(secGroupLabel, 2, 2, 1, 1);
 
         secGroupEdit = new QLineEdit(userDetails);
-        secGroupEdit->setObjectName(QString::fromUtf8("secGroupEdit"));
+        secGroupEdit->setObjectName(QStringLiteral("secGroupEdit"));
         secGroupEdit->setEnabled(true);
         secGroupEdit->setCursor(QCursor(Qt::ArrowCursor));
         secGroupEdit->setReadOnly(true);
@@ -441,11 +441,11 @@ public:
 
         tabWidget->addTab(usersTab, QString());
         groupsTab = new QWidget();
-        groupsTab->setObjectName(QString::fromUtf8("groupsTab"));
+        groupsTab->setObjectName(QStringLiteral("groupsTab"));
         gridLayout_11 = new QGridLayout(groupsTab);
-        gridLayout_11->setObjectName(QString::fromUtf8("gridLayout_11"));
+        gridLayout_11->setObjectName(QStringLiteral("gridLayout_11"));
         groupTreeView = new QTreeView(groupsTab);
-        groupTreeView->setObjectName(QString::fromUtf8("groupTreeView"));
+        groupTreeView->setObjectName(QStringLiteral("groupTreeView"));
         groupTreeView->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
         groupTreeView->setMouseTracking(false);
         groupTreeView->setAcceptDrops(true);
@@ -463,12 +463,12 @@ public:
         gridLayout_11->addWidget(groupTreeView, 0, 0, 1, 1);
 
         membersLabel = new QLabel(groupsTab);
-        membersLabel->setObjectName(QString::fromUtf8("membersLabel"));
+        membersLabel->setObjectName(QStringLiteral("membersLabel"));
 
         gridLayout_11->addWidget(membersLabel, 1, 0, 1, 1);
 
         membersTree = new QTreeView(groupsTab);
-        membersTree->setObjectName(QString::fromUtf8("membersTree"));
+        membersTree->setObjectName(QStringLiteral("membersTree"));
         membersTree->setEnabled(true);
         membersTree->setAutoFillBackground(true);
         membersTree->setFrameShadow(QFrame::Sunken);
@@ -490,7 +490,7 @@ public:
         gridLayout->addItem(horizontalSpacer, 2, 1, 1, 1);
 
         close_app = new QPushButton(centralwidget);
-        close_app->setObjectName(QString::fromUtf8("close_app"));
+        close_app->setObjectName(QStringLiteral("close_app"));
         close_app->setEnabled(true);
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy1.setHorizontalStretch(0);
@@ -498,7 +498,7 @@ public:
         sizePolicy1.setHeightForWidth(close_app->sizePolicy().hasHeightForWidth());
         close_app->setSizePolicy(sizePolicy1);
         QIcon icon16;
-        icon16.addFile(QString::fromUtf8(":/new/prefix1/images/cancel.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon16.addFile(QStringLiteral(":/new/prefix1/images/cancel.png"), QSize(), QIcon::Normal, QIcon::Off);
         close_app->setIcon(icon16);
 
         gridLayout->addWidget(close_app, 2, 2, 1, 1);
@@ -509,21 +509,21 @@ public:
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
-        menubar->setObjectName(QString::fromUtf8("menubar"));
+        menubar->setObjectName(QStringLiteral("menubar"));
         menubar->setGeometry(QRect(0, 0, 925, 27));
         menuFIile = new QMenu(menubar);
-        menuFIile->setObjectName(QString::fromUtf8("menuFIile"));
+        menuFIile->setObjectName(QStringLiteral("menuFIile"));
         menuUser = new QMenu(menubar);
-        menuUser->setObjectName(QString::fromUtf8("menuUser"));
+        menuUser->setObjectName(QStringLiteral("menuUser"));
         menuGroup = new QMenu(menubar);
-        menuGroup->setObjectName(QString::fromUtf8("menuGroup"));
+        menuGroup->setObjectName(QStringLiteral("menuGroup"));
         menuSettings = new QMenu(menubar);
-        menuSettings->setObjectName(QString::fromUtf8("menuSettings"));
+        menuSettings->setObjectName(QStringLiteral("menuSettings"));
         menu_Help = new QMenu(menubar);
-        menu_Help->setObjectName(QString::fromUtf8("menu_Help"));
+        menu_Help->setObjectName(QStringLiteral("menu_Help"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
-        statusbar->setObjectName(QString::fromUtf8("statusbar"));
+        statusbar->setObjectName(QStringLiteral("statusbar"));
         MainWindow->setStatusBar(statusbar);
 
         menubar->addAction(menuFIile->menuAction());
@@ -565,97 +565,97 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "User Manager", nullptr));
-        menuReload->setText(QCoreApplication::translate("MainWindow", "&Reload", nullptr));
-#if QT_CONFIG(statustip)
-        menuReload->setStatusTip(QCoreApplication::translate("MainWindow", "Exit Program", nullptr));
-#endif // QT_CONFIG(statustip)
-        menuConfiguration->setText(QCoreApplication::translate("MainWindow", "&Configuration...", nullptr));
-#if QT_CONFIG(statustip)
-        menuConfiguration->setStatusTip(QCoreApplication::translate("MainWindow", "UserManager Settings", nullptr));
-#endif // QT_CONFIG(statustip)
-        menuLanguage->setText(QCoreApplication::translate("MainWindow", "Language", nullptr));
-#if QT_CONFIG(statustip)
-        menuLanguage->setStatusTip(QCoreApplication::translate("MainWindow", "Change Language", nullptr));
-#endif // QT_CONFIG(statustip)
-        menuBackup->setText(QCoreApplication::translate("MainWindow", "Create Backup", nullptr));
-#if QT_CONFIG(statustip)
-        menuBackup->setStatusTip(QCoreApplication::translate("MainWindow", "Backup system files", nullptr));
-#endif // QT_CONFIG(statustip)
-        menuAddUser->setText(QCoreApplication::translate("MainWindow", "&Add...", nullptr));
-        menuDeleteUser->setText(QCoreApplication::translate("MainWindow", "&Delete...", nullptr));
-        menuEditUser->setText(QCoreApplication::translate("MainWindow", "&Edit...", nullptr));
-        menuSetPassword->setText(QCoreApplication::translate("MainWindow", "&Set Pass&word...", nullptr));
-        menuAddGroup->setText(QCoreApplication::translate("MainWindow", "&Add...", nullptr));
-        menuDeleteGroup->setText(QCoreApplication::translate("MainWindow", "&Delete...", nullptr));
-        menuQuit->setText(QCoreApplication::translate("MainWindow", "&Quit", nullptr));
-        menuAboutUserManager->setText(QCoreApplication::translate("MainWindow", "&About User&Manager", nullptr));
-        menuAbout_Qt->setText(QCoreApplication::translate("MainWindow", "About Qt", nullptr));
-        menuEditGroup->setText(QCoreApplication::translate("MainWindow", "Edit", nullptr));
-        menuDiskUsage->setText(QCoreApplication::translate("MainWindow", "DIsk Usage", nullptr));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "User Manager", Q_NULLPTR));
+        menuReload->setText(QApplication::translate("MainWindow", "&Reload", Q_NULLPTR));
+#ifndef QT_NO_STATUSTIP
+        menuReload->setStatusTip(QApplication::translate("MainWindow", "Exit Program", Q_NULLPTR));
+#endif // QT_NO_STATUSTIP
+        menuConfiguration->setText(QApplication::translate("MainWindow", "&Configuration...", Q_NULLPTR));
+#ifndef QT_NO_STATUSTIP
+        menuConfiguration->setStatusTip(QApplication::translate("MainWindow", "UserManager Settings", Q_NULLPTR));
+#endif // QT_NO_STATUSTIP
+        menuLanguage->setText(QApplication::translate("MainWindow", "Language", Q_NULLPTR));
+#ifndef QT_NO_STATUSTIP
+        menuLanguage->setStatusTip(QApplication::translate("MainWindow", "Change Language", Q_NULLPTR));
+#endif // QT_NO_STATUSTIP
+        menuBackup->setText(QApplication::translate("MainWindow", "Create Backup", Q_NULLPTR));
+#ifndef QT_NO_STATUSTIP
+        menuBackup->setStatusTip(QApplication::translate("MainWindow", "Backup system files", Q_NULLPTR));
+#endif // QT_NO_STATUSTIP
+        menuAddUser->setText(QApplication::translate("MainWindow", "&Add...", Q_NULLPTR));
+        menuDeleteUser->setText(QApplication::translate("MainWindow", "&Delete...", Q_NULLPTR));
+        menuEditUser->setText(QApplication::translate("MainWindow", "&Edit...", Q_NULLPTR));
+        menuSetPassword->setText(QApplication::translate("MainWindow", "&Set Pass&word...", Q_NULLPTR));
+        menuAddGroup->setText(QApplication::translate("MainWindow", "&Add...", Q_NULLPTR));
+        menuDeleteGroup->setText(QApplication::translate("MainWindow", "&Delete...", Q_NULLPTR));
+        menuQuit->setText(QApplication::translate("MainWindow", "&Quit", Q_NULLPTR));
+        menuAboutUserManager->setText(QApplication::translate("MainWindow", "&About User&Manager", Q_NULLPTR));
+        menuAbout_Qt->setText(QApplication::translate("MainWindow", "About Qt", Q_NULLPTR));
+        menuEditGroup->setText(QApplication::translate("MainWindow", "Edit", Q_NULLPTR));
+        menuDiskUsage->setText(QApplication::translate("MainWindow", "DIsk Usage", Q_NULLPTR));
         groupBox->setTitle(QString());
-#if QT_CONFIG(tooltip)
+#ifndef QT_NO_TOOLTIP
         reloadBtn->setToolTip(QString());
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        reloadBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Reload Lists", nullptr));
-#endif // QT_CONFIG(statustip)
-#if QT_CONFIG(whatsthis)
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_STATUSTIP
+        reloadBtn->setStatusTip(QApplication::translate("MainWindow", "Reload Lists", Q_NULLPTR));
+#endif // QT_NO_STATUSTIP
+#ifndef QT_NO_WHATSTHIS
         reloadBtn->setWhatsThis(QString());
-#endif // QT_CONFIG(whatsthis)
+#endif // QT_NO_WHATSTHIS
         reloadBtn->setText(QString());
-#if QT_CONFIG(statustip)
-        addUserBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Add New User", nullptr));
-#endif // QT_CONFIG(statustip)
+#ifndef QT_NO_STATUSTIP
+        addUserBtn->setStatusTip(QApplication::translate("MainWindow", "Add New User", Q_NULLPTR));
+#endif // QT_NO_STATUSTIP
         addUserBtn->setText(QString());
-#if QT_CONFIG(statustip)
-        delUserBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Delete User", nullptr));
-#endif // QT_CONFIG(statustip)
+#ifndef QT_NO_STATUSTIP
+        delUserBtn->setStatusTip(QApplication::translate("MainWindow", "Delete User", Q_NULLPTR));
+#endif // QT_NO_STATUSTIP
         delUserBtn->setText(QString());
-#if QT_CONFIG(statustip)
-        searchUserBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Search User", nullptr));
-#endif // QT_CONFIG(statustip)
+#ifndef QT_NO_STATUSTIP
+        searchUserBtn->setStatusTip(QApplication::translate("MainWindow", "Search User", Q_NULLPTR));
+#endif // QT_NO_STATUSTIP
         searchUserBtn->setText(QString());
-#if QT_CONFIG(statustip)
-        searchGroupBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Search Group", nullptr));
-#endif // QT_CONFIG(statustip)
+#ifndef QT_NO_STATUSTIP
+        searchGroupBtn->setStatusTip(QApplication::translate("MainWindow", "Search Group", Q_NULLPTR));
+#endif // QT_NO_STATUSTIP
         searchGroupBtn->setText(QString());
-#if QT_CONFIG(statustip)
-        editBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Edit User", nullptr));
-#endif // QT_CONFIG(statustip)
-        editBtn->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
-#if QT_CONFIG(statustip)
-        delGroupBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Delete Group", nullptr));
-#endif // QT_CONFIG(statustip)
-        delGroupBtn->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
-#if QT_CONFIG(statustip)
-        addGroupBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Add New Group", nullptr));
-#endif // QT_CONFIG(statustip)
-        addGroupBtn->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
-#if QT_CONFIG(statustip)
-        editGroupBtn->setStatusTip(QCoreApplication::translate("MainWindow", "Edit Group", nullptr));
-#endif // QT_CONFIG(statustip)
-        editGroupBtn->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
-#if QT_CONFIG(statustip)
+#ifndef QT_NO_STATUSTIP
+        editBtn->setStatusTip(QApplication::translate("MainWindow", "Edit User", Q_NULLPTR));
+#endif // QT_NO_STATUSTIP
+        editBtn->setText(QApplication::translate("MainWindow", "...", Q_NULLPTR));
+#ifndef QT_NO_STATUSTIP
+        delGroupBtn->setStatusTip(QApplication::translate("MainWindow", "Delete Group", Q_NULLPTR));
+#endif // QT_NO_STATUSTIP
+        delGroupBtn->setText(QApplication::translate("MainWindow", "...", Q_NULLPTR));
+#ifndef QT_NO_STATUSTIP
+        addGroupBtn->setStatusTip(QApplication::translate("MainWindow", "Add New Group", Q_NULLPTR));
+#endif // QT_NO_STATUSTIP
+        addGroupBtn->setText(QApplication::translate("MainWindow", "...", Q_NULLPTR));
+#ifndef QT_NO_STATUSTIP
+        editGroupBtn->setStatusTip(QApplication::translate("MainWindow", "Edit Group", Q_NULLPTR));
+#endif // QT_NO_STATUSTIP
+        editGroupBtn->setText(QApplication::translate("MainWindow", "...", Q_NULLPTR));
+#ifndef QT_NO_STATUSTIP
         tabWidget->setStatusTip(QString());
-#endif // QT_CONFIG(statustip)
-        folderSizeCheckBox->setText(QCoreApplication::translate("MainWindow", "Show Usage", nullptr));
-        userDetails->setTitle(QCoreApplication::translate("MainWindow", "Details:", nullptr));
-        loginNameLabel_2->setText(QCoreApplication::translate("MainWindow", "Login Name:", nullptr));
-        realNameLabel->setText(QCoreApplication::translate("MainWindow", "Real Name:", nullptr));
-        UIDLabel->setText(QCoreApplication::translate("MainWindow", "UID:", nullptr));
-        statusLabel->setText(QCoreApplication::translate("MainWindow", "Status:", nullptr));
-        priGrouplabel->setText(QCoreApplication::translate("MainWindow", "Primary Group:", nullptr));
-        secGroupLabel->setText(QCoreApplication::translate("MainWindow", "Secondary Group(s):", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(usersTab), QCoreApplication::translate("MainWindow", "Users", nullptr));
-        membersLabel->setText(QCoreApplication::translate("MainWindow", "Group Members", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(groupsTab), QCoreApplication::translate("MainWindow", "Groups", nullptr));
-        close_app->setText(QCoreApplication::translate("MainWindow", "Close", nullptr));
-        menuFIile->setTitle(QCoreApplication::translate("MainWindow", "&File", nullptr));
-        menuUser->setTitle(QCoreApplication::translate("MainWindow", "&User", nullptr));
-        menuGroup->setTitle(QCoreApplication::translate("MainWindow", "&Group", nullptr));
-        menuSettings->setTitle(QCoreApplication::translate("MainWindow", "&Settings", nullptr));
-        menu_Help->setTitle(QCoreApplication::translate("MainWindow", "&Help", nullptr));
+#endif // QT_NO_STATUSTIP
+        folderSizeCheckBox->setText(QApplication::translate("MainWindow", "Show Usage", Q_NULLPTR));
+        userDetails->setTitle(QApplication::translate("MainWindow", "Details:", Q_NULLPTR));
+        loginNameLabel_2->setText(QApplication::translate("MainWindow", "Login Name:", Q_NULLPTR));
+        realNameLabel->setText(QApplication::translate("MainWindow", "Real Name:", Q_NULLPTR));
+        UIDLabel->setText(QApplication::translate("MainWindow", "UID:", Q_NULLPTR));
+        statusLabel->setText(QApplication::translate("MainWindow", "Status:", Q_NULLPTR));
+        priGrouplabel->setText(QApplication::translate("MainWindow", "Primary Group:", Q_NULLPTR));
+        secGroupLabel->setText(QApplication::translate("MainWindow", "Secondary Group(s):", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(usersTab), QApplication::translate("MainWindow", "Users", Q_NULLPTR));
+        membersLabel->setText(QApplication::translate("MainWindow", "Group Members", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(groupsTab), QApplication::translate("MainWindow", "Groups", Q_NULLPTR));
+        close_app->setText(QApplication::translate("MainWindow", "Close", Q_NULLPTR));
+        menuFIile->setTitle(QApplication::translate("MainWindow", "&File", Q_NULLPTR));
+        menuUser->setTitle(QApplication::translate("MainWindow", "&User", Q_NULLPTR));
+        menuGroup->setTitle(QApplication::translate("MainWindow", "&Group", Q_NULLPTR));
+        menuSettings->setTitle(QApplication::translate("MainWindow", "&Settings", Q_NULLPTR));
+        menu_Help->setTitle(QApplication::translate("MainWindow", "&Help", Q_NULLPTR));
     } // retranslateUi
 
 };

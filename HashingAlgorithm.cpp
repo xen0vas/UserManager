@@ -3,6 +3,7 @@
 #include "MainWindow.h"
 #include "HashingFactory.h"
 #include "userproperties.h"
+#include <memory>
 
 /**
  * Constructor with connections, signals and slots

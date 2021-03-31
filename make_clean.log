@@ -1,0 +1,5 @@
+rm -f qrc_images.cpp
+rm -f moc_predefs.h
+rm -f moc_About.cpp moc_editProperties.cpp moc_groupProperties.cpp moc_groups.cpp moc_HashingAlgorithm.cpp moc_InputDialogValidator.cpp moc_MainWindow.cpp moc_myLibb.cpp moc_Settings.cpp moc_spc.cpp moc_userproperties.cpp moc_users.cpp
+rm -f About.o Blowfish.o editProperties.o groupProperties.o groups.o HashEncode.o HashingAlgorithm.o HashingFactory.o InputDialogValidator.o main.o MainWindow.o Md5.o models.o myLibb.o Settings.o sha256.o sha512.o spc.o userproperties.o users.o qrc_images.o moc_About.o moc_editProperties.o moc_groupProperties.o moc_groups.o moc_HashingAlgorithm.o moc_InputDialogValidator.o moc_MainWindow.o moc_myLibb.o moc_Settings.o moc_spc.o moc_userproperties.o moc_users.o
+rm -f *~ core *.core

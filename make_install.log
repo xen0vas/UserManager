@@ -1,0 +1,1 @@
+/usr/lib/qt5/bin/qmake -install qinstall -exe /opt/UserManager/UserManager /usr/bin/UserManager

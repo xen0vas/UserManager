@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'About.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.2
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,9 +10,12 @@
 #define UI_ABOUT_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
@@ -40,28 +43,28 @@ public:
     void setupUi(QDialog *About)
     {
         if (About->objectName().isEmpty())
-            About->setObjectName(QString::fromUtf8("About"));
+            About->setObjectName(QStringLiteral("About"));
         About->resize(563, 378);
         verticalLayout = new QVBoxLayout(About);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         tabWidget = new QTabWidget(About);
-        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+        tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tabWidget->setAutoFillBackground(false);
-        tabWidget->setStyleSheet(QString::fromUtf8(""));
+        tabWidget->setStyleSheet(QStringLiteral(""));
         tabWidget->setTabShape(QTabWidget::Triangular);
         tab = new QWidget();
-        tab->setObjectName(QString::fromUtf8("tab"));
+        tab->setObjectName(QStringLiteral("tab"));
         label = new QLabel(tab);
-        label->setObjectName(QString::fromUtf8("label"));
+        label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(270, 100, 51, 41));
         label->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/images/UserManager.gif")));
         label->setScaledContents(true);
         horizontalLayout_2 = new QHBoxLayout(tab);
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         textEdit = new QTextEdit(tab);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setAutoFillBackground(false);
-        textEdit->setStyleSheet(QString::fromUtf8("background-color: lightgrey"));
+        textEdit->setStyleSheet(QStringLiteral("background-color: lightgrey"));
         textEdit->setReadOnly(true);
         textEdit->setTextInteractionFlags(Qt::NoTextInteraction);
 
@@ -69,13 +72,13 @@ public:
 
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
-        tab_2->setObjectName(QString::fromUtf8("tab_2"));
+        tab_2->setObjectName(QStringLiteral("tab_2"));
         horizontalLayout_3 = new QHBoxLayout(tab_2);
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         textEdit_2 = new QTextEdit(tab_2);
-        textEdit_2->setObjectName(QString::fromUtf8("textEdit_2"));
+        textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
         textEdit_2->setAutoFillBackground(false);
-        textEdit_2->setStyleSheet(QString::fromUtf8("background-color: lightgrey"));
+        textEdit_2->setStyleSheet(QStringLiteral("background-color: lightgrey"));
         textEdit_2->setReadOnly(true);
         textEdit_2->setTextInteractionFlags(Qt::NoTextInteraction);
 
@@ -83,11 +86,11 @@ public:
 
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
-        tab_3->setObjectName(QString::fromUtf8("tab_3"));
+        tab_3->setObjectName(QStringLiteral("tab_3"));
         horizontalLayout = new QHBoxLayout(tab_3);
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         textEdit_3 = new QTextEdit(tab_3);
-        textEdit_3->setObjectName(QString::fromUtf8("textEdit_3"));
+        textEdit_3->setObjectName(QStringLiteral("textEdit_3"));
         textEdit_3->setReadOnly(true);
         textEdit_3->setTextInteractionFlags(Qt::NoTextInteraction);
 
@@ -108,9 +111,9 @@ public:
 
     void retranslateUi(QDialog *About)
     {
-        About->setWindowTitle(QCoreApplication::translate("About", "User Manager-About", nullptr));
+        About->setWindowTitle(QApplication::translate("About", "User Manager-About", Q_NULLPTR));
         label->setText(QString());
-        textEdit->setHtml(QCoreApplication::translate("About", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        textEdit->setHtml(QApplication::translate("About", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
@@ -127,9 +130,9 @@ public:
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:11pt; font-weight:600; font-style:italic;\">Linux Accounts Management Utility </span></p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans'; font-size:11pt; font-weight:600; font-style:italic;\"><br /></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:11pt; font-weight:60"
-                        "0; font-style:italic;\">	                        </span></p></body></html>", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("About", "About", nullptr));
-        textEdit_2->setHtml(QCoreApplication::translate("About", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                        "0; font-style:italic;\">	                        </span></p></body></html>", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("About", "About", Q_NULLPTR));
+        textEdit_2->setHtml(QApplication::translate("About", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
@@ -147,9 +150,9 @@ public:
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:12pt; font-weight:600; font-style:italic;\">Fotis Tsifountidis</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans'; font-size:12pt; font-weight:600; te"
-                        "xt-decoration: underline; color:#0057ae;\"><br /></p></body></html>", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("About", "Authors", nullptr));
-        textEdit_3->setHtml(QCoreApplication::translate("About", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                        "xt-decoration: underline; color:#0057ae;\"><br /></p></body></html>", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("About", "Authors", Q_NULLPTR));
+        textEdit_3->setHtml(QApplication::translate("About", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
@@ -369,8 +372,8 @@ public:
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margi"
                         "n-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'DejaVu Sans'; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">END OF TERMS AND CONDITIONS</span></p></body></html>", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("About", "License Agreement", nullptr));
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'DejaVu Sans'; font-size:10pt;\">END OF TERMS AND CONDITIONS</span></p></body></html>", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("About", "License Agreement", Q_NULLPTR));
     } // retranslateUi
 
 };

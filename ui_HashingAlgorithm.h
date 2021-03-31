@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'HashingAlgorithm.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.2
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,11 +10,13 @@
 #define UI_HASHINGALGORITHM_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QIcon>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -59,24 +61,24 @@ public:
     void setupUi(QDialog *HashingAlgorithm)
     {
         if (HashingAlgorithm->objectName().isEmpty())
-            HashingAlgorithm->setObjectName(QString::fromUtf8("HashingAlgorithm"));
+            HashingAlgorithm->setObjectName(QStringLiteral("HashingAlgorithm"));
         HashingAlgorithm->resize(366, 415);
         QFont font;
         font.setBold(true);
         font.setWeight(75);
         HashingAlgorithm->setFont(font);
         verticalLayout_2 = new QVBoxLayout(HashingAlgorithm);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         horizontalLayout_5 = new QHBoxLayout();
-        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         UserLabel = new QLabel(HashingAlgorithm);
-        UserLabel->setObjectName(QString::fromUtf8("UserLabel"));
+        UserLabel->setObjectName(QStringLiteral("UserLabel"));
         UserLabel->setMaximumSize(QSize(91, 16777215));
 
         horizontalLayout_5->addWidget(UserLabel);
 
         UserNameLabel = new QLabel(HashingAlgorithm);
-        UserNameLabel->setObjectName(QString::fromUtf8("UserNameLabel"));
+        UserNameLabel->setObjectName(QStringLiteral("UserNameLabel"));
         QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -91,7 +93,7 @@ public:
         horizontalLayout_5->addItem(horizontalSpacer_3);
 
         NameLabelHidden = new QLabel(HashingAlgorithm);
-        NameLabelHidden->setObjectName(QString::fromUtf8("NameLabelHidden"));
+        NameLabelHidden->setObjectName(QStringLiteral("NameLabelHidden"));
         sizePolicy.setHeightForWidth(NameLabelHidden->sizePolicy().hasHeightForWidth());
         NameLabelHidden->setSizePolicy(sizePolicy);
         NameLabelHidden->setMaximumSize(QSize(151, 16777215));
@@ -106,26 +108,26 @@ public:
         verticalLayout_2->addItem(verticalSpacer_13);
 
         groupBox = new QGroupBox(HashingAlgorithm);
-        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setObjectName(QStringLiteral("groupBox"));
         horizontalLayout_4 = new QHBoxLayout(groupBox);
-        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         Sha512rdb = new QRadioButton(groupBox);
-        Sha512rdb->setObjectName(QString::fromUtf8("Sha512rdb"));
+        Sha512rdb->setObjectName(QStringLiteral("Sha512rdb"));
 
         horizontalLayout_4->addWidget(Sha512rdb);
 
         MD5rdb = new QRadioButton(groupBox);
-        MD5rdb->setObjectName(QString::fromUtf8("MD5rdb"));
+        MD5rdb->setObjectName(QStringLiteral("MD5rdb"));
 
         horizontalLayout_4->addWidget(MD5rdb);
 
         Sha256rdb = new QRadioButton(groupBox);
-        Sha256rdb->setObjectName(QString::fromUtf8("Sha256rdb"));
+        Sha256rdb->setObjectName(QStringLiteral("Sha256rdb"));
 
         horizontalLayout_4->addWidget(Sha256rdb);
 
         Blowfishrdb = new QRadioButton(groupBox);
-        Blowfishrdb->setObjectName(QString::fromUtf8("Blowfishrdb"));
+        Blowfishrdb->setObjectName(QStringLiteral("Blowfishrdb"));
 
         horizontalLayout_4->addWidget(Blowfishrdb);
 
@@ -141,16 +143,16 @@ public:
         verticalLayout_2->addItem(verticalSpacer_10);
 
         groupBox_2 = new QGroupBox(HashingAlgorithm);
-        groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
+        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         verticalLayout = new QVBoxLayout(groupBox_2);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         label_2 = new QLabel(groupBox_2);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setObjectName(QStringLiteral("label_2"));
 
         verticalLayout->addWidget(label_2);
 
         pass = new QLineEdit(groupBox_2);
-        pass->setObjectName(QString::fromUtf8("pass"));
+        pass->setObjectName(QStringLiteral("pass"));
 
         verticalLayout->addWidget(pass);
 
@@ -159,12 +161,12 @@ public:
         verticalLayout->addItem(verticalSpacer_12);
 
         label_3 = new QLabel(groupBox_2);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setObjectName(QStringLiteral("label_3"));
 
         verticalLayout->addWidget(label_3);
 
         pass2 = new QLineEdit(groupBox_2);
-        pass2->setObjectName(QString::fromUtf8("pass2"));
+        pass2->setObjectName(QStringLiteral("pass2"));
 
         verticalLayout->addWidget(pass2);
 
@@ -180,23 +182,23 @@ public:
         verticalLayout_2->addItem(verticalSpacer_11);
 
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalSpacer_5 = new QSpacerItem(68, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_5);
 
         okBtn = new QPushButton(HashingAlgorithm);
-        okBtn->setObjectName(QString::fromUtf8("okBtn"));
+        okBtn->setObjectName(QStringLiteral("okBtn"));
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/new/prefix1/images/cancel.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/new/prefix1/images/cancel.png"), QSize(), QIcon::Normal, QIcon::Off);
         okBtn->setIcon(icon);
 
         horizontalLayout->addWidget(okBtn);
 
         Save = new QPushButton(HashingAlgorithm);
-        Save->setObjectName(QString::fromUtf8("Save"));
+        Save->setObjectName(QStringLiteral("Save"));
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/new/prefix1/images/ok.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QStringLiteral(":/new/prefix1/images/ok.png"), QSize(), QIcon::Normal, QIcon::Off);
         Save->setIcon(icon1);
 
         horizontalLayout->addWidget(Save);
@@ -219,20 +221,20 @@ public:
 
     void retranslateUi(QDialog *HashingAlgorithm)
     {
-        HashingAlgorithm->setWindowTitle(QCoreApplication::translate("HashingAlgorithm", "Setup Password", nullptr));
-        UserLabel->setText(QCoreApplication::translate("HashingAlgorithm", "User name :", nullptr));
+        HashingAlgorithm->setWindowTitle(QApplication::translate("HashingAlgorithm", "Setup Password", Q_NULLPTR));
+        UserLabel->setText(QApplication::translate("HashingAlgorithm", "User name :", Q_NULLPTR));
         UserNameLabel->setText(QString());
         NameLabelHidden->setText(QString());
-        groupBox->setTitle(QCoreApplication::translate("HashingAlgorithm", "Hashing Algorithm", nullptr));
-        Sha512rdb->setText(QCoreApplication::translate("HashingAlgorithm", "SHA-512", nullptr));
-        MD5rdb->setText(QCoreApplication::translate("HashingAlgorithm", "MD5", nullptr));
-        Sha256rdb->setText(QCoreApplication::translate("HashingAlgorithm", "SHA-256", nullptr));
-        Blowfishrdb->setText(QCoreApplication::translate("HashingAlgorithm", "Blowfish", nullptr));
+        groupBox->setTitle(QApplication::translate("HashingAlgorithm", "Hashing Algorithm", Q_NULLPTR));
+        Sha512rdb->setText(QApplication::translate("HashingAlgorithm", "SHA-512", Q_NULLPTR));
+        MD5rdb->setText(QApplication::translate("HashingAlgorithm", "MD5", Q_NULLPTR));
+        Sha256rdb->setText(QApplication::translate("HashingAlgorithm", "SHA-256", Q_NULLPTR));
+        Blowfishrdb->setText(QApplication::translate("HashingAlgorithm", "Blowfish", Q_NULLPTR));
         groupBox_2->setTitle(QString());
-        label_2->setText(QCoreApplication::translate("HashingAlgorithm", "Password: ", nullptr));
-        label_3->setText(QCoreApplication::translate("HashingAlgorithm", "Confirm: ", nullptr));
-        okBtn->setText(QCoreApplication::translate("HashingAlgorithm", "Close", nullptr));
-        Save->setText(QCoreApplication::translate("HashingAlgorithm", "Accept", nullptr));
+        label_2->setText(QApplication::translate("HashingAlgorithm", "Password: ", Q_NULLPTR));
+        label_3->setText(QApplication::translate("HashingAlgorithm", "Confirm: ", Q_NULLPTR));
+        okBtn->setText(QApplication::translate("HashingAlgorithm", "Close", Q_NULLPTR));
+        Save->setText(QApplication::translate("HashingAlgorithm", "Accept", Q_NULLPTR));
     } // retranslateUi
 
 };

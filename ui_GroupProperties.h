@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'GroupProperties.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.2
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,8 +10,9 @@
 #define UI_GROUPPROPERTIES_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QIcon>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
@@ -55,27 +56,27 @@ public:
     void setupUi(QDialog *GroupProperties)
     {
         if (GroupProperties->objectName().isEmpty())
-            GroupProperties->setObjectName(QString::fromUtf8("GroupProperties"));
+            GroupProperties->setObjectName(QStringLiteral("GroupProperties"));
         GroupProperties->resize(450, 448);
         GroupProperties->setMouseTracking(false);
         GroupProperties->setFocusPolicy(Qt::StrongFocus);
         GroupProperties->setAcceptDrops(false);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/new/prefix1/images/editGroup.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/new/prefix1/images/editGroup.png"), QSize(), QIcon::Normal, QIcon::Off);
         GroupProperties->setWindowIcon(icon);
         GroupProperties->setSizeGripEnabled(false);
         GIDLabel = new QLabel(GroupProperties);
-        GIDLabel->setObjectName(QString::fromUtf8("GIDLabel"));
+        GIDLabel->setObjectName(QStringLiteral("GIDLabel"));
         GIDLabel->setGeometry(QRect(110, 16, 63, 17));
         gridLayout_3 = new QGridLayout(GroupProperties);
-        gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         label = new QLabel(GroupProperties);
-        label->setObjectName(QString::fromUtf8("label"));
+        label->setObjectName(QStringLiteral("label"));
 
         gridLayout_3->addWidget(label, 0, 0, 1, 1);
 
         GIDEdit = new QLineEdit(GroupProperties);
-        GIDEdit->setObjectName(QString::fromUtf8("GIDEdit"));
+        GIDEdit->setObjectName(QStringLiteral("GIDEdit"));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -85,11 +86,11 @@ public:
         gridLayout_3->addWidget(GIDEdit, 0, 1, 1, 1);
 
         newGroupBtn = new QToolButton(GroupProperties);
-        newGroupBtn->setObjectName(QString::fromUtf8("newGroupBtn"));
+        newGroupBtn->setObjectName(QStringLiteral("newGroupBtn"));
         newGroupBtn->setCursor(QCursor(Qt::OpenHandCursor));
         newGroupBtn->setAutoFillBackground(false);
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/new/prefix1/images/addgr.jpeg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QStringLiteral(":/new/prefix1/images/addgr.jpeg"), QSize(), QIcon::Normal, QIcon::Off);
         newGroupBtn->setIcon(icon1);
         newGroupBtn->setIconSize(QSize(50, 40));
 
@@ -100,14 +101,14 @@ public:
         gridLayout_3->addItem(horizontalSpacer_2, 0, 3, 2, 2);
 
         groupNameEdit = new QLineEdit(GroupProperties);
-        groupNameEdit->setObjectName(QString::fromUtf8("groupNameEdit"));
+        groupNameEdit->setObjectName(QStringLiteral("groupNameEdit"));
         groupNameEdit->setFocusPolicy(Qt::ClickFocus);
-        groupNameEdit->setStyleSheet(QString::fromUtf8(""));
+        groupNameEdit->setStyleSheet(QStringLiteral(""));
 
         gridLayout_3->addWidget(groupNameEdit, 1, 1, 2, 1);
 
         label_2 = new QLabel(GroupProperties);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setObjectName(QStringLiteral("label_2"));
 
         gridLayout_3->addWidget(label_2, 2, 0, 1, 1);
 
@@ -116,23 +117,23 @@ public:
         gridLayout_3->addItem(verticalSpacer_3, 3, 0, 1, 1);
 
         existsLabel = new QLabel(GroupProperties);
-        existsLabel->setObjectName(QString::fromUtf8("existsLabel"));
+        existsLabel->setObjectName(QStringLiteral("existsLabel"));
         sizePolicy.setHeightForWidth(existsLabel->sizePolicy().hasHeightForWidth());
         existsLabel->setSizePolicy(sizePolicy);
 
         gridLayout_3->addWidget(existsLabel, 3, 1, 1, 1);
 
         line = new QFrame(GroupProperties);
-        line->setObjectName(QString::fromUtf8("line"));
+        line->setObjectName(QStringLiteral("line"));
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
 
         gridLayout_3->addWidget(line, 4, 0, 1, 5);
 
         gridLayout = new QGridLayout();
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
         membersList = new QTreeView(GroupProperties);
-        membersList->setObjectName(QString::fromUtf8("membersList"));
+        membersList->setObjectName(QStringLiteral("membersList"));
         membersList->setEnabled(true);
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy1.setHorizontalStretch(0);
@@ -142,7 +143,7 @@ public:
         membersList->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
         membersList->setAcceptDrops(true);
         membersList->setAutoFillBackground(true);
-        membersList->setStyleSheet(QString::fromUtf8("selection-background-color: red"));
+        membersList->setStyleSheet(QStringLiteral("selection-background-color: red"));
         membersList->setEditTriggers(QAbstractItemView::NoEditTriggers);
         membersList->setProperty("showDropIndicator", QVariant(false));
         membersList->setAlternatingRowColors(true);
@@ -160,13 +161,13 @@ public:
         gridLayout->addItem(verticalSpacer, 0, 1, 1, 1);
 
         notMembersList = new QTreeView(GroupProperties);
-        notMembersList->setObjectName(QString::fromUtf8("notMembersList"));
+        notMembersList->setObjectName(QStringLiteral("notMembersList"));
         sizePolicy1.setHeightForWidth(notMembersList->sizePolicy().hasHeightForWidth());
         notMembersList->setSizePolicy(sizePolicy1);
         notMembersList->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
         notMembersList->setAcceptDrops(true);
         notMembersList->setAutoFillBackground(true);
-        notMembersList->setStyleSheet(QString::fromUtf8("selection-background-color: red"));
+        notMembersList->setStyleSheet(QStringLiteral("selection-background-color: red"));
         notMembersList->setFrameShape(QFrame::StyledPanel);
         notMembersList->setFrameShadow(QFrame::Sunken);
         notMembersList->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -181,14 +182,14 @@ public:
         gridLayout->addWidget(notMembersList, 0, 2, 3, 1);
 
         gridLayout1 = new QGridLayout();
-        gridLayout1->setObjectName(QString::fromUtf8("gridLayout1"));
+        gridLayout1->setObjectName(QStringLiteral("gridLayout1"));
         addBtn = new QPushButton(GroupProperties);
-        addBtn->setObjectName(QString::fromUtf8("addBtn"));
+        addBtn->setObjectName(QStringLiteral("addBtn"));
 
         gridLayout1->addWidget(addBtn, 0, 0, 1, 1);
 
         removeBtn = new QPushButton(GroupProperties);
-        removeBtn->setObjectName(QString::fromUtf8("removeBtn"));
+        removeBtn->setObjectName(QStringLiteral("removeBtn"));
 
         gridLayout1->addWidget(removeBtn, 1, 0, 1, 1);
 
@@ -207,23 +208,23 @@ public:
         gridLayout_3->addItem(horizontalSpacer, 6, 0, 1, 2);
 
         okBtn = new QPushButton(GroupProperties);
-        okBtn->setObjectName(QString::fromUtf8("okBtn"));
+        okBtn->setObjectName(QStringLiteral("okBtn"));
         QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/new/prefix1/images/ok.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/new/prefix1/images/ok.png"), QSize(), QIcon::Normal, QIcon::Off);
         okBtn->setIcon(icon2);
 
         gridLayout_3->addWidget(okBtn, 6, 2, 1, 2);
 
         closeBtn = new QPushButton(GroupProperties);
-        closeBtn->setObjectName(QString::fromUtf8("closeBtn"));
+        closeBtn->setObjectName(QStringLiteral("closeBtn"));
         QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/new/prefix1/images/cancel.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon3.addFile(QStringLiteral(":/new/prefix1/images/cancel.png"), QSize(), QIcon::Normal, QIcon::Off);
         closeBtn->setIcon(icon3);
 
         gridLayout_3->addWidget(closeBtn, 6, 4, 1, 1);
 
         line_2 = new QFrame(GroupProperties);
-        line_2->setObjectName(QString::fromUtf8("line_2"));
+        line_2->setObjectName(QStringLiteral("line_2"));
         line_2->setFrameShape(QFrame::HLine);
         line_2->setFrameShadow(QFrame::Sunken);
 
@@ -238,16 +239,16 @@ public:
 
     void retranslateUi(QDialog *GroupProperties)
     {
-        GroupProperties->setWindowTitle(QCoreApplication::translate("GroupProperties", "Group Properties", nullptr));
+        GroupProperties->setWindowTitle(QApplication::translate("GroupProperties", "Group Properties", Q_NULLPTR));
         GIDLabel->setText(QString());
-        label->setText(QCoreApplication::translate("GroupProperties", "Group ID:", nullptr));
-        newGroupBtn->setText(QCoreApplication::translate("GroupProperties", "...", nullptr));
-        label_2->setText(QCoreApplication::translate("GroupProperties", "Group Name:", nullptr));
+        label->setText(QApplication::translate("GroupProperties", "Group ID:", Q_NULLPTR));
+        newGroupBtn->setText(QApplication::translate("GroupProperties", "...", Q_NULLPTR));
+        label_2->setText(QApplication::translate("GroupProperties", "Group Name:", Q_NULLPTR));
         existsLabel->setText(QString());
-        addBtn->setText(QCoreApplication::translate("GroupProperties", "<- Add", nullptr));
-        removeBtn->setText(QCoreApplication::translate("GroupProperties", "Remove->", nullptr));
-        okBtn->setText(QCoreApplication::translate("GroupProperties", "&OK", nullptr));
-        closeBtn->setText(QCoreApplication::translate("GroupProperties", "&Close", nullptr));
+        addBtn->setText(QApplication::translate("GroupProperties", "<- Add", Q_NULLPTR));
+        removeBtn->setText(QApplication::translate("GroupProperties", "Remove->", Q_NULLPTR));
+        okBtn->setText(QApplication::translate("GroupProperties", "&OK", Q_NULLPTR));
+        closeBtn->setText(QApplication::translate("GroupProperties", "&Close", Q_NULLPTR));
     } // retranslateUi
 
 };

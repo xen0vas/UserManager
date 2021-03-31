@@ -8,6 +8,7 @@
 #include <string.h>
 #include <linux/limits.h>
 #include "spc.h"
+#include <memory>
 
 using namespace std;
 

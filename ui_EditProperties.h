@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'EditProperties.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.2
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,8 +10,9 @@
 #define UI_EDITPROPERTIES_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QIcon>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
@@ -114,7 +115,7 @@ public:
     void setupUi(QDialog *EditProperties)
     {
         if (EditProperties->objectName().isEmpty())
-            EditProperties->setObjectName(QString::fromUtf8("EditProperties"));
+            EditProperties->setObjectName(QStringLiteral("EditProperties"));
         EditProperties->resize(867, 502);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
@@ -122,14 +123,14 @@ public:
         sizePolicy.setHeightForWidth(EditProperties->sizePolicy().hasHeightForWidth());
         EditProperties->setSizePolicy(sizePolicy);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/new/prefix1/images/editUser.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QStringLiteral(":/new/prefix1/images/editUser.png"), QSize(), QIcon::Normal, QIcon::Off);
         EditProperties->setWindowIcon(icon);
         gridLayout = new QGridLayout(EditProperties);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
         edit = new QPushButton(EditProperties);
-        edit->setObjectName(QString::fromUtf8("edit"));
+        edit->setObjectName(QStringLiteral("edit"));
         QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/new/prefix1/images/ok.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QStringLiteral(":/new/prefix1/images/ok.png"), QSize(), QIcon::Normal, QIcon::Off);
         edit->setIcon(icon1);
 
         gridLayout->addWidget(edit, 2, 2, 1, 1);
@@ -139,15 +140,15 @@ public:
         gridLayout->addItem(horizontalSpacer_2, 2, 1, 1, 1);
 
         cancelBtn = new QPushButton(EditProperties);
-        cancelBtn->setObjectName(QString::fromUtf8("cancelBtn"));
+        cancelBtn->setObjectName(QStringLiteral("cancelBtn"));
         QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/new/prefix1/images/cancel.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/new/prefix1/images/cancel.png"), QSize(), QIcon::Normal, QIcon::Off);
         cancelBtn->setIcon(icon2);
 
         gridLayout->addWidget(cancelBtn, 2, 3, 1, 1);
 
         tabWidget = new QTabWidget(EditProperties);
-        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+        tabWidget->setObjectName(QStringLiteral("tabWidget"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
@@ -161,25 +162,25 @@ public:
         font.setKerning(true);
         tabWidget->setFont(font);
         tab = new QWidget();
-        tab->setObjectName(QString::fromUtf8("tab"));
+        tab->setObjectName(QStringLiteral("tab"));
         gridLayout_2 = new QGridLayout(tab);
-        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         label_4 = new QLabel(tab);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setScaledContents(true);
         label_4->setWordWrap(false);
 
         gridLayout_2->addWidget(label_4, 0, 0, 1, 1);
 
         LoginName = new QLabel(tab);
-        LoginName->setObjectName(QString::fromUtf8("LoginName"));
+        LoginName->setObjectName(QStringLiteral("LoginName"));
 
         gridLayout_2->addWidget(LoginName, 0, 2, 1, 2);
 
         pass = new QPushButton(tab);
-        pass->setObjectName(QString::fromUtf8("pass"));
+        pass->setObjectName(QStringLiteral("pass"));
         QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/new/prefix1/images/keys.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon3.addFile(QStringLiteral(":/new/prefix1/images/keys.png"), QSize(), QIcon::Normal, QIcon::Off);
         pass->setIcon(icon3);
 
         gridLayout_2->addWidget(pass, 0, 5, 1, 1);
@@ -189,106 +190,106 @@ public:
         gridLayout_2->addItem(horizontalSpacer, 2, 0, 1, 1);
 
         label_3 = new QLabel(tab);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setScaledContents(true);
         label_3->setWordWrap(false);
 
         gridLayout_2->addWidget(label_3, 3, 0, 1, 1);
 
         uiEdit = new QLineEdit(tab);
-        uiEdit->setObjectName(QString::fromUtf8("uiEdit"));
+        uiEdit->setObjectName(QStringLiteral("uiEdit"));
 
         gridLayout_2->addWidget(uiEdit, 3, 2, 1, 4);
 
         label_5 = new QLabel(tab);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setScaledContents(true);
         label_5->setWordWrap(false);
 
         gridLayout_2->addWidget(label_5, 5, 0, 1, 1);
 
         FullNameEdit = new QLineEdit(tab);
-        FullNameEdit->setObjectName(QString::fromUtf8("FullNameEdit"));
+        FullNameEdit->setObjectName(QStringLiteral("FullNameEdit"));
 
         gridLayout_2->addWidget(FullNameEdit, 5, 2, 1, 4);
 
         label_6 = new QLabel(tab);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setScaledContents(true);
         label_6->setWordWrap(false);
 
         gridLayout_2->addWidget(label_6, 7, 0, 1, 1);
 
         shellConnect = new QComboBox(tab);
-        shellConnect->setObjectName(QString::fromUtf8("shellConnect"));
+        shellConnect->setObjectName(QStringLiteral("shellConnect"));
         shellConnect->setEditable(false);
 
         gridLayout_2->addWidget(shellConnect, 7, 2, 1, 4);
 
         label_7 = new QLabel(tab);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setScaledContents(true);
         label_7->setWordWrap(false);
 
         gridLayout_2->addWidget(label_7, 9, 0, 1, 1);
 
         DirEdit = new QLineEdit(tab);
-        DirEdit->setObjectName(QString::fromUtf8("DirEdit"));
+        DirEdit->setObjectName(QStringLiteral("DirEdit"));
 
         gridLayout_2->addWidget(DirEdit, 9, 2, 1, 3);
 
         browseBtn = new QPushButton(tab);
-        browseBtn->setObjectName(QString::fromUtf8("browseBtn"));
+        browseBtn->setObjectName(QStringLiteral("browseBtn"));
 
         gridLayout_2->addWidget(browseBtn, 9, 5, 1, 1);
 
         label_10 = new QLabel(tab);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
+        label_10->setObjectName(QStringLiteral("label_10"));
         label_10->setScaledContents(true);
         label_10->setWordWrap(false);
 
         gridLayout_2->addWidget(label_10, 11, 0, 1, 1);
 
         office1Edit = new QLineEdit(tab);
-        office1Edit->setObjectName(QString::fromUtf8("office1Edit"));
+        office1Edit->setObjectName(QStringLiteral("office1Edit"));
 
         gridLayout_2->addWidget(office1Edit, 11, 2, 1, 4);
 
         label_8 = new QLabel(tab);
-        label_8->setObjectName(QString::fromUtf8("label_8"));
+        label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setScaledContents(true);
         label_8->setWordWrap(false);
 
         gridLayout_2->addWidget(label_8, 13, 0, 1, 1);
 
         office2Edit = new QLineEdit(tab);
-        office2Edit->setObjectName(QString::fromUtf8("office2Edit"));
+        office2Edit->setObjectName(QStringLiteral("office2Edit"));
 
         gridLayout_2->addWidget(office2Edit, 13, 2, 1, 4);
 
         label_11 = new QLabel(tab);
-        label_11->setObjectName(QString::fromUtf8("label_11"));
+        label_11->setObjectName(QStringLiteral("label_11"));
         label_11->setScaledContents(true);
         label_11->setWordWrap(false);
 
         gridLayout_2->addWidget(label_11, 15, 0, 1, 1);
 
         addressEdit = new QLineEdit(tab);
-        addressEdit->setObjectName(QString::fromUtf8("addressEdit"));
+        addressEdit->setObjectName(QStringLiteral("addressEdit"));
 
         gridLayout_2->addWidget(addressEdit, 15, 2, 1, 4);
 
         label_12 = new QLabel(tab);
-        label_12->setObjectName(QString::fromUtf8("label_12"));
+        label_12->setObjectName(QStringLiteral("label_12"));
         label_12->setScaledContents(true);
         label_12->setWordWrap(true);
 
         gridLayout_2->addWidget(label_12, 17, 0, 2, 1);
 
         checkBoxEdit = new QCheckBox(tab);
-        checkBoxEdit->setObjectName(QString::fromUtf8("checkBoxEdit"));
+        checkBoxEdit->setObjectName(QStringLiteral("checkBoxEdit"));
         QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/new/prefix1/images/lock.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon4.addFile(QStringLiteral(":/new/prefix1/images/lock.png"), QSize(), QIcon::Normal, QIcon::Off);
         checkBoxEdit->setIcon(icon4);
 
         gridLayout_2->addWidget(checkBoxEdit, 17, 2, 2, 1);
@@ -335,21 +336,21 @@ public:
 
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
-        tab_2->setObjectName(QString::fromUtf8("tab_2"));
+        tab_2->setObjectName(QStringLiteral("tab_2"));
         gridLayout_3 = new QGridLayout(tab_2);
-        gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         label_2 = new QLabel(tab_2);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setObjectName(QStringLiteral("label_2"));
 
         gridLayout_3->addWidget(label_2, 0, 0, 1, 3);
 
         datetime = new QLabel(tab_2);
-        datetime->setObjectName(QString::fromUtf8("datetime"));
+        datetime->setObjectName(QStringLiteral("datetime"));
 
         gridLayout_3->addWidget(datetime, 0, 3, 1, 3);
 
         line = new QFrame(tab_2);
-        line->setObjectName(QString::fromUtf8("line"));
+        line->setObjectName(QStringLiteral("line"));
         line->setFrameShadow(QFrame::Plain);
         line->setLineWidth(1);
         line->setFrameShape(QFrame::HLine);
@@ -357,12 +358,12 @@ public:
         gridLayout_3->addWidget(line, 1, 0, 1, 6);
 
         label_9 = new QLabel(tab_2);
-        label_9->setObjectName(QString::fromUtf8("label_9"));
+        label_9->setObjectName(QStringLiteral("label_9"));
 
         gridLayout_3->addWidget(label_9, 2, 0, 1, 2);
 
         requires_Pass = new QCheckBox(tab_2);
-        requires_Pass->setObjectName(QString::fromUtf8("requires_Pass"));
+        requires_Pass->setObjectName(QStringLiteral("requires_Pass"));
         QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
@@ -375,7 +376,7 @@ public:
         gridLayout_3->addWidget(requires_Pass, 3, 0, 1, 1);
 
         max = new QSpinBox(tab_2);
-        max->setObjectName(QString::fromUtf8("max"));
+        max->setObjectName(QStringLiteral("max"));
         QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy3.setHorizontalStretch(0);
         sizePolicy3.setVerticalStretch(0);
@@ -389,12 +390,12 @@ public:
         gridLayout_3->addWidget(max, 3, 4, 1, 2);
 
         label_14 = new QLabel(tab_2);
-        label_14->setObjectName(QString::fromUtf8("label_14"));
+        label_14->setObjectName(QStringLiteral("label_14"));
 
         gridLayout_3->addWidget(label_14, 6, 0, 1, 4);
 
         warn = new QSpinBox(tab_2);
-        warn->setObjectName(QString::fromUtf8("warn"));
+        warn->setObjectName(QStringLiteral("warn"));
         warn->setLayoutDirection(Qt::LeftToRight);
         warn->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         warn->setKeyboardTracking(false);
@@ -404,12 +405,12 @@ public:
         gridLayout_3->addWidget(warn, 6, 4, 1, 2);
 
         label_15 = new QLabel(tab_2);
-        label_15->setObjectName(QString::fromUtf8("label_15"));
+        label_15->setObjectName(QStringLiteral("label_15"));
 
         gridLayout_3->addWidget(label_15, 8, 0, 1, 4);
 
         expire = new QSpinBox(tab_2);
-        expire->setObjectName(QString::fromUtf8("expire"));
+        expire->setObjectName(QStringLiteral("expire"));
         expire->setLayoutDirection(Qt::LeftToRight);
         expire->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         expire->setMinimum(0);
@@ -419,7 +420,7 @@ public:
         gridLayout_3->addWidget(expire, 8, 4, 1, 2);
 
         enforce_Pass = new QCheckBox(tab_2);
-        enforce_Pass->setObjectName(QString::fromUtf8("enforce_Pass"));
+        enforce_Pass->setObjectName(QStringLiteral("enforce_Pass"));
         QFont font2;
         font2.setStrikeOut(true);
         font2.setKerning(false);
@@ -428,12 +429,12 @@ public:
         gridLayout_3->addWidget(enforce_Pass, 10, 0, 1, 1);
 
         label_16 = new QLabel(tab_2);
-        label_16->setObjectName(QString::fromUtf8("label_16"));
+        label_16->setObjectName(QStringLiteral("label_16"));
 
         gridLayout_3->addWidget(label_16, 10, 1, 1, 3);
 
         min = new QSpinBox(tab_2);
-        min->setObjectName(QString::fromUtf8("min"));
+        min->setObjectName(QStringLiteral("min"));
         min->setLayoutDirection(Qt::LeftToRight);
         min->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         min->setMinimum(-1);
@@ -443,42 +444,30 @@ public:
         gridLayout_3->addWidget(min, 10, 4, 1, 2);
 
         line_2 = new QFrame(tab_2);
-        line_2->setObjectName(QString::fromUtf8("line_2"));
+        line_2->setObjectName(QStringLiteral("line_2"));
         line_2->setFrameShadow(QFrame::Plain);
         line_2->setFrameShape(QFrame::HLine);
 
         gridLayout_3->addWidget(line_2, 12, 0, 1, 6);
 
         label_17 = new QLabel(tab_2);
-        label_17->setObjectName(QString::fromUtf8("label_17"));
+        label_17->setObjectName(QStringLiteral("label_17"));
 
         gridLayout_3->addWidget(label_17, 14, 0, 1, 2);
 
         days = new QSpinBox(tab_2);
-        days->setObjectName(QString::fromUtf8("days"));
+        days->setObjectName(QStringLiteral("days"));
         days->setValue(1);
 
         gridLayout_3->addWidget(days, 14, 2, 1, 1);
 
         months = new QComboBox(tab_2);
-        months->addItem(QString());
-        months->addItem(QString());
-        months->addItem(QString());
-        months->addItem(QString());
-        months->addItem(QString());
-        months->addItem(QString());
-        months->addItem(QString());
-        months->addItem(QString());
-        months->addItem(QString());
-        months->addItem(QString());
-        months->addItem(QString());
-        months->addItem(QString());
-        months->setObjectName(QString::fromUtf8("months"));
+        months->setObjectName(QStringLiteral("months"));
 
         gridLayout_3->addWidget(months, 14, 3, 1, 1);
 
         years = new QSpinBox(tab_2);
-        years->setObjectName(QString::fromUtf8("years"));
+        years->setObjectName(QStringLiteral("years"));
         years->setMinimum(1970);
         years->setMaximum(20000);
         years->setValue(1970);
@@ -486,7 +475,7 @@ public:
         gridLayout_3->addWidget(years, 14, 4, 1, 1);
 
         alway = new QCheckBox(tab_2);
-        alway->setObjectName(QString::fromUtf8("alway"));
+        alway->setObjectName(QStringLiteral("alway"));
 
         gridLayout_3->addWidget(alway, 14, 5, 1, 1);
 
@@ -495,7 +484,7 @@ public:
         gridLayout_3->addItem(verticalSpacer_8, 5, 1, 1, 1);
 
         label_13 = new QLabel(tab_2);
-        label_13->setObjectName(QString::fromUtf8("label_13"));
+        label_13->setObjectName(QStringLiteral("label_13"));
 
         gridLayout_3->addWidget(label_13, 3, 1, 1, 1);
 
@@ -521,9 +510,9 @@ public:
 
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
-        tab_3->setObjectName(QString::fromUtf8("tab_3"));
+        tab_3->setObjectName(QStringLiteral("tab_3"));
         userGroups = new QTreeView(tab_3);
-        userGroups->setObjectName(QString::fromUtf8("userGroups"));
+        userGroups->setObjectName(QStringLiteral("userGroups"));
         userGroups->setGeometry(QRect(0, 0, 831, 311));
         QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy4.setHorizontalStretch(0);
@@ -544,7 +533,7 @@ public:
         userGroups->setAllColumnsShowFocus(true);
         userGroups->setWordWrap(true);
         easyList = new QListWidget(tab_3);
-        easyList->setObjectName(QString::fromUtf8("easyList"));
+        easyList->setObjectName(QStringLiteral("easyList"));
         easyList->setGeometry(QRect(14, 0, 301, 311));
         sizePolicy4.setHeightForWidth(easyList->sizePolicy().hasHeightForWidth());
         easyList->setSizePolicy(sizePolicy4);
@@ -553,16 +542,16 @@ public:
         easyList->setViewMode(QListView::ListMode);
         easyList->setWordWrap(true);
         frame = new QFrame(tab_3);
-        frame->setObjectName(QString::fromUtf8("frame"));
+        frame->setObjectName(QStringLiteral("frame"));
         frame->setGeometry(QRect(10, 320, 821, 91));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
         horizontalLayout_2 = new QHBoxLayout(frame);
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         easyCheckbox = new QCheckBox(frame);
-        easyCheckbox->setObjectName(QString::fromUtf8("easyCheckbox"));
+        easyCheckbox->setObjectName(QStringLiteral("easyCheckbox"));
         QSizePolicy sizePolicy5(QSizePolicy::Preferred, QSizePolicy::Ignored);
         sizePolicy5.setHorizontalStretch(0);
         sizePolicy5.setVerticalStretch(0);
@@ -572,7 +561,7 @@ public:
         horizontalLayout->addWidget(easyCheckbox);
 
         label = new QLabel(frame);
-        label->setObjectName(QString::fromUtf8("label"));
+        label->setObjectName(QStringLiteral("label"));
         QSizePolicy sizePolicy6(QSizePolicy::Ignored, QSizePolicy::Preferred);
         sizePolicy6.setHorizontalStretch(0);
         sizePolicy6.setVerticalStretch(0);
@@ -585,13 +574,13 @@ public:
         horizontalLayout->addWidget(label);
 
         primGroupLabel = new QLabel(frame);
-        primGroupLabel->setObjectName(QString::fromUtf8("primGroupLabel"));
-        primGroupLabel->setStyleSheet(QString::fromUtf8("selection-color: red"));
+        primGroupLabel->setObjectName(QStringLiteral("primGroupLabel"));
+        primGroupLabel->setStyleSheet(QStringLiteral("selection-color: red"));
 
         horizontalLayout->addWidget(primGroupLabel);
 
         makePrimBtn = new QPushButton(frame);
-        makePrimBtn->setObjectName(QString::fromUtf8("makePrimBtn"));
+        makePrimBtn->setObjectName(QStringLiteral("makePrimBtn"));
 
         horizontalLayout->addWidget(makePrimBtn);
 
@@ -617,63 +606,65 @@ public:
 
     void retranslateUi(QDialog *EditProperties)
     {
-        EditProperties->setWindowTitle(QCoreApplication::translate("EditProperties", "User Properties", nullptr));
-        edit->setText(QCoreApplication::translate("EditProperties", "&Ok", nullptr));
-        cancelBtn->setText(QCoreApplication::translate("EditProperties", "&Close", nullptr));
-        label_4->setText(QCoreApplication::translate("EditProperties", "User Login :", nullptr));
+        EditProperties->setWindowTitle(QApplication::translate("EditProperties", "User Properties", Q_NULLPTR));
+        edit->setText(QApplication::translate("EditProperties", "&Ok", Q_NULLPTR));
+        cancelBtn->setText(QApplication::translate("EditProperties", "&Close", Q_NULLPTR));
+        label_4->setText(QApplication::translate("EditProperties", "User Login :", Q_NULLPTR));
         LoginName->setText(QString());
-        pass->setText(QCoreApplication::translate("EditProperties", "&Set Password ....", nullptr));
-        label_3->setText(QCoreApplication::translate("EditProperties", "User ID :", nullptr));
-        label_5->setText(QCoreApplication::translate("EditProperties", "Full Name :", nullptr));
-        label_6->setText(QCoreApplication::translate("EditProperties", "Shell Connection :", nullptr));
-        label_7->setText(QCoreApplication::translate("EditProperties", "Home Directory :", nullptr));
-        browseBtn->setText(QCoreApplication::translate("EditProperties", "Browse...", nullptr));
-        label_10->setText(QCoreApplication::translate("EditProperties", "Office  1# :", nullptr));
-        label_8->setText(QCoreApplication::translate("EditProperties", "Office  2# :", nullptr));
-        label_11->setText(QCoreApplication::translate("EditProperties", "Address :", nullptr));
-        label_12->setText(QCoreApplication::translate("EditProperties", "Account Disabled  :", nullptr));
+        pass->setText(QApplication::translate("EditProperties", "&Set Password ....", Q_NULLPTR));
+        label_3->setText(QApplication::translate("EditProperties", "User ID :", Q_NULLPTR));
+        label_5->setText(QApplication::translate("EditProperties", "Full Name :", Q_NULLPTR));
+        label_6->setText(QApplication::translate("EditProperties", "Shell Connection :", Q_NULLPTR));
+        label_7->setText(QApplication::translate("EditProperties", "Home Directory :", Q_NULLPTR));
+        browseBtn->setText(QApplication::translate("EditProperties", "Browse...", Q_NULLPTR));
+        label_10->setText(QApplication::translate("EditProperties", "Office  1# :", Q_NULLPTR));
+        label_8->setText(QApplication::translate("EditProperties", "Office  2# :", Q_NULLPTR));
+        label_11->setText(QApplication::translate("EditProperties", "Address :", Q_NULLPTR));
+        label_12->setText(QApplication::translate("EditProperties", "Account Disabled  :", Q_NULLPTR));
         checkBoxEdit->setText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("EditProperties", "User &Info", nullptr));
-        label_2->setText(QCoreApplication::translate("EditProperties", "Last Password Change :", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("EditProperties", "User &Info", Q_NULLPTR));
+        label_2->setText(QApplication::translate("EditProperties", "Last Password Change :", Q_NULLPTR));
         datetime->setText(QString());
-        label_9->setText(QCoreApplication::translate("EditProperties", "Password Aging :", nullptr));
+        label_9->setText(QApplication::translate("EditProperties", "Password Aging :", Q_NULLPTR));
         requires_Pass->setText(QString());
-        max->setSuffix(QCoreApplication::translate("EditProperties", "  days", nullptr));
+        max->setSuffix(QApplication::translate("EditProperties", "  days", Q_NULLPTR));
         max->setPrefix(QString());
-        label_14->setText(QCoreApplication::translate("EditProperties", "Warn before password expires :", nullptr));
+        label_14->setText(QApplication::translate("EditProperties", "Warn before password expires :", Q_NULLPTR));
         warn->setSpecialValueText(QString());
-        warn->setSuffix(QCoreApplication::translate("EditProperties", "  days", nullptr));
-        warn->setPrefix(QCoreApplication::translate("EditProperties", "After ", nullptr));
-        label_15->setText(QCoreApplication::translate("EditProperties", "Disable account after password expires :", nullptr));
+        warn->setSuffix(QApplication::translate("EditProperties", "  days", Q_NULLPTR));
+        warn->setPrefix(QApplication::translate("EditProperties", "After ", Q_NULLPTR));
+        label_15->setText(QApplication::translate("EditProperties", "Disable account after password expires :", Q_NULLPTR));
         expire->setSpecialValueText(QString());
-        expire->setSuffix(QCoreApplication::translate("EditProperties", "  days", nullptr));
+        expire->setSuffix(QApplication::translate("EditProperties", "  days", Q_NULLPTR));
         enforce_Pass->setText(QString());
-        label_16->setText(QCoreApplication::translate("EditProperties", "Enforce minimum password age:", nullptr));
+        label_16->setText(QApplication::translate("EditProperties", "Enforce minimum password age:", Q_NULLPTR));
         min->setSpecialValueText(QString());
-        min->setSuffix(QCoreApplication::translate("EditProperties", "  days", nullptr));
+        min->setSuffix(QApplication::translate("EditProperties", "  days", Q_NULLPTR));
         min->setPrefix(QString());
-        label_17->setText(QCoreApplication::translate("EditProperties", "Account will expire  on:", nullptr));
-        months->setItemText(0, QCoreApplication::translate("EditProperties", "January ", nullptr));
-        months->setItemText(1, QCoreApplication::translate("EditProperties", "February", nullptr));
-        months->setItemText(2, QCoreApplication::translate("EditProperties", "March", nullptr));
-        months->setItemText(3, QCoreApplication::translate("EditProperties", "April", nullptr));
-        months->setItemText(4, QCoreApplication::translate("EditProperties", "May", nullptr));
-        months->setItemText(5, QCoreApplication::translate("EditProperties", "June ", nullptr));
-        months->setItemText(6, QCoreApplication::translate("EditProperties", "July", nullptr));
-        months->setItemText(7, QCoreApplication::translate("EditProperties", "August", nullptr));
-        months->setItemText(8, QCoreApplication::translate("EditProperties", "September", nullptr));
-        months->setItemText(9, QCoreApplication::translate("EditProperties", "October", nullptr));
-        months->setItemText(10, QCoreApplication::translate("EditProperties", "November", nullptr));
-        months->setItemText(11, QCoreApplication::translate("EditProperties", "December", nullptr));
-
-        alway->setText(QCoreApplication::translate("EditProperties", "Never", nullptr));
-        label_13->setText(QCoreApplication::translate("EditProperties", "Require new password after:", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("EditProperties", "Password &Manager", nullptr));
-        easyCheckbox->setText(QCoreApplication::translate("EditProperties", "Privileges and groups", nullptr));
-        label->setText(QCoreApplication::translate("EditProperties", "                    Primary Group:", nullptr));
+        label_17->setText(QApplication::translate("EditProperties", "Account will expire  on:", Q_NULLPTR));
+        months->clear();
+        months->insertItems(0, QStringList()
+         << QApplication::translate("EditProperties", "January ", Q_NULLPTR)
+         << QApplication::translate("EditProperties", "February", Q_NULLPTR)
+         << QApplication::translate("EditProperties", "March", Q_NULLPTR)
+         << QApplication::translate("EditProperties", "April", Q_NULLPTR)
+         << QApplication::translate("EditProperties", "May", Q_NULLPTR)
+         << QApplication::translate("EditProperties", "June ", Q_NULLPTR)
+         << QApplication::translate("EditProperties", "July", Q_NULLPTR)
+         << QApplication::translate("EditProperties", "August", Q_NULLPTR)
+         << QApplication::translate("EditProperties", "September", Q_NULLPTR)
+         << QApplication::translate("EditProperties", "October", Q_NULLPTR)
+         << QApplication::translate("EditProperties", "November", Q_NULLPTR)
+         << QApplication::translate("EditProperties", "December", Q_NULLPTR)
+        );
+        alway->setText(QApplication::translate("EditProperties", "Never", Q_NULLPTR));
+        label_13->setText(QApplication::translate("EditProperties", "Require new password after:", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("EditProperties", "Password &Manager", Q_NULLPTR));
+        easyCheckbox->setText(QApplication::translate("EditProperties", "Privileges and groups", Q_NULLPTR));
+        label->setText(QApplication::translate("EditProperties", "                    Primary Group:", Q_NULLPTR));
         primGroupLabel->setText(QString());
-        makePrimBtn->setText(QCoreApplication::translate("EditProperties", "Set as Primary", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("EditProperties", "&Groups", nullptr));
+        makePrimBtn->setText(QApplication::translate("EditProperties", "Set as Primary", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("EditProperties", "&Groups", Q_NULLPTR));
     } // retranslateUi
 
 };
