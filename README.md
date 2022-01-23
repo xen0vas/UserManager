@@ -45,8 +45,8 @@ The UserManager application has a friendly dashboard and offers the following fu
 
 TODO :
 
+* Application usage from low privileged users ( High Priority )
 * Implement password generator 
-* Application usage from low privileged users
 * Implement password strength checks
 * Implement password suggestions 
 * Send an email to the users in case their passwords are about to be expired 
