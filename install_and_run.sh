@@ -53,6 +53,16 @@ if [ "$found" = "false" ]; then
 	exit 1; 
 fi
 
+if [ ! -d /"$usr"/.local ]; then 
+	mkdir /"$usr"/.local
+elif [ ! -d /"$usr"/.local/share ];then 
+	mkdir /"$usr"/.local/share
+elif [ ! -d /"$usr"/.local/share/applications ]; then 
+	mkdir /"$usr"/.local/share/applications
+
+if [ ! -d /"$usr"/Pictures ]; then
+	mkdir /"$usr"/Pictures
+
 if [ "$found" = "true" ]; then 
 	if [ ! -f /"$usr"/.local/share/applications/UserManager.desktop ]; then
 		if [ "$directory" = "UserManager" -o "$directory" = "UserManager-master"  ]; then
