@@ -59,9 +59,11 @@ elif [ ! -d /"$usr"/.local/share ];then
 	mkdir /"$usr"/.local/share
 elif [ ! -d /"$usr"/.local/share/applications ]; then 
 	mkdir /"$usr"/.local/share/applications
+fi
 
 if [ ! -d /"$usr"/Pictures ]; then
 	mkdir /"$usr"/Pictures
+fi
 
 if [ "$found" = "true" ]; then 
 	if [ ! -f /"$usr"/.local/share/applications/UserManager.desktop ]; then
