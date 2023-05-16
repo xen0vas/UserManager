@@ -62,7 +62,7 @@ elif [ ! -d /"$usr"/.local/share/applications ]; then
 fi
 
 if [ ! -d /"$usr"/Pictures ]; then
-	mkdir /"$usr"/Pictures
+	mkdir -p /"$usr"/Pictures
 fi
 
 if [ "$found" = "true" ]; then 
