@@ -54,11 +54,11 @@ if [ "$found" = "false" ]; then
 fi
 
 if [ ! -d /"$usr"/.local ]; then 
-	mkdir /"$usr"/.local
+	mkdir -p /"$usr"/.local
 elif [ ! -d /"$usr"/.local/share ];then 
-	mkdir /"$usr"/.local/share
+	mkdir -p /"$usr"/.local/share
 elif [ ! -d /"$usr"/.local/share/applications ]; then 
-	mkdir /"$usr"/.local/share/applications
+	mkdir -p /"$usr"/.local/share/applications
 fi
 
 if [ ! -d /"$usr"/Pictures ]; then
