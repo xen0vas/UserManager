@@ -12,7 +12,7 @@
 
 ---
 
-# !!! This project is not maintained anymore !!! 
+# !!! This project is not maintained !!! 
 
 ---
 
